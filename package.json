@@ -1,0 +1,36 @@
+{
+  "name": "wolfproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "compile": "tsc -p tsconfig.json",
+    "build": "npm run compile",
+    "lint": "tslint -p tsconfig.json",
+    "serve": "node dist/index.js",
+    "start": "npm run build && npm run serve",
+    "rebuild": "npm run clean && npm run build",
+    "release": "npm run rebuild && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arukio/wolfproject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arukio/wolfproject/issues"
+  },
+  "homepage": "https://github.com/Arukio/wolfproject#readme",
+  "devDependencies": {
+    "tslint": "^5.12.1",
+    "tslint-consistent-codestyle": "^1.15.0",
+    "@types/express": "^4.16.1",
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

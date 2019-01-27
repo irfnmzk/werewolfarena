@@ -1,6 +1,5 @@
-import express from 'express';
-const app = express();
+import Bot from './line/linebot';
 
-app.get('/', (_, res) => res.send('Hello World!'));
+const bot = new Bot();
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+bot.listen();

@@ -1,5 +1,6 @@
 import * as Line from '@line/bot-sdk';
 
+import GameManager from '../manager/GameManager';
 import Config from '../config/Config';
 import LineBot from '../line/linebot';
 import MessageHandler from './MessageHandler';
@@ -8,11 +9,13 @@ export default class WolfBot {
   private readonly config: Config;
   private readonly lineBot: LineBot;
   private readonly messageHandler: MessageHandler;
+  private gameManager: GameManager;
 
   constructor() {
     this.config = new Config();
     this.lineBot = new LineBot(this.config);
-    this.messageHandler = new MessageHandler();
+    this.gameManager = new GameManager();
+    this.messageHandler = new MessageHandler(this.gameManager);
 
     this.addEventListener();
   }

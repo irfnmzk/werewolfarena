@@ -11,4 +11,11 @@ export default class LineMessage extends Line.Client {
       text
     }).catch(err => console.error(err));
   }
+
+  public sendWithText(id: string, text: string) {
+    this.pushMessage(id, {
+      type: 'text',
+      text
+    }).catch(err => console.error(err));
+  }
 }

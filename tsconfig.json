@@ -11,7 +11,10 @@
     "baseUrl": ".",
     "paths": {
       "@config/*": ["src/bot/config/*"],
-      "@util/*": ["src/util/*"]
+      "@util/*": ["src/util/*"],
+      "@game/*": ["src/game/*"],
+      "@manager/*": ["src/manager/*"],
+      "@bot/*": ["src/bot/*"]
     }
   },
   "include": ["src/**/*", "lib/**/*", "types/*"]

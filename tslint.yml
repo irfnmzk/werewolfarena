@@ -10,6 +10,8 @@ rulesDirectory:
   - tslint-consistent-codestyle
 
 rules:
+  ordered-imports:
+    - false
   array-type:
     - true
     - array

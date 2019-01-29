@@ -1,3 +1,4 @@
+import MessageSource from '../base/MessageSource';
 import Command from './base/Command';
 
 export default class CommandCollections extends Map<string, Command> {
@@ -14,7 +15,7 @@ export default class CommandCollections extends Map<string, Command> {
    * execute
    * execute the given triger
    */
-  public execute(command: string, source: any) {
+  public execute(command: string, source: MessageSource) {
     if (this.has(command)) {
       if (!this.canRunCommand(command, source)) return;
       this.get(command)!.run(command, source);
@@ -29,7 +30,7 @@ export default class CommandCollections extends Map<string, Command> {
     this.set(command.TRIGGER, command);
   }
 
-  private canRunCommand(commandName: string, source: any) {
+  private canRunCommand(commandName: string, source: MessageSource) {
     const command = this.get(commandName)!;
     console.log(command.TYPE, source.type);
     console.log(command.TYPE.filter(data => data === source.type).length >= 1);

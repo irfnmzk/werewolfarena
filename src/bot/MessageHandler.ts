@@ -1,5 +1,6 @@
 import * as Line from '@line/bot-sdk';
 
+import MessageSource from './base/MessageSource';
 import CommandCollections from './commands/CommandCollections';
 import commandFactory from './commands/helper/CommandFactory';
 
@@ -13,7 +14,10 @@ export default class MessageHandler {
   /**
    * handleGroupMessage
    */
-  public handleGroupMessage(message: Line.TextEventMessage, source: any) {
+  public handleGroupMessage(
+    message: Line.TextEventMessage,
+    source: MessageSource
+  ) {
     const { text } = message;
     this.commands.execute(text, source);
   }
@@ -21,5 +25,11 @@ export default class MessageHandler {
   /**
    * handleUserMessage
    */
-  public handleUserMessage(message: Line.TextEventMessage, source: any) {}
+  public handleUserMessage(
+    message: Line.TextEventMessage,
+    source: MessageSource
+  ) {
+    const { text } = message;
+    this.commands.execute(text, source);
+  }
 }

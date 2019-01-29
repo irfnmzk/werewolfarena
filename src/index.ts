@@ -1,9 +1,5 @@
-import Bot from './line/linebot';
+import Bot from './bot/WolfBot';
 
 const bot = new Bot();
 
-bot.listen();
-
-bot.on('message', data => {
-  console.log(data);
-});
+bot.start();

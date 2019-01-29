@@ -9,10 +9,10 @@ export default class LineBot extends EventEmitter {
   private config: Config;
   private express: Express.Application;
 
-  constructor() {
+  constructor(config: Config) {
     super();
 
-    this.config = new Config();
+    this.config = config;
     this.express = Express();
     this.configureRoute();
   }
@@ -22,7 +22,7 @@ export default class LineBot extends EventEmitter {
    */
   public listen() {
     this.express.listen(process.env.PORT || 3000, () => {
-      console.log('Starting server..');
+      console.log('Webhook is activate');
     });
   }
 
@@ -49,7 +49,7 @@ export default class LineBot extends EventEmitter {
         if (source.type === 'room' || source.type === 'group') {
           this.emit('gorupMessage', source, event);
         } else {
-          this.emit('userMessage', event);
+          this.emit('userMessage', source, event);
         }
         break;
       default:

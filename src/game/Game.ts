@@ -75,6 +75,19 @@ export default class Game {
     this.gamemode.assignRoles(this.players);
   }
 
+  /**
+   * firstDayScene
+   * called when game first run
+   */
+  public firstDayScene() {
+    this.broadcastMessage('First Day');
+    this.players
+      .filter(({ role }) => !role!.dead)
+      .forEach(player => {
+        player.role!.eventDay();
+      });
+  }
+
   private endGame() {
     console.log('game ended');
   }

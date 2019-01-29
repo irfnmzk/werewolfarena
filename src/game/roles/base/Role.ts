@@ -8,6 +8,8 @@ export default class Role {
   public id: Types.RoleId;
   public name: Types.RoleName;
 
+  public dead: boolean;
+
   protected readonly game: Game;
   private readonly player: Player;
 
@@ -19,6 +21,8 @@ export default class Role {
 
     this.id = 'default';
     this.name = 'default';
+
+    this.dead = false;
   }
 
   /**

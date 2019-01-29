@@ -53,7 +53,11 @@ export default class Game {
     this.status = 'PLAYING';
     this.channel.sendWithText(this.groupId, 'Game Di mulai');
 
-    GameLoop().then(() => console.log('selesai'));
+    GameLoop().then(() => this.endGame());
+  }
+
+  private endGame() {
+    console.log('game ended');
   }
 
   private setStartTimer(run = 0) {

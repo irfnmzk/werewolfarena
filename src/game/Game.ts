@@ -2,6 +2,8 @@ import LineMessage from 'src/line/LineMessage';
 import Player from './base/Player';
 import GameLoop from './GameLoop';
 import DefaultGameMode from './gamemode/DefaultGameMode';
+import GameEventQueue from './GameEventQueue';
+import * as Types from './roles/base/RoleTypes';
 
 export default class Game {
   public readonly groupId: string;
@@ -14,6 +16,8 @@ export default class Game {
   public readonly channel: LineMessage;
   private gamemode: DefaultGameMode;
 
+  private readonly eventQueue: GameEventQueue;
+
   private timer: any;
   private timerDuration = [12000, 3000, 4000, 1000];
   private timerMessage = ['', '30', '20', '10'];
@@ -25,6 +29,7 @@ export default class Game {
     this.groupId = groupId;
     this.channel = channel;
     this.gamemode = new DefaultGameMode(this);
+    this.eventQueue = new GameEventQueue(this);
 
     this.setStartTimer();
   }
@@ -80,6 +85,7 @@ export default class Game {
    * called when game first run
    */
   public firstDayScene() {
+    this.prepareForQueue('DAY');
     this.broadcastMessage('First Day');
     this.players
       .filter(({ role }) => !role!.dead)
@@ -92,6 +98,7 @@ export default class Game {
    * dayScene
    */
   public dayScene(day: number) {
+    this.prepareForQueue('DAY');
     this.day = day;
     this.broadcastMessage('Day Time');
     this.players
@@ -106,6 +113,7 @@ export default class Game {
    * nightScene
    */
   public nightScene(day: number) {
+    this.prepareForQueue('NIGHT');
     this.day = day;
     this.broadcastMessage('Night Time');
     this.players
@@ -120,6 +128,7 @@ export default class Game {
    * duskScene
    */
   public duskScene(day: number) {
+    this.prepareForQueue('DUSK');
     this.day = day;
     this.broadcastMessage('Dusk Time');
     this.players
@@ -128,6 +137,15 @@ export default class Game {
         player.role!.eventDusk();
       });
     // TODO
+  }
+
+  /**
+   * prepareForQueue
+   * called everytime when scene is changing
+   */
+  public prepareForQueue(time: Types.time) {
+    this.players.forEach(player => (player.role!.doneAction = false));
+    this.eventQueue.refreshQueue(time);
   }
 
   private endGame() {

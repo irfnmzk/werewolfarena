@@ -3,6 +3,6 @@ import Player from './Player';
 export default interface EventQueue {
   user: Player;
   event: string;
-  userId: string;
+  target: Player;
   priority: number;
 }

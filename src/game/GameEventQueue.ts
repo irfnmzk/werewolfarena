@@ -1,6 +1,7 @@
 import Game from './Game';
 import EventQueue from './base/EventQueue';
 import Player from './base/Player';
+import * as Types from './roles/base/RoleTypes';
 
 export default class GameEventQueue {
   public queue: EventQueue[];
@@ -12,14 +13,21 @@ export default class GameEventQueue {
   }
 
   /**
-   * add
+   * add queue
    */
-  public add(user: Player, event: string, priority: number) {
+  public add(user: Player, target: Player, event: string, priority: number) {
     this.queue.push({
       user,
       event,
-      userId: user.userId,
+      target,
       priority
     });
+  }
+
+  /**
+   * refreshQueue
+   */
+  public refreshQueue(time: Types.time) {
+    this.queue = [];
   }
 }

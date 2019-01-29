@@ -4,10 +4,12 @@ import Express from 'express';
 
 import { WebhookEvent, WebhookRequestBody } from '@line/bot-sdk';
 import Config from '../config/Config';
+import LineMessage from './LineMessage';
 
 export default class LineBot extends EventEmitter {
   private config: Config;
   private express: Express.Application;
+  private channel: LineMessage;
 
   constructor(config: Config) {
     super();
@@ -15,6 +17,7 @@ export default class LineBot extends EventEmitter {
     this.config = config;
     this.express = Express();
     this.configureRoute();
+    this.channel = new LineMessage(config);
   }
 
   /**

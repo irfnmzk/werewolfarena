@@ -32,8 +32,6 @@ export default class CommandCollections extends Map<string, Command> {
 
   private canRunCommand(commandName: string, source: MessageSource) {
     const command = this.get(commandName)!;
-    console.log(command.TYPE, source.type);
-    console.log(command.TYPE.filter(data => data === source.type).length >= 1);
     return command.TYPE.filter(data => data === source.type).length >= 1;
   }
 }

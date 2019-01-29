@@ -1,6 +1,9 @@
+/* tslint:disable:no-unused */
+
 import Game from '@game/Game';
 import Player from '@game/base/Player';
 import * as Types from './RoleTypes';
+import GameEventQueue from '@game/GameEventQueue';
 
 export default class Role {
   public readonly userId: string;
@@ -41,7 +44,11 @@ export default class Role {
    * Example:
    * wolf is bite, guardian is protecting, etc
    */
-  public action() {
+  public action(
+    event: Types.EventType,
+    target: Player,
+    eventQueue: GameEventQueue
+  ) {
     // To be override
   }
 

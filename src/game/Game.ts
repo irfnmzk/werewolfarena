@@ -148,6 +148,13 @@ export default class Game {
     this.eventQueue.refreshQueue(time);
   }
 
+  /**
+   * runEventQueue
+   */
+  public runEventQueue() {
+    // Todo
+  }
+
   private endGame() {
     console.log('game ended');
   }

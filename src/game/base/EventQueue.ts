@@ -1,8 +1,9 @@
 import Player from './Player';
+import * as Types from '../roles/base/RoleTypes';
 
 export default interface EventQueue {
   user: Player;
-  event: string;
+  event: Types.EventType;
   target: Player;
   priority: number;
 }

@@ -1,6 +1,7 @@
 import LineMessage from 'src/line/LineMessage';
 import Player from './base/Player';
 import GameLoop from './GameLoop';
+import DefaultGameMode from './gamemode/DefaultGameMode';
 
 export default class Game {
   public readonly groupId: string;
@@ -11,6 +12,7 @@ export default class Game {
   public time: 'DAY' | 'DAWN' | 'NIGHT' = 'DAY';
 
   public readonly channel: LineMessage;
+  private gamemode: DefaultGameMode;
 
   private timer: any;
   private timerDuration = [12000, 3000, 4000, 1000];
@@ -22,6 +24,7 @@ export default class Game {
   constructor(groupId: string, channel: LineMessage) {
     this.groupId = groupId;
     this.channel = channel;
+    this.gamemode = new DefaultGameMode(this);
 
     this.setStartTimer();
   }
@@ -54,6 +57,22 @@ export default class Game {
     this.channel.sendWithText(this.groupId, 'Game Di mulai');
 
     GameLoop(this).then(() => this.endGame());
+  }
+
+  /**
+   * roleBroadcast
+   */
+  public roleBroadcast() {
+    this.players.forEach(player => {
+      player.role!.eventAnnouncement();
+    });
+  }
+
+  /**
+   * assignRole
+   */
+  public assignRole() {
+    this.gamemode.assignRoles(this.players);
   }
 
   private endGame() {

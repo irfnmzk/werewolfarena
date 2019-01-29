@@ -13,7 +13,9 @@ export default async function GameLoop(game: Game): Promise<any> {
 
   await timeout(10);
 
-  await game.channel.gameLoopBroadcast(game.groupId, 'Game Started 2');
+  game.assignRole();
+
+  game.roleBroadcast();
 
   // End Game Loop
   Promise.resolve();

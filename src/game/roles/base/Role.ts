@@ -3,18 +3,22 @@ import Player from '@game/base/Player';
 import * as Types from './RoleTypes';
 
 export default class Role {
-  public id: string;
-  public name: string;
+  public readonly userId: string;
 
-  private readonly game: Game;
+  public id: Types.RoleId;
+  public name: Types.RoleName;
+
+  protected readonly game: Game;
   private readonly player: Player;
 
   constructor(game: Game, player: Player) {
     this.game = game;
     this.player = player;
 
-    this.id = '';
-    this.name = '';
+    this.userId = player.userId;
+
+    this.id = 'default';
+    this.name = 'default';
   }
 
   /**

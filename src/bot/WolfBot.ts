@@ -31,16 +31,18 @@ export default class WolfBot {
     this.lineBot.on('groupMessage', this.onGroupMessage.bind(this));
   }
 
-  private onUserMessage(source: Line.EventSource, data: Line.MessageEvent) {
-    (source as any).replyToken = data.replyToken;
-    (source as any).type = 'USER';
+  private onUserMessage(sources: Line.EventSource, data: Line.MessageEvent) {
+    const source = sources as any;
+    source.replyToken = data.replyToken;
+    source.type = 'USER';
     const message = data.message as Line.TextEventMessage;
     this.messageHandler.handleUserMessage(message, source);
   }
 
-  private onGroupMessage(source: Line.EventSource, data: Line.MessageEvent) {
-    (source as any).replyToken = data.replyToken;
-    (source as any).type = 'GROUP';
+  private onGroupMessage(sources: Line.EventSource, data: Line.MessageEvent) {
+    const source = sources as any;
+    source.replyToken = data.replyToken;
+    source.type = 'GROUP';
     if ((source as Line.Room).roomId) {
       (source as any).groupId = (source as Line.Room).roomId;
     }

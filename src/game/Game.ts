@@ -1,5 +1,6 @@
 import LineMessage from 'src/line/LineMessage';
 import Player from './base/Player';
+import GameProcess from './GameProcess';
 
 export default class Game {
   public readonly groupId: string;
@@ -44,6 +45,17 @@ export default class Game {
     this.players.push(player);
   }
 
+  /**
+   * startGame
+   */
+  public startGame() {
+    this.timer = null;
+    this.status = 'PLAYING';
+    this.channel.sendWithText(this.groupId, 'Game Di mulai');
+
+    GameProcess().then(() => console.log('selesai'));
+  }
+
   private setStartTimer(run = 0) {
     if (run >= this.timerDuration.length) {
       this.startGame();
@@ -57,10 +69,5 @@ export default class Game {
 
   private broadcastMessage(message: string) {
     this.channel.sendWithText(this.groupId, message);
-  }
-
-  private startGame() {
-    this.timer = null;
-    this.channel.sendWithText(this.groupId, 'Game Di mulai');
   }
 }

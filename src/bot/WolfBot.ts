@@ -41,6 +41,9 @@ export default class WolfBot {
   private onGroupMessage(source: Line.EventSource, data: Line.MessageEvent) {
     (source as any).replyToken = data.replyToken;
     (source as any).type = 'GROUP';
+    if ((source as Line.Room).roomId) {
+      (source as any).groupId = (source as Line.Room).roomId;
+    }
     const message = data.message as Line.TextEventMessage;
     this.messageHandler.handleGroupMessage(message, source);
   }

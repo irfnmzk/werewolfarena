@@ -1,3 +1,5 @@
+import Game from './Game';
+
 function timeout(second: number) {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -6,9 +8,12 @@ function timeout(second: number) {
   });
 }
 
-export default async function GameLoop(): Promise<any> {
+export default async function GameLoop(game: Game): Promise<any> {
+  await game.channel.gameLoopBroadcast(game.groupId, 'Game Started');
+
   await timeout(10);
-  console.log('halooooo');
+
+  await game.channel.gameLoopBroadcast(game.groupId, 'Game Started 2');
 
   // End Game Loop
   Promise.resolve();

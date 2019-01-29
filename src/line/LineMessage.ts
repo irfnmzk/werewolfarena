@@ -14,6 +14,20 @@ export default class LineMessage extends Line.Client {
     }).catch(_ => console.error('err when rplying'));
   }
 
+  public async gameLoopBroadcast(
+    groupId: string,
+    message: string
+  ): Promise<any> {
+    const [err, _] = await to<Line.Profile>(
+      this.pushMessage(groupId, {
+        type: 'text',
+        text: message
+      })
+    );
+    if (err) console.log(err);
+    return Promise.resolve(_);
+  }
+
   public sendWithText(id: string, text: string) {
     this.pushMessage(id, {
       type: 'text',

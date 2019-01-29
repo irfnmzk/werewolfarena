@@ -10,14 +10,14 @@ export default class Game {
   public day: number = 0;
   public time: 'DAY' | 'DAWN' | 'NIGHT' = 'DAY';
 
+  public readonly channel: LineMessage;
+
   private timer: any;
   private timerDuration = [12000, 3000, 4000, 1000];
   private timerMessage = ['', '30', '20', '10'];
 
   private MAX_PLAYER = 12;
   private MIN_PLAYER = 5;
-
-  private readonly channel: LineMessage;
 
   constructor(groupId: string, channel: LineMessage) {
     this.groupId = groupId;
@@ -53,7 +53,7 @@ export default class Game {
     this.status = 'PLAYING';
     this.channel.sendWithText(this.groupId, 'Game Di mulai');
 
-    GameLoop().then(() => this.endGame());
+    GameLoop(this).then(() => this.endGame());
   }
 
   private endGame() {

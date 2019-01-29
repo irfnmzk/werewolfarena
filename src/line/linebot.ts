@@ -47,7 +47,7 @@ export default class LineBot extends EventEmitter {
       case 'message':
         this.emit('message', event);
         if (source.type === 'room' || source.type === 'group') {
-          this.emit('gorupMessage', source, event);
+          this.emit('groupMessage', source, event);
         } else {
           this.emit('userMessage', source, event);
         }

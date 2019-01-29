@@ -2,14 +2,17 @@ import * as Line from '@line/bot-sdk';
 
 import Config from '../config/Config';
 import LineBot from '../line/linebot';
+import MessageHandler from './MessageHandler';
 
 export default class WolfBot {
   private readonly config: Config;
   private readonly lineBot: LineBot;
+  private readonly messageHandler: MessageHandler;
 
   constructor() {
     this.config = new Config();
     this.lineBot = new LineBot(this.config);
+    this.messageHandler = new MessageHandler();
 
     this.addEventListener();
   }
@@ -24,20 +27,21 @@ export default class WolfBot {
   }
 
   private addEventListener() {
-    this.lineBot.on('message', data => this.onMessage(data.message));
-    this.lineBot.on('userMessage', this.onUserMessage);
-    this.lineBot.on('gorupMessage', this.onGroupMessage);
-  }
-
-  private onMessage(data: Line.TextEventMessage) {
-    // console.log(data);
+    this.lineBot.on('userMessage', this.onUserMessage.bind(this));
+    this.lineBot.on('groupMessage', this.onGroupMessage.bind(this));
   }
 
   private onUserMessage(source: Line.EventSource, data: Line.MessageEvent) {
-    console.log('user message');
+    (source as any).replyToken = data.replyToken;
+    (source as any).type = 'USER';
+    const message = data.message as Line.TextEventMessage;
+    this.messageHandler.handleUserMessage(message, source);
   }
 
   private onGroupMessage(source: Line.EventSource, data: Line.MessageEvent) {
-    console.log('group message');
+    (source as any).replyToken = data.replyToken;
+    (source as any).type = 'GROUP';
+    const message = data.message as Line.TextEventMessage;
+    this.messageHandler.handleGroupMessage(message, source);
   }
 }

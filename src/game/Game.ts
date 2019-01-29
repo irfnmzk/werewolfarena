@@ -88,6 +88,48 @@ export default class Game {
       });
   }
 
+  /**
+   * dayScene
+   */
+  public dayScene(day: number) {
+    this.day = day;
+    this.broadcastMessage('Day Time');
+    this.players
+      .filter(({ role }) => !role!.dead)
+      .forEach(player => {
+        player.role!.eventDay();
+      });
+    // TODO
+  }
+
+  /**
+   * nightScene
+   */
+  public nightScene(day: number) {
+    this.day = day;
+    this.broadcastMessage('Night Time');
+    this.players
+      .filter(({ role }) => !role!.dead)
+      .forEach(player => {
+        player.role!.eventNight();
+      });
+    // TODO
+  }
+
+  /**
+   * duskScene
+   */
+  public duskScene(day: number) {
+    this.day = day;
+    this.broadcastMessage('Dusk Time');
+    this.players
+      .filter(({ role }) => !role!.dead)
+      .forEach(player => {
+        player.role!.eventDusk();
+      });
+    // TODO
+  }
+
   private endGame() {
     console.log('game ended');
   }

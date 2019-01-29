@@ -1,4 +1,5 @@
 import Game from './Game';
+import * as Types from './roles/base/RoleTypes';
 
 function timeout(second: number) {
   return new Promise(resolve => {
@@ -16,6 +17,26 @@ export default async function GameLoop(game: Game): Promise<any> {
   game.assignRole();
   game.roleBroadcast();
   game.firstDayScene();
+
+  let day = 0;
+  let time: Types.time = 'DAY';
+
+  while (true) {
+    day++;
+    game.nightScene(day);
+
+    await timeout(5);
+
+    time = 'DAY';
+    game.dayScene(day);
+
+    await timeout(5);
+
+    time = 'DUSK';
+    game.duskScene(day);
+
+    console.log(time);
+  }
 
   // End Game Loop
   Promise.resolve();

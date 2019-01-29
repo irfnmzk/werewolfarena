@@ -1,6 +1,6 @@
 import LineMessage from 'src/line/LineMessage';
 import Player from './base/Player';
-import GameProcess from './GameProcess';
+import GameLoop from './GameLoop';
 
 export default class Game {
   public readonly groupId: string;
@@ -53,7 +53,7 @@ export default class Game {
     this.status = 'PLAYING';
     this.channel.sendWithText(this.groupId, 'Game Di mulai');
 
-    GameProcess().then(() => console.log('selesai'));
+    GameLoop().then(() => console.log('selesai'));
   }
 
   private setStartTimer(run = 0) {

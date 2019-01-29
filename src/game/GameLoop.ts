@@ -6,7 +6,7 @@ function timeout(second: number) {
   });
 }
 
-export default async function GameProcess(): Promise<any> {
+export default async function GameLoop(): Promise<any> {
   await timeout(10);
   console.log('halooooo');
 

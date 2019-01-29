@@ -6,3 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const linebot_1 = __importDefault(require("./line/linebot"));
 const bot = new linebot_1.default();
 bot.listen();
+bot.on('message', data => {
+    console.log(data);
+});

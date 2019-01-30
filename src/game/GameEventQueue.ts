@@ -4,6 +4,10 @@ import EventQueue from './base/EventQueue';
 import Player from './base/Player';
 import * as Types from './roles/base/RoleTypes';
 
+interface VoteCounter {
+  [key: string]: number;
+}
+
 export default class GameEventQueue {
   public queue: EventQueue[];
   public death: any[];
@@ -89,7 +93,14 @@ export default class GameEventQueue {
   }
 
   private processVote() {
-    // TODO
+    const voteCounter: VoteCounter = this.queue.reduce(
+      (prev, curr) => {
+        prev[curr.target.userId] += 1;
+        return prev;
+      },
+      {} as VoteCounter
+    );
+    console.log(voteCounter);
   }
 
   private combineQueue() {

@@ -34,7 +34,7 @@ export default class LineMessage extends Line.Client {
       text
     }).catch(err => {
       if (id.length >= 5) {
-        console.log(err);
+        console.log(`err send text to ${id}\nmessage: ${text}`);
       }
     });
   }
@@ -52,7 +52,7 @@ export default class LineMessage extends Line.Client {
   public sendTemplateMessage(userId: string, template: Line.TemplateMessage[]) {
     this.pushMessage(userId, template).catch(err => {
       if (userId.length >= 5) {
-        console.log(err);
+        console.log('err send to' + userId);
       }
     });
   }

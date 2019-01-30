@@ -252,6 +252,7 @@ export default class Game {
         })
       );
     });
+    if (deathMessage.length === 0) return;
     const message = deathMessage.join('\n');
     this.broadcastMessage(message);
   }

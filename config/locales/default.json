@@ -20,7 +20,8 @@
       "announcement": "Kamu adalah Villager"
     },
     "werewolf": {
-      "announcement": "role.werewolf.announcement"
+      "announcement": "Kamu adalah Werewolf",
+      "selection": "Pilih orang yang akan kamu makan!"
     }
   },
   "vote": {

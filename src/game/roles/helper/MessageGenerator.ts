@@ -2,27 +2,37 @@ import _ from 'lodash';
 import * as Line from '@line/bot-sdk';
 import Player from '@game/base/Player';
 import LocaleService from '../../../utils/i18n/LocaleService';
+import Game from '@game/Game';
+import generateEvent from './EventGenerator';
 
 export default class MessageGenerator {
   private readonly localeService: LocaleService;
+  private readonly game: Game;
 
-  constructor(localeService: LocaleService) {
+  constructor(localeService: LocaleService, game: Game) {
     this.localeService = localeService;
+    this.game = game;
   }
 
   /**
    * werewolfSelction
    */
-  public werewolfSelction(target: Player[]) {
+  public werewolfSelection(target: Player[]) {
     const results: Line.TemplateMessage[] = [];
     const chunkFour = _.chunk(target, 4);
     chunkFour.forEach(four => {
-      const messageAction: Line.PostbackAction[] = [];
+      const messageAction: Line.Action[] = [];
       four.forEach(item => {
+        const postBackData = generateEvent({
+          event: 'bite',
+          groupId: this.game.groupId,
+          targetId: item.userId
+        });
         messageAction.push({
           type: 'postback',
           displayText: item.name,
-          data: `event=bite`
+          data: postBackData,
+          label: item.name
         });
       });
       results.push({

@@ -19,6 +19,7 @@ export default class WereWolf extends Role {
 
   public eventNight() {
     const target = this.game.getEnemyList(this.player);
-    // const message = this.messageGenerator.werewolfSelction(target);
+    const message = this.messageGenerator.werewolfSelection(target);
+    this.game.channel.sendTemplateMessage(this.userId, message);
   }
 }

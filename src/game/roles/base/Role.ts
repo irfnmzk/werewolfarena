@@ -32,7 +32,10 @@ export default class Role {
     this.doneAction = false;
     this.dead = false;
 
-    this.messageGenerator = new MessageGenerator(this.game.localeService);
+    this.messageGenerator = new MessageGenerator(
+      this.game.localeService,
+      this.game
+    );
   }
 
   /**

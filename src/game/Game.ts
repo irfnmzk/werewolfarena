@@ -12,13 +12,13 @@ export default class Game {
   public players: Player[] = [];
   public status: 'OPEN' | 'PLAYING' = 'OPEN';
   public day: number = 0;
-  public time: 'DAY' | 'DAWN' | 'NIGHT' = 'DAY';
+  public time: Types.time;
 
   public readonly channel: LineMessage;
   public readonly localeService: LocaleService;
-  private gamemode: DefaultGameMode;
 
-  private readonly eventQueue: GameEventQueue;
+  public readonly eventQueue: GameEventQueue;
+  private gamemode: DefaultGameMode;
 
   private timer: any;
   private timerDuration = [5000, 3000, 4000, 1000];
@@ -33,6 +33,8 @@ export default class Game {
     this.gamemode = new DefaultGameMode(this);
     this.eventQueue = new GameEventQueue(this);
     this.localeService = new LocaleService();
+
+    this.time = 'DAY';
 
     this.setStartTimer();
   }
@@ -147,6 +149,7 @@ export default class Game {
    * called everytime when scene is changing
    */
   public prepareForQueue(time: Types.time) {
+    this.time = time;
     this.players.forEach(player => (player.role!.doneAction = false));
     this.eventQueue.refreshQueue(time);
   }
@@ -172,11 +175,46 @@ export default class Game {
 
   /**
    * getVoteList
+   * get all Alive Player
    */
   public getVoteList(player: Player) {
     return this.players.filter(
       target => !target.role!.dead && player.userId !== target.userId
     );
+  }
+
+  /**
+   * getAllyList
+   * get all alive ally player
+   */
+  public getAllyList(player: Player) {
+    return this.players.filter(
+      target =>
+        target.role!.id === player.role!.id &&
+        !target.role!.dead &&
+        player.userId !== target.userId
+    );
+  }
+
+  /**
+   * processCallback
+   * process callback from postback
+   */
+  public processCallback(event: Types.GameEvent, userId: string) {
+    this.players
+      .filter(player => player.userId === userId)[0]
+      .role!.eventCallback(this.time, event);
+  }
+
+  /**
+   * getTargetPlayer
+   */
+  public getTargetPlayer(userId: string) {
+    return this.players.filter(player => player.userId === userId)[0];
+  }
+
+  public broadcastMessage(message: string) {
+    this.channel.sendWithText(this.groupId, message);
   }
 
   private endGame() {
@@ -192,9 +230,5 @@ export default class Game {
     this.timer = setTimeout(() => {
       this.setStartTimer(run + 1);
     }, this.timerDuration[run]);
-  }
-
-  private broadcastMessage(message: string) {
-    this.channel.sendWithText(this.groupId, message);
   }
 }

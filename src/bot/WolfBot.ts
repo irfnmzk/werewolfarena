@@ -32,6 +32,7 @@ export default class WolfBot {
   private addEventListener() {
     this.lineBot.on('userMessage', this.onUserMessage.bind(this));
     this.lineBot.on('groupMessage', this.onGroupMessage.bind(this));
+    this.lineBot.on('postback', this.onPostBack.bind(this));
   }
 
   private onUserMessage(sources: Line.EventSource, data: Line.MessageEvent) {
@@ -51,5 +52,13 @@ export default class WolfBot {
     }
     const message = data.message as Line.TextEventMessage;
     this.messageHandler.handleGroupMessage(message, source);
+  }
+
+  private onPostBack(sources: Line.EventSource, data: Line.PostbackEvent) {
+    const source = sources as any;
+    source.replyToken = data.replyToken;
+    source.type = 'POSTBACK';
+    const postbackData = data.postback;
+    this.messageHandler.handlePsotbackData(postbackData, source);
   }
 }

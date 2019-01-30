@@ -1,6 +1,7 @@
 import Role from './base/Role';
 import Game from '@game/Game';
 import Player from '@game/base/Player';
+import * as Types from './base/RoleTypes';
 
 export default class WereWolf extends Role {
   constructor(game: Game, player: Player) {
@@ -21,5 +22,19 @@ export default class WereWolf extends Role {
     const target = this.game.getEnemyList(this.player);
     const message = this.messageGenerator.werewolfSelection(target);
     this.game.channel.sendTemplateMessage(this.userId, message);
+  }
+
+  public eventNightCallback(event: Types.GameEvent) {
+    super.eventNightCallback(event);
+
+    this.game.channel.sendWithText(
+      this.userId,
+      this.game.localeService.t('common.selected')
+    );
+    const ally = this.game.getAllyList(this.player);
+    this.game.channel.sendMultiText(
+      ally,
+      this.game.localeService.t('common.selected.ally')
+    );
   }
 }

@@ -18,10 +18,10 @@ export default class CommandCollections extends Map<string, Command> {
    * execute
    * execute the given triger
    */
-  public execute(command: string, source: MessageSource) {
+  public execute(command: string, data: any, source: MessageSource) {
     if (this.has(command)) {
       if (!this.canRunCommand(command, source)) return;
-      this.get(command)!.run(command, source);
+      this.get(command)!.run(data, source);
     }
   }
 

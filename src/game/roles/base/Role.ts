@@ -69,6 +69,7 @@ export default class Role {
 
   /**
    * eventDusk
+   * Send vote selection to all alive players
    */
   public eventDusk() {
     const target = this.game.getVoteList(this.player);
@@ -84,15 +85,22 @@ export default class Role {
   }
 
   /**
-   * processCallback
+   * eventCallback
    */
-  public processCallback(time: Types.time) {
+  public eventCallback(time: Types.time, event: Types.GameEvent) {
+    if (this.doneAction) return;
+
+    this.doneAction = true;
+
     switch (time) {
       case 'DAY':
+        this.eventDayCallback(event);
         break;
       case 'NIGHT':
+        this.eventNightCallback(event);
         break;
       case 'DUSK':
+        this.eventDuskCallback(event);
         break;
       default:
         break;
@@ -102,29 +110,33 @@ export default class Role {
   /**
    * eventDayCallback
    */
-  public eventDayCallback() {
+  public eventDayCallback(event: Types.GameEvent) {
     // To be override
   }
 
   /**
    * eventNightCallback
    */
-  public eventNightCallback() {
-    // To be override
+  public eventNightCallback(event: Types.GameEvent) {
+    this.addEventToQueue(event);
   }
 
   /**
    * eventDuskCallback
    */
-  public eventDuskCallback() {
-    // To be override
+  public eventDuskCallback(event: Types.GameEvent) {
+    if (this.dead) return;
+    this.addEventToQueue(event);
+    const target = this.game.getTargetPlayer(event.targetId);
+    this.game.broadcastMessage(this.game.localeService.t('vote.choose'));
   }
 
   /**
    * addEventToQueue
    */
-  public addEventToQueue() {
-    //
+  public addEventToQueue(event: Types.GameEvent) {
+    const target = this.game.getTargetPlayer(event.targetId);
+    this.game.eventQueue.add(this.player, target, event.event, 0);
   }
 
   /**

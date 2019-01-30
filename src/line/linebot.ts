@@ -59,6 +59,8 @@ export default class LineBot extends EventEmitter {
           this.emit('userMessage', source, event);
         }
         break;
+      case 'postback':
+        this.emit('postback', source, event);
       default:
         break;
     }

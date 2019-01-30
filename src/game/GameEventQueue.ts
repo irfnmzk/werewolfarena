@@ -31,6 +31,8 @@ export default class GameEventQueue {
       target,
       priority
     });
+
+    console.log(this.queue);
   }
 
   /**

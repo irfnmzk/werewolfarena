@@ -24,13 +24,15 @@ export default class MessageGenerator {
       const messageAction: Line.Action[] = [];
       four.forEach(item => {
         const postBackData = generateEvent({
-          event: 'bite',
-          groupId: this.game.groupId,
-          targetId: item.userId
+          type: 'GAME_EVENT',
+          data: {
+            event: 'bite',
+            groupId: this.game.groupId,
+            targetId: item.userId
+          }
         });
         messageAction.push({
           type: 'postback',
-          displayText: item.name,
           data: postBackData,
           label: item.name
         });
@@ -57,10 +59,17 @@ export default class MessageGenerator {
     chunkFour.forEach(four => {
       const messageAction: Line.Action[] = [];
       four.forEach(item => {
+        const postBackData = generateEvent({
+          type: 'GAME_EVENT',
+          data: {
+            event: 'vote',
+            groupId: this.game.groupId,
+            targetId: item.userId
+          }
+        });
         messageAction.push({
           type: 'postback',
-          displayText: item.name,
-          data: `event=vote`,
+          data: postBackData,
           label: item.name
         });
       });

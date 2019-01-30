@@ -27,7 +27,7 @@ export default async function GameLoop(game: Game): Promise<any> {
     day++;
     game.nightScene(day);
 
-    await timeout(5);
+    await timeout(10);
 
     time = 'DAY';
     game.dayScene(day);

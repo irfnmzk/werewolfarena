@@ -26,5 +26,10 @@
   },
   "vote": {
     "selection": "Waktu nya vote!"
+  },
+  "common": {
+    "selected": {
+      "ally": "common.selected.ally"
+    }
   }
 }

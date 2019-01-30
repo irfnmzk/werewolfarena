@@ -56,4 +56,18 @@ export default class LineMessage extends Line.Client {
       }
     });
   }
+
+  /**
+   * sendMultiText
+   */
+  public sendMultiText(player: Player[], text: string) {
+    if (player.length < 1) return;
+    const userIdList = player.map(data => data.userId);
+    this.multicast(userIdList, {
+      type: 'text',
+      text
+    }).catch(err => {
+      console.log(err);
+    });
+  }
 }

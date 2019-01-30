@@ -32,7 +32,11 @@ export default class LineMessage extends Line.Client {
     this.pushMessage(id, {
       type: 'text',
       text
-    }).catch(_ => console.error('wee when send text'));
+    }).catch(err => {
+      if (id.length >= 5) {
+        console.log(err);
+      }
+    });
   }
 
   public async getPlayerData(userId: string): Promise<Player> {
@@ -45,7 +49,12 @@ export default class LineMessage extends Line.Client {
     return Promise.resolve(player);
   }
 
-  public sendTemplateMessage(userId: string, template: Line.TemplateMessage) {
-    this.pushMessage(userId, template).catch(err => console.log(err));
+  public sendTemplateMessage(userId: string, template: Line.TemplateMessage[]) {
+    console.log(template);
+    this.pushMessage(userId, template).catch((err => {
+      if (userId.length >= 5) {
+        console.log(err);
+      }
+    });
   }
 }

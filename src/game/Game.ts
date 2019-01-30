@@ -170,6 +170,15 @@ export default class Game {
     );
   }
 
+  /**
+   * getVoteList
+   */
+  public getVoteList(player: Player) {
+    return this.players.filter(
+      target => !target.role!.dead && player.userId !== target.userId
+    );
+  }
+
   private endGame() {
     console.log(this.localeService.t('game.end'));
   }

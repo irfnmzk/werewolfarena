@@ -2,8 +2,6 @@ import Role from './base/Role';
 import Game from '@game/Game';
 import Player from '@game/base/Player';
 
-import * as messageGenerator from './helper/MessageGenerator';
-
 export default class WereWolf extends Role {
   constructor(game: Game, player: Player) {
     super(game, player);
@@ -21,7 +19,6 @@ export default class WereWolf extends Role {
 
   public eventNight() {
     const target = this.game.getEnemyList(this.player);
-    const message = messageGenerator.werewolfSelection(target);
-    console.log('night event ww', target);
+    // const message = this.messageGenerator.werewolfSelction(target);
   }
 }

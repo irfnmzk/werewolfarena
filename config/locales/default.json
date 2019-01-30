@@ -18,6 +18,12 @@
   "role": {
     "villager": {
       "announcement": "Kamu adalah Villager"
+    },
+    "werewolf": {
+      "announcement": "role.werewolf.announcement"
     }
+  },
+  "vote": {
+    "selection": "Waktu nya vote!"
   }
 }

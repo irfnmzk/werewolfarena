@@ -4,6 +4,7 @@ import Game from '@game/Game';
 import Player from '@game/base/Player';
 import * as Types from './RoleTypes';
 import GameEventQueue from '@game/GameEventQueue';
+import MessageGenerator from '../helper/MessageGenerator';
 
 export default class Role {
   public readonly userId: string;
@@ -13,6 +14,8 @@ export default class Role {
 
   public dead: boolean;
   public doneAction: boolean;
+
+  protected messageGenerator: MessageGenerator;
 
   protected readonly game: Game;
   protected readonly player: Player;
@@ -28,6 +31,8 @@ export default class Role {
 
     this.doneAction = false;
     this.dead = false;
+
+    this.messageGenerator = new MessageGenerator(this.game.localeService);
   }
 
   /**
@@ -63,7 +68,9 @@ export default class Role {
    * eventDusk
    */
   public eventDusk() {
-    // To be override
+    const target = this.game.getVoteList(this.player);
+    const message = this.messageGenerator.voteSelection(target);
+    this.game.channel.sendTemplateMessage(this.userId, message);
   }
 
   /**

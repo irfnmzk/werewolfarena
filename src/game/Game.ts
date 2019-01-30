@@ -19,7 +19,7 @@ export default class Game {
   private readonly eventQueue: GameEventQueue;
 
   private timer: any;
-  private timerDuration = [12000, 3000, 4000, 1000];
+  private timerDuration = [5000, 3000, 4000, 1000];
   private timerMessage = ['', '30', '20', '10'];
 
   private MAX_PLAYER = 12;
@@ -153,6 +153,18 @@ export default class Game {
    */
   public runEventQueue() {
     // Todo
+  }
+
+  /**
+   * getEnemyList
+   */
+  public getEnemyList(player: Player) {
+    return this.players.filter(
+      target =>
+        !target.role!.dead &&
+        player.userId !== target.userId &&
+        target.role!.id !== player.role!.id
+    );
   }
 
   private endGame() {

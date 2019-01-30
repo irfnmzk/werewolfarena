@@ -18,6 +18,8 @@ export default async function GameLoop(game: Game): Promise<any> {
   game.roleBroadcast();
   game.firstDayScene();
 
+  await timeout(5);
+
   let day = 0;
   let time: Types.time = 'DAY';
 

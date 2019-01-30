@@ -2,7 +2,9 @@ import Role from './base/Role';
 import Game from '@game/Game';
 import Player from '@game/base/Player';
 
-export default class Villager extends Role {
+import * as messageGenerator from './helper/MessageGenerator';
+
+export default class WereWolf extends Role {
   constructor(game: Game, player: Player) {
     super(game, player);
 
@@ -14,8 +16,9 @@ export default class Villager extends Role {
     this.game.channel.sendWithText(this.userId, 'kamu adalah Werewolf');
   }
 
-  /**
-   * eve
-   */
-  public eve() {}
+  public eventNight() {
+    const target = this.game.getEnemyList(this.player);
+    const message = messageGenerator.werewolfSelection(target);
+    console.log('night event ww', target);
+  }
 }

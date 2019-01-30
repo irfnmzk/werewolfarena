@@ -15,7 +15,7 @@ export default class Role {
   public doneAction: boolean;
 
   protected readonly game: Game;
-  private readonly player: Player;
+  protected readonly player: Player;
 
   constructor(game: Game, player: Player) {
     this.game = game;
@@ -113,7 +113,9 @@ export default class Role {
   /**
    * addEventToQueue
    */
-  public addEventToQueue() {}
+  public addEventToQueue() {
+    //
+  }
 
   /**
    * timeUp

@@ -44,4 +44,8 @@ export default class LineMessage extends Line.Client {
     };
     return Promise.resolve(player);
   }
+
+  public sendTemplateMessage(userId: string, template: Line.TemplateMessage) {
+    this.pushMessage(userId, template).catch(err => console.log(err));
+  }
 }

@@ -141,7 +141,6 @@ export default class Game {
       .forEach(player => {
         player.role!.eventDusk();
       });
-    // TODO
   }
 
   /**
@@ -201,6 +200,7 @@ export default class Game {
    * process callback from postback
    */
   public processCallback(event: Types.GameEvent, userId: string) {
+    if (this.status === 'OPEN') return;
     this.players
       .filter(player => player.userId === userId)[0]
       .role!.eventCallback(this.time, event);

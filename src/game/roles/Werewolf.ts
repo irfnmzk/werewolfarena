@@ -29,7 +29,7 @@ export default class WereWolf extends Role {
 
     this.game.channel.sendWithText(
       this.userId,
-      this.game.localeService.t('common.selected')
+      this.game.localeService.t('common.selected.vote')
     );
     const ally = this.game.getAllyList(this.player);
     this.game.channel.sendMultiText(

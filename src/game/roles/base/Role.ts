@@ -125,10 +125,21 @@ export default class Role {
    * eventDuskCallback
    */
   public eventDuskCallback(event: Types.GameEvent) {
-    if (this.dead) return;
+    if (this.dead || event.event !== 'vote') return;
     this.addEventToQueue(event);
     const target = this.game.getTargetPlayer(event.targetId);
-    this.game.broadcastMessage(this.game.localeService.t('vote.choose'));
+    this.game.channel.sendWithText(
+      this.userId,
+      this.game.localeService.t('common.selected.self', {
+        target: target.name
+      })
+    );
+    this.game.broadcastMessage(
+      this.game.localeService.t('common.selected.vote', {
+        user: this.player.name,
+        target: target.name
+      })
+    );
   }
 
   /**

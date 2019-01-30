@@ -29,6 +29,8 @@
   },
   "common": {
     "selected": {
+      "self": "Kamu memilih {target}",
+      "vote": "{user} memilih {target}",
       "ally": "common.selected.ally"
     }
   }

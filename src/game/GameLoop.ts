@@ -26,14 +26,17 @@ export default async function GameLoop(game: Game): Promise<any> {
     game.nightScene(day);
 
     await timeout(10);
+    game.sceneWillEnd();
 
     game.dayScene(day);
 
     await timeout(10);
+    game.sceneWillEnd();
 
     game.duskScene(day);
 
     await timeout(10);
+    game.sceneWillEnd();
   }
 
   // End Game Loop

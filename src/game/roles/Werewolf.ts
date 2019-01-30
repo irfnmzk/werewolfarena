@@ -37,4 +37,15 @@ export default class WereWolf extends Role {
       this.game.localeService.t('common.selected.ally')
     );
   }
+
+  public action(event: Types.EventType, target: Player) {
+    switch (event) {
+      case 'bite':
+        this.game.channel.sendWithText(
+          target.userId,
+          this.game.localeService.t('role.werewolf.bite')
+        );
+        target.role!.endOfLife(event, this.player);
+    }
+  }
 }

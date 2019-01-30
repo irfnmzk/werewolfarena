@@ -52,11 +52,7 @@ export default class Role {
    * Example:
    * wolf is bite, guardian is protecting, etc
    */
-  public action(
-    event: Types.EventType,
-    target: Player,
-    eventQueue: GameEventQueue
-  ) {
+  public action(event: Types.EventType, target: Player) {
     // To be override
   }
 
@@ -186,5 +182,13 @@ export default class Role {
    */
   public duskTimeUp() {
     // To be override
+  }
+
+  /**
+   * endOfLife
+   */
+  public endOfLife(event: Types.EventType, killer: Player) {
+    this.dead = true;
+    this.game.eventQueue.addDeath(event, this.player, killer);
   }
 }

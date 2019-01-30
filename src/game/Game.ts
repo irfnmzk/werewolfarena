@@ -142,6 +142,16 @@ export default class Game {
   }
 
   /**
+   * sceneWillEnd
+   * called in the end of each scene
+   */
+  public sceneWillEnd() {
+    this.runEventQueue();
+
+    this.sendDyingMessage();
+  }
+
+  /**
    * prepareForQueue
    * called everytime when scene is changing
    */
@@ -155,7 +165,11 @@ export default class Game {
    * runEventQueue
    */
   public runEventQueue() {
-    // Todo
+    this.players
+      .filter(player => !player.role!.dead)
+      .forEach(player => player.role!.timeUp(this.time));
+
+    this.eventQueue.execute();
   }
 
   /**
@@ -220,6 +234,20 @@ export default class Game {
 
   public broadcastMessage(message: string) {
     this.channel.sendWithText(this.groupId, message);
+  }
+
+  private sendDyingMessage() {
+    const deathMessage: string[] = [];
+    const allDeath = this.eventQueue.getAllDeath();
+    allDeath.forEach(death => {
+      deathMessage.push(
+        this.localeService.t(`death.${death.event}`, {
+          player: death.player.name
+        })
+      );
+    });
+    const message = deathMessage.join('\n');
+    this.broadcastMessage(message);
   }
 
   private endGame() {

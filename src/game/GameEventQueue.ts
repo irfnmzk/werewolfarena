@@ -6,12 +6,17 @@ import * as Types from './roles/base/RoleTypes';
 
 export default class GameEventQueue {
   public queue: EventQueue[];
+  public death: any[];
+  public deadPlayers: Player[];
+
   private readonly game: Game;
   private isVote: boolean;
 
   constructor(game: Game) {
     this.game = game;
     this.queue = [];
+    this.death = [];
+    this.deadPlayers = [];
 
     this.isVote = false;
   }
@@ -41,6 +46,7 @@ export default class GameEventQueue {
   public refreshQueue(time: Types.time) {
     this.isVote = time === 'DUSK';
     this.queue = [];
+    this.death = [];
   }
 
   /**
@@ -57,8 +63,29 @@ export default class GameEventQueue {
     this.queue
       .filter(data => !data.user.role!.dead)
       .forEach(data => {
-        data.user.role!.action(data.event, data.target, this);
+        data.user.role!.action(data.event, data.target);
       });
+  }
+
+  /**
+   * addDeath
+   */
+  public addDeath(event: Types.EventType, player: Player, killer: Player) {
+    this.death.push({
+      event,
+      player,
+      killer
+    });
+    this.deadPlayers.push(player);
+
+    console.log(this.death);
+  }
+
+  /**
+   * getAllDeath
+   */
+  public getAllDeath() {
+    return this.death;
   }
 
   private processVote() {

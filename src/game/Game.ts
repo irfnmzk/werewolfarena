@@ -71,8 +71,9 @@ export default class Game {
 
   /**
    * roleBroadcast
+   * Broadcast role info to all players
    */
-  public roleBroadcast() {
+  public broadcastRole() {
     this.players.forEach(player => {
       player.role!.eventAnnouncement();
     });
@@ -102,9 +103,8 @@ export default class Game {
   /**
    * dayScene
    */
-  public dayScene(day: number) {
+  public dayScene() {
     this.prepareForQueue('DAY');
-    this.day = day;
     this.broadcastMessage(this.localeService.t('game.scene.day'));
     this.players
       .filter(({ role }) => !role!.dead)
@@ -116,9 +116,8 @@ export default class Game {
   /**
    * nightScene
    */
-  public nightScene(day: number) {
+  public nightScene() {
     this.prepareForQueue('NIGHT');
-    this.day = day;
     this.broadcastMessage(this.localeService.t('game.scene.night'));
     this.players
       .filter(({ role }) => !role!.dead)
@@ -130,9 +129,8 @@ export default class Game {
   /**
    * duskScene
    */
-  public duskScene(day: number) {
+  public duskScene() {
     this.prepareForQueue('DUSK');
-    this.day = day;
     this.broadcastMessage(this.localeService.t('game.scene.dusk'));
     this.players
       .filter(({ role }) => !role!.dead)
@@ -149,6 +147,14 @@ export default class Game {
     this.runEventQueue();
 
     this.sendDyingMessage();
+  }
+
+  /**
+   * addDay
+   * increment the day
+   */
+  public addDay() {
+    this.day += 1;
   }
 
   /**

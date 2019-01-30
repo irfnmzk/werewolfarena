@@ -14,27 +14,27 @@ export default async function GameLoop(game: Game): Promise<any> {
   await timeout(3);
 
   game.assignRole();
-  game.roleBroadcast();
+  game.broadcastRole();
   game.firstDayScene();
 
   await timeout(5);
 
-  let day = 0;
-
   while (true) {
-    day++;
-    game.nightScene(day);
-
+    // Night scene
+    game.nightScene();
     await timeout(10);
     game.sceneWillEnd();
 
-    game.dayScene(day);
+    // Increment number of days
+    game.addDay();
 
+    // Day Scene
+    game.dayScene();
     await timeout(10);
     game.sceneWillEnd();
 
-    game.duskScene(day);
-
+    // Dusk Scene (Voting Time)
+    game.duskScene();
     await timeout(10);
     game.sceneWillEnd();
   }

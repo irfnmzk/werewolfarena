@@ -32,7 +32,7 @@ export default class GameEventQueue {
       priority
     });
 
-    console.log(this.queue);
+    console.log(this.queue.length);
   }
 
   /**

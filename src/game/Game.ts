@@ -111,7 +111,6 @@ export default class Game {
       .forEach(player => {
         player.role!.eventDay();
       });
-    // TODO
   }
 
   /**
@@ -126,7 +125,6 @@ export default class Game {
       .forEach(player => {
         player.role!.eventNight();
       });
-    // TODO
   }
 
   /**
@@ -193,6 +191,13 @@ export default class Game {
         !target.role!.dead &&
         player.userId !== target.userId
     );
+  }
+
+  /**
+   * getLobbyPlayers
+   */
+  public getLobbyPlayers() {
+    return this.players;
   }
 
   /**

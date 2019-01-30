@@ -13,7 +13,10 @@ export default class WereWolf extends Role {
   }
 
   public eventAnnouncement() {
-    this.game.channel.sendWithText(this.userId, 'kamu adalah Werewolf');
+    this.game.channel.sendWithText(
+      this.userId,
+      this.game.localeService.t('role.werewolf.announcement')
+    );
   }
 
   public eventNight() {

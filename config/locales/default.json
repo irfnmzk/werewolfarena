@@ -1,3 +1,23 @@
 {
-  "welcome": "Bot Is Now Ready"
+  "welcome": "Bot Is Now Ready",
+  "game": {
+    "full": "Game is full",
+    "already": {
+      "in": "game already in",
+      "start": "Game Already Start"
+    },
+    "start": "Game Started",
+    "scene": {
+      "first": "First scene",
+      "day": "day scene",
+      "night": "night scene",
+      "dusk": "Dusk scnee"
+    },
+    "end": "Game Ended"
+  },
+  "role": {
+    "villager": {
+      "announcement": "Kamu adalah Villager"
+    }
+  }
 }

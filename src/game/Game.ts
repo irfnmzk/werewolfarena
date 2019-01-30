@@ -4,6 +4,7 @@ import GameLoop from './GameLoop';
 import DefaultGameMode from './gamemode/DefaultGameMode';
 import GameEventQueue from './GameEventQueue';
 import * as Types from './roles/base/RoleTypes';
+import LocaleService from '../utils/i18n/LocaleService';
 
 export default class Game {
   public readonly groupId: string;
@@ -14,6 +15,7 @@ export default class Game {
   public time: 'DAY' | 'DAWN' | 'NIGHT' = 'DAY';
 
   public readonly channel: LineMessage;
+  public readonly localeService: LocaleService;
   private gamemode: DefaultGameMode;
 
   private readonly eventQueue: GameEventQueue;
@@ -30,6 +32,7 @@ export default class Game {
     this.channel = channel;
     this.gamemode = new DefaultGameMode(this);
     this.eventQueue = new GameEventQueue(this);
+    this.localeService = new LocaleService();
 
     this.setStartTimer();
   }
@@ -40,15 +43,15 @@ export default class Game {
 
   public addPlayer(player: Player) {
     if (this.players.length >= this.MAX_PLAYER) {
-      return this.broadcastMessage('Game Is Full');
+      return this.broadcastMessage(this.localeService.t('game.full'));
     }
     if (this.status !== 'OPEN') {
-      return this.broadcastMessage('Game already started');
+      return this.broadcastMessage(this.localeService.t('game.already.start'));
     }
     const found =
       this.players.filter(data => data.userId === player.userId).length > 0;
     if (found) {
-      return this.broadcastMessage('already in');
+      return this.broadcastMessage(this.localeService.t('game.already.in'));
     }
     this.players.push(player);
   }
@@ -59,7 +62,7 @@ export default class Game {
   public startGame() {
     this.timer = null;
     this.status = 'PLAYING';
-    this.channel.sendWithText(this.groupId, 'Game Di mulai');
+    this.channel.sendWithText(this.groupId, this.localeService.t('game.start'));
 
     GameLoop(this).then(() => this.endGame());
   }
@@ -86,7 +89,7 @@ export default class Game {
    */
   public firstDayScene() {
     this.prepareForQueue('DAY');
-    this.broadcastMessage('First Day');
+    this.broadcastMessage(this.localeService.t('game.scene.first'));
     this.players
       .filter(({ role }) => !role!.dead)
       .forEach(player => {
@@ -100,7 +103,7 @@ export default class Game {
   public dayScene(day: number) {
     this.prepareForQueue('DAY');
     this.day = day;
-    this.broadcastMessage('Day Time');
+    this.broadcastMessage(this.localeService.t('game.scene.day'));
     this.players
       .filter(({ role }) => !role!.dead)
       .forEach(player => {
@@ -115,7 +118,7 @@ export default class Game {
   public nightScene(day: number) {
     this.prepareForQueue('NIGHT');
     this.day = day;
-    this.broadcastMessage('Night Time');
+    this.broadcastMessage(this.localeService.t('game.scene.night'));
     this.players
       .filter(({ role }) => !role!.dead)
       .forEach(player => {
@@ -130,7 +133,7 @@ export default class Game {
   public duskScene(day: number) {
     this.prepareForQueue('DUSK');
     this.day = day;
-    this.broadcastMessage('Dusk Time');
+    this.broadcastMessage(this.localeService.t('game.scene.dusk'));
     this.players
       .filter(({ role }) => !role!.dead)
       .forEach(player => {
@@ -168,7 +171,7 @@ export default class Game {
   }
 
   private endGame() {
-    console.log('game ended');
+    console.log(this.localeService.t('game.end'));
   }
 
   private setStartTimer(run = 0) {

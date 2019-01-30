@@ -11,6 +11,9 @@ export default class Villager extends Role {
   }
 
   public eventAnnouncement() {
-    this.game.channel.sendWithText(this.userId, 'kamu adalah villager');
+    this.game.channel.sendWithText(
+      this.userId,
+      this.game.localeService.t('role.villager.announcement')
+    );
   }
 }

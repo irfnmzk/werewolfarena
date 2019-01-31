@@ -27,7 +27,7 @@ export default class Game {
   private readonly gameLoop: GameLoop;
 
   private timer: any;
-  private timerDuration = [5000, 3000, 4000, 1000];
+  private timerDuration = [1000, 1000, 1000, 1000];
   private timerMessage = ['', '30', '20', '10'];
 
   private MAX_PLAYER = 12;
@@ -97,6 +97,7 @@ export default class Game {
    * assignRole
    */
   public assignRole() {
+    this.broadcastMessage(this.localeService.t('game.role.generating'));
     this.gamemode.assignRoles(this.players);
   }
 
@@ -105,7 +106,6 @@ export default class Game {
    * called when game first run
    */
   public firstDayScene() {
-    this.prepareForQueue('DAY');
     this.broadcastMessage(this.localeService.t('game.scene.first'));
   }
 
@@ -121,6 +121,7 @@ export default class Game {
         player.role!.eventDay();
       });
     this.broadcastMessage(this.localeService.t('game.scene.day'));
+    this.sendPlayerList();
   }
 
   /**
@@ -154,9 +155,10 @@ export default class Game {
    * sceneWillEnd
    * called in the end of each scene
    */
-  public async sceneWillEnd() {
+  public sceneWillEnd() {
     this.runEventQueue();
-    this.sendDyingMessage().then(() => this.checkEndGame());
+    this.sendDyingMessage();
+    this.checkEndGame();
   }
 
   /**
@@ -183,14 +185,14 @@ export default class Game {
    * called everytime when scene is changing
    */
   public prepareForQueue(time: Types.time) {
-    // For Development only
-    if (this.debug) {
-      this.emitter.emit('scene', time, this.day);
-    }
-
     this.time = time;
     this.players.forEach(player => (player.role!.doneAction = false));
     this.eventQueue.refreshQueue(time);
+
+    // For development only
+    if (this.debug) {
+      this.emitter.emit('scene', time, this.day, this.players);
+    }
   }
 
   /**
@@ -298,6 +300,7 @@ export default class Game {
   }
 
   private sendDyingMessage(): Promise<any> {
+    if (this.time === 'DAY') return Promise.resolve();
     const deathMessage: string[] = [];
     const allDeath = this.eventQueue.getAllDeath();
     allDeath.forEach(death => {
@@ -313,6 +316,21 @@ export default class Game {
     if (allDeath.length <= 0) return Promise.resolve();
     const message = deathMessage.join('\n');
     return this.broadcastMessage(message);
+  }
+
+  private sendPlayerList() {
+    if (this.debug) {
+      return this.broadcastMessage('Send Player List');
+    }
+    const message = this.players.reduce((prev, curr, index) => {
+      return (
+        prev +
+        curr.name +
+        ` - ${curr.role!.dead ? 'Mati' : 'Hidup'}` +
+        (index !== this.players.length - 1 ? '\n' : '')
+      );
+    }, 'Player List ' + this.time + '\n\n');
+    setTimeout(() => this.broadcastMessage(message), 1 * 1000);
   }
 
   private isVitongTime() {

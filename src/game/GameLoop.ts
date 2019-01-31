@@ -16,8 +16,6 @@ export default class GameLoop {
    * Run the game loop
    */
   public async execute(): Promise<any> {
-    await this.timeout(3);
-
     this.game.assignRole();
     this.game.broadcastRole();
     this.game.firstDayScene();
@@ -27,7 +25,7 @@ export default class GameLoop {
     while (this.playing) {
       // Night scene
       this.game.nightScene();
-      await this.timeout(15);
+      await this.timeout(5);
       this.game.sceneWillEnd();
 
       // Increment number of days
@@ -35,12 +33,12 @@ export default class GameLoop {
 
       // Day Scene
       this.game.dayScene();
-      await this.timeout(15);
+      await this.timeout(5);
       this.game.sceneWillEnd();
 
       // Dusk Scene (Voting Time)
       this.game.duskScene();
-      await this.timeout(15);
+      await this.timeout(5);
       this.game.sceneWillEnd();
     }
 
@@ -56,6 +54,7 @@ export default class GameLoop {
 
   private timeout(second: number) {
     return new Promise(resolve => {
+      console.log(`Sleeping for ${second} second`);
       setTimeout(() => {
         resolve();
       }, second * 1000);

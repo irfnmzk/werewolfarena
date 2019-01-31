@@ -3,6 +3,9 @@ import * as Line from '@line/bot-sdk';
 import Player from '@game/base/Player';
 import chalk from 'chalk';
 
+// tslint:disable-next-line:no-var-requires
+require('console-stamp')(console, { pattern: 'HH:MM:ss.l' });
+
 export default class MockLineMessage implements ILineMessage {
   public replyWithText(replyToken: string = '', text: string) {
     console.log(
@@ -48,7 +51,7 @@ export default class MockLineMessage implements ILineMessage {
 
   public sendMultiText(player: Player[], text: string): void {
     console.log(
-      `${chalk.bold.yellow('[Text]')} ${chalk.yellow.bold(
+      `${chalk.bold.yellow('[Multi Text]')} ${chalk.yellow.bold(
         `[${player.length}]`
       )} : ${text}`
     );

@@ -92,12 +92,6 @@ export default class Game {
    */
   public firstDayScene() {
     this.prepareForQueue('DAY');
-
-    this.players
-      .filter(({ role }) => !role!.dead)
-      .forEach(player => {
-        player.role!.eventDay();
-      });
     this.broadcastMessage(this.localeService.t('game.scene.first'));
   }
 
@@ -262,7 +256,6 @@ export default class Game {
         })
       );
     });
-    console.log('all death : ' + allDeath);
     if (deathMessage.length <= 0 && this.isVitongTime()) {
       return this.broadcastMessage(this.localeService.t('vote.no_death'));
     }

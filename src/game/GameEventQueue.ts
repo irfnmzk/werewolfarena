@@ -57,8 +57,6 @@ export default class GameEventQueue {
   public execute() {
     if (!this.queue[0]) return;
 
-    console.log('process queue');
-
     if (this.isVote) return this.processVote();
 
     this.combineQueue();
@@ -91,7 +89,6 @@ export default class GameEventQueue {
   }
 
   private processVote() {
-    console.log(`process vote start`);
     const voteCounter: VoteCounter = this.queue.reduce(
       (prev, { target: { userId } }) => {
         prev[userId] ? (prev[userId] += 1) : (prev[userId] = 1);
@@ -100,27 +97,9 @@ export default class GameEventQueue {
       {} as VoteCounter
     );
 
-    console.log('process vote 1 - ', voteCounter);
-
-    // Need to be refactor in functional way
-    let found = false;
-    let maxCount = 0;
-    let targetUserId = '';
-    for (const userId in voteCounter) {
-      if (voteCounter[userId] > maxCount) {
-        maxCount = voteCounter[userId];
-        found = true;
-        targetUserId = userId;
-      } else if (voteCounter[userId] === maxCount) {
-        found = false;
-      }
-    }
-
-    console.log('process vote - 2', found, targetUserId, maxCount);
-
-    if (!found) return;
-
-    console.log('player ' + targetUserId);
+    const targetUserId = Object.keys(voteCounter).reduce((prev, curr) =>
+      voteCounter[prev] > voteCounter[curr] ? prev : curr
+    );
 
     this.game
       .getTargetPlayer(targetUserId)
@@ -128,6 +107,23 @@ export default class GameEventQueue {
   }
 
   private combineQueue() {
-    // TODO
+    const eventList: Types.EventType[] = ['bite'];
+    eventList.forEach(event => {
+      const userCounter: VoteCounter = this.queue.reduce(
+        (prev, { target: { userId } }) => {
+          prev[userId] ? (prev[userId] += 1) : (prev[userId] = 1);
+          return prev;
+        },
+        {} as VoteCounter
+      );
+
+      const targetUserId = Object.keys(userCounter).reduce((prev, curr) =>
+        userCounter[prev] > userCounter[curr] ? prev : curr
+      );
+
+      this.queue = this.queue.filter(item => {
+        return item.target.userId === targetUserId || item.event !== event;
+      });
+    });
   }
 }

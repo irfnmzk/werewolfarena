@@ -52,6 +52,43 @@ export default class MessageGenerator {
   }
 
   /**
+   * guardianSelection
+   */
+  public guardianSelection(target: Player[]) {
+    const results: Line.TemplateMessage[] = [];
+    const chunkFour = _.chunk(target, 4);
+    chunkFour.forEach(four => {
+      const messageAction: Line.Action[] = [];
+      four.forEach(item => {
+        const postBackData = generateEvent({
+          type: 'GAME_EVENT',
+          data: {
+            event: 'protect',
+            groupId: this.game.groupId,
+            targetId: item.userId,
+            timeStamp: Date.now()
+          }
+        });
+        messageAction.push({
+          type: 'postback',
+          data: postBackData,
+          label: item.name
+        });
+      });
+      results.push({
+        type: 'template',
+        altText: this.localeService.t('role.guardian.selection'),
+        template: {
+          type: 'buttons',
+          text: this.localeService.t('role.guardian.selection'),
+          actions: messageAction as Line.Action[]
+        }
+      });
+    });
+    return results;
+  }
+
+  /**
    * voteSelection
    */
   public voteSelection(target: Player[]) {

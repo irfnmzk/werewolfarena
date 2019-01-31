@@ -7,6 +7,8 @@ export default class WereWolf extends Role {
   constructor(game: Game, player: Player) {
     super(game, player);
 
+    this.priority = 1;
+
     this.id = 'wolf';
     this.name = 'Wolf';
 
@@ -64,6 +66,18 @@ export default class WereWolf extends Role {
   public action(event: Types.EventType, target: Player) {
     switch (event) {
       case 'bite':
+        if (target.role!.hasBuff('protected')) {
+          this.game.channel.sendWithText(
+            this.userId,
+            this.game.localeService.t('role.guardian.fail_bite')
+          );
+          this.game.channel.sendWithText(
+            this.game.groupId,
+            this.game.localeService.t('role.guardian.succes_protect')
+          );
+          return;
+        }
+
         this.game.channel.sendWithText(
           target.userId,
           this.game.localeService.t('role.werewolf.bite')

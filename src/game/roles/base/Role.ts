@@ -17,6 +17,10 @@ export default class Role {
   public dead: boolean;
   public doneAction: boolean;
 
+  public buff: Types.Buff[];
+
+  public priority: number;
+
   protected messageGenerator: MessageGenerator;
 
   protected readonly game: Game;
@@ -31,10 +35,14 @@ export default class Role {
     this.id = 'default';
     this.name = 'default';
 
+    this.priority = 0;
+
     this.team = 'VILLAGER';
 
     this.doneAction = false;
     this.dead = false;
+
+    this.buff = [];
 
     this.messageGenerator = new MessageGenerator(
       this.game.localeService,
@@ -147,7 +155,12 @@ export default class Role {
    */
   public addEventToQueue(event: Types.GameEvent) {
     const target = this.game.getTargetPlayer(event.targetId);
-    this.game.eventQueue.add(this.player, target, event.event, 0);
+    this.game.eventQueue.add(
+      this.player,
+      target,
+      event.event,
+      this.player.role!.priority
+    );
   }
 
   /**
@@ -198,5 +211,26 @@ export default class Role {
   public endOfLife(event: Types.EventType, killer: Player) {
     this.dead = true;
     this.game.eventQueue.addDeath(event, this.player, killer);
+  }
+
+  /**
+   * addBuff
+   */
+  public addBuff(buff: Types.Buff) {
+    this.buff.push(buff);
+  }
+
+  /**
+   * hasBuff
+   */
+  public hasBuff(name: Types.BuffName) {
+    return this.buff.filter(data => data.name === name).length >= 1;
+  }
+
+  /**
+   * resetBuff
+   */
+  public resetBuff() {
+    this.buff = [];
   }
 }

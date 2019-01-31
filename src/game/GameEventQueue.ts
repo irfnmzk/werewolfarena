@@ -61,7 +61,8 @@ export default class GameEventQueue {
 
     this.combineQueue();
 
-    this.queue = _.sortBy(this.queue, data => data.priority);
+    this.queue = _.sortBy(this.queue, data => -data.priority);
+    console.log(this.queue.map(data => data.priority));
     this.queue
       .filter(data => !data.user.role!.dead)
       .forEach(data => {

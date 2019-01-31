@@ -30,6 +30,12 @@
       "ally_text": "adalah teman mu.",
       "alone": "dan kamu adalah satu-satu nya",
       "friend": " adalah Temanmu"
+    },
+    "guardian": {
+      "announcement": "Kamu adalah Guardian",
+      "selection": "Pilih orang untuk di lindungi malam ini!",
+      "fail_bite": "Kamu di lindungi guardian dari serangan werewolf",
+      "succes_protect": "Guardian telah berhasil Melindungi seseorang malam ini!"
     }
   },
   "vote": {

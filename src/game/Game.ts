@@ -194,7 +194,10 @@ export default class Game {
    */
   public prepareForQueue(time: Types.time) {
     this.time = time;
-    this.players.forEach(player => (player.role!.doneAction = false));
+    this.players.forEach(player => {
+      player.role!.doneAction = false;
+      player.role!.resetBuff();
+    });
     this.eventQueue.refreshQueue(time);
 
     // For development only

@@ -72,8 +72,13 @@ export default class LineMessage extends Line.Client {
     this.multicast(userIdList, {
       type: 'text',
       text
-    }).catch(err => {
-      console.log(err);
-    });
+    }).catch(() => this.sendSingleIfMultiFail(userIdList, text));
+  }
+
+  /**
+   * Send Message as individual if multicast failed
+   */
+  private sendSingleIfMultiFail(userIdList: string[], text: string) {
+    userIdList.forEach(userId => this.sendWithText(userId, text));
   }
 }

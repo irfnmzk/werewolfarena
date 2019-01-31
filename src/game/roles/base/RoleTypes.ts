@@ -13,4 +13,5 @@ export interface GameEvent {
   event: EventType;
   targetId: string;
   groupId: string;
+  timeStamp: number;
 }

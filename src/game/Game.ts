@@ -238,7 +238,8 @@ export default class Game {
    * process callback from postback
    */
   public processCallback(event: Types.GameEvent, userId: string) {
-    if (this.status === 'OPEN') return;
+    if (!this.isValidCallback(event)) return;
+
     this.players
       .filter(player => player.userId === userId)[0]
       .role!.eventCallback(this.time, event);
@@ -347,5 +348,11 @@ export default class Game {
 
   private sendStopSignal() {
     this.emitter.emit('stop');
+  }
+
+  private isValidCallback(event: Types.GameEvent) {
+    if (this.status === 'OPEN') return false;
+    if (Date.now() - event.timeStamp >= 300 * 1000) return false;
+    return true;
   }
 }

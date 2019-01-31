@@ -28,7 +28,8 @@ export default class MessageGenerator {
           data: {
             event: 'bite',
             groupId: this.game.groupId,
-            targetId: item.userId
+            targetId: item.userId,
+            timeStamp: Date.now()
           }
         });
         messageAction.push({
@@ -64,7 +65,8 @@ export default class MessageGenerator {
           data: {
             event: 'vote',
             groupId: this.game.groupId,
-            targetId: item.userId
+            targetId: item.userId,
+            timeStamp: Date.now()
           }
         });
         messageAction.push({

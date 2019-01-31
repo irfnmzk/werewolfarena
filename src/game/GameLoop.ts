@@ -32,7 +32,7 @@ export default class GameLoop {
     while (this.playing) {
       // Night scene
       this.game.nightScene();
-      await this.timeout(5);
+      await this.timeout(30);
       this.game.sceneWillEnd();
 
       // Increment number of days

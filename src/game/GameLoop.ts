@@ -1,44 +1,69 @@
 import Game from './Game';
 
-function timeout(second: number) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve();
-    }, second * 1000);
-  });
-}
+export default class GameLoop {
+  private playing: boolean;
+  private game: Game;
 
-export default async function GameLoop(game: Game): Promise<any> {
-  await game.channel.gameLoopBroadcast(game.groupId, 'Game Started');
+  constructor(game: Game) {
+    this.game = game;
+    this.playing = true;
 
-  await timeout(3);
-
-  game.assignRole();
-  game.broadcastRole();
-  game.firstDayScene();
-
-  await timeout(5);
-
-  while (true) {
-    // Night scene
-    game.nightScene();
-    await timeout(5);
-    game.sceneWillEnd();
-
-    // Increment number of days
-    game.addDay();
-
-    // Day Scene
-    game.dayScene();
-    await timeout(5);
-    game.sceneWillEnd();
-
-    // Dusk Scene (Voting Time)
-    game.duskScene();
-    await timeout(20);
-    game.sceneWillEnd();
+    this.addEventListener();
   }
 
-  // End Game Loop
-  Promise.resolve();
+  /**
+   * execute
+   * Run the game loop
+   */
+  public async execute(): Promise<any> {
+    await this.game.channel.gameLoopBroadcast(
+      this.game.groupId,
+      'Game Started'
+    );
+
+    await this.timeout(3);
+
+    this.game.assignRole();
+    this.game.broadcastRole();
+    this.game.firstDayScene();
+
+    await this.timeout(5);
+
+    while (this.playing) {
+      // Night scene
+      this.game.nightScene();
+      await this.timeout(5);
+      this.game.sceneWillEnd();
+
+      // Increment number of days
+      this.game.addDay();
+
+      // Day Scene
+      this.game.dayScene();
+      await this.timeout(5);
+      this.game.sceneWillEnd();
+
+      // Dusk Scene (Voting Time)
+      this.game.duskScene();
+      await this.timeout(5);
+      this.game.sceneWillEnd();
+    }
+
+    // End Game Loop
+    Promise.resolve();
+  }
+
+  private addEventListener() {
+    this.game.emitter.on('stop', () => {
+      this.playing = false;
+    });
+  }
+
+  private timeout(second: number) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, second * 1000);
+    });
+  }
 }

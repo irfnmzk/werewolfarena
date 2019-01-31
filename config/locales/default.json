@@ -20,9 +20,12 @@
       "announcement": "Kamu adalah Villager"
     },
     "werewolf": {
-      "announcement": "Kamu adalah Werewolf",
+      "announcement": "Kamu adalah Werewolf! {ally}",
       "selection": "Pilih orang yang akan kamu makan!",
-      "bite": "role.werewolf.bite"
+      "bite": "Kamu Di makan werewolf dan mati",
+      "ally_text": "adalah teman mu.",
+      "alone": "dan kamu adalah satu-satu nya",
+      "friend": " adalah Temanmu"
     }
   },
   "vote": {
@@ -42,6 +45,6 @@
   },
   "death": {
     "vote": "{player} mati di hukum gantung",
-    "bite": "kamu mati di makan serigala"
+    "bite": "{player} telah mati di makan serigala"
   }
 }

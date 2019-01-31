@@ -9,12 +9,23 @@ export default class WereWolf extends Role {
 
     this.id = 'wolf';
     this.name = 'Wolf';
+
+    this.team = 'WEREWOLF';
   }
 
   public eventAnnouncement() {
+    const allyListName = this.game
+      .getAllyList(this.player)
+      .map(ally => ally.name)
+      .join(', ');
     this.game.channel.sendWithText(
       this.userId,
-      this.game.localeService.t('role.werewolf.announcement')
+      this.game.localeService.t('role.werewolf.announcement', {
+        ally:
+          allyListName.length > 0
+            ? allyListName + this.game.localeService.t('role.werewolf.friend')
+            : this.game.localeService.t('role.werewolf.alone')
+      })
     );
   }
 

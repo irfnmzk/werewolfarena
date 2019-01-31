@@ -29,7 +29,7 @@ export default class LineMessage extends Line.Client {
   }
 
   public sendWithText(id: string, text: string) {
-    this.pushMessage(id, {
+    return this.pushMessage(id, {
       type: 'text',
       text
     }).catch(err => {

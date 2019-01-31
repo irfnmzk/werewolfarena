@@ -2,6 +2,7 @@ export type time = 'DAY' | 'NIGHT' | 'DUSK';
 export type RoleId = 'default' | 'villager' | 'wolf';
 export type RoleName = 'default' | 'Villager' | 'Wolf';
 export type EventType = 'vote' | 'bite';
+export type Team = 'VILLAGER' | 'WEREWOLF';
 
 export interface BackEvent {
   type: 'GAME_EVENT' | 'DEFAULT';

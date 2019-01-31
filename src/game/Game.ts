@@ -1,3 +1,5 @@
+import Emitter from 'eventemitter3';
+
 import LineMessage from 'src/line/LineMessage';
 import Player from './base/Player';
 import GameLoop from './GameLoop';
@@ -17,8 +19,12 @@ export default class Game {
   public readonly channel: LineMessage;
   public readonly localeService: LocaleService;
 
+  public emitter: Emitter;
+
   public readonly eventQueue: GameEventQueue;
   private gamemode: DefaultGameMode;
+
+  private readonly gameLoop: GameLoop;
 
   private timer: any;
   private timerDuration = [5000, 3000, 4000, 1000];
@@ -30,8 +36,12 @@ export default class Game {
   constructor(groupId: string, channel: LineMessage) {
     this.groupId = groupId;
     this.channel = channel;
+
+    this.emitter = new Emitter();
+
     this.gamemode = new DefaultGameMode(this);
     this.eventQueue = new GameEventQueue(this);
+    this.gameLoop = new GameLoop(this);
     this.localeService = new LocaleService();
 
     this.time = 'DAY';
@@ -66,7 +76,7 @@ export default class Game {
     this.status = 'PLAYING';
     this.channel.sendWithText(this.groupId, this.localeService.t('game.start'));
 
-    GameLoop(this).then(() => this.endGame());
+    this.startGameLoop();
   }
 
   /**
@@ -140,10 +150,9 @@ export default class Game {
    * sceneWillEnd
    * called in the end of each scene
    */
-  public sceneWillEnd() {
+  public async sceneWillEnd() {
     this.runEventQueue();
-
-    this.sendDyingMessage();
+    this.sendDyingMessage().then(() => this.checkEndGame());
   }
 
   /**
@@ -242,11 +251,43 @@ export default class Game {
     return this.players.filter(player => player.userId === userId)[0];
   }
 
-  public broadcastMessage(message: string): void {
-    this.channel.sendWithText(this.groupId, message);
+  public broadcastMessage(message: string): Promise<any> {
+    return this.channel.sendWithText(this.groupId, message);
   }
 
-  private sendDyingMessage() {
+  /**
+   * isFinish
+   */
+  public isFinish() {
+    const alive = this.calculateAliveTeam(this.players);
+
+    if (
+      alive.WEREWOLF > 0 &&
+      alive.WEREWOLF >= (alive.VILLAGER + alive.WEREWOLF) / 2
+    ) {
+      // Werewolf win
+      return true;
+    }
+    if (alive.VILLAGER > 0 && alive.WEREWOLF <= 0) {
+      // villager win
+      return true;
+    }
+    return false;
+  }
+
+  private calculateAliveTeam(players: Player[]) {
+    // Need to be refactored
+    return {
+      VILLAGER: players.filter(
+        player => !player.role!.dead && player.role!.team === 'VILLAGER'
+      ).length,
+      WEREWOLF: players.filter(
+        player => !player.role!.dead && player.role!.team === 'WEREWOLF'
+      ).length
+    };
+  }
+
+  private sendDyingMessage(): Promise<any> {
     const deathMessage: string[] = [];
     const allDeath = this.eventQueue.getAllDeath();
     allDeath.forEach(death => {
@@ -259,17 +300,26 @@ export default class Game {
     if (deathMessage.length <= 0 && this.isVitongTime()) {
       return this.broadcastMessage(this.localeService.t('vote.no_death'));
     }
-    if (allDeath.length <= 0) return;
+    if (allDeath.length <= 0) return Promise.resolve();
     const message = deathMessage.join('\n');
-    this.broadcastMessage(message);
+    return this.broadcastMessage(message);
   }
 
   private isVitongTime() {
     return this.time === 'DUSK';
   }
 
+  /**
+   * Called when Game is Finished
+   */
   private endGame() {
-    console.log(this.localeService.t('game.end'));
+    this.broadcastMessage(this.localeService.t('game.end'));
+  }
+
+  private checkEndGame() {
+    if (this.isFinish()) {
+      this.finishGame();
+    }
   }
 
   private setStartTimer(run = 0) {
@@ -281,5 +331,21 @@ export default class Game {
     this.timer = setTimeout(() => {
       this.setStartTimer(run + 1);
     }, this.timerDuration[run]);
+  }
+
+  private startGameLoop() {
+    this.gameLoop.execute().then(() => this.endGame());
+  }
+
+  /**
+   * Called when any team is Win
+   */
+  private finishGame() {
+    // Send Finish Game here
+    this.sendStopSignal();
+  }
+
+  private sendStopSignal() {
+    this.emitter.emit('stop');
   }
 }

@@ -12,6 +12,8 @@ export default class Role {
   public id: Types.RoleId;
   public name: Types.RoleName;
 
+  public team: Types.Team;
+
   public dead: boolean;
   public doneAction: boolean;
 
@@ -28,6 +30,8 @@ export default class Role {
 
     this.id = 'default';
     this.name = 'default';
+
+    this.team = 'VILLAGER';
 
     this.doneAction = false;
     this.dead = false;

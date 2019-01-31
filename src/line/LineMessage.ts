@@ -53,7 +53,7 @@ export default class LineMessage extends Line.Client {
 
   public sendTemplateMessage(userId: string, template: Line.TemplateMessage[]) {
     this.pushMessage(userId, template).catch(err => {
-      if (userId.length >= 5) {
+      if (userId.length <= 5) {
         return;
       }
       console.log('err send templateMessage to' + userId);

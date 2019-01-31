@@ -22,7 +22,7 @@ export default async function GameLoop(game: Game): Promise<any> {
   while (true) {
     // Night scene
     game.nightScene();
-    await timeout(10);
+    await timeout(5);
     game.sceneWillEnd();
 
     // Increment number of days
@@ -30,12 +30,12 @@ export default async function GameLoop(game: Game): Promise<any> {
 
     // Day Scene
     game.dayScene();
-    await timeout(10);
+    await timeout(5);
     game.sceneWillEnd();
 
     // Dusk Scene (Voting Time)
     game.duskScene();
-    await timeout(10);
+    await timeout(20);
     game.sceneWillEnd();
   }
 

@@ -35,7 +35,10 @@
       "vote": "{user} memilih {target}",
       "ally": "common.selected.ally"
     },
-    "timeup": "Waktu telah habis kamu tidak memilih siapapun"
+    "timeup": "Waktu telah habis kamu tidak memilih siapapun",
+    "playerlist": {
+      "header": "PlayerList\n\n"
+    }
   },
   "death": {
     "vote": "{player} mati di hukum gantung",

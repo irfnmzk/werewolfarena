@@ -92,12 +92,13 @@ export default class Game {
    */
   public firstDayScene() {
     this.prepareForQueue('DAY');
-    this.broadcastMessage(this.localeService.t('game.scene.first'));
+
     this.players
       .filter(({ role }) => !role!.dead)
       .forEach(player => {
         player.role!.eventDay();
       });
+    this.broadcastMessage(this.localeService.t('game.scene.first'));
   }
 
   /**
@@ -105,12 +106,13 @@ export default class Game {
    */
   public dayScene() {
     this.prepareForQueue('DAY');
-    this.broadcastMessage(this.localeService.t('game.scene.day'));
+
     this.players
       .filter(({ role }) => !role!.dead)
       .forEach(player => {
         player.role!.eventDay();
       });
+    this.broadcastMessage(this.localeService.t('game.scene.day'));
   }
 
   /**
@@ -118,12 +120,13 @@ export default class Game {
    */
   public nightScene() {
     this.prepareForQueue('NIGHT');
-    this.broadcastMessage(this.localeService.t('game.scene.night'));
+
     this.players
       .filter(({ role }) => !role!.dead)
       .forEach(player => {
         player.role!.eventNight();
       });
+    this.broadcastMessage(this.localeService.t('game.scene.night'));
   }
 
   /**
@@ -131,12 +134,12 @@ export default class Game {
    */
   public duskScene() {
     this.prepareForQueue('DUSK');
-    this.broadcastMessage(this.localeService.t('game.scene.dusk'));
     this.players
       .filter(({ role }) => !role!.dead)
       .forEach(player => {
         player.role!.eventDusk();
       });
+    this.broadcastMessage(this.localeService.t('game.scene.dusk'));
   }
 
   /**
@@ -221,6 +224,13 @@ export default class Game {
   }
 
   /**
+   * getAllPlayer
+   */
+  public getAllPlayer() {
+    return this.players;
+  }
+
+  /**
    * processCallback
    * process callback from postback
    */
@@ -238,7 +248,7 @@ export default class Game {
     return this.players.filter(player => player.userId === userId)[0];
   }
 
-  public broadcastMessage(message: string) {
+  public broadcastMessage(message: string): void {
     this.channel.sendWithText(this.groupId, message);
   }
 
@@ -252,6 +262,7 @@ export default class Game {
         })
       );
     });
+    console.log('all death : ' + allDeath);
     if (deathMessage.length <= 0 && this.isVitongTime()) {
       return this.broadcastMessage(this.localeService.t('vote.no_death'));
     }

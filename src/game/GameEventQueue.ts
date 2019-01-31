@@ -57,6 +57,8 @@ export default class GameEventQueue {
   public execute() {
     if (!this.queue[0]) return;
 
+    console.log('process queue');
+
     if (this.isVote) return this.processVote();
 
     this.combineQueue();
@@ -89,13 +91,16 @@ export default class GameEventQueue {
   }
 
   private processVote() {
+    console.log(`process vote start`);
     const voteCounter: VoteCounter = this.queue.reduce(
       (prev, { target: { userId } }) => {
-        prev[userId] ? (prev[userId] += 1) : (prev[userId] = 0);
+        prev[userId] ? (prev[userId] += 1) : (prev[userId] = 1);
         return prev;
       },
       {} as VoteCounter
     );
+
+    console.log('process vote 1 - ', voteCounter);
 
     // Need to be refactor in functional way
     let found = false;
@@ -104,14 +109,18 @@ export default class GameEventQueue {
     for (const userId in voteCounter) {
       if (voteCounter[userId] > maxCount) {
         maxCount = voteCounter[userId];
-        found = false;
+        found = true;
         targetUserId = userId;
       } else if (voteCounter[userId] === maxCount) {
-        found = true;
+        found = false;
       }
     }
 
+    console.log('process vote - 2', found, targetUserId, maxCount);
+
     if (!found) return;
+
+    console.log('player ' + targetUserId);
 
     this.game
       .getTargetPlayer(targetUserId)

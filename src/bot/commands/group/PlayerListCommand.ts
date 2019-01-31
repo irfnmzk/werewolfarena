@@ -35,11 +35,22 @@ export default class PlayerListCommand implements Command {
       );
       return;
     }
-
     const playerList = this.gameManager.get(groupId!)!.getLobbyPlayers();
-    const message = playerList.reduce((prev, curr, index) => {
-      return prev + curr.name + (index !== playerList.length - 1 ? '\n' : '');
-    }, 'Player List\n\n');
+    let message = '';
+    if (this.gameManager.get(groupId!)!.status === 'OPEN') {
+      message = playerList.reduce((prev, curr, index) => {
+        return prev + curr.name + (index !== playerList.length - 1 ? '\n' : '');
+      }, 'Player List\n\n');
+    } else {
+      message = playerList.reduce((prev, curr, index) => {
+        return (
+          prev +
+          curr.name +
+          ` - ${curr.role!.dead ? 'Mati' : 'Hidup'}` +
+          (index !== playerList.length - 1 ? '\n' : '')
+        );
+      }, 'Player List\n\n');
+    }
     this.gameManager.get(groupId!)!.broadcastMessage(message);
   }
 }

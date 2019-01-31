@@ -1,19 +1,30 @@
 import ILineMessage from 'src/line/base/ILineMessage';
 import * as Line from '@line/bot-sdk';
 import Player from '@game/base/Player';
+import chalk from 'chalk';
 
 export default class MockLineMessage implements ILineMessage {
   public replyWithText(replyToken: string = '', text: string) {
-    console.log(`Reply message to ${replyToken} : ${text}`);
+    console.log(
+      `${chalk.bgCyan.bold('[reply]')} [${chalk.bgBlue(
+        replyToken
+      )}] : ${chalk.bgGreenBright(text)}`
+    );
   }
 
   public gameLoopBroadcast(groupId: string, message: string): Promise<any> {
-    console.log(`GameLoopBroadcast to ${groupId} : ${message}`);
+    console.log(
+      `${chalk.cyan.bold('[broadcast]')} ${chalk.cyan.bold(
+        `[${groupId}]`
+      )} : ${message}`
+    );
     return Promise.resolve();
   }
 
   public sendWithText(id: string, text: string): Promise<any> {
-    console.log(`Send text to ${id} : ${text}`);
+    console.log(
+      `${chalk.bold.yellow('[Text]')} ${chalk.yellow.bold(`[${id}]`)} : ${text}`
+    );
 
     return Promise.resolve();
   }
@@ -28,10 +39,18 @@ export default class MockLineMessage implements ILineMessage {
     userId: string,
     template: Line.TemplateMessage[]
   ): void {
-    console.log(`Send template Message to ${userId} : ${template[0].altText}`);
+    console.log(
+      `${chalk.bold.yellow('[template]')} ${chalk.yellow.bold(
+        `[${userId}]`
+      )} : ${template[0].altText}`
+    );
   }
 
   public sendMultiText(player: Player[], text: string): void {
-    console.log(`send multiText to ${player.length} user : ${text}`);
+    console.log(
+      `${chalk.bold.yellow('[Text]')} ${chalk.yellow.bold(
+        `[${player.length}]`
+      )} : ${text}`
+    );
   }
 }

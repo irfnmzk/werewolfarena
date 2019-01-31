@@ -33,9 +33,13 @@ export default class Game {
   private MAX_PLAYER = 12;
   private MIN_PLAYER = 5;
 
-  constructor(groupId: string, channel: ILineMessage) {
+  private readonly debug: boolean;
+
+  constructor(groupId: string, channel: ILineMessage, debug: boolean = false) {
     this.groupId = groupId;
     this.channel = channel;
+
+    this.debug = debug;
 
     this.emitter = new Emitter();
 
@@ -179,6 +183,11 @@ export default class Game {
    * called everytime when scene is changing
    */
   public prepareForQueue(time: Types.time) {
+    // For Development only
+    if (this.debug) {
+      this.emitter.emit('scene', time, this.day);
+    }
+
     this.time = time;
     this.players.forEach(player => (player.role!.doneAction = false));
     this.eventQueue.refreshQueue(time);

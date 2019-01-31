@@ -1,42 +1,43 @@
 {
-	"welcome": "Bot Is Now Ready",
-	"game": {
-		"full": "Game is full",
-		"already": {
-			"in": "game already in",
-			"start": "Game Already Start"
-		},
-		"start": "Game Started",
-		"scene": {
-			"first": "First scene",
-			"day": "day scene",
-			"night": "night scene",
-			"dusk": "Dusk scnee"
-		},
-		"end": "Game Ended"
-	},
-	"role": {
-		"villager": {
-			"announcement": "Kamu adalah Villager"
-		},
-		"werewolf": {
-			"announcement": "Kamu adalah Werewolf",
-			"selection": "Pilih orang yang akan kamu makan!",
-			"bite": "role.werewolf.bite"
-		}
-	},
-	"vote": {
-		"selection": "Waktu nya vote!"
-	},
-	"common": {
-		"selected": {
-			"self": "Kamu memilih {target}",
-			"vote": "{user} memilih {target}",
-			"ally": "common.selected.ally"
-		}
-	},
-	"death": {
-		"vote": "{player} mati di hukum gantung",
-		"bite": "{player} mati di makan serigala"
-	}
+  "welcome": "Bot Is Now Ready",
+  "game": {
+    "full": "Game is full",
+    "already": {
+      "in": "game already in",
+      "start": "Game Already Start"
+    },
+    "start": "Game Started",
+    "scene": {
+      "first": "First scene",
+      "day": "day scene",
+      "night": "night scene",
+      "dusk": "Dusk scnee"
+    },
+    "end": "Game Ended"
+  },
+  "role": {
+    "villager": {
+      "announcement": "Kamu adalah Villager"
+    },
+    "werewolf": {
+      "announcement": "Kamu adalah Werewolf",
+      "selection": "Pilih orang yang akan kamu makan!",
+      "bite": "role.werewolf.bite"
+    }
+  },
+  "vote": {
+    "selection": "Waktu nya vote!"
+  },
+  "common": {
+    "selected": {
+      "self": "Kamu memilih {target}",
+      "vote": "{user} memilih {target}",
+      "ally": "common.selected.ally"
+    },
+    "timeup": "Waktu telah habis kamu tidak memilih siapapun"
+  },
+  "death": {
+    "vote": "{player} mati di hukum gantung",
+    "bite": "kamu mati di makan serigala"
+  }
 }

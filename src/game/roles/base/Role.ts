@@ -153,12 +153,13 @@ export default class Role {
   public timeUp(time: Types.time) {
     switch (time) {
       case 'DAY':
+        this.dayTimeUp();
         break;
       case 'NIGHT':
+        this.nightTimeUp();
         break;
       case 'DUSK':
-        break;
-      default:
+        this.duskTimeUp();
         break;
     }
   }
@@ -181,7 +182,10 @@ export default class Role {
    * duskTimeUp
    */
   public duskTimeUp() {
-    // To be override
+    this.game.channel.sendWithText(
+      this.userId,
+      this.game.localeService.t('common.timeup')
+    );
   }
 
   /**

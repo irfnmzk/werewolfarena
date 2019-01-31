@@ -172,7 +172,7 @@ export default class Game {
    */
   public runEventQueue() {
     this.players
-      .filter(player => !player.role!.dead)
+      .filter(player => !player.role!.dead && !player.role!.doneAction)
       .forEach(player => player.role!.timeUp(this.time));
 
     this.eventQueue.execute();
@@ -234,7 +234,7 @@ export default class Game {
   /**
    * getTargetPlayer
    */
-  public getTargetPlayer(userId: string) {
+  public getTargetPlayer(userId: string): Player {
     return this.players.filter(player => player.userId === userId)[0];
   }
 

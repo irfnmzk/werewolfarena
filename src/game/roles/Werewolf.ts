@@ -36,8 +36,13 @@ export default class WereWolf extends Role {
       ally,
       this.game.localeService.t('common.selected.ally')
     );
+  }
 
-    console.log('event night callback callled');
+  public nightTimeUp() {
+    this.game.channel.sendWithText(
+      this.userId,
+      this.game.localeService.t('common.timeup')
+    );
   }
 
   public action(event: Types.EventType, target: Player) {

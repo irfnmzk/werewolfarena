@@ -81,8 +81,6 @@ export default class GameEventQueue {
       killer
     });
     this.deadPlayers.push(player);
-
-    console.log(this.death);
   }
 
   /**
@@ -94,8 +92,8 @@ export default class GameEventQueue {
 
   private processVote() {
     const voteCounter: VoteCounter = this.queue.reduce(
-      (prev, curr) => {
-        prev[curr.target.userId] += 1;
+      (prev, { target: { userId } }) => {
+        prev[userId] ? (prev[userId] += 1) : (prev[userId] = 0);
         return prev;
       },
       {} as VoteCounter

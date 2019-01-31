@@ -10,6 +10,7 @@
     "lint": "tslint -p tsconfig.json",
     "serve": "node dist/index.js",
     "start": "npm run build && npm run serve",
+    "debug": "npm run build && node dist/tests/scenario/GameScenario.js",
     "rebuild": "npm run clean && npm run build",
     "release": "npm run rebuild && npm run lint"
   },

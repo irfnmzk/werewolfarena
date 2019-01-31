@@ -6,7 +6,7 @@ export default function generateFakePlayers(num: number): Player[] {
   for (let index = 0; index < num; index++) {
     results.push({
       name: `player ${index}`,
-      userId: `${index}`
+      userId: `000${index}`
     });
   }
   return results;

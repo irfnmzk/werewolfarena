@@ -60,6 +60,7 @@
   },
   "death": {
     "vote": "{player} mati di hukum gantung",
-    "bite": "{player} telah mati di makan serigala"
+    "bite": "{player} telah mati di makan serigala",
+    "punishment": "{player} mati karena 3 kali tidak melakukan voting "
   }
 }

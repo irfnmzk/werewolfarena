@@ -17,6 +17,8 @@ export default class Role {
   public dead: boolean;
   public doneAction: boolean;
 
+  public voteMiss: number;
+
   public buff: Types.Buff[];
 
   public priority: number;
@@ -36,6 +38,7 @@ export default class Role {
     this.name = 'default';
 
     this.priority = 0;
+    this.voteMiss = 0;
 
     this.team = 'VILLAGER';
 
@@ -203,6 +206,7 @@ export default class Role {
       this.userId,
       this.game.localeService.t('common.timeup')
     );
+    if (this.voteMiss++ >= this.game.maxVoteMiss) this.votePunishment();
   }
 
   /**
@@ -232,5 +236,9 @@ export default class Role {
    */
   public resetBuff() {
     this.buff = [];
+  }
+
+  private votePunishment() {
+    this.endOfLife('punishment', {} as Player);
   }
 }

@@ -25,6 +25,8 @@ export default class Game {
 
   public emitter: Emitter;
 
+  public maxVoteMiss = 3;
+
   public readonly eventQueue: GameEventQueue;
   private gamemode: DefaultGameMode;
 

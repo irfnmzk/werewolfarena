@@ -1,8 +1,9 @@
 import * as Line from '@line/bot-sdk';
 import to from 'await-to-js';
 import Player from '@game/base/Player';
+import ILineMessage from './base/ILineMessage';
 
-export default class LineMessage extends Line.Client {
+export default class LineMessage extends Line.Client implements ILineMessage {
   constructor(config: Line.ClientConfig) {
     super(config);
   }
@@ -28,7 +29,7 @@ export default class LineMessage extends Line.Client {
     return Promise.resolve(_);
   }
 
-  public sendWithText(id: string, text: string) {
+  public sendWithText(id: string, text: string): Promise<any> {
     return this.pushMessage(id, {
       type: 'text',
       text

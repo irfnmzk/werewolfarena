@@ -1,12 +1,12 @@
 import Emitter from 'eventemitter3';
 
-import LineMessage from 'src/line/LineMessage';
 import Player from './base/Player';
 import GameLoop from './GameLoop';
 import DefaultGameMode from './gamemode/DefaultGameMode';
 import GameEventQueue from './GameEventQueue';
 import * as Types from './roles/base/RoleTypes';
 import LocaleService from '../utils/i18n/LocaleService';
+import ILineMessage from 'src/line/base/ILineMessage';
 
 export default class Game {
   public readonly groupId: string;
@@ -16,7 +16,7 @@ export default class Game {
   public day: number = 0;
   public time: Types.time;
 
-  public readonly channel: LineMessage;
+  public readonly channel: ILineMessage;
   public readonly localeService: LocaleService;
 
   public emitter: Emitter;
@@ -33,7 +33,7 @@ export default class Game {
   private MAX_PLAYER = 12;
   private MIN_PLAYER = 5;
 
-  constructor(groupId: string, channel: LineMessage) {
+  constructor(groupId: string, channel: ILineMessage) {
     this.groupId = groupId;
     this.channel = channel;
 

@@ -8,13 +8,17 @@ import * as Types from './roles/base/RoleTypes';
 import LocaleService from '../utils/i18n/LocaleService';
 import ILineMessage from 'src/line/base/ILineMessage';
 
+export type Winner = 'VILLAGER' | 'WEREWOLF';
+
 export default class Game {
   public readonly groupId: string;
 
   public players: Player[] = [];
-  public status: 'OPEN' | 'PLAYING' = 'OPEN';
+  public status: 'OPEN' | 'PLAYING' | 'FINISH' = 'OPEN';
   public day: number = 0;
   public time: Types.time;
+
+  public winner?: Winner;
 
   public readonly channel: ILineMessage;
   public readonly localeService: LocaleService;
@@ -282,10 +286,12 @@ export default class Game {
       alive.WEREWOLF >= (alive.VILLAGER + alive.WEREWOLF) / 2
     ) {
       // Werewolf win
+      this.winner = 'WEREWOLF';
       return true;
     }
     if (alive.VILLAGER > 0 && alive.WEREWOLF <= 0) {
       // villager win
+      this.winner = 'VILLAGER';
       return true;
     }
     return false;
@@ -326,6 +332,8 @@ export default class Game {
     if (this.debug) {
       return this.broadcastMessage('Send Player List');
     }
+
+    // Add For multiple status game
     const message = this.players.reduce((prev, curr, index) => {
       return (
         prev +
@@ -337,6 +345,10 @@ export default class Game {
     setTimeout(() => this.broadcastMessage(message), 1 * 1000);
   }
 
+  private isPlayerWin(player: Player) {
+    return player.role!.team === this.winner!;
+  }
+
   private isVitongTime() {
     return this.time === 'DUSK';
   }
@@ -345,6 +357,12 @@ export default class Game {
    * Called when Game is Finished
    */
   private endGame() {
+    this.sendPlayerList();
+    this.broadcastMessage(
+      this.localeService.t('game.win', {
+        team: this.winner!
+      })
+    );
     this.broadcastMessage(this.localeService.t('game.end'));
   }
 
@@ -374,6 +392,7 @@ export default class Game {
    */
   private finishGame() {
     // Send Finish Game here
+    this.status = 'FINISH';
     this.sendStopSignal();
   }
 

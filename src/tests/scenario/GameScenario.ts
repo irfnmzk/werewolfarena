@@ -9,7 +9,7 @@ import Player from '../../game/base/Player';
 export const groupId = 'group_1';
 const mockLineMessage = new MockLineMessage();
 const game = new Game(groupId, mockLineMessage, true);
-const palyers = generateFakePlayers(11);
+const palyers = generateFakePlayers(5);
 
 // Game Flow
 palyers.forEach(player => game.addPlayer(player));
@@ -25,11 +25,10 @@ function handleScene(scene: time, day: any, player: Player[]) {
     case 1:
       switch (scene) {
         case 'NIGHT':
-          // user[8].eventCallback(scene, ge('bite', player[2].userId));
-          user[9].eventCallback(scene, ge('bite', player[2].userId));
-          user[10].eventCallback(scene, ge('bite', player[1].userId));
+          user[4].eventCallback(scene, ge('bite', player[2].userId));
           break;
         case 'DUSK':
+          user[0].eventCallback(scene, ge('vote', player[4].userId));
           break;
       }
       break;

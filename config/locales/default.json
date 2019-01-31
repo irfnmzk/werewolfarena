@@ -16,7 +16,8 @@
     "end": "Game Ended",
     "role": {
       "generating": "Generating Roles...."
-    }
+    },
+    "win": "{team} menang!!!!"
   },
   "role": {
     "villager": {

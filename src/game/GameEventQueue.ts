@@ -101,6 +101,13 @@ export default class GameEventQueue {
       voteCounter[prev] > voteCounter[curr] ? prev : curr
     );
 
+    const found = Object.keys(voteCounter).filter(
+      key => voteCounter[key] === voteCounter[targetUserId]
+    );
+    if (found.length !== 1) {
+      return;
+    }
+
     this.game
       .getTargetPlayer(targetUserId)
       .role!.endOfLife('vote', {} as Player);
@@ -109,6 +116,20 @@ export default class GameEventQueue {
   private combineQueue() {
     const eventList: Types.EventType[] = ['bite'];
     eventList.forEach(event => {
+      const eventCount = this.queue.filter(data => data.event === event).length;
+
+      if (eventCount <= 2) {
+        if (eventCount === 1) {
+          return;
+        }
+        this.queue = this.queue.filter(
+          item =>
+            this.queue.filter(data => data.event === event)[1].target.userId !==
+            item.target.userId
+        );
+        return;
+      }
+
       const userCounter: VoteCounter = this.queue.reduce(
         (prev, { target: { userId } }) => {
           prev[userId] ? (prev[userId] += 1) : (prev[userId] = 1);

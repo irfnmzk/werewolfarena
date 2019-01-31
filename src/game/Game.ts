@@ -51,6 +51,10 @@ export default class Game {
     this.time = 'DAY';
 
     this.setStartTimer();
+
+    if (this.debug) {
+      console.clear();
+    }
   }
 
   /**

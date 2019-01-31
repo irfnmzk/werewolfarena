@@ -6,7 +6,7 @@ import LineMessage from 'src/line/LineMessage';
 import Command from '../base/Command';
 
 export default class JoinGameCommand implements Command {
-  public readonly TRIGGER = '/join';
+  public readonly TRIGGER = ['/join', '/j'];
   public readonly TYPE = ['GROUP'];
   public readonly channel: LineMessage;
 

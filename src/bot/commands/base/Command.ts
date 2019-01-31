@@ -4,7 +4,7 @@ import MessageSource from '../../base/MessageSource';
 
 export default interface Command {
   readonly TYPE: string[];
-  readonly TRIGGER: string;
+  readonly TRIGGER: string[];
 
   readonly channel?: LineMessage;
   gameManager?: GameManager;

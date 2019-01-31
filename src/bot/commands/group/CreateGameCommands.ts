@@ -7,7 +7,7 @@ import Command from '../base/Command';
 import generateFakePlayers from '../helper/GenerateFakePlayer';
 
 export default class CreateGameCommand implements Command {
-  public readonly TRIGGER = '/buat';
+  public readonly TRIGGER = ['/buat', '/create'];
   public readonly TYPE = ['GROUP'];
   public readonly channel: LineMessage;
 

@@ -31,7 +31,7 @@ export default class CommandCollections extends Map<string, Command> {
 
   private registerTriggers(command: Command) {
     command.prepare(this.gameManager);
-    this.set(command.TRIGGER, command);
+    command.TRIGGER.forEach(trigger => this.set(trigger, command));
   }
 
   private canRunCommand(commandName: string, source: MessageSource) {

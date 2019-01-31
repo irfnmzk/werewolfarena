@@ -4,7 +4,7 @@ import MessageSource from '@bot/base/MessageSource';
 import { BackEvent } from '@game/roles/base/RoleTypes';
 
 export default class GameEventCommand implements Command {
-  public readonly TRIGGER = 'GAME_EVENT';
+  public readonly TRIGGER = ['GAME_EVENT'];
   public readonly TYPE = ['POSTBACK'];
 
   public gameManager?: GameManager;

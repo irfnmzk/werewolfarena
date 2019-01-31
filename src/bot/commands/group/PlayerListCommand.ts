@@ -5,7 +5,7 @@ import LineMessage from 'src/line/LineMessage';
 import Command from '../base/Command';
 
 export default class PlayerListCommand implements Command {
-  public readonly TRIGGER = '/playerlist';
+  public readonly TRIGGER = ['/playerlist', '/pemain', '/p'];
   public readonly TYPE = ['GROUP'];
   public readonly channel: LineMessage;
 

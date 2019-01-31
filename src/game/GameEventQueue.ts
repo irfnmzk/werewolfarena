@@ -40,8 +40,6 @@ export default class GameEventQueue {
       target,
       priority
     });
-
-    console.log(this.queue.length);
   }
 
   /**
@@ -98,7 +96,26 @@ export default class GameEventQueue {
       },
       {} as VoteCounter
     );
-    console.log(voteCounter);
+
+    // Need to be refactor in functional way
+    let found = false;
+    let maxCount = 0;
+    let targetUserId = '';
+    for (const userId in voteCounter) {
+      if (voteCounter[userId] > maxCount) {
+        maxCount = voteCounter[userId];
+        found = false;
+        targetUserId = userId;
+      } else if (voteCounter[userId] === maxCount) {
+        found = true;
+      }
+    }
+
+    if (!found) return;
+
+    this.game
+      .getTargetPlayer(targetUserId)
+      .role!.endOfLife('vote', {} as Player);
   }
 
   private combineQueue() {

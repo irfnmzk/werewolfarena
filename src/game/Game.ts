@@ -150,6 +150,17 @@ export default class Game {
   }
 
   /**
+   * runEventQueue
+   */
+  public runEventQueue() {
+    this.players
+      .filter(player => !player.role!.dead && !player.role!.doneAction)
+      .forEach(player => player.role!.timeUp(this.time));
+
+    this.eventQueue.execute();
+  }
+
+  /**
    * addDay
    * increment the day
    */
@@ -165,17 +176,6 @@ export default class Game {
     this.time = time;
     this.players.forEach(player => (player.role!.doneAction = false));
     this.eventQueue.refreshQueue(time);
-  }
-
-  /**
-   * runEventQueue
-   */
-  public runEventQueue() {
-    this.players
-      .filter(player => !player.role!.dead && !player.role!.doneAction)
-      .forEach(player => player.role!.timeUp(this.time));
-
-    this.eventQueue.execute();
   }
 
   /**
@@ -252,9 +252,16 @@ export default class Game {
         })
       );
     });
-    if (deathMessage.length === 0) return;
+    if (deathMessage.length <= 0 && this.isVitongTime()) {
+      return this.broadcastMessage(this.localeService.t('vote.no_death'));
+    }
+    if (allDeath.length <= 0) return;
     const message = deathMessage.join('\n');
     this.broadcastMessage(message);
+  }
+
+  private isVitongTime() {
+    return this.time === 'DUSK';
   }
 
   private endGame() {

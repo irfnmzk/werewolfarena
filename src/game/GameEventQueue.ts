@@ -66,6 +66,8 @@ export default class GameEventQueue {
     this.queue
       .filter(data => !data.user.role!.dead)
       .forEach(data => {
+        // Double Chceck
+        if (data.user.role!.dead) return;
         data.user.role!.action(data.event, data.target);
       });
   }

@@ -3,26 +3,26 @@ import Game from '@game/Game';
 import Player from '@game/base/Player';
 import * as Types from './base/RoleTypes';
 
-export default class Guardian extends Role {
+export default class Seer extends Role {
   constructor(game: Game, player: Player) {
     super(game, player);
 
-    this.priority = 3;
+    this.priority = 1;
 
-    this.id = 'guardian';
-    this.name = 'Guardian';
+    this.id = 'seer';
+    this.name = 'Seer';
   }
 
   public eventAnnouncement() {
     this.game.channel.sendWithText(
       this.userId,
-      this.game.localeService.t('role.guardian.announcement')
+      this.game.localeService.t('role.seer.announcement')
     );
   }
 
   public eventNight() {
     const target = this.game.getEnemyList(this.player);
-    const message = this.messageGenerator.guardianSelection(target);
+    const message = this.messageGenerator.seerSelection(target);
     this.game.channel.sendTemplateMessage(this.userId, message);
   }
 
@@ -45,7 +45,13 @@ export default class Guardian extends Role {
   }
 
   public action(event: Types.EventType, target: Player) {
-    if (event !== 'protect') return;
-    target.role!.addBuff({ name: 'protected', duration: 1 });
+    if (event !== 'see') return;
+    this.game.channel.sendWithText(
+      this.userId,
+      this.game.localeService.t('role.seer.see', {
+        target: this.game.getTargetPlayer(target.userId).name,
+        role: this.game.getTargetPlayer(target.userId).role!.name
+      })
+    );
   }
 }

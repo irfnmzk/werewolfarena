@@ -36,6 +36,11 @@
       "selection": "Pilih orang untuk di lindungi malam ini!",
       "fail_bite": "Kamu di lindungi guardian dari serangan werewolf",
       "succes_protect": "Guardian telah berhasil Melindungi seseorang malam ini!"
+    },
+    "seer": {
+      "announcement": "Kamu adalah Seer",
+      "selection": "Pilih orang yang akan kamu terawang",
+      "see": "Kamu melihat {target} ada seorang {role}"
     }
   },
   "vote": {

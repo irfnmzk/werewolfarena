@@ -7,7 +7,7 @@ export default class WereWolf extends Role {
   constructor(game: Game, player: Player) {
     super(game, player);
 
-    this.priority = 1;
+    this.priority = 2;
 
     this.id = 'wolf';
     this.name = 'Wolf';

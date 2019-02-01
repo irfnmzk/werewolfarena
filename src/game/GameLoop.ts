@@ -55,7 +55,6 @@ export default class GameLoop {
 
   private timeout(second: number) {
     return new Promise(resolve => {
-      console.log(`Sleeping for ${second} second`);
       setTimeout(() => {
         resolve();
       }, second * 1000);

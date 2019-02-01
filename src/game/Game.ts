@@ -400,7 +400,7 @@ export default class Game {
   }
 
   private sortedPlayerByDead() {
-    return _.sortBy(this.players, data => data.role!.dead);
+    return _.sortBy(this.players, data => !data.role!.dead);
   }
 
   private isPlayerWin(player: Player) {
@@ -421,11 +421,16 @@ export default class Game {
       this.localeService.t('game.end')
     ];
 
-    this.channel.sendMultipleText(this.groupId, message);
+    if (this.eventDeathCount() <= 0) {
+      return this.channel.sendMultipleText(this.groupId, message);
+    }
+
+    const dyingMessage = this.getDyingMessage();
+    message.unshift(dyingMessage);
+    return this.channel.sendMultipleText(this.groupId, message);
   }
 
   private checkEndGame() {
-    console.log('checking ending...');
     if (this.isFinish()) {
       this.finishGame();
     }
@@ -470,7 +475,7 @@ export default class Game {
   }
 
   private getEndPlayerListMessage() {
-    return this.players.reduce((prev, curr, index) => {
+    return this.sortPlayerByWinning().reduce((prev, curr, index) => {
       return (
         prev +
         `${curr.name} - ${curr.role!.name} - ${
@@ -478,5 +483,11 @@ export default class Game {
         } ${this.players.length - 1 === index ? '' : '\n'}`
       );
     }, `Semua Pemain\n\n`);
+  }
+
+  private sortPlayerByWinning() {
+    return _.sortBy(this.players, player =>
+      this.winner === player.role!.team ? `Menang` : `Kalah`
+    );
   }
 }

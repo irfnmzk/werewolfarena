@@ -1,3 +1,4 @@
+// tslint:disable:no-unused
 import MockLineMessage from '../helper/MockLineMessage';
 import Game from '../../game/Game';
 import generateFakePlayers from '../../bot/commands/helper/GenerateFakePlayer';
@@ -25,14 +26,14 @@ function handleScene(scene: time, day: any, player: Player[]) {
     case 1:
       switch (scene) {
         case 'NIGHT':
-          user[4].eventCallback(scene, ge('bite', player[3].userId));
-          user[3].eventCallback(scene, ge('see', player[4].userId));
+          // user[4].eventCallback(scene, ge('bite', player[3].userId));
+          // user[3].eventCallback(scene, ge('see', player[4].userId));
           break;
         case 'DUSK':
-          user[0].eventCallback(scene, ge('vote', player[4].userId));
-          user[1].eventCallback(scene, ge('vote', player[2].userId));
-          user[2].eventCallback(scene, ge('vote', player[3].userId));
-          user[3].eventCallback(scene, ge('vote', player[3].userId));
+          // user[0].eventCallback(scene, ge('vote', player[4].userId));
+          // user[1].eventCallback(scene, ge('vote', player[2].userId));
+          // user[2].eventCallback(scene, ge('vote', player[3].userId));
+          // user[3].eventCallback(scene, ge('vote', player[3].userId));
           break;
       }
       break;

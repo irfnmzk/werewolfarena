@@ -25,7 +25,7 @@ export default class Game {
 
   public emitter: Emitter;
 
-  public maxVoteMiss = 3;
+  public maxVoteMiss = 2;
 
   public readonly eventQueue: GameEventQueue;
   private gamemode: DefaultGameMode;
@@ -33,7 +33,7 @@ export default class Game {
   private readonly gameLoop: GameLoop;
 
   private timer: any;
-  private timerDuration = [10000, 10000, 5000, 5000];
+  private timerDuration = [1000, 1000, 1000, 1000];
   private timerMessage = ['', '30', '20', '10'];
 
   private readonly debug: boolean;
@@ -187,19 +187,21 @@ export default class Game {
    * broadcastScene
    */
   public broadcastScene(scene: Types.time) {
-    if (this.eventDeathCount() >= 1 || scene === 'NIGHT') {
+    if (this.eventDeathCount() >= 1) {
       const message = this.getDyingMessage();
-      if (!message) {
-        return this.broadcastMessage(
-          this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
-        );
-      }
       const combinedMessage = [
         message!,
         this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
       ];
       if (scene === 'DAY') combinedMessage.push(this.getPlayerList());
       return this.channel.sendMultipleText(this.groupId, combinedMessage);
+    }
+    // Send no one dying on vote message
+    if (scene === 'NIGHT' && this.day !== 0) {
+      return this.channel.sendMultipleText(this.groupId, [
+        this.localeService.t('vote.no_death'),
+        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
+      ]);
     }
     return this.broadcastMessage(
       this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
@@ -343,6 +345,10 @@ export default class Game {
       this.winner = 'VILLAGER';
       return true;
     }
+    if (this.players.filter(({ role }) => !role!.dead).length <= 0) {
+      this.winner = 'VILLAGER';
+      return true;
+    }
     return false;
   }
 
@@ -361,16 +367,6 @@ export default class Game {
   private getDyingMessage() {
     const deathMessage: string[] = [];
     const allDeath = this.eventQueue.getAllDeath();
-
-    // NIGHT = The end of dusk
-    // Need to be refactor
-    if (allDeath.length <= 0 && this.time === 'NIGHT' && this.day !== 0) {
-      console.log('sending no death message');
-      const text = this.localeService.t('vote.no_death');
-      return text;
-    }
-    if (allDeath.length <= 0) return;
-
     allDeath.forEach(death => {
       deathMessage.push(
         this.localeService.t(`death.${death.event}`, {
@@ -429,6 +425,7 @@ export default class Game {
   }
 
   private checkEndGame() {
+    console.log('checking ending...');
     if (this.isFinish()) {
       this.finishGame();
     }
@@ -463,10 +460,6 @@ export default class Game {
   }
 
   private isValidCallback(event: Types.GameEvent) {
-    console.log(
-      Date.now() - event.timeStamp,
-      Date.now() - event.timeStamp >= 300 * 1000
-    );
     if (this.status === 'OPEN') return false;
     if (Date.now() - event.timeStamp >= 300 * 1000) return false;
     return true;

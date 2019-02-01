@@ -206,7 +206,7 @@ export default class Role {
       this.userId,
       this.game.localeService.t('common.timeup')
     );
-    if (this.voteMiss++ >= this.game.maxVoteMiss) this.votePunishment();
+    if (this.voteMiss++ === this.game.maxVoteMiss) this.votePunishment();
   }
 
   /**

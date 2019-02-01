@@ -58,6 +58,12 @@ export default class MockLineMessage implements ILineMessage {
   }
   // tslint:disable-next-line:no-unused
   public sendMultipleText(id: string, text: string[]): void {
-    // TODO
+    text.forEach(data =>
+      console.log(
+        `${chalk.bold.yellow('[Text]')} ${chalk.yellow.bold(
+          `[${id}]`
+        )} : ${data}`
+      )
+    );
   }
 }

@@ -1,7 +1,8 @@
 {
   "welcome": "Bot Is Now Ready",
   "game": {
-    "full": "Game is full",
+    "full": "Slot sudah penuh! maksimal pemain dalam mode ini adalah {max}",
+    "not_enough": "Pemain kurang dari {min}",
     "already": {
       "in": "game already in",
       "start": "Game Already Start"

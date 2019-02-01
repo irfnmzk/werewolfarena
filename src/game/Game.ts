@@ -36,9 +36,6 @@ export default class Game {
   private timerDuration = [1000, 1000, 1000, 1000];
   private timerMessage = ['', '30', '20', '10'];
 
-  private MAX_PLAYER = 12;
-  private MIN_PLAYER = 5;
-
   private readonly debug: boolean;
 
   constructor(groupId: string, channel: ILineMessage, debug: boolean = false) {
@@ -68,8 +65,10 @@ export default class Game {
    */
 
   public addPlayer(player: Player) {
-    if (this.players.length >= this.MAX_PLAYER) {
-      return this.broadcastMessage(this.localeService.t('game.full'));
+    if (this.players.length >= this.gamemode.MAX_PLAYER!) {
+      return this.broadcastMessage(
+        this.localeService.t('game.full', { max: this.gamemode.MAX_PLAYER! })
+      );
     }
     if (this.status !== 'OPEN') {
       return this.broadcastMessage(this.localeService.t('game.already.start'));
@@ -91,6 +90,23 @@ export default class Game {
     this.channel.sendWithText(this.groupId, this.localeService.t('game.start'));
 
     this.startGameLoop();
+  }
+
+  /**
+   * forceStartGame
+   */
+  public forceStartGame() {
+    if (this.status !== 'OPEN') return;
+    if (this.players.length > this.gamemode.MIN_PLAYER!) {
+      clearTimeout(this.timer);
+      return this.startGame();
+    }
+
+    return this.broadcastMessage(
+      this.localeService.t('game.not_enough', {
+        min: this.gamemode.MIN_PLAYER!
+      })
+    );
   }
 
   /**

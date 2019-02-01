@@ -21,6 +21,8 @@ export default class Game {
 
   public winner?: Winner;
 
+  public gameDuration = 20;
+
   public readonly channel: ILineMessage;
   public readonly localeService: LocaleService;
 
@@ -34,7 +36,7 @@ export default class Game {
   private readonly gameLoop: GameLoop;
 
   private timer: any;
-  private timerDuration = [1000, 1000, 1000, 1000];
+  private timerDuration = [10000, 10000, 1000, 1000];
   private timerMessage = ['', '30', '20', '10'];
 
   private readonly debug: boolean;
@@ -104,7 +106,7 @@ export default class Game {
    */
   public forceStartGame() {
     if (this.status !== 'OPEN') return;
-    if (this.players.length > this.gamemode.MIN_PLAYER!) {
+    if (this.players.length >= this.gamemode.MIN_PLAYER!) {
       clearTimeout(this.timer);
       return this.startGame();
     }
@@ -201,6 +203,12 @@ export default class Game {
     if (scene === 'NIGHT' && this.day !== 0) {
       return this.channel.sendMultipleText(this.groupId, [
         this.localeService.t('vote.no_death'),
+        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
+      ]);
+    }
+    if (scene === 'DAY' && this.day !== 0) {
+      return this.channel.sendMultipleText(this.groupId, [
+        this.localeService.t('night.no_death'),
         this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
       ]);
     }
@@ -332,7 +340,7 @@ export default class Game {
    */
   public isFinish() {
     const alive = this.calculateAliveTeam(this.players);
-
+    console.log(alive);
     if (
       alive.WEREWOLF > 0 &&
       alive.WEREWOLF >= (alive.VILLAGER + alive.WEREWOLF) / 2

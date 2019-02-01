@@ -26,7 +26,7 @@ export default class GameLoop {
     while (this.playing) {
       // Night scene
       this.game.nightScene();
-      await this.timeout(5);
+      await this.timeout(this.game.gameDuration);
       this.game.sceneWillEnd();
 
       // Increment number of days
@@ -34,12 +34,12 @@ export default class GameLoop {
 
       // Day Scene
       this.game.dayScene();
-      await this.timeout(5);
+      await this.timeout(this.game.gameDuration);
       this.game.sceneWillEnd();
 
       // Dusk Scene (Voting Time)
       this.game.duskScene();
-      await this.timeout(5);
+      await this.timeout(this.game.gameDuration);
       this.game.sceneWillEnd();
     }
 

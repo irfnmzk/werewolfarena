@@ -156,6 +156,8 @@ export default class Game {
       .forEach(player => {
         player.role!.eventDay();
       });
+
+    return this.waitTillEndOfDay();
   }
 
   /**
@@ -170,6 +172,8 @@ export default class Game {
       .forEach(player => {
         player.role!.eventNight();
       });
+
+    return this.waitTillEndOfDay();
   }
 
   /**
@@ -184,6 +188,8 @@ export default class Game {
       .forEach(player => {
         player.role!.eventDusk();
       });
+
+    return this.waitTillEndOfDay();
   }
 
   /**
@@ -497,5 +503,14 @@ export default class Game {
     return _.sortBy(this.players, player =>
       this.winner === player.role!.team ? `Menang` : `Kalah`
     );
+  }
+
+  private waitTillEndOfDay(): Promise<any> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        this.sceneWillEnd();
+        resolve();
+      }, this.gameDuration * 1000);
+    });
   }
 }

@@ -42,10 +42,13 @@ export default class Game {
   private readonly debug: boolean;
 
   constructor(groupId: string, channel: ILineMessage, debug: boolean = false) {
+    this.debug = debug;
+    if (this.debug) {
+      this.debugMode();
+    }
+
     this.groupId = groupId;
     this.channel = channel;
-
-    this.debug = debug;
 
     this.emitter = new Emitter();
 
@@ -57,10 +60,6 @@ export default class Game {
     this.time = 'DAY';
 
     this.setStartTimer();
-
-    if (this.debug) {
-      this.debugMode();
-    }
   }
 
   /**

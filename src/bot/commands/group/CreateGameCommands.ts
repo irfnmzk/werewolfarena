@@ -19,7 +19,7 @@ export default class CreateGameCommand extends Command {
    */
   public run(_: string, source: MessageSource) {
     const { groupId } = source;
-    if (this.gameManager!.gameExist(groupId!)) {
+    if (this.groupManager!.gameExist(groupId!)) {
       this.channel.replyWithText(source.replyToken!, 'Game already Created');
       return;
     }
@@ -30,6 +30,6 @@ export default class CreateGameCommand extends Command {
     const fakePlayers = generateFakePlayers(4);
     fakePlayers.forEach(player => game.addPlayer(player));
 
-    this.gameManager!.createGame(game);
+    this.groupManager!.createGame(groupId!, game);
   }
 }

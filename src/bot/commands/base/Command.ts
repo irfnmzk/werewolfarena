@@ -1,5 +1,5 @@
 // tslint:disable:no-unused
-import GameManager from '../../../manager/GameManager';
+import GroupManager from '../../../manager/GroupManager';
 import MessageSource from '../../base/MessageSource';
 import ILineMessage from 'src/line/base/ILineMessage';
 
@@ -8,7 +8,7 @@ export default class Command {
   public TRIGGER: string[];
 
   public channel: ILineMessage;
-  public gameManager?: GameManager;
+  public groupManager?: GroupManager;
 
   constructor(channel: ILineMessage) {
     this.channel = channel;
@@ -20,8 +20,8 @@ export default class Command {
   /**
    * prepare
    */
-  public prepare(gameManager: GameManager) {
-    this.gameManager = gameManager;
+  public prepare(groupManager: GroupManager) {
+    this.groupManager = groupManager;
   }
 
   /**

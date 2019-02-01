@@ -1,15 +1,15 @@
-import GameManager from '../../manager/GameManager';
+import GroupManager from '../../manager/GroupManager';
 import MessageSource from '../base/MessageSource';
 import Command from './base/Command';
 
 export default class CommandCollections extends Map<string, Command> {
   private readonly commands: Command[];
-  private gameManager: GameManager;
+  private groupManager: GroupManager;
 
-  constructor(commands: Command[], gameManager: GameManager) {
+  constructor(commands: Command[], groupManager: GroupManager) {
     super();
     this.commands = commands;
-    this.gameManager = gameManager;
+    this.groupManager = groupManager;
 
     this.registerCommands(commands);
   }
@@ -30,7 +30,7 @@ export default class CommandCollections extends Map<string, Command> {
   }
 
   private registerTriggers(command: Command) {
-    command.prepare(this.gameManager);
+    command.prepare(this.groupManager);
     command.TRIGGER.forEach(trigger => this.set(trigger, command));
   }
 

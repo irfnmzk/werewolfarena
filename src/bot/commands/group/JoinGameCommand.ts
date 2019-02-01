@@ -18,7 +18,7 @@ export default class JoinGameCommand extends Command {
    */
   public async run(_: string, source: MessageSource) {
     const { groupId } = source;
-    if (!this.gameManager!.gameExist(groupId!)) {
+    if (!this.groupManager!.gameExist(groupId!)) {
       this.channel.replyWithText(source.replyToken!, 'Game not existed');
       return;
     }
@@ -30,6 +30,6 @@ export default class JoinGameCommand extends Command {
         'Profile doesnt Exist'
       );
     }
-    this.gameManager!.get(groupId!)!.addPlayer(player!);
+    this.groupManager!.get(groupId!)!.game!.addPlayer(player!);
   }
 }

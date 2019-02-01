@@ -1,7 +1,7 @@
 import * as Line from '@line/bot-sdk';
 import qs from 'qs';
 
-import GameManager from '../manager/GameManager';
+import GroupManager from '../manager/GroupManager';
 import MessageSource from './base/MessageSource';
 import CommandCollections from './commands/CommandCollections';
 import commandFactory from './commands/helper/CommandFactory';
@@ -9,11 +9,11 @@ import { BackEvent } from '@game/roles/base/RoleTypes';
 
 export default class MessageHandler {
   private readonly commands: CommandCollections;
-  private gameManager: GameManager;
+  private groupManager: GroupManager;
 
-  constructor(gameManager: GameManager) {
-    this.gameManager = gameManager;
-    this.commands = new CommandCollections(commandFactory, gameManager);
+  constructor(groupManager: GroupManager) {
+    this.groupManager = groupManager;
+    this.commands = new CommandCollections(commandFactory, groupManager);
   }
 
   /**

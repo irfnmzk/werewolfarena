@@ -3,7 +3,7 @@ import EventEmitter from 'eventemitter3';
 import Express from 'express';
 
 import { WebhookEvent, WebhookRequestBody } from '@line/bot-sdk';
-import GameManager from '../manager/GameManager';
+import GroupManager from '../manager/GroupManager';
 import Config from '../config/Config';
 
 // import LineMessage from './LineMessage';
@@ -11,7 +11,7 @@ import Config from '../config/Config';
 export default class LineBot extends EventEmitter {
   private config: Config;
   private express: Express.Application;
-  private gameManager: GameManager;
+  private gameManager: GroupManager;
   // private channel: LineMessage;
 
   constructor(config: Config) {
@@ -20,7 +20,7 @@ export default class LineBot extends EventEmitter {
     this.config = config;
     this.express = Express();
     this.configureRoute();
-    this.gameManager = new GameManager();
+    this.gameManager = new GroupManager();
     // this.channel = new LineMessage(config);
   }
 

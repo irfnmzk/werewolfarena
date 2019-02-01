@@ -145,6 +145,7 @@ export default class Game {
    * dayScene
    */
   public dayScene() {
+    this.broadcastScene('DAY');
     this.prepareForQueue('DAY');
 
     this.players
@@ -152,14 +153,13 @@ export default class Game {
       .forEach(player => {
         player.role!.eventDay();
       });
-    this.broadcastMessage(this.localeService.t('game.scene.day'));
-    this.sendPlayerList();
   }
 
   /**
    * nightScene
    */
   public nightScene() {
+    this.broadcastScene('NIGHT');
     this.prepareForQueue('NIGHT');
 
     this.players
@@ -167,20 +167,43 @@ export default class Game {
       .forEach(player => {
         player.role!.eventNight();
       });
-    this.broadcastMessage(this.localeService.t('game.scene.night'));
   }
 
   /**
    * duskScene
    */
   public duskScene() {
+    this.broadcastScene('DUSK');
     this.prepareForQueue('DUSK');
+
     this.players
       .filter(({ role }) => !role!.dead)
       .forEach(player => {
         player.role!.eventDusk();
       });
-    this.broadcastMessage(this.localeService.t('game.scene.dusk'));
+  }
+
+  /**
+   * broadcastScene
+   */
+  public broadcastScene(scene: Types.time) {
+    if (this.eventDeathCount() >= 1 || scene === 'NIGHT') {
+      const message = this.getDyingMessage();
+      if (!message) {
+        return this.broadcastMessage(
+          this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
+        );
+      }
+      const combinedMessage = [
+        message!,
+        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
+      ];
+      if (scene === 'DAY') combinedMessage.push(this.getPlayerList());
+      return this.channel.sendMultipleText(this.groupId, combinedMessage);
+    }
+    return this.broadcastMessage(
+      this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
+    );
   }
 
   /**
@@ -189,7 +212,6 @@ export default class Game {
    */
   public sceneWillEnd() {
     this.runEventQueue();
-    this.sendDyingMessage();
     this.checkEndGame();
   }
 
@@ -336,10 +358,19 @@ export default class Game {
     };
   }
 
-  private sendDyingMessage(): Promise<any> {
-    if (this.time === 'DAY') return Promise.resolve();
+  private getDyingMessage() {
     const deathMessage: string[] = [];
     const allDeath = this.eventQueue.getAllDeath();
+
+    // NIGHT = The end of dusk
+    // Need to be refactor
+    if (allDeath.length <= 0 && this.time === 'NIGHT' && this.day !== 0) {
+      console.log('sending no death message');
+      const text = this.localeService.t('vote.no_death');
+      return text;
+    }
+    if (allDeath.length <= 0) return;
+
     allDeath.forEach(death => {
       deathMessage.push(
         this.localeService.t(`death.${death.event}`, {
@@ -347,12 +378,8 @@ export default class Game {
         })
       );
     });
-    if (deathMessage.length <= 0 && this.isVitongTime()) {
-      return this.broadcastMessage(this.localeService.t('vote.no_death'));
-    }
-    if (allDeath.length <= 0) return Promise.resolve();
     const message = deathMessage.join('\n');
-    return this.broadcastMessage(message);
+    return message;
   }
 
   private getAlivePlayer() {
@@ -365,7 +392,12 @@ export default class Game {
     // }
 
     // Add For multiple status game
-    const message = this.players.reduce((prev, curr, index) => {
+    const message = this.getPlayerList();
+    setTimeout(() => this.broadcastMessage(message), 1 * 1000);
+  }
+
+  private getPlayerList() {
+    return this.players.reduce((prev, curr, index) => {
       return (
         prev +
         curr.name +
@@ -373,7 +405,6 @@ export default class Game {
         (index !== this.players.length - 1 ? '\n' : '')
       );
     }, `Pemain yang masih hidup ${this.getAlivePlayer().length}/${this.players.length}\n`);
-    setTimeout(() => this.broadcastMessage(message), 1 * 1000);
   }
 
   private isPlayerWin(player: Player) {
@@ -439,5 +470,9 @@ export default class Game {
     if (this.status === 'OPEN') return false;
     if (Date.now() - event.timeStamp >= 300 * 1000) return false;
     return true;
+  }
+
+  private eventDeathCount() {
+    return this.eventQueue.death.length;
   }
 }

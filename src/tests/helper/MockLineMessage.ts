@@ -56,4 +56,8 @@ export default class MockLineMessage implements ILineMessage {
       )} : ${text}`
     );
   }
+  // tslint:disable-next-line:no-unused
+  public sendMultipleText(id: string, text: string[]): void {
+    // TODO
+  }
 }

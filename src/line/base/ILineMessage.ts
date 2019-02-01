@@ -8,4 +8,5 @@ export default interface ILineMessage {
   getPlayerData(userId: string): Promise<Player>;
   sendTemplateMessage(userId: string, template: Line.TemplateMessage[]): void;
   sendMultiText(player: Player[], text: string): void;
+  sendMultipleText(id: string, text: string[]): void;
 }

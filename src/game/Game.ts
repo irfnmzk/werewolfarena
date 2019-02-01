@@ -1,4 +1,5 @@
 import Emitter from 'eventemitter3';
+import _ from 'lodash';
 
 import Player from './base/Player';
 import GameLoop from './GameLoop';
@@ -383,17 +384,12 @@ export default class Game {
   }
 
   private sendPlayerList() {
-    // if (this.debug) {
-    //   return this.broadcastMessage('Send Player List');
-    // }
-
-    // Add For multiple status game
     const message = this.getPlayerList();
     setTimeout(() => this.broadcastMessage(message), 1 * 1000);
   }
 
   private getPlayerList() {
-    return this.players.reduce((prev, curr, index) => {
+    return this.sortedPlayerByDead().reduce((prev, curr, index) => {
       return (
         prev +
         curr.name +
@@ -401,6 +397,10 @@ export default class Game {
         (index !== this.players.length - 1 ? '\n' : '')
       );
     }, `Pemain yang masih hidup ${this.getAlivePlayer().length}/${this.players.length}\n`);
+  }
+
+  private sortedPlayerByDead() {
+    return _.sortBy(this.players, data => data.role!.dead);
   }
 
   private isPlayerWin(player: Player) {
@@ -415,13 +415,13 @@ export default class Game {
    * Called when Game is Finished
    */
   private endGame() {
-    this.sendPlayerList();
-    this.broadcastMessage(
-      this.localeService.t('game.win', {
-        team: this.winner!
-      })
-    );
-    this.broadcastMessage(this.localeService.t('game.end'));
+    const message = [
+      this.localeService.t('game.win', { team: this.winner as any }),
+      this.getEndPlayerListMessage(),
+      this.localeService.t('game.end')
+    ];
+
+    this.channel.sendMultipleText(this.groupId, message);
   }
 
   private checkEndGame() {
@@ -467,5 +467,16 @@ export default class Game {
 
   private eventDeathCount() {
     return this.eventQueue.death.length;
+  }
+
+  private getEndPlayerListMessage() {
+    return this.players.reduce((prev, curr, index) => {
+      return (
+        prev +
+        `${curr.name} - ${curr.role!.name} - ${
+          this.winner === curr.role!.team ? `Menang` : `Kalah`
+        } ${this.players.length - 1 === index ? '' : '\n'}`
+      );
+    }, `Semua Pemain\n\n`);
   }
 }

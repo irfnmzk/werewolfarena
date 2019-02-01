@@ -1,14 +1,22 @@
 import Game from 'src/game/Game';
 import Group from './base/Group';
+import DatabaseAdapter from '../utils/db/DatabaseAdapter';
 
 export default class GroupManager extends Map<string, Group> {
+  private readonly database: DatabaseAdapter;
+
+  constructor() {
+    super();
+    this.database = new DatabaseAdapter();
+  }
+
   /**
    * createGroup
    */
-  public createGroup(groupId: string) {
+  public async createGroup(groupId: string) {
     // Todo check from db
-    console.log('adding group');
-    const group = new Group(groupId);
+    const groupData = await this.database.group.firstOrCreate(groupId);
+    const group = new Group(groupData.groupId);
     this.set(groupId, group);
   }
 
@@ -16,25 +24,17 @@ export default class GroupManager extends Map<string, Group> {
    * createGame
    * Add game to to room
    */
-  public createGame(groupId: string, game: Game) {
-    if (!this.has(groupId)) this.createGroup(groupId);
+  public async createGame(groupId: string, game: Game) {
+    if (!this.has(groupId)) await this.createGroup(groupId);
     this.get(groupId)!.game = game;
     this.get(groupId)!.running = true;
   }
 
   /**
-   * deleteGame
-   */
-  public deleteGame(groupId: string) {
-    if (!this.has(groupId)) this.createGroup(groupId);
-    this.get(groupId)!.game = undefined;
-  }
-
-  /**
    * gameExist
    */
-  public gameExist(groupId: string) {
-    if (!this.has(groupId)) this.createGroup(groupId);
+  public async gameExist(groupId: string) {
+    if (!this.has(groupId)) await this.createGroup(groupId);
     return this.get(groupId)!.running;
   }
 }

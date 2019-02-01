@@ -17,7 +17,8 @@ export default class JoinGameCommand extends Command {
    */
   public async run(_: string, source: MessageSource) {
     const { groupId } = source;
-    if (!this.groupManager!.gameExist(groupId!)) {
+    const gameExist = await this.groupManager!.gameExist(groupId!);
+    if (!gameExist) {
       this.channel.replyWithText(source.replyToken!, 'Game not existed');
       return;
     }

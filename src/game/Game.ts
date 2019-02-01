@@ -249,6 +249,7 @@ export default class Game {
    */
   public addDay() {
     this.day += 1;
+    this.players.forEach(player => player.role!.updateBuff());
   }
 
   /**
@@ -259,7 +260,6 @@ export default class Game {
     this.time = time;
     this.players.forEach(player => {
       player.role!.doneAction = false;
-      player.role!.resetBuff();
     });
     this.eventQueue.refreshQueue(time);
 
@@ -346,7 +346,6 @@ export default class Game {
    */
   public isFinish() {
     const alive = this.calculateAliveTeam(this.players);
-    console.log(alive);
     if (
       alive.WEREWOLF > 0 &&
       alive.WEREWOLF >= (alive.VILLAGER + alive.WEREWOLF) / 2

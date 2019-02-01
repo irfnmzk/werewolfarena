@@ -32,6 +32,12 @@ export default class WereWolf extends Role {
   }
 
   public eventNight() {
+    if (this.hasBuff('drunk')) {
+      return this.game.channel.sendWithText(
+        this.userId,
+        this.game.localeService.t('role.drunk.cant_bite')
+      );
+    }
     const target = this.game.getEnemyList(this.player);
     const message = this.messageGenerator.werewolfSelection(target);
     this.game.channel.sendTemplateMessage(this.userId, message);
@@ -57,6 +63,7 @@ export default class WereWolf extends Role {
   }
 
   public nightTimeUp() {
+    if (this.hasBuff('drunk')) return;
     this.game.channel.sendWithText(
       this.userId,
       this.game.localeService.t('common.timeup')
@@ -64,6 +71,7 @@ export default class WereWolf extends Role {
   }
 
   public action(event: Types.EventType, target: Player) {
+    if (this.hasBuff('drunk')) return;
     switch (event) {
       case 'bite':
         if (target.role!.hasBuff('protected')) {

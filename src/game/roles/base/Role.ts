@@ -238,6 +238,17 @@ export default class Role {
     this.buff = [];
   }
 
+  /**
+   * updateBuff
+   */
+  public updateBuff() {
+    this.buff = this.buff
+      .filter(item => item.duration !== 1)
+      .map(
+        item => ({ duration: item.duration--, name: item.name } as Types.Buff)
+      );
+  }
+
   private votePunishment() {
     this.endOfLife('punishment', {} as Player);
   }

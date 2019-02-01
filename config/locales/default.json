@@ -43,6 +43,10 @@
       "announcement": "Kamu adalah Seer",
       "selection": "Pilih orang yang akan kamu terawang",
       "see": "Kamu melihat {target} ada seorang {role}"
+    },
+    "drunk": {
+      "announcement": "Kamu adalah Drunk si pemabuk",
+      "cant_bite": "Kamu telah memakan seorang pemabuk kemarin sekarang kamu mabuk dan tidak bisa memakan siapapun"
     }
   },
   "vote": {

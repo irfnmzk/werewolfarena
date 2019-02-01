@@ -1,9 +1,21 @@
 export type time = 'DAY' | 'NIGHT' | 'DUSK';
-export type RoleId = 'default' | 'villager' | 'wolf' | 'guardian' | 'seer';
-export type RoleName = 'default' | 'Villager' | 'Wolf' | 'Guardian' | 'Seer';
+export type RoleId =
+  | 'default'
+  | 'villager'
+  | 'wolf'
+  | 'guardian'
+  | 'seer'
+  | 'drunk';
+export type RoleName =
+  | 'default'
+  | 'Villager'
+  | 'Wolf'
+  | 'Guardian'
+  | 'Seer'
+  | 'Drunk';
 export type EventType = 'punishment' | 'vote' | 'bite' | 'protect' | 'see';
 export type Team = 'VILLAGER' | 'WEREWOLF';
-export type BuffName = 'protected';
+export type BuffName = 'protected' | 'drunk';
 
 export interface Buff {
   name: BuffName;

@@ -345,6 +345,7 @@ export default class Game {
    */
   public isFinish() {
     const alive = this.calculateAliveTeam(this.players);
+    if (alive.VILLAGER + alive.WEREWOLF === 3 && this.time === 'DAY') return;
     if (
       alive.WEREWOLF > 0 &&
       alive.WEREWOLF >= (alive.VILLAGER + alive.WEREWOLF) / 2
@@ -444,6 +445,7 @@ export default class Game {
 
   private checkEndGame() {
     if (this.isFinish()) {
+      console.log('game ending');
       this.finishGame();
     }
   }

@@ -28,7 +28,7 @@ export default class Game {
 
   public emitter: Emitter;
 
-  public maxVoteMiss = 2;
+  public maxVoteMiss = 3;
 
   public readonly eventQueue: GameEventQueue;
   private gamemode: DefaultGameMode;
@@ -59,7 +59,7 @@ export default class Game {
     this.setStartTimer();
 
     if (this.debug) {
-      console.clear();
+      this.debugMode();
     }
   }
 
@@ -511,5 +511,12 @@ export default class Game {
         resolve();
       }, this.gameDuration * 1000);
     });
+  }
+
+  private debugMode() {
+    console.clear();
+
+    this.gameDuration = 5;
+    this.timerDuration = [1000, 1000, 1000, 1000];
   }
 }

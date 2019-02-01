@@ -1,27 +1,16 @@
 import MessageSource from '@bot/base/MessageSource';
 import Game from '../.././../game/Game';
-import GameManager from '../../../manager/GameManager';
 import LineMessage from 'src/line/LineMessage';
 
 import Command from '../base/Command';
 import generateFakePlayers from '../helper/GenerateFakePlayer';
 
-export default class CreateGameCommand implements Command {
-  public readonly TRIGGER = ['/buat', '/create'];
-  public readonly TYPE = ['GROUP'];
-  public readonly channel: LineMessage;
-
-  public gameManager!: GameManager;
-
+export default class CreateGameCommand extends Command {
   constructor(channel: LineMessage) {
-    this.channel = channel;
-  }
+    super(channel);
 
-  /**
-   * prepare
-   */
-  public prepare(gameManager: GameManager) {
-    this.gameManager = gameManager;
+    this.TRIGGER = ['/buat', '/create'];
+    this.TYPE = ['GROUP'];
   }
 
   /**
@@ -41,6 +30,6 @@ export default class CreateGameCommand implements Command {
     const fakePlayers = generateFakePlayers(4);
     fakePlayers.forEach(player => game.addPlayer(player));
 
-    this.gameManager.createGame(game);
+    this.gameManager!.createGame(game);
   }
 }

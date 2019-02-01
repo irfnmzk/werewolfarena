@@ -1,14 +1,33 @@
-import LineMessage from 'src/line/LineMessage';
+// tslint:disable:no-unused
 import GameManager from '../../../manager/GameManager';
 import MessageSource from '../../base/MessageSource';
+import ILineMessage from 'src/line/base/ILineMessage';
 
-export default interface Command {
-  readonly TYPE: string[];
-  readonly TRIGGER: string[];
+export default class Command {
+  public TYPE: string[];
+  public TRIGGER: string[];
 
-  readonly channel?: LineMessage;
-  gameManager?: GameManager;
+  public channel: ILineMessage;
+  public gameManager?: GameManager;
 
-  prepare(gameManager: GameManager): void;
-  run(data: any, source: MessageSource): void;
+  constructor(channel: ILineMessage) {
+    this.channel = channel;
+
+    this.TYPE = [];
+    this.TRIGGER = [];
+  }
+
+  /**
+   * prepare
+   */
+  public prepare(gameManager: GameManager) {
+    this.gameManager = gameManager;
+  }
+
+  /**
+   * run
+   */
+  public run(data: any, source: MessageSource) {
+    // To Be override
+  }
 }

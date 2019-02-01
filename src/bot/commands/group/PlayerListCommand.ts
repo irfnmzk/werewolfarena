@@ -1,25 +1,14 @@
 import MessageSource from '@bot/base/MessageSource';
-import GameManager from '../../../manager/GameManager';
 import LineMessage from 'src/line/LineMessage';
 
 import Command from '../base/Command';
 
-export default class PlayerListCommand implements Command {
-  public readonly TRIGGER = ['/playerlist', '/pemain', '/p'];
-  public readonly TYPE = ['GROUP'];
-  public readonly channel: LineMessage;
-
-  public gameManager!: GameManager;
-
+export default class PlayerListCommand extends Command {
   constructor(channel: LineMessage) {
-    this.channel = channel;
-  }
+    super(channel);
 
-  /**
-   * prepare
-   */
-  public prepare(gameManager: GameManager) {
-    this.gameManager = gameManager;
+    this.TYPE = ['GROUP'];
+    this.TRIGGER = ['/pemain', '/players', '/playerlist'];
   }
 
   /**
@@ -28,16 +17,16 @@ export default class PlayerListCommand implements Command {
    */
   public async run(_: string, source: MessageSource) {
     const { groupId } = source;
-    if (!this.gameManager.gameExist(groupId!)) {
+    if (!this.gameManager!.gameExist(groupId!)) {
       this.channel.replyWithText(
         source.replyToken!,
         'Tidak ada game yang berjalan pada group ini!'
       );
       return;
     }
-    const playerList = this.gameManager.get(groupId!)!.getLobbyPlayers();
+    const playerList = this.gameManager!.get(groupId!)!.getLobbyPlayers();
     let message = '';
-    if (this.gameManager.get(groupId!)!.status === 'OPEN') {
+    if (this.gameManager!.get(groupId!)!.status === 'OPEN') {
       message = playerList.reduce((prev, curr, index) => {
         return prev + curr.name + (index !== playerList.length - 1 ? '\n' : '');
       }, 'Player List\n\n');
@@ -51,6 +40,6 @@ export default class PlayerListCommand implements Command {
         );
       }, 'Player List\n\n');
     }
-    this.gameManager.get(groupId!)!.broadcastMessage(message);
+    this.gameManager!.get(groupId!)!.broadcastMessage(message);
   }
 }

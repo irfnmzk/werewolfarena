@@ -12,7 +12,7 @@ const lineMessage = new LineMessage(config);
 const commands: Command[] = [
   new CreateGameCommands(lineMessage),
   new JoinGameCommand(lineMessage),
-  new GameEventCommand(),
+  new GameEventCommand(lineMessage),
   new PlayerListCommand(lineMessage)
 ];
 export default commands;

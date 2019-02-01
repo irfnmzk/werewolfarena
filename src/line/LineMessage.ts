@@ -34,7 +34,7 @@ export default class LineMessage extends Line.Client implements ILineMessage {
       type: 'text',
       text
     }).catch(err => {
-      if (id.length <= 5) return;
+      if (id.length <= 10) return;
       console.log(`err send text to ${id}\nmessage: ${text}`);
       if (err instanceof Line.RequestError) {
         console.log(`error : ${err.message}`);
@@ -54,7 +54,7 @@ export default class LineMessage extends Line.Client implements ILineMessage {
 
   public sendTemplateMessage(userId: string, template: Line.TemplateMessage[]) {
     this.pushMessage(userId, template).catch(err => {
-      if (userId.length <= 5) {
+      if (userId.length <= 10) {
         return;
       }
       console.log('err send templateMessage to' + userId);

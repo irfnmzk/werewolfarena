@@ -31,10 +31,5 @@ export default class JoinGameCommand extends Command {
       );
     }
     this.gameManager!.get(groupId!)!.addPlayer(player!);
-
-    return this.channel.replyWithText(
-      source.replyToken!,
-      'Berhasil Bergabung ke permainn'
-    );
   }
 }

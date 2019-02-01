@@ -18,7 +18,8 @@
     "role": {
       "generating": "Generating Roles...."
     },
-    "win": "{team} menang!!!!"
+    "win": "{team} menang!!!!",
+    "join": "{player} berhasil bergabung! total pemain {total}/{max}"
   },
   "role": {
     "villager": {

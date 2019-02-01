@@ -33,7 +33,7 @@ export default class Game {
   private readonly gameLoop: GameLoop;
 
   private timer: any;
-  private timerDuration = [1000, 1000, 1000, 1000];
+  private timerDuration = [10000, 10000, 5000, 5000];
   private timerMessage = ['', '30', '20', '10'];
 
   private readonly debug: boolean;
@@ -78,6 +78,13 @@ export default class Game {
     if (found) {
       return this.broadcastMessage(this.localeService.t('game.already.in'));
     }
+    this.broadcastMessage(
+      this.localeService.t('game.join', {
+        player: player.name,
+        total: this.players.length,
+        max: this.gamemode.MAX_PLAYER!
+      })
+    );
     this.players.push(player);
   }
 
@@ -87,7 +94,6 @@ export default class Game {
   public startGame() {
     this.timer = null;
     this.status = 'PLAYING';
-    this.channel.sendWithText(this.groupId, this.localeService.t('game.start'));
 
     this.startGameLoop();
   }
@@ -426,6 +432,10 @@ export default class Game {
   }
 
   private isValidCallback(event: Types.GameEvent) {
+    console.log(
+      Date.now() - event.timeStamp,
+      Date.now() - event.timeStamp >= 300 * 1000
+    );
     if (this.status === 'OPEN') return false;
     if (Date.now() - event.timeStamp >= 300 * 1000) return false;
     return true;

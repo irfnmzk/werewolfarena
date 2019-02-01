@@ -7,7 +7,7 @@ export default class GameEventCommand extends Command {
   constructor(channel: ILineMessage) {
     super(channel);
 
-    this.TYPE = ['GROUP'];
+    this.TYPE = ['POSTBACK'];
     this.TRIGGER = ['GAME_EVENT'];
   }
 

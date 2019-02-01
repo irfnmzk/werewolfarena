@@ -333,10 +333,14 @@ export default class Game {
     return this.broadcastMessage(message);
   }
 
+  private getAlivePlayer() {
+    return this.players.filter(data => !data.role!.dead);
+  }
+
   private sendPlayerList() {
-    if (this.debug) {
-      return this.broadcastMessage('Send Player List');
-    }
+    // if (this.debug) {
+    //   return this.broadcastMessage('Send Player List');
+    // }
 
     // Add For multiple status game
     const message = this.players.reduce((prev, curr, index) => {
@@ -346,7 +350,7 @@ export default class Game {
         ` - ${curr.role!.dead ? 'Mati' : 'Hidup'}` +
         (index !== this.players.length - 1 ? '\n' : '')
       );
-    }, 'Player List ' + this.time + '\n\n');
+    }, `Pemain yang masih hidup ${this.getAlivePlayer().length}/${this.players.length}\n`);
     setTimeout(() => this.broadcastMessage(message), 1 * 1000);
   }
 

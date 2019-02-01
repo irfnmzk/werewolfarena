@@ -1,12 +1,15 @@
 import Player from '@game/base/Player';
 import RolesFactory from './base/RolesFactory';
 import Game from '@game/Game';
+import GameMode from './base/GameMode';
 
-export default class DefaultGameMode {
-  private game: Game;
-
+export default class DefaultGameMode extends GameMode {
   constructor(game: Game) {
-    this.game = game;
+    super(game);
+
+    this.name = 'Default';
+    this.MIN_PLAYER = 5;
+    this.MAX_PLAYER = 20;
   }
 
   /**

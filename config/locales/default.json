@@ -24,8 +24,9 @@
     "win": "{team} menang!!!!",
     "join": "📣 {player} bergabung!",
     "timer": {
-      "minutes": "📣 {time} menit lagi untuk join",
-      "seconds": "📣 {time} detik lagi, Ayo join!"
+      "minutes": "⌛ {time} menit lagi untuk join",
+      "seconds": "⌛ {time} detik lagi, Ayo join!",
+      "extend": "📣 Waktu menunggu di tambah 1 menit!"
     }
   },
   "role": {

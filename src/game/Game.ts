@@ -40,7 +40,7 @@ export default class Game {
   private readonly gameLoop: GameLoop;
 
   private timer: Timer;
-  private waitDuration: number = 20; // minute
+  private waitDuration: number = 2; // minute
 
   private readonly messageGenerator: MessageGenerator;
 
@@ -403,6 +403,23 @@ export default class Game {
       return true;
     }
     return false;
+  }
+
+  /**
+   * extendTimeDuration
+   */
+  public extendTimeDuration() {
+    const { minutes } = this.timer.getTotalTimeValues();
+    if (this.waitDuration - minutes >= 10) {
+      return;
+    }
+    this.waitDuration++;
+    this.channel.sendMultipleText(this.groupId, [
+      this.localeService.t('game.timer.extend'),
+      this.localeService.t('game.timer.minutes', {
+        time: this.waitDuration - this.timer.getTotalTimeValues().minutes
+      })
+    ]);
   }
 
   private calculateAliveTeam(players: Player[]) {

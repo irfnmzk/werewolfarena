@@ -6,6 +6,7 @@ import JoinGameCommand from '../group/JoinGameCommand';
 import GameEventCommand from '../user/GameEventCommand';
 import PlayerListCommand from '../group/PlayerListCommand';
 import ForceStartCommand from '../group/ForceStartCommand';
+import ExtendCommand from '../group/ExtendCommand';
 
 const config = new Config();
 const lineMessage = new LineMessage(config);
@@ -15,6 +16,7 @@ const commands: Command[] = [
   new JoinGameCommand(lineMessage),
   new GameEventCommand(lineMessage),
   new PlayerListCommand(lineMessage),
-  new ForceStartCommand(lineMessage)
+  new ForceStartCommand(lineMessage),
+  new ExtendCommand(lineMessage)
 ];
 export default commands;

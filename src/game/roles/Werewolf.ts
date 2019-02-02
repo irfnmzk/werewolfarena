@@ -85,7 +85,12 @@ export default class WereWolf extends Role {
           );
           return;
         }
-
+        if (target.role!.id === 'drunk') {
+          this.game.channel.sendWithText(
+            this.userId,
+            this.game.localeService.t('role.werewolf.eat_drunk')
+          );
+        }
         this.game.channel.sendWithText(
           target.userId,
           this.game.localeService.t('role.werewolf.bite')

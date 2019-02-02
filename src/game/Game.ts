@@ -223,7 +223,7 @@ export default class Game {
       if (scene === 'DAY') {
         return this.channel.sendMultipleText(this.groupId, [
           message!,
-          this.localeService.t('game.day_count', { day: this.day }),
+          this.localeService.t('game.scene.day_count', { day: this.day }),
           this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
             time: this.gameDuration
           })

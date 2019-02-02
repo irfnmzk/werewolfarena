@@ -119,7 +119,7 @@ export default class GameEventQueue {
     const eventList: Types.EventType[] = ['bite'];
     eventList.forEach(event => {
       const eventCount = this.queue.filter(data => data.event === event).length;
-
+      if (eventCount <= 0) return;
       if (eventCount <= 2) {
         if (eventCount === 1) {
           return;

@@ -9,7 +9,7 @@
       "start": "🚫 Gagal bergabung! game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjut nya akan di mulai."
     },
     "join_message": "📣 Bergabung sekarang!",
-    "start": "📣 Memulai permainan 3 2 1..",
+    "start": "📣 Memulai permainan dalam 3 2 1..",
     "scene": {
       "first": "💭 Semua warga berkumpul di balai desa. Kemarin seorang warga mati di cabik-cabik serigala. Warga desa ribut mendiskusikan siapa pelaku nya. Waktu mu 60 detik untuk berdiskusi!",
       "day_count": "⏳ Hari ke {day}",
@@ -21,7 +21,7 @@
     "role": {
       "generating": "⏳ Membagikan peran ke setiap pemain.."
     },
-    "win": "{team} menang!!!!",
+    "win": "{team} menang!! 🎉🎉",
     "join": "📣 {player} bergabung!",
     "timer": {
       "minutes": "⌛ {time} menit lagi untuk join",
@@ -70,11 +70,16 @@
     },
     "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun!",
     "playerlist": {
-      "header": "📢 Daftar Pemain 🙂\n"
+      "header": "📣 Daftar Pemain 📣\n",
+      "end_header": "🎉 Semua Pemain 🎉 \n\n"
     },
     "life": {
       "alive": "🙂 Hidup",
       "dead": "💀 Tewas"
+    },
+    "win": {
+      "win": "Menang",
+      "lose": "Kalah"
     }
   },
   "death": {

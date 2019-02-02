@@ -58,6 +58,7 @@ export default class DefaultGameMode extends GameMode {
 
     const suffledPlayer = _.shuffle(players);
     roles = _.shuffle(roles);
+    console.log(roles);
 
     suffledPlayer.forEach(
       (player, index) =>

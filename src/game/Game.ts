@@ -591,14 +591,18 @@ export default class Game {
   }
 
   private getEndPlayerListMessage() {
-    return this.sortPlayerByWinning().reduce((prev, curr, index) => {
-      return (
-        prev +
-        `${curr.name} - ${curr.role!.name} - ${
-          this.winner === curr.role!.team ? `Menang` : `Kalah`
-        } ${this.players.length - 1 === index ? '' : '\n'}`
-      );
-    }, `Semua Pemain\n\n`);
+    return this.localeService.t('common.playerlist.end_header').concat(
+      this.sortPlayerByWinning()
+        .map(
+          (player, index) =>
+            `${index + 1}. ${player.name} - ${
+              player.role!.name
+            } - ${this.localeService.t(
+              `common.life.${player.role!.dead ? `dead` : `alive`}`
+            )}`
+        )
+        .join('\n')
+    );
   }
 
   private sortPlayerByWinning() {

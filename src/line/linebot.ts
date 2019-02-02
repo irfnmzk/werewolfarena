@@ -61,6 +61,8 @@ export default class LineBot extends EventEmitter {
       case 'leave':
         this.emit('leave', source, event);
         break;
+      case 'join':
+        this.emit('join', source, event);
       default:
         break;
     }

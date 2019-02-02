@@ -6,6 +6,7 @@ import LineBot from '../line/linebot';
 import MessageHandler from './MessageHandler';
 import DatabaseAdapter from '../utils/db/DatabaseAdapter';
 import UserManager from '../manager/UserManager';
+import LineMessage from '../line/LineMessage';
 
 export default class WolfBot {
   private readonly config: Config;
@@ -14,6 +15,7 @@ export default class WolfBot {
   private readonly database: DatabaseAdapter;
   private groupManager: GroupManager;
   private userManager: UserManager;
+  private channel: LineMessage;
 
   constructor() {
     this.config = new Config();
@@ -25,6 +27,7 @@ export default class WolfBot {
       this.groupManager,
       this.userManager
     );
+    this.channel = new LineMessage(this.config);
 
     this.addEventListener();
   }
@@ -43,6 +46,7 @@ export default class WolfBot {
     this.lineBot.on('groupMessage', this.onGroupMessage.bind(this));
     this.lineBot.on('postback', this.onPostBack.bind(this));
     this.lineBot.on('leave', this.onLeaveEvent.bind(this));
+    this.lineBot.on('join', this.onJoinEvent.bind(this));
   }
 
   private onUserMessage(sources: Line.EventSource, data: Line.MessageEvent) {
@@ -78,5 +82,17 @@ export default class WolfBot {
       (source as any).groupId = (source as Line.Room).roomId;
     }
     this.groupManager.killGroup(source.groupId);
+  }
+
+  private onJoinEvent(sources: Line.EventSource, _: Line.LeaveEvent) {
+    const source = sources as any;
+    if ((source as Line.Room).roomId) {
+      (source as any).groupId = (source as Line.Room).roomId;
+    }
+    // Refactor this
+    this.channel.sendWithText(
+      source.groupId,
+      `📣 Halo Semuanya 👋 \n\n🙏 Terima kasih sudah mengundang saya ke grup. untuk memulai permainan ketik /buat`
+    );
   }
 }

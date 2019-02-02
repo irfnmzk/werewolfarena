@@ -33,4 +33,12 @@ export default class UserManager extends Map<string, User> {
     };
     return player;
   }
+
+  /**
+   * getUserData
+   */
+  public async getUserData(profile: Profile) {
+    if (!this.has(profile.userId)) await this.createUser(profile);
+    return this.get(profile.userId)!;
+  }
 }

@@ -482,6 +482,16 @@ export default class Game {
     ]);
   }
 
+  /**
+   * sendNotifyToWaitingList
+   */
+  public sendNotifyToWaitingList(userId: string) {
+    this.channel.sendWithText(
+      userId,
+      this.localeService.t('common.notify_waiting_list')
+    );
+  }
+
   private calculateAliveTeam(players: Player[]) {
     // Need to be refactored
     return {

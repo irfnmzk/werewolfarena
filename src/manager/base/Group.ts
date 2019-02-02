@@ -5,7 +5,10 @@ export default class Group {
   public running: boolean = false;
   public game?: Game;
 
+  public notifyUserList: string[];
+
   constructor(groupId: string) {
     this.groupId = groupId;
+    this.notifyUserList = [];
   }
 }

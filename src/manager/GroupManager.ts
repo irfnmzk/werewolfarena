@@ -29,6 +29,7 @@ export default class GroupManager extends Map<string, Group> {
     if (!this.has(groupId)) await this.createGroup(groupId);
     this.get(groupId)!.game = game;
     this.get(groupId)!.running = true;
+    this.notifyUsers(groupId);
   }
 
   /**
@@ -46,5 +47,20 @@ export default class GroupManager extends Map<string, Group> {
     const group = this.get(groupId)!;
     delete group.game; // any better solution?
     group.running = false;
+  }
+
+  /**
+   * notifyUserForGame
+   */
+  public async notifyUserForGame(groupId: string, userId: string) {
+    if (!this.has(groupId)) await this.createGroup(groupId);
+    this.get(groupId)!.notifyUserList.push(userId);
+  }
+
+  private notifyUsers(groupId: string) {
+    this.get(groupId)!.notifyUserList.forEach(userId => {
+      this.get(groupId)!.game!.sendNotifyToWaitingList(userId);
+    });
+    this.get(groupId)!.notifyUserList = [];
   }
 }

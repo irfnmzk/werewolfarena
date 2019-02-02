@@ -81,7 +81,8 @@
     "win": {
       "win": "Menang",
       "lose": "Kalah"
-    }
+    },
+    "notify_waiting_list": "📣 Notifikasi📣 \n\nGame baru akan di mulai di grup yang baru saja kamu pesan. \nAyo join sekarang!"
   },
   "death": {
     "vote": "🔥 Warga sudah mengambil keputusan. {player} mati di hukum gantung. 💀",

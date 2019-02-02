@@ -8,6 +8,7 @@ import PlayerListCommand from '../group/PlayerListCommand';
 import ForceStartCommand from '../group/ForceStartCommand';
 import ExtendCommand from '../group/ExtendCommand';
 import NextGameCommand from '../group/NextGameCommand';
+import CancelCommnand from '../group/CancelCommand';
 
 // DEV
 import AddBotCommand from '../dev/AddBotCommand';
@@ -23,6 +24,7 @@ const commands: Command[] = [
   new ForceStartCommand(lineMessage),
   new ExtendCommand(lineMessage),
   new NextGameCommand(lineMessage),
+  new CancelCommnand(lineMessage),
 
   // User
   new GameEventCommand(lineMessage),

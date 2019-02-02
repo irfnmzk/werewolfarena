@@ -171,6 +171,17 @@ export default class Game {
   }
 
   /**
+   * cancleGame
+   */
+  public cancelGame() {
+    if (this.status !== 'OPEN') {
+      return this.broadcastMessage(this.localeService.t('game.cant_cancel'));
+    }
+    this.broadcastMessage(this.localeService.t('game.canceled'));
+    return this.deleteGame();
+  }
+
+  /**
    * roleBroadcast
    * Broadcast role info to all players
    */

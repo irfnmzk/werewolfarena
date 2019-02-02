@@ -29,7 +29,9 @@
       "seconds": "⌛ {time} detik lagi, Ayo join!",
       "extend": "📣 Waktu menunggu di tambah 1 menit!"
     },
-    "min_player": "\nmin: {min} max: {max}"
+    "min_player": "\nmin: {min} max: {max}",
+    "cant_cancel": "🚫 Game yang sudah di mulai tidak bisa di batalkan!",
+    "canceled": "📣 Game telah di hapus."
   },
   "role": {
     "villager": {

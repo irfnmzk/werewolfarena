@@ -115,13 +115,17 @@ export default class Game {
         this.localeService.t('game.already.in', { name: player.name })
       );
     }
-    this.broadcastMessage(
+    const message = [
       this.localeService.t('game.join', {
         player: player.name,
         total: this.players.length,
         max: this.gamemode.MAX_PLAYER!
       })
-    );
+    ];
+    if (this.players.length !== 0 && this.players.length % 4 === 0) {
+      message.push(this.getLobbyPlayersListMessage());
+    }
+    this.channel.sendMultipleText(this.groupId, message);
     this.players.push(player);
   }
 
@@ -371,6 +375,17 @@ export default class Game {
   }
 
   /**
+   * getLobbyPlayersListMessage
+   */
+  public getLobbyPlayersListMessage() {
+    return this.localeService.t('common.playerlist.header').concat(
+      this.getLobbyPlayers()
+        .map((player, index) => `${index + 1}. ${player.name}`)
+        .join('\n')
+    );
+  }
+
+  /**
    * getAllPlayer
    */
   public getAllPlayer() {
@@ -404,14 +419,7 @@ export default class Game {
    * sendLobbyPlayerList
    */
   public sendLobbyPlayerList() {
-    if (this.status !== 'OPEN') return; // always call when game is open but who knows right
-    const playerList = this.getLobbyPlayers().map(
-      (player, index) => `${index + 1}. ${player.name}`
-    );
-    const message = this.localeService
-      .t('common.playerlist.header')
-      .concat(playerList.join('\n'));
-    this.broadcastMessage(message);
+    this.broadcastMessage(this.getLobbyPlayersListMessage());
   }
 
   /**

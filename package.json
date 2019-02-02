@@ -39,6 +39,7 @@
     "await-to-js": "^2.1.1",
     "chalk": "^2.4.2",
     "console-stamp": "^0.2.7",
+    "easytimer.js": "^3.0.1",
     "eventemitter3": "^3.1.0",
     "express": "^4.16.4",
     "firebase-admin": "^7.0.0",

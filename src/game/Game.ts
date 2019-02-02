@@ -1,5 +1,6 @@
 import Emitter from 'eventemitter3';
 import _ from 'lodash';
+import Timer from 'easytimer.js';
 
 import Player from './base/Player';
 import GameLoop from './GameLoop';
@@ -38,9 +39,8 @@ export default class Game {
 
   private readonly gameLoop: GameLoop;
 
-  private timer: any;
-  private timerDuration = [10000, 10000, 1000, 1000];
-  private timerMessage = ['', '30', '20', '10'];
+  private timer: Timer;
+  private waitDuration: number = 2; // minute
 
   private readonly messageGenerator: MessageGenerator;
 
@@ -64,6 +64,8 @@ export default class Game {
     this.time = 'DAY';
 
     this.messageGenerator = new MessageGenerator(this.localeService, this);
+
+    this.timer = new Timer();
 
     this.setStartTimer();
     this.broadcastGameCreated();
@@ -115,7 +117,7 @@ export default class Game {
    */
   public startGame() {
     this.broadcastMessage(this.localeService.t('game.start'));
-    this.timer = null;
+    this.timer.stop();
     this.status = 'PLAYING';
 
     this.startGameLoop();
@@ -127,7 +129,7 @@ export default class Game {
   public forceStartGame() {
     if (this.status !== 'OPEN') return;
     if (this.players.length >= this.gamemode.MIN_PLAYER!) {
-      clearTimeout(this.timer);
+      // clearTimeout(this.timer);
       return this.startGame();
     }
 
@@ -487,15 +489,48 @@ export default class Game {
     }
   }
 
-  private setStartTimer(run = 0) {
-    if (run >= this.timerDuration.length) {
+  private setStartTimer() {
+    this.timer.start();
+    this.timer.addEventListener(
+      'minutesUpdated',
+      this.onTimerMinuteChanged.bind(this)
+    );
+    this.timer.addEventListener(
+      'secondsUpdated',
+      this.onTimerSecondChanged.bind(this)
+    );
+  }
+
+  private onTimerMinuteChanged() {
+    const { minutes } = this.timer.getTotalTimeValues();
+    const diffrence = this.waitDuration - minutes;
+    if (diffrence < 1) return;
+    this.broadcastMessage(
+      this.localeService.t('game.timer.minutes', { time: diffrence })
+    );
+  }
+
+  private onTimerSecondChanged() {
+    const { minutes } = this.timer.getTotalTimeValues();
+    const minuteDiffrence = this.waitDuration - minutes;
+    if (minuteDiffrence !== 1) return;
+    const { seconds } = this.timer.getTimeValues();
+    if (seconds === 30) {
+      this.broadcastMessage(
+        this.localeService.t('game.timer.seconds', { time: 30 })
+      );
+    } else if (seconds === 45) {
+      this.broadcastMessage(
+        this.localeService.t('game.timer.seconds', { time: 15 })
+      );
+    } else if (seconds === 55) {
+      this.broadcastMessage(
+        this.localeService.t('game.timer.seconds', { time: 5 })
+      );
+    } else if (seconds === 59) {
+      this.timer.stop();
       this.startGame();
-      return;
     }
-    if (run !== 0) this.broadcastMessage(this.timerMessage[run]);
-    this.timer = setTimeout(() => {
-      this.setStartTimer(run + 1);
-    }, this.timerDuration[run]);
   }
 
   private startGameLoop() {
@@ -555,6 +590,6 @@ export default class Game {
     console.clear();
     this.gamemode = new TestGameMode(this);
     this.gameDuration = 5;
-    this.timerDuration = [1000, 1000, 1000, 1000];
+    // this.timerDuration = [1000, 1000, 1000, 1000];
   }
 }

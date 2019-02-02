@@ -3,7 +3,7 @@
   "game": {
     "created": "📣 Permainan baru telah di buat! permainan akan di mulai dalam 2 menit!",
     "full": "Maaf 🙏🏻 slot sudah penuh, Max pemain adalah {max} orang",
-    "not_enough": "Pemain kurang dari {min}",
+    "not_enough": "🚫 Jumlah pemain tidak cukup. permainan di batalkan!",
     "already": {
       "in": "👋 Hai {name}, kamu sudah join ke dalam game!",
       "start": "🚫 Gagal bergabung! game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjut nya akan di mulai."
@@ -22,7 +22,11 @@
       "generating": "⏳ Membagikan peran ke setiap pemain.."
     },
     "win": "{team} menang!!!!",
-    "join": "📣 {player} bergabung!"
+    "join": "📣 {player} bergabung!",
+    "timer": {
+      "minutes": "📣 {time} menit lagi untuk join",
+      "seconds": "📣 {time} detik lagi, Ayo join!"
+    }
   },
   "role": {
     "villager": {

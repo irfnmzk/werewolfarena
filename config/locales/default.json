@@ -70,7 +70,11 @@
     },
     "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun!",
     "playerlist": {
-      "header": "PlayerList\n\n"
+      "header": "📢 Daftar Pemain 🙂\n"
+    },
+    "life": {
+      "alive": "🙂 Hidup",
+      "dead": "💀 Tewas"
     }
   },
   "death": {

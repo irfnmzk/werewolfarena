@@ -382,6 +382,37 @@ export default class Game {
   }
 
   /**
+   * sendLobbyPlayerList
+   */
+  public sendLobbyPlayerList() {
+    if (this.status !== 'OPEN') return; // always call when game is open but who knows right
+    const playerList = this.getLobbyPlayers().map(
+      (player, index) => `${index + 1}. ${player.name}`
+    );
+    const message = this.localeService
+      .t('common.playerlist.header')
+      .concat(playerList.join('\n'));
+    this.broadcastMessage(message);
+  }
+
+  /**
+   * sendGamePlayerList
+   */
+  public sendGamePlayerList() {
+    if (this.status !== 'PLAYING') return; // always call when game is open but who knows right
+    const playerList = this.sortedPlayerByDead().map(
+      (player, index) =>
+        `${index + 1}. ${player.name} - ${this.localeService.t(
+          `common.life.${player.role!.dead ? `dead` : `alive`}`
+        )}`
+    );
+    const message = this.localeService
+      .t('common.playerlist.header')
+      .concat(playerList.join('\n'));
+    this.broadcastMessage(message);
+  }
+
+  /**
    * isFinish
    */
   public isFinish() {
@@ -454,32 +485,8 @@ export default class Game {
     return this.players.filter(data => !data.role!.dead);
   }
 
-  private sendPlayerList() {
-    const message = this.getPlayerList();
-    setTimeout(() => this.broadcastMessage(message), 1 * 1000);
-  }
-
-  private getPlayerList() {
-    return this.sortedPlayerByDead().reduce((prev, curr, index) => {
-      return (
-        prev +
-        curr.name +
-        ` - ${curr.role!.dead ? 'Mati' : 'Hidup'}` +
-        (index !== this.players.length - 1 ? '\n' : '')
-      );
-    }, `Pemain yang masih hidup ${this.getAlivePlayer().length}/${this.players.length}\n`);
-  }
-
   private sortedPlayerByDead() {
     return _.sortBy(this.players, data => !data.role!.dead);
-  }
-
-  private isPlayerWin(player: Player) {
-    return player.role!.team === this.winner!;
-  }
-
-  private isVitongTime() {
-    return this.time === 'DUSK';
   }
 
   /**

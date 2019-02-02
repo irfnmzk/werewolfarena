@@ -25,24 +25,9 @@ export default class PlayerListCommand extends Command {
       );
       return;
     }
-    const playerList = this.groupManager!.get(
-      groupId!
-    )!.game!.getLobbyPlayers();
-    let message = '';
     if (this.groupManager!.get(groupId!)!.game!.status === 'OPEN') {
-      message = playerList.reduce((prev, curr, index) => {
-        return prev + curr.name + (index !== playerList.length - 1 ? '\n' : '');
-      }, 'Player List\n\n');
-    } else {
-      message = playerList.reduce((prev, curr, index) => {
-        return (
-          prev +
-          curr.name +
-          ` - ${curr.role!.dead ? 'Mati' : 'Hidup'}` +
-          (index !== playerList.length - 1 ? '\n' : '')
-        );
-      }, 'Player List\n\n');
+      return this.groupManager!.get(groupId!)!.game!.sendLobbyPlayerList();
     }
-    this.groupManager!.get(groupId!)!.game!.broadcastMessage(message);
+    this.groupManager!.get(groupId!)!.game!.sendGamePlayerList();
   }
 }

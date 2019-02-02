@@ -115,18 +115,23 @@ export default class Game {
         this.localeService.t('game.already.in', { name: player.name })
       );
     }
+    this.players.push(player);
     const message = [
       this.localeService.t('game.join', {
-        player: player.name,
-        total: this.players.length,
-        max: this.gamemode.MAX_PLAYER!
+        player: player.name
       })
     ];
-    if (this.players.length !== 0 && this.players.length % 4 === 0) {
-      message.push(this.getLobbyPlayersListMessage());
+    if (this.players.length % 2 === 1) {
+      message.push(
+        this.getLobbyPlayersListMessage().concat(
+          this.localeService.t('game.min_player', {
+            min: this.gamemode.MIN_PLAYER!,
+            max: this.gamemode.MAX_PLAYER!
+          })
+        )
+      );
     }
     this.channel.sendMultipleText(this.groupId, message);
-    this.players.push(player);
   }
 
   /**

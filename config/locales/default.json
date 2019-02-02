@@ -28,7 +28,8 @@
       "minutes": "⌛ {time} menit lagi untuk join",
       "seconds": "⌛ {time} detik lagi, Ayo join!",
       "extend": "📣 Waktu menunggu di tambah 1 menit!"
-    }
+    },
+    "min_player": "\nmin: {min} max: {max}"
   },
   "role": {
     "villager": {

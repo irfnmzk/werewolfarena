@@ -11,12 +11,14 @@ import DatabaseAdapter from '../../utils/db/DatabaseAdapter';
 export const groupId = 'group_1';
 const mockLineMessage = new MockLineMessage();
 const game = new Game(groupId, mockLineMessage, true);
-const palyers = generateFakePlayers(5);
+const palyers = generateFakePlayers(7);
 // const db = new DatabaseAdapter();
 // const data = db.group.firstOrCreate('test1');
 
 // Game Flow
 palyers.forEach(player => game.addPlayer(player));
+
+game.assignRole();
 
 game.emitter.on('scene', handleScene);
 

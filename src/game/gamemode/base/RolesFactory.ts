@@ -4,7 +4,7 @@ import Guardian from '../../roles/Guardian';
 import Seer from '../../roles/Seer';
 import Drunk from '../../roles/Drunk';
 
-const Roles = {
+const Roles: { [key: string]: any } = {
   Villager,
   Werewolf,
   Guardian,

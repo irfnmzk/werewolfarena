@@ -8,6 +8,7 @@ import GameEventQueue from './GameEventQueue';
 import * as Types from './roles/base/RoleTypes';
 import LocaleService from '../utils/i18n/LocaleService';
 import ILineMessage from 'src/line/base/ILineMessage';
+import TestGameMode from './gamemode/TestGameMode';
 
 export type Winner = 'VILLAGER' | 'WEREWOLF';
 
@@ -42,6 +43,12 @@ export default class Game {
   private readonly debug: boolean;
 
   constructor(groupId: string, channel: ILineMessage, debug: boolean = false) {
+    this.emitter = new Emitter();
+    this.eventQueue = new GameEventQueue(this);
+    this.gameLoop = new GameLoop(this);
+    this.localeService = new LocaleService();
+    this.gamemode = new DefaultGameMode(this);
+
     this.debug = debug;
     if (this.debug) {
       this.debugMode();
@@ -49,13 +56,6 @@ export default class Game {
 
     this.groupId = groupId;
     this.channel = channel;
-
-    this.emitter = new Emitter();
-
-    this.gamemode = new DefaultGameMode(this);
-    this.eventQueue = new GameEventQueue(this);
-    this.gameLoop = new GameLoop(this);
-    this.localeService = new LocaleService();
 
     this.time = 'DAY';
 
@@ -516,7 +516,7 @@ export default class Game {
 
   private debugMode() {
     console.clear();
-
+    // this.gamemode = new TestGameMode(this);
     this.gameDuration = 5;
     this.timerDuration = [1000, 1000, 1000, 1000];
   }

@@ -94,6 +94,7 @@ export default class Game {
    * startGame
    */
   public startGame() {
+    this.broadcastMessage(this.localeService.t('game.start'));
     this.timer = null;
     this.status = 'PLAYING';
 
@@ -197,28 +198,44 @@ export default class Game {
   public broadcastScene(scene: Types.time) {
     if (this.eventDeathCount() >= 1) {
       const message = this.getDyingMessage();
-      const combinedMessage = [
+      if (scene === 'DAY') {
+        return this.channel.sendMultipleText(this.groupId, [
+          message!,
+          this.localeService.t('game.day_count', { day: this.day }),
+          this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+            time: this.gameDuration
+          })
+        ]);
+      }
+      return this.channel.sendMultipleText(this.groupId, [
         message!,
-        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
-      ];
-      if (scene === 'DAY') combinedMessage.push(this.getPlayerList());
-      return this.channel.sendMultipleText(this.groupId, combinedMessage);
+        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+          time: this.gameDuration
+        })
+      ]);
     }
     // Send no one dying on vote message
     if (scene === 'NIGHT' && this.day !== 0) {
       return this.channel.sendMultipleText(this.groupId, [
         this.localeService.t('vote.no_death'),
-        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
+        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+          time: this.gameDuration
+        })
       ]);
     }
     if (scene === 'DAY' && this.day !== 0) {
       return this.channel.sendMultipleText(this.groupId, [
         this.localeService.t('night.no_death'),
-        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
+        this.localeService.t('game.scene.day_count', { day: this.day }),
+        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+          time: this.gameDuration
+        })
       ]);
     }
     return this.broadcastMessage(
-      this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
+      this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+        time: this.gameDuration
+      })
     );
   }
 
@@ -516,7 +533,7 @@ export default class Game {
 
   private debugMode() {
     console.clear();
-    // this.gamemode = new TestGameMode(this);
+    this.gamemode = new TestGameMode(this);
     this.gameDuration = 5;
     this.timerDuration = [1000, 1000, 1000, 1000];
   }

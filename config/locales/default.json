@@ -1,25 +1,26 @@
 {
   "welcome": "Bot Is Now Ready",
   "game": {
-    "full": "Slot sudah penuh! maksimal pemain dalam mode ini adalah {max}",
+    "full": "Maaf 🙏🏻 slot sudah penuh, Max pemain adalah {max} orang",
     "not_enough": "Pemain kurang dari {min}",
     "already": {
-      "in": "game already in",
-      "start": "Game Already Start"
+      "in": "👋 Hai {name}, kamu sudah join ke dalam game!",
+      "start": "Gagal bergabung! game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjut nya akan di mulai."
     },
-    "start": "Game Started",
+    "start": "📣 Memulai permainan...",
     "scene": {
-      "first": "First Scene",
-      "day": "day scene",
-      "night": "night scene",
-      "dusk": "Dusk scnee"
+      "first": "💭 Semua warga berkumpul di balai desa. Kemarin seorang warga mati di cabik-cabik serigala. Warga desa ribut mendiskusikan siapa pelaku nya. Waktu mu 60 detik untuk berdiskusi!",
+      "day_count": "⏳ Hari ke-{day}",
+      "day": "☀️ Siang hari. Matahari terlihat sangat terik. Warga desa punya waktu {time} detik untuk diskusi, saling tuduh, atau menybarkan gosip 😇",
+      "night": "🌙 Malam telah tiba. Terlihat sebagian orang sudah tertidur namun ada beberapa yang bangun, Untuk pemain malam kamu punya waktu {time} detik untuk melakukan aksi mu!",
+      "dusk": "☁ Senja telah tiba. Seluruh warga berkumpul di balai desa untuk memilih siapa yang akan di eksekusi. Kamu punya waktu {time} detik untuk memilih, hati-hati jangan terpengaruh orang lain!"
     },
     "end": "Game Ended",
     "role": {
       "generating": "Generating Roles...."
     },
     "win": "{team} menang!!!!",
-    "join": "{player} berhasil bergabung! total pemain {total}/{max}"
+    "join": "📣 {player} bergabung!"
   },
   "role": {
     "villager": {
@@ -51,25 +52,25 @@
   },
   "vote": {
     "selection": "Waktu nya vote!",
-    "no_death": "Warga bingung untuk memilih siapa yang akan di bunuh"
+    "no_death": "⌛ Warga terlalu banyak berdebat, keputusan mereka tidak bulat. Tidak ada yang di eksekusi malam ini!"
   },
   "common": {
     "selected": {
       "self": "Kamu memilih {target}",
-      "vote": "{user} memilih {target}",
+      "vote": "📢 {user} memilih {target}",
       "ally": "{user} memilih {target}"
     },
-    "timeup": "Waktu telah habis kamu tidak memilih siapapun",
+    "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun",
     "playerlist": {
       "header": "PlayerList\n\n"
     }
   },
   "death": {
-    "vote": "{player} mati di hukum gantung",
+    "vote": "🔥 Warga sudah mengambil keputusan. {player} mati di hukum gantung. 💀",
     "bite": "{player} telah mati di makan serigala",
-    "punishment": "{player} mati karena 3 kali tidak melakukan voting "
+    "punishment": "💀 {player} mati karena 3 kali tidak melakukan voting "
   },
   "night": {
-    "no_death": "Tidak ada yang mati malam ini, hmm sungguh aneh"
+    "no_death": "⛅ Malam Telah berlalu dengan sangat tenang, Aneh tidak ada yang mati tadi malam"
   }
 }

@@ -18,8 +18,6 @@ const palyers = generateFakePlayers(5);
 // Game Flow
 palyers.forEach(player => game.addPlayer(player));
 
-game.assignRole();
-
 game.emitter.on('scene', handleScene);
 
 function handleScene(scene: time, day: any, player: Player[]) {

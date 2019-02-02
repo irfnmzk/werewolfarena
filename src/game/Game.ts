@@ -40,7 +40,7 @@ export default class Game {
   private readonly gameLoop: GameLoop;
 
   private timer: Timer;
-  private waitDuration: number = 2; // minute
+  private waitDuration: number = 20; // minute
 
   private readonly messageGenerator: MessageGenerator;
 
@@ -511,6 +511,10 @@ export default class Game {
   }
 
   private onTimerSecondChanged() {
+    if (this.waitDuration === 0) {
+      this.timer.stop();
+      return this.startGame();
+    }
     const { minutes } = this.timer.getTotalTimeValues();
     const minuteDiffrence = this.waitDuration - minutes;
     if (minuteDiffrence !== 1) return;
@@ -588,8 +592,8 @@ export default class Game {
 
   private debugMode() {
     console.clear();
+    this.gameDuration = 20;
+    this.waitDuration = 0;
     this.gamemode = new TestGameMode(this);
-    this.gameDuration = 5;
-    // this.timerDuration = [1000, 1000, 1000, 1000];
   }
 }

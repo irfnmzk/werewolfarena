@@ -100,7 +100,9 @@ export default class Game {
     const found =
       this.players.filter(data => data.userId === player.userId).length > 0;
     if (found) {
-      return this.broadcastMessage(this.localeService.t('game.already.in'));
+      return this.broadcastMessage(
+        this.localeService.t('game.already.in', { name: player.name })
+      );
     }
     this.broadcastMessage(
       this.localeService.t('game.join', {

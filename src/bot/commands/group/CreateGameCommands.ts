@@ -3,7 +3,6 @@ import Game from '../.././../game/Game';
 import LineMessage from 'src/line/LineMessage';
 
 import Command from '../base/Command';
-import generateFakePlayers from '../helper/GenerateFakePlayer';
 
 export default class CreateGameCommand extends Command {
   constructor(channel: LineMessage) {
@@ -25,10 +24,6 @@ export default class CreateGameCommand extends Command {
       return;
     }
     const game = new Game(groupId!, this.channel, this.groupManager!);
-
-    // For Development only
-    // const fakePlayers = generateFakePlayers(4);
-    // fakePlayers.forEach(player => game.addPlayer(player));
 
     this.groupManager!.createGame(groupId!, game);
   }

@@ -9,16 +9,25 @@ import ForceStartCommand from '../group/ForceStartCommand';
 import ExtendCommand from '../group/ExtendCommand';
 import NextGameCommand from '../group/NextGameCommand';
 
+// DEV
+import AddBotCommand from '../dev/AddBotCommand';
+
 const config = new Config();
 const lineMessage = new LineMessage(config);
 
 const commands: Command[] = [
+  // Group
   new CreateGameCommands(lineMessage),
   new JoinGameCommand(lineMessage),
-  new GameEventCommand(lineMessage),
   new PlayerListCommand(lineMessage),
   new ForceStartCommand(lineMessage),
   new ExtendCommand(lineMessage),
-  new NextGameCommand(lineMessage)
+  new NextGameCommand(lineMessage),
+
+  // User
+  new GameEventCommand(lineMessage),
+
+  // Dev
+  new AddBotCommand(lineMessage)
 ];
 export default commands;

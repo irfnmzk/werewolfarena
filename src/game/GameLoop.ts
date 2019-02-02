@@ -16,12 +16,14 @@ export default class GameLoop {
    * Run the game loop
    */
   public async execute(): Promise<any> {
+    // Loading role
+    await this.timeout(3);
     this.game.assignRole();
     this.game.broadcastRole();
     await this.timeout(5);
     this.game.firstDayScene();
 
-    await this.timeout(5);
+    await this.timeout(30);
 
     while (this.playing) {
       // Night scene

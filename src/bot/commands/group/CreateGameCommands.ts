@@ -27,8 +27,8 @@ export default class CreateGameCommand extends Command {
     const game = new Game(groupId!, this.channel);
 
     // For Development only
-    // const fakePlayers = generateFakePlayers(4);
-    // fakePlayers.forEach(player => game.addPlayer(player));
+    const fakePlayers = generateFakePlayers(4);
+    fakePlayers.forEach(player => game.addPlayer(player));
 
     this.groupManager!.createGame(groupId!, game);
   }

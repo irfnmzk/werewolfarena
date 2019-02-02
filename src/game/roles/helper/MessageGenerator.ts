@@ -30,10 +30,10 @@ export default class MessageGenerator {
   public joinMessage() {
     const results: Line.TemplateMessage = {
       type: 'template',
-      altText: 'Bergabung sekarang!',
+      altText: this.localeService.t('game.join_message'),
       template: {
         type: 'buttons',
-        text: 'Bergabung',
+        text: this.localeService.t('game.join_message'),
         actions: [
           {
             type: 'message',

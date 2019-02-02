@@ -75,7 +75,7 @@ export default class Game {
   public broadcastGameCreated() {
     const message: Message[] = [
       this.messageGenerator.getDefaultText(
-        this.localeService.t('game.join_message')
+        this.localeService.t('game.created')
       ),
       this.messageGenerator.joinMessage()
     ];

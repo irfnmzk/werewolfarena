@@ -24,7 +24,7 @@ export default class CreateGameCommand extends Command {
       this.channel.replyWithText(source.replyToken!, 'Game already Created');
       return;
     }
-    const game = new Game(groupId!, this.channel);
+    const game = new Game(groupId!, this.channel, this.groupManager!);
 
     // For Development only
     const fakePlayers = generateFakePlayers(4);

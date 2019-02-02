@@ -10,7 +10,7 @@ import DatabaseAdapter from '../../utils/db/DatabaseAdapter';
 
 export const groupId = 'group_1';
 const mockLineMessage = new MockLineMessage();
-const game = new Game(groupId, mockLineMessage, true);
+const game = new Game(groupId, mockLineMessage, undefined, true);
 const palyers = generateFakePlayers(5);
 // const db = new DatabaseAdapter();
 // const data = db.group.firstOrCreate('test1');

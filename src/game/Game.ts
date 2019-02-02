@@ -2,6 +2,8 @@ import Emitter from 'eventemitter3';
 import _ from 'lodash';
 import Timer from 'easytimer.js';
 
+import GroupManager from '../manager/GroupManager';
+
 import Player from './base/Player';
 import GameLoop from './GameLoop';
 import DefaultGameMode from './gamemode/DefaultGameMode';
@@ -44,9 +46,18 @@ export default class Game {
 
   private readonly messageGenerator: MessageGenerator;
 
+  private groupManager?: GroupManager;
+
   private readonly debug: boolean;
 
-  constructor(groupId: string, channel: ILineMessage, debug: boolean = false) {
+  constructor(
+    groupId: string,
+    channel: ILineMessage,
+    groupManager?: GroupManager,
+    debug: boolean = false
+  ) {
+    this.groupManager = groupManager;
+
     this.emitter = new Emitter();
     this.eventQueue = new GameEventQueue(this);
     this.gameLoop = new GameLoop(this);
@@ -505,7 +516,9 @@ export default class Game {
 
     const dyingMessage = this.getDyingMessage();
     message.unshift(dyingMessage);
-    return this.channel.sendMultipleText(this.groupId, message);
+    this.channel.sendMultipleText(this.groupId, message);
+
+    return this.deleteGame();
   }
 
   private checkEndGame() {
@@ -620,6 +633,10 @@ export default class Game {
     });
   }
 
+  private deleteGame() {
+    if (this.debug) return;
+    this.groupManager!.deletGame(this.groupId);
+  }
   private debugMode() {
     console.clear();
     this.gameDuration = 20;

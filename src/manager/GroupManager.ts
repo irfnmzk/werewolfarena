@@ -38,4 +38,13 @@ export default class GroupManager extends Map<string, Group> {
     if (!this.has(groupId)) await this.createGroup(groupId);
     return this.get(groupId)!.running;
   }
+
+  /**
+   * deletGame
+   */
+  public deletGame(groupId: string) {
+    const group = this.get(groupId)!;
+    delete group.game; // any better solution?
+    group.running = false;
+  }
 }

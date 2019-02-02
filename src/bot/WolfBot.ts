@@ -4,18 +4,27 @@ import GroupManager from '../manager/GroupManager';
 import Config from '../config/Config';
 import LineBot from '../line/linebot';
 import MessageHandler from './MessageHandler';
+import DatabaseAdapter from '../utils/db/DatabaseAdapter';
+import UserManager from '../manager/UserManager';
 
 export default class WolfBot {
   private readonly config: Config;
   private readonly lineBot: LineBot;
   private readonly messageHandler: MessageHandler;
+  private readonly database: DatabaseAdapter;
   private groupManager: GroupManager;
+  private userManager: UserManager;
 
   constructor() {
     this.config = new Config();
     this.lineBot = new LineBot(this.config);
-    this.groupManager = new GroupManager();
-    this.messageHandler = new MessageHandler(this.groupManager);
+    this.database = new DatabaseAdapter();
+    this.groupManager = new GroupManager(this.database);
+    this.userManager = new UserManager(this.database);
+    this.messageHandler = new MessageHandler(
+      this.groupManager,
+      this.userManager
+    );
 
     this.addEventListener();
   }

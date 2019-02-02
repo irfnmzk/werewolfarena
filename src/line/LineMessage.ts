@@ -42,14 +42,10 @@ export default class LineMessage extends Line.Client implements ILineMessage {
     });
   }
 
-  public async getPlayerData(userId: string): Promise<Player> {
+  public async getProfileData(userId: string): Promise<Line.Profile> {
     const [err, profile] = await to<Line.Profile>(this.getProfile(userId));
     if (err) return Promise.reject();
-    const player: Player = {
-      userId: profile!.userId,
-      name: profile!.displayName
-    };
-    return Promise.resolve(player);
+    return Promise.resolve(profile!);
   }
 
   public sendTemplateMessage(userId: string, template: Line.TemplateMessage[]) {

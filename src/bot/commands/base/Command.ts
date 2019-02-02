@@ -2,6 +2,7 @@
 import GroupManager from '../../../manager/GroupManager';
 import MessageSource from '../../base/MessageSource';
 import ILineMessage from 'src/line/base/ILineMessage';
+import UserManager from '../../../manager/UserManager';
 
 export default class Command {
   public TYPE: string[];
@@ -9,6 +10,7 @@ export default class Command {
 
   public channel: ILineMessage;
   public groupManager?: GroupManager;
+  public userManager?: UserManager;
 
   constructor(channel: ILineMessage) {
     this.channel = channel;
@@ -20,8 +22,9 @@ export default class Command {
   /**
    * prepare
    */
-  public prepare(groupManager: GroupManager) {
+  public prepare(groupManager: GroupManager, userManager: UserManager) {
     this.groupManager = groupManager;
+    this.userManager = userManager;
   }
 
   /**

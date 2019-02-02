@@ -32,9 +32,14 @@ export default class MockLineMessage implements ILineMessage {
     return Promise.resolve();
   }
 
-  public getPlayerData(userId: string): Promise<Player> {
+  public getProfileData(userId: string): Promise<Line.Profile> {
     console.log(`Getting Player Data : ${userId}`);
-    const data: Player = { name: 'test', userId: '1111' };
+    const data: Line.Profile = {
+      displayName: 'test',
+      userId: '1111',
+      pictureUrl: 'asdas',
+      statusMessage: 'asdasd'
+    };
     return Promise.resolve(data);
   }
 

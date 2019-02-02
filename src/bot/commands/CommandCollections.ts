@@ -1,17 +1,24 @@
 import GroupManager from '../../manager/GroupManager';
 import MessageSource from '../base/MessageSource';
 import Command from './base/Command';
+import UserManager from '../../manager/UserManager';
 
 export default class CommandCollections extends Map<string, Command> {
   private readonly commands: Command[];
   private groupManager: GroupManager;
+  private userManager: UserManager;
 
-  constructor(commands: Command[], groupManager: GroupManager) {
+  constructor(
+    commands: Command[],
+    groupManager: GroupManager,
+    userManager: UserManager
+  ) {
     super();
     this.commands = commands;
     this.groupManager = groupManager;
+    this.userManager = userManager;
 
-    this.registerCommands(commands);
+    this.registerCommands(this.commands);
   }
 
   /**
@@ -30,7 +37,7 @@ export default class CommandCollections extends Map<string, Command> {
   }
 
   private registerTriggers(command: Command) {
-    command.prepare(this.groupManager);
+    command.prepare(this.groupManager, this.userManager);
     command.TRIGGER.forEach(trigger => this.set(trigger, command));
   }
 

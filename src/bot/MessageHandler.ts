@@ -6,14 +6,21 @@ import MessageSource from './base/MessageSource';
 import CommandCollections from './commands/CommandCollections';
 import commandFactory from './commands/helper/CommandFactory';
 import { BackEvent } from '@game/roles/base/RoleTypes';
+import UserManager from '../manager/UserManager';
 
 export default class MessageHandler {
   private readonly commands: CommandCollections;
   private groupManager: GroupManager;
+  private userManager: UserManager;
 
-  constructor(groupManager: GroupManager) {
+  constructor(groupManager: GroupManager, userManager: UserManager) {
     this.groupManager = groupManager;
-    this.commands = new CommandCollections(commandFactory, groupManager);
+    this.userManager = userManager;
+    this.commands = new CommandCollections(
+      commandFactory,
+      this.groupManager,
+      this.userManager
+    );
   }
 
   /**

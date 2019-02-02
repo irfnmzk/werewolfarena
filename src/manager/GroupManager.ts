@@ -5,9 +5,10 @@ import DatabaseAdapter from '../utils/db/DatabaseAdapter';
 export default class GroupManager extends Map<string, Group> {
   private readonly database: DatabaseAdapter;
 
-  constructor() {
+  constructor(database: DatabaseAdapter) {
     super();
-    this.database = new DatabaseAdapter();
+
+    this.database = database;
   }
 
   /**

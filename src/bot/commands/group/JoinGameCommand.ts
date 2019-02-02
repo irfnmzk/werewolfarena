@@ -24,13 +24,16 @@ export default class JoinGameCommand extends Command {
       return;
     }
 
-    const [err, player] = await to(this.channel.getPlayerData(source.userId));
+    const [err, userData] = await to(
+      this.channel.getProfileData(source.userId)
+    );
     if (err) {
       return this.channel.replyWithText(
         source.replyToken!,
         'Profile doesnt Exist'
       );
     }
+    const player = await this.userManager!.getPlayerData(userData!);
     this.groupManager!.get(groupId!)!.game!.addPlayer(player!);
   }
 }

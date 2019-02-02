@@ -5,7 +5,7 @@ export default interface ILineMessage {
   replyWithText(replyToken: string, text: string): void;
   gameLoopBroadcast(groupId: string, message: string): Promise<any>;
   sendWithText(id: string, text: string): Promise<any>;
-  getPlayerData(userId: string): Promise<Player>;
+  getProfileData(userId: string): Promise<Line.Profile>;
   sendTemplateMessage(userId: string, template: Line.TemplateMessage[]): void;
   sendMultiText(player: Player[], text: string): void;
   sendMultipleText(id: string, text: string[]): void;

@@ -1,12 +1,14 @@
 {
   "welcome": "Bot Is Now Ready",
   "game": {
+    "created": "📣 Permainan baru telah di buat! permainan akan di mulai dalam 2 menit!",
     "full": "Maaf 🙏🏻 slot sudah penuh, Max pemain adalah {max} orang",
     "not_enough": "Pemain kurang dari {min}",
     "already": {
       "in": "👋 Hai {name}, kamu sudah join ke dalam game!",
-      "start": "Gagal bergabung! game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjut nya akan di mulai."
+      "start": "🚫 Gagal bergabung! game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjut nya akan di mulai."
     },
+    "join_message": "📣 Bergabung sekarang!",
     "start": "📣 Memulai permainan...",
     "scene": {
       "first": "💭 Semua warga berkumpul di balai desa. Kemarin seorang warga mati di cabik-cabik serigala. Warga desa ribut mendiskusikan siapa pelaku nya. Waktu mu 60 detik untuk berdiskusi!",
@@ -17,7 +19,7 @@
     },
     "end": "Game Ended",
     "role": {
-      "generating": "Generating Roles...."
+      "generating": "⏳ Membagikan peran ke setiap pemain.."
     },
     "win": "{team} menang!!!!",
     "join": "📣 {player} bergabung!"

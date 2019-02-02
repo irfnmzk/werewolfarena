@@ -9,4 +9,5 @@ export default interface ILineMessage {
   sendTemplateMessage(userId: string, template: Line.TemplateMessage[]): void;
   sendMultiText(player: Player[], text: string): void;
   sendMultipleText(id: string, text: string[]): void;
+  sendMultipleTypeMessage(id: string, message: Line.Message[]): void;
 }

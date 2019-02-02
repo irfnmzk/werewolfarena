@@ -9,6 +9,8 @@ import * as Types from './roles/base/RoleTypes';
 import LocaleService from '../utils/i18n/LocaleService';
 import ILineMessage from 'src/line/base/ILineMessage';
 import TestGameMode from './gamemode/TestGameMode';
+import MessageGenerator from './roles/helper/MessageGenerator';
+import { Message } from '@line/bot-sdk';
 
 export type Winner = 'VILLAGER' | 'WEREWOLF';
 
@@ -40,6 +42,8 @@ export default class Game {
   private timerDuration = [10000, 10000, 1000, 1000];
   private timerMessage = ['', '30', '20', '10'];
 
+  private readonly messageGenerator: MessageGenerator;
+
   private readonly debug: boolean;
 
   constructor(groupId: string, channel: ILineMessage, debug: boolean = false) {
@@ -59,7 +63,23 @@ export default class Game {
 
     this.time = 'DAY';
 
+    this.messageGenerator = new MessageGenerator(this.localeService, this);
+
     this.setStartTimer();
+    this.broadcastGameCreated();
+  }
+
+  /**
+   * broadcastGameCreated
+   */
+  public broadcastGameCreated() {
+    const message: Message[] = [
+      this.messageGenerator.getDefaultText(
+        this.localeService.t('game.join_message')
+      ),
+      this.messageGenerator.joinMessage()
+    ];
+    this.channel.sendMultipleTypeMessage(this.groupId, message);
   }
 
   /**

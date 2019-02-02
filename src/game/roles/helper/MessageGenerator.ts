@@ -15,6 +15,39 @@ export default class MessageGenerator {
   }
 
   /**
+   * getDefaultText
+   */
+  public getDefaultText(text: string): Line.TextMessage {
+    return {
+      text,
+      type: 'text'
+    };
+  }
+
+  /**
+   * joinMessage
+   */
+  public joinMessage() {
+    const results: Line.TemplateMessage = {
+      type: 'template',
+      altText: 'Bergabung sekarang!',
+      template: {
+        type: 'buttons',
+        text: 'Bergabung',
+        actions: [
+          {
+            type: 'message',
+            label: 'Bergabung',
+            text: '/join'
+          }
+        ]
+      }
+    };
+
+    return results;
+  }
+
+  /**
    * werewolfSelction
    */
   public werewolfSelection(target: Player[]) {

@@ -71,4 +71,14 @@ export default class MockLineMessage implements ILineMessage {
       )
     );
   }
+
+  public sendMultipleTypeMessage(id: string, message: Line.Message[]) {
+    message.forEach(data =>
+      console.log(
+        `${chalk.bold.yellow('[Text]')} ${chalk.yellow.bold(`[${id}]`)} : ${
+          data.type
+        }`
+      )
+    );
+  }
 }

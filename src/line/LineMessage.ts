@@ -85,6 +85,15 @@ export default class LineMessage extends Line.Client implements ILineMessage {
   }
 
   /**
+   * sendMultipleTypeMessage
+   */
+  public sendMultipleTypeMessage(id: string, message: Line.Message[]) {
+    this.pushMessage(id, message).catch(err =>
+      console.log(`err send to ${id} :${(err as Line.RequestError).message} `)
+    );
+  }
+
+  /**
    * Send Message as individual if multicast failed
    */
   private sendSingleIfMultiFail(userIdList: string[], text: string) {

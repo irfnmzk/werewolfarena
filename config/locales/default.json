@@ -3,7 +3,8 @@
   "game": {
     "created": "📣 Permainan baru telah di buat! permainan akan di mulai dalam 2 menit!",
     "full": "Maaf 🙏🏻 slot sudah penuh, Max pemain adalah {max} orang",
-    "not_enough": "🚫 Jumlah pemain tidak cukup. permainan di batalkan!",
+    "not_enough": "🚫 Jumlah pemain tidak cukup. permainan di batalkan!\nmin pemain: {min} orang",
+    "not_enough_force": "🚫 Jumlah pemain tidak cukup, ajak teman-teman yang lain untuk bergabung!\nmin pemain: {min} orang",
     "already": {
       "in": "👋 Hai {name}, kamu sudah join ke dalam game!",
       "start": "🚫 Gagal bergabung! game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjut nya akan di mulai."

@@ -129,6 +129,14 @@ export default class Game {
    * startGame
    */
   public startGame() {
+    if (this.players.length < this.gamemode.MIN_PLAYER!) {
+      this.broadcastMessage(
+        this.localeService.t('game.not_enough', {
+          min: this.gamemode.MIN_PLAYER!
+        })
+      );
+      return this.deleteGame();
+    }
     this.broadcastMessage(this.localeService.t('game.start'));
     this.timer.stop();
     this.status = 'PLAYING';
@@ -147,7 +155,7 @@ export default class Game {
     }
 
     return this.broadcastMessage(
-      this.localeService.t('game.not_enough', {
+      this.localeService.t('game.not_enough_force', {
         min: this.gamemode.MIN_PLAYER!
       })
     );

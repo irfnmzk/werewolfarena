@@ -58,7 +58,7 @@
       "see": "Kamu melihat 👁 {target} adalah seorang {role}!!"
     },
     "drunk": {
-      "announcement": "Kamu adalah Drunk 🍻 si pemabuk, jika werewolf 🐺 memakan mu dia akan mabuk dan tida bisa memakan pemain lain pada malam berikut nya 😵",
+      "announcement": "Kamu adalah Drunk 🍻 si pemabuk, jika werewolf 🐺 memakan mu dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikut nya 😵",
       "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin sekarang kamu mabuk 😵 dan tidak bisa memakan siapapun!"
     }
   },

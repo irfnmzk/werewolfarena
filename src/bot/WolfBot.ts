@@ -42,6 +42,7 @@ export default class WolfBot {
     this.lineBot.on('userMessage', this.onUserMessage.bind(this));
     this.lineBot.on('groupMessage', this.onGroupMessage.bind(this));
     this.lineBot.on('postback', this.onPostBack.bind(this));
+    this.lineBot.on('leave', this.onLeaveEvent.bind(this));
   }
 
   private onUserMessage(sources: Line.EventSource, data: Line.MessageEvent) {
@@ -69,5 +70,13 @@ export default class WolfBot {
     source.type = 'POSTBACK';
     const postbackData = data.postback;
     this.messageHandler.handlePsotbackData(postbackData, source);
+  }
+
+  private onLeaveEvent(sources: Line.EventSource, _: Line.LeaveEvent) {
+    const source = sources as any;
+    if ((source as Line.Room).roomId) {
+      (source as any).groupId = (source as Line.Room).roomId;
+    }
+    this.groupManager.killGroup(source.groupId);
   }
 }

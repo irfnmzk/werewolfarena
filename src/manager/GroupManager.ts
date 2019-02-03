@@ -75,6 +75,19 @@ export default class GroupManager extends Map<string, Group> {
     return this.get(groupId)!.groupStats;
   }
 
+  /**
+   * updateStatistics
+   */
+  public updateStats(groupId: string) {
+    const oldStats = this.get(groupId)!.groupStats;
+    const newStats = {
+      gamePlayed: oldStats.gamePlayed + 1,
+      ...oldStats
+    };
+    this.get(groupId)!.groupStats = newStats;
+    this.database.group.updateStats(groupId, newStats);
+  }
+
   private notifyUsers(groupId: string) {
     this.get(groupId)!.notifyUserList.forEach(userId => {
       this.get(groupId)!.game!.sendNotifyToWaitingList(userId);

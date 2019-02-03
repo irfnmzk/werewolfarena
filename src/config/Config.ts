@@ -1,4 +1,4 @@
-import ConfigInterface from './configInterface';
+import ConfigInterface from './ConfigInterface';
 
 export default class Config implements ConfigInterface {
   public channelAccessToken: string;

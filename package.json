@@ -30,6 +30,7 @@
     "@types/i18n": "^0.8.3",
     "@types/lodash": "^4.14.120",
     "@types/qs": "^6.5.1",
+    "localtunnel": "^1.9.1",
     "tslint": "^5.12.1",
     "tslint-consistent-codestyle": "^1.15.0",
     "typescript": "^3.2.4"

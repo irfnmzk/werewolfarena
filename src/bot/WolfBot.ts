@@ -1,4 +1,6 @@
 import * as Line from '@line/bot-sdk';
+// tslint:disable-next-line:no-var-requires
+const localTunnel = require('localtunnel');
 
 import GroupManager from '../manager/GroupManager';
 import Config from '../config/Config';
@@ -30,6 +32,7 @@ export default class WolfBot {
     this.channel = new LineMessage(this.config);
 
     this.addEventListener();
+    this.setupLocalTunnel();
   }
 
   /**
@@ -94,5 +97,11 @@ export default class WolfBot {
       source.groupId,
       `📣 Halo Semuanya 👋 \n\n🙏 Terima kasih sudah mengundang saya ke grup. untuk memulai permainan ketik /buat`
     );
+  }
+
+  private setupLocalTunnel() {
+    localTunnel(5000, (_: any, data: any) => {
+      console.log(data);
+    });
   }
 }

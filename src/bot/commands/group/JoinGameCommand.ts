@@ -23,7 +23,10 @@ export default class JoinGameCommand extends Command {
       this.channel.replyWithText(source.replyToken!, 'Game not existed');
       return;
     }
-
+    // Any Better solution?
+    if (!source.userId) {
+      return this.notAddingAsFriend(source.replyToken!);
+    }
     const [err, userData] = await to(
       this.channel.getProfileData(source.userId)
     );
@@ -32,6 +35,9 @@ export default class JoinGameCommand extends Command {
         source.replyToken!,
         'Profile doesnt Exist'
       );
+    }
+    if (!userData) {
+      return this.notAddingAsFriend(source.replyToken!);
     }
     if (!this.hasValidName(userData!.displayName)) {
       return this.channel.replyWithText(

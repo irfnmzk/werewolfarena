@@ -33,4 +33,11 @@ export default class Command {
   public run(data: any, source: MessageSource) {
     // To Be override
   }
+
+  protected notAddingAsFriend(replyToken: string) {
+    return this.channel.replyWithText(
+      replyToken,
+      `🚫 Gagal mendapatkan data profile! pastikan kamu sudah add friend!`
+    );
+  }
 }

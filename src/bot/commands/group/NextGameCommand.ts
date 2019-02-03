@@ -18,9 +18,15 @@ export default class JoinGameCommand extends Command {
    */
   public async run(_: string, source: MessageSource) {
     const { groupId } = source;
+    if (!source.userId) {
+      return this.notAddingAsFriend(source.replyToken!);
+    }
     const [err, userData] = await to(
       this.channel.getProfileData(source.userId)
     );
+    if (!userData) {
+      return this.notAddingAsFriend(source.replyToken!);
+    }
     if (err) {
       return this.channel.replyWithText(
         source.replyToken!,

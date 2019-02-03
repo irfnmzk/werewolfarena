@@ -21,13 +21,13 @@ export default class Game {
   public readonly groupId: string;
 
   public players: Player[] = [];
-  public status: 'OPEN' | 'PLAYING' | 'FINISH' = 'OPEN';
+  public status: 'OPEN' | 'PLAYING' | 'FINISH' | 'KILLED' = 'OPEN';
   public day: number = 0;
   public time: Types.time;
 
   public winner?: Winner;
 
-  public gameDuration = 20;
+  public gameDuration = 90; // seconds
 
   public readonly channel: ILineMessage;
   public readonly localeService: LocaleService;
@@ -159,7 +159,7 @@ export default class Game {
   public forceStartGame() {
     if (this.status !== 'OPEN') return;
     if (this.players.length >= this.gamemode.MIN_PLAYER!) {
-      // clearTimeout(this.timer);
+      this.timer.stop();
       return this.startGame();
     }
 
@@ -177,6 +177,7 @@ export default class Game {
     if (this.status !== 'OPEN') {
       return this.broadcastMessage(this.localeService.t('game.cant_cancel'));
     }
+    this.timer.stop();
     this.broadcastMessage(this.localeService.t('game.canceled'));
     return this.deleteGame();
   }
@@ -508,6 +509,14 @@ export default class Game {
     );
   }
 
+  /**
+   * killGame
+   */
+  public killGame() {
+    this.status = 'KILLED';
+    this.sendStopSignal();
+  }
+
   private calculateAliveTeam(players: Player[]) {
     // Need to be refactored
     return {
@@ -546,6 +555,7 @@ export default class Game {
    * Called when Game is Finished
    */
   private endGame() {
+    if (this.status === 'KILLED') return this.deleteGame();
     const message = [
       this.localeService.t('game.win', { team: this.winner as any }),
       this.getEndPlayerListMessage(),

@@ -1,5 +1,5 @@
 import * as Line from '@line/bot-sdk';
-
+import chalk from 'chalk';
 import GroupManager from '../manager/GroupManager';
 import Config from '../config/Config';
 import LineBot from '../line/linebot';
@@ -7,6 +7,7 @@ import MessageHandler from './MessageHandler';
 import DatabaseAdapter from '../utils/db/DatabaseAdapter';
 import UserManager from '../manager/UserManager';
 import LineMessage from '../line/LineMessage';
+import { exec } from 'child_process';
 
 export default class WolfBot {
   private readonly config: Config;
@@ -30,6 +31,8 @@ export default class WolfBot {
     this.channel = new LineMessage(this.config);
 
     this.addEventListener();
+
+    if (this.config.envType === 'development') this.setupDevelopmentServer();
   }
 
   /**
@@ -37,7 +40,7 @@ export default class WolfBot {
    * Start Line Webhook
    */
   public start() {
-    console.info('Starting webhook..');
+    console.info(`📣 ${chalk.magenta('Starting Line webhook ..')}`);
     this.lineBot.listen();
   }
 
@@ -94,5 +97,14 @@ export default class WolfBot {
       source.groupId,
       `📣 Halo Semuanya 👋 \n\n🙏 Terima kasih sudah mengundang saya ke grup. untuk memulai permainan ketik /buat`
     );
+  }
+
+  private setupDevelopmentServer() {
+    this.setupLocalTunnel();
+  }
+
+  private setupLocalTunnel() {
+    // Serveo.net documentation
+    return exec('ssh -R wolfproject.serveo.net:80:localhost:5000 serveo.net');
   }
 }

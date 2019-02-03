@@ -1,36 +1,13 @@
-import path from 'path';
-
 import ConfigInterface from './configInterface';
 
 export default class Config implements ConfigInterface {
-  public channelAccessToken!: string;
-  public channelSecret!: string;
-
-  private readonly CONFIG_PATH = path.join(
-    __dirname,
-    '..',
-    '..',
-    'config',
-    'config.json'
-  );
-
-  [index: string]: any;
+  public channelAccessToken: string;
+  public channelSecret: string;
+  public envType: string;
 
   constructor() {
-    this.initialize();
-  }
-
-  private initialize() {
-    if (!require.resolve(this.CONFIG_PATH)) {
-      throw new Error('Config Not Found');
-      return;
-    }
-
-    const savedConfig = require(this.CONFIG_PATH);
-    this.initilaizeWith(savedConfig);
-  }
-
-  private initilaizeWith(data: any) {
-    Object.keys(data).forEach(field => (this[field] = data[field]));
+    this.envType = process.env.ENV_TYPE!;
+    this.channelAccessToken = process.env.CHANNEL_ACCESS_TOKEN!;
+    this.channelSecret = process.env.CHANNEL_SECRET!;
   }
 }

@@ -13,8 +13,7 @@ export default class DatabaseAdapter {
 
   constructor() {
     this.config = new Config();
-    this.prefix =
-      this.config.envType === 'development' ? 'development' : 'production';
+    this.prefix = this.config.envType;
     this.adapter = firebase
       .initializeApp({
         credential: firebase.credential.cert({

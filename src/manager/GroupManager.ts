@@ -54,6 +54,7 @@ export default class GroupManager extends Map<string, Group> {
    */
   public killGroup(groupId: string) {
     if (!this.has(groupId)) return;
+    this.get(groupId)!.game!.killGame();
     this.delete(groupId);
   }
 

@@ -205,6 +205,7 @@ export default class Game {
    * called when game first run
    */
   public firstDayScene() {
+    if (this.isGameKilled()) return;
     this.broadcastMessage(this.localeService.t('game.scene.first'));
   }
 
@@ -212,6 +213,8 @@ export default class Game {
    * dayScene
    */
   public dayScene() {
+    if (this.isGameKilled()) return;
+
     this.broadcastScene('DAY');
     this.prepareForQueue('DAY');
 
@@ -228,6 +231,8 @@ export default class Game {
    * nightScene
    */
   public nightScene() {
+    if (this.isGameKilled()) return;
+
     this.broadcastScene('NIGHT');
     this.prepareForQueue('NIGHT');
 
@@ -244,6 +249,8 @@ export default class Game {
    * duskScene
    */
   public duskScene() {
+    if (this.isGameKilled()) return;
+
     this.broadcastScene('DUSK');
     this.prepareForQueue('DUSK');
 
@@ -515,6 +522,10 @@ export default class Game {
   public killGame() {
     this.status = 'KILLED';
     this.sendStopSignal();
+  }
+
+  private isGameKilled() {
+    return this.status === 'KILLED';
   }
 
   private calculateAliveTeam(players: Player[]) {

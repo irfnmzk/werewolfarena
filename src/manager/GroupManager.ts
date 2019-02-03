@@ -17,7 +17,8 @@ export default class GroupManager extends Map<string, Group> {
   public async createGroup(groupId: string) {
     // Todo check from db
     const groupData = await this.database.group.firstOrCreate(groupId);
-    const group = new Group(groupData.groupId);
+    const groupStats = await this.database.group.getStats(groupId);
+    const group = new Group(groupData.groupId, groupStats);
     this.set(groupId, group);
   }
 

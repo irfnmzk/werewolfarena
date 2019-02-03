@@ -1,6 +1,7 @@
 import * as Line from '@line/bot-sdk';
 // tslint:disable-next-line:no-var-requires
 const localTunnel = require('localtunnel');
+import chalk from 'chalk';
 
 import GroupManager from '../manager/GroupManager';
 import Config from '../config/Config';
@@ -32,7 +33,8 @@ export default class WolfBot {
     this.channel = new LineMessage(this.config);
 
     this.addEventListener();
-    if (this.config.envType === 'development') this.setupLocalTunnel();
+
+    if (this.config.envType === 'development') this.setupDevelopmentServer();
   }
 
   /**
@@ -40,7 +42,7 @@ export default class WolfBot {
    * Start Line Webhook
    */
   public start() {
-    console.info('Starting webhook..');
+    console.info(`📣 ${chalk.magenta('Starting Line webhook ..')}`);
     this.lineBot.listen();
   }
 
@@ -99,9 +101,14 @@ export default class WolfBot {
     );
   }
 
+  private setupDevelopmentServer() {
+    this.setupLocalTunnel();
+  }
+
   private setupLocalTunnel() {
-    localTunnel(5000, { subdomain: 'wolfproject' }, (_: any, data: any) => {
-      console.log(data);
+    console.info(`📣 ${chalk.magenta('Starting local tunnel ..')}`);
+    localTunnel(5000, { subdomain: process.env.LOCAL_TUNNEL_SUBDOMAIN }, () => {
+      console.log(`📣 ${chalk.magenta('Local tunnel active!')}`);
     });
   }
 }

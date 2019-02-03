@@ -4,6 +4,7 @@ import Express from 'express';
 
 import { WebhookEvent, WebhookRequestBody } from '@line/bot-sdk';
 import Config from '../config/Config';
+import chalk from 'chalk';
 
 // import LineMessage from './LineMessage';
 
@@ -25,7 +26,7 @@ export default class LineBot extends EventEmitter {
    */
   public listen() {
     this.express.listen(process.env.PORT || 3000, () => {
-      console.log('Webhook is activate');
+      console.info(`📣 ${chalk.magenta('Line Webhook now active!')}`);
     });
   }
 

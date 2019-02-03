@@ -21,7 +21,7 @@ export default class Game {
   public readonly groupId: string;
 
   public players: Player[] = [];
-  public status: 'OPEN' | 'PLAYING' | 'FINISH' = 'OPEN';
+  public status: 'OPEN' | 'PLAYING' | 'FINISH' | 'KILLED' = 'OPEN';
   public day: number = 0;
   public time: Types.time;
 
@@ -509,6 +509,14 @@ export default class Game {
     );
   }
 
+  /**
+   * killGame
+   */
+  public killGame() {
+    this.status = 'KILLED';
+    this.sendStopSignal();
+  }
+
   private calculateAliveTeam(players: Player[]) {
     // Need to be refactored
     return {
@@ -547,6 +555,7 @@ export default class Game {
    * Called when Game is Finished
    */
   private endGame() {
+    if (this.status === 'KILLED') return this.deleteGame();
     const message = [
       this.localeService.t('game.win', { team: this.winner as any }),
       this.getEndPlayerListMessage(),

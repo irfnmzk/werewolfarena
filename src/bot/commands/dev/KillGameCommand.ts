@@ -26,7 +26,6 @@ export default class JoinGameCommand extends Command {
     }
 
     this.channel.replyWithText(source.replyToken!, 'Game killed');
-
-    return this.groupManager!.killGroup(groupId!);
+    return this.groupManager!.get(groupId!)!.game!.killGame();
   }
 }

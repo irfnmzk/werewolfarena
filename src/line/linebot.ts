@@ -26,7 +26,11 @@ export default class LineBot extends EventEmitter {
    */
   public listen() {
     this.express.listen(process.env.PORT || 3000, () => {
-      console.info(`📣 ${chalk.magenta('Line Webhook now active!')}`);
+      console.info(
+        `📣 ${chalk.magenta(
+          'Line Webhook now active! on port ' + process.env.PORT
+        )}`
+      );
     });
   }
 

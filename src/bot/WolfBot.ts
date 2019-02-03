@@ -1,8 +1,5 @@
 import * as Line from '@line/bot-sdk';
-// tslint:disable-next-line:no-var-requires
-const localTunnel = require('localtunnel');
 import chalk from 'chalk';
-
 import GroupManager from '../manager/GroupManager';
 import Config from '../config/Config';
 import LineBot from '../line/linebot';
@@ -10,6 +7,7 @@ import MessageHandler from './MessageHandler';
 import DatabaseAdapter from '../utils/db/DatabaseAdapter';
 import UserManager from '../manager/UserManager';
 import LineMessage from '../line/LineMessage';
+import { exec } from 'child_process';
 
 export default class WolfBot {
   private readonly config: Config;
@@ -106,9 +104,7 @@ export default class WolfBot {
   }
 
   private setupLocalTunnel() {
-    console.info(`📣 ${chalk.magenta('Starting local tunnel ..')}`);
-    localTunnel(5000, { subdomain: process.env.LOCAL_TUNNEL_SUBDOMAIN }, () => {
-      console.log(`📣 ${chalk.magenta('Local tunnel active!')}`);
-    });
+    // Serveo.net documentation
+    return exec('ssh -R wolfproject.serveo.net:80:localhost:5000 serveo.net');
   }
 }

@@ -32,7 +32,7 @@ export default class WolfBot {
     this.channel = new LineMessage(this.config);
 
     this.addEventListener();
-    this.setupLocalTunnel();
+    if (this.config.envType === 'development') this.setupLocalTunnel();
   }
 
   /**
@@ -100,7 +100,7 @@ export default class WolfBot {
   }
 
   private setupLocalTunnel() {
-    localTunnel(5000, (_: any, data: any) => {
+    localTunnel(5000, { subdomain: 'wolfproject' }, (_: any, data: any) => {
       console.log(data);
     });
   }

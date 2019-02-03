@@ -159,7 +159,7 @@ export default class Game {
   public forceStartGame() {
     if (this.status !== 'OPEN') return;
     if (this.players.length >= this.gamemode.MIN_PLAYER!) {
-      // clearTimeout(this.timer);
+      this.timer.stop();
       return this.startGame();
     }
 
@@ -177,6 +177,7 @@ export default class Game {
     if (this.status !== 'OPEN') {
       return this.broadcastMessage(this.localeService.t('game.cant_cancel'));
     }
+    this.timer.stop();
     this.broadcastMessage(this.localeService.t('game.canceled'));
     return this.deleteGame();
   }

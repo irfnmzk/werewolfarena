@@ -31,7 +31,7 @@
     },
     "min_player": "\nmin: {min} max: {max}",
     "cant_cancel": "🚫 Game yang sudah di mulai tidak bisa di batalkan!",
-    "canceled": "📣 Game telah di hapus."
+    "canceled": "📣 Game telah di batalkan."
   },
   "role": {
     "villager": {

@@ -12,7 +12,7 @@
     "join_message": "📣 Bergabung sekarang!",
     "start": "📣 Memulai permainan dalam 3 2 1..",
     "scene": {
-      "first": "💭 Semua warga berkumpul di balai desa. Kemarin seorang warga mati di cabik-cabik serigala. Warga desa ribut mendiskusikan siapa pelaku nya. Waktu mu 60 detik untuk berdiskusi!",
+      "first": "💭 Semua warga berkumpul di balai desa. Kemarin seorang warga mati di cabik-cabik serigala. Warga desa ribut mendiskusikan siapa pelaku nya. Waktu mu 30 detik untuk berdiskusi!",
       "day_count": "⏳ Hari ke {day}",
       "day": "☀️ Siang hari. Matahari terlihat sangat terik. Warga desa punya waktu {time} detik untuk diskusi, saling tuduh, atau menyebarkan gosip 😇",
       "night": "🌙 Malam telah tiba. Terlihat sebagian orang sudah tertidur namun ada beberapa yang masih terjaga, Untuk pemain malam kamu punya waktu {time} detik untuk melakukan aksi mu!",

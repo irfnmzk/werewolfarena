@@ -22,7 +22,7 @@ export default class GameLoop {
     this.game.broadcastRole();
     await this.timeout(5);
     this.game.firstDayScene();
-    await this.timeout(60);
+    await this.timeout(30);
 
     // Loop till the end of game
     while (this.playing) {

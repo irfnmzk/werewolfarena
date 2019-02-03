@@ -7,11 +7,14 @@ export default class DatabaseAdapter {
   public readonly group: GroupAdapter;
   public readonly user: UsersAdapter;
 
+  public prefix: string;
   protected readonly adapter: firebase.database.Database;
   private config: Config;
 
   constructor() {
     this.config = new Config();
+    this.prefix =
+      this.config.envType === 'development' ? 'development' : 'production';
     this.adapter = firebase
       .initializeApp({
         credential: firebase.credential.cert({
@@ -25,7 +28,7 @@ export default class DatabaseAdapter {
       })
       .database();
 
-    this.group = new GroupAdapter(this.adapter);
-    this.user = new UsersAdapter(this.adapter);
+    this.group = new GroupAdapter(this.adapter, this.prefix);
+    this.user = new UsersAdapter(this.adapter, this.prefix);
   }
 }

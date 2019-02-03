@@ -27,7 +27,7 @@ export default class Game {
 
   public winner?: Winner;
 
-  public gameDuration = 20;
+  public gameDuration = 90; // seconds
 
   public readonly channel: ILineMessage;
   public readonly localeService: LocaleService;

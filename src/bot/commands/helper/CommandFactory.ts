@@ -12,6 +12,7 @@ import CancelCommnand from '../group/CancelCommand';
 
 // DEV
 import AddBotCommand from '../dev/AddBotCommand';
+import CreateTestGameCommand from '../dev/CreateTestGameCommand';
 
 const config = new Config();
 const lineMessage = new LineMessage(config);
@@ -30,6 +31,7 @@ const commands: Command[] = [
   new GameEventCommand(lineMessage),
 
   // Dev
-  new AddBotCommand(lineMessage)
+  new AddBotCommand(lineMessage),
+  new CreateTestGameCommand(lineMessage)
 ];
 export default commands;

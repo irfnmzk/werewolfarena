@@ -67,6 +67,14 @@ export default class GroupManager extends Map<string, Group> {
     this.get(groupId)!.notifyUserList.push(userId);
   }
 
+  /**
+   * getStats
+   */
+  public async getStats(groupId: string) {
+    if (!this.has(groupId)) await this.createGroup(groupId);
+    return this.get(groupId)!.groupStats;
+  }
+
   private notifyUsers(groupId: string) {
     this.get(groupId)!.notifyUserList.forEach(userId => {
       this.get(groupId)!.game!.sendNotifyToWaitingList(userId);

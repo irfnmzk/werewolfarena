@@ -30,6 +30,7 @@ export default class GroupAdapter {
    * get group stats
    */
   public async getStats(groupId: string) {
+    console.log('getstats');
     const data = await this.ref.child('group_stats/' + groupId).once('value');
     if (data.val()) return data.val();
     const groupStats: GroupStats = {

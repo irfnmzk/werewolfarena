@@ -100,4 +100,18 @@ export default class WereWolf extends Role {
         target.role!.endOfLife(event, this.player);
     }
   }
+
+  public endOfLife(event: Types.EventType, killer: Player) {
+    super.endOfLife(event, killer);
+    // refactor this
+    if (this.isLastWolf()) return true;
+  }
+
+  private isLastWolf() {
+    return (
+      this.game.players.filter(
+        player => player.role!.id === 'werewolf' && !player.role!.dead
+      ).length === 0
+    );
+  }
 }

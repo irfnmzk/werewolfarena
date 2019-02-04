@@ -26,14 +26,14 @@ function handleScene(scene: time, day: any, player: Player[]) {
   showSceneInfo(scene, day);
 
   switch (day) {
-    case 0:
+    case 1:
       switch (scene) {
         case 'NIGHT':
-          user[4].eventCallback(scene, ge('bite', player[3].userId));
+          user[4].eventCallback(scene, ge('bite', player[2].userId));
           // user[3].eventCallback(scene, ge('see', player[4].userId));
           break;
         case 'DUSK':
-          // user[0].eventCallback(scene, ge('vote', player[3].userId));
+          user[0].eventCallback(scene, ge('vote', player[4].userId));
           // user[1].eventCallback(scene, ge('vote', player[2].userId));
           // user[2].eventCallback(scene, ge('vote', player[3].userId));
           // user[3].eventCallback(scene, ge('vote', player[3].userId));

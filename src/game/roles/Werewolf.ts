@@ -103,8 +103,12 @@ export default class WereWolf extends Role {
 
   public endOfLife(event: Types.EventType, killer: Player) {
     super.endOfLife(event, killer);
-    // refactor this
-    if (this.isLastWolf()) return true;
+
+    if (!this.isLastWolf()) return;
+    this.game
+      .getAlivePlayer()
+      .filter(player => player.role!.id === 'traitor')
+      .forEach(player => this.game.transformPlayerRole(player, 'werewolf'));
   }
 
   private isLastWolf() {

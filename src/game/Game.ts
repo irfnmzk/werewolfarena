@@ -689,7 +689,7 @@ export default class Game {
           (player, index) =>
             `${index + 1}. ${player.name} - ${this.getRoleHistoryText(
               player
-            )} - ${this.getWinningMessage(player)}}`
+            )} - ${this.getWinningMessage(player)}`
         )
         .join('\n')
     );

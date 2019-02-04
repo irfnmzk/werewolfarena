@@ -9,10 +9,12 @@ export default class WereWolf extends Role {
 
     this.priority = 2;
 
-    this.id = 'wolf';
-    this.name = 'Wolf';
+    this.id = 'werewolf';
+    this.name = 'Werewolf';
 
     this.team = 'WEREWOLF';
+
+    this.setRoleHistory(this.id);
   }
 
   public eventAnnouncement() {
@@ -97,5 +99,23 @@ export default class WereWolf extends Role {
         );
         target.role!.endOfLife(event, this.player);
     }
+  }
+
+  public endOfLife(event: Types.EventType, killer: Player) {
+    super.endOfLife(event, killer);
+
+    if (!this.isLastWolf()) return;
+    this.game
+      .getAlivePlayer()
+      .filter(player => player.role!.id === 'traitor')
+      .forEach(player => this.game.transformPlayerRole(player, 'werewolf'));
+  }
+
+  private isLastWolf() {
+    return (
+      this.game.players.filter(
+        player => player.role!.id === 'werewolf' && !player.role!.dead
+      ).length === 0
+    );
   }
 }

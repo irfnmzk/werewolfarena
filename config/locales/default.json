@@ -44,7 +44,8 @@
       "ally_text": "adalah teman mu.",
       "alone": "dan kamu adalah satu-satu nya werewolf 🐺 di desa ini!",
       "friend": " adalah teman mu",
-      "eat_drunk": "😵 Kamu telah memakan seorang pemabuk, Kamu jadi teler dan tidak bisa memakan orang di malam berikut nya "
+      "eat_drunk": "😵 Kamu telah memakan seorang pemabuk, Kamu jadi teler dan tidak bisa memakan orang di malam berikut nya ",
+      "new_member": "🐺 {player} telah menjadi Werewolf!"
     },
     "guardian": {
       "announcement": "Kamu adalah Guardian 👼 tugas mu adalah melindungi 1 pemain setiap malam nya. kamu bisa memilih untuk melindungi diri sendiri 🙆",
@@ -60,6 +61,18 @@
     "drunk": {
       "announcement": "Kamu adalah Drunk 🍻 si pemabuk, jika werewolf 🐺 memakan mu dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikut nya 😵",
       "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin sekarang kamu mabuk 😵 dan tidak bisa memakan siapapun!"
+    },
+    "cursed": {
+      "announcement": "Kamu adalah Cursed 😾 si warga desa terkutuk! jika kamu di makan oleh Werewolf 🐺 maka kamu akan menjadi bagian dari mereka!",
+      "transform": {
+        "werewolf": "🐺 Werewolf telah memakan mu! sekarang kamu adalah bagian dari mereka!"
+      }
+    },
+    "traitor": {
+      "announcement": "Kamu adalah Traitor 🖕 si penghianat, saat semua werewolf di desa mati maka kamu akan berubah menjadi mereka!",
+      "transform": {
+        "werewolf": "🐺 Semua werewolf di desa telah mati, sekarang adalah waktu nya menunjukan jati dirimu yang sebenarnya. Kamu telah berubah menjadi Werewolf!"
+      }
     }
   },
   "vote": {

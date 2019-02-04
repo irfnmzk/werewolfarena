@@ -2,19 +2,23 @@ export type time = 'DAY' | 'NIGHT' | 'DUSK';
 export type RoleId =
   | 'default'
   | 'villager'
-  | 'wolf'
+  | 'werewolf'
   | 'guardian'
   | 'seer'
   | 'drunk'
-  | 'fool';
+  | 'fool'
+  | 'cursed'
+  | 'traitor';
 export type RoleName =
   | 'default'
   | 'Villager'
-  | 'Wolf'
+  | 'Werewolf'
   | 'Guardian'
   | 'Seer'
   | 'Drunk'
-  | 'Fool';
+  | 'Fool'
+  | 'Cursed'
+  | 'Traitor';
 export type EventType = 'punishment' | 'vote' | 'bite' | 'protect' | 'see';
 export type Team = 'VILLAGER' | 'WEREWOLF';
 export type BuffName = 'protected' | 'drunk';

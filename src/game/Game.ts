@@ -429,6 +429,21 @@ export default class Game {
   }
 
   /**
+   * transformPlayerRole
+   */
+  public transformPlayerRole(player: Player, newRole: Types.RoleId) {
+    const oldRole = player.role!.id;
+    const roleHistory = player.role!.roleHistory;
+    roleHistory.push(newRole);
+    player.role = this.gamemode.getNewRole(newRole, this, player);
+    player.role!.roleHistory = roleHistory;
+    this.channel.sendWithText(
+      player.userId,
+      this.localeService.t(`role.${oldRole}.transform.${newRole}`)
+    );
+  }
+
+  /**
    * getTargetPlayer
    */
   public getTargetPlayer(userId: string): Player {
@@ -524,6 +539,10 @@ export default class Game {
     this.sendStopSignal();
   }
 
+  public getAlivePlayer() {
+    return this.players.filter(data => !data.role!.dead);
+  }
+
   private isGameKilled() {
     return this.status === 'KILLED';
   }
@@ -552,10 +571,6 @@ export default class Game {
     });
     const message = deathMessage.join('\n');
     return message;
-  }
-
-  private getAlivePlayer() {
-    return this.players.filter(data => !data.role!.dead);
   }
 
   private sortedPlayerByDead() {
@@ -673,14 +688,20 @@ export default class Game {
       this.sortPlayerByWinning()
         .map(
           (player, index) =>
-            `${index + 1}. ${player.name} - ${
-              player.role!.name
-            } - ${this.localeService.t(
-              `common.life.${player.role!.dead ? `dead` : `alive`}`
-            )}`
+            `${index + 1}. ${player.name} - ${this.getRoleHistoryText(
+              player
+            )} - ${this.getWinningMessage(player)}`
         )
         .join('\n')
     );
+  }
+
+  private getRoleHistoryText(player: Player) {
+    return player.role!.roleHistory.map(data => data).join(' ➡ ');
+  }
+
+  private getWinningMessage(player: Player) {
+    return player.role!.team === this.winner ? 'Menang' : 'Kalah';
   }
 
   private sortPlayerByWinning() {

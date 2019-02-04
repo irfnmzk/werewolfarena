@@ -432,13 +432,14 @@ export default class Game {
    * transformPlayerRole
    */
   public transformPlayerRole(player: Player, newRole: Types.RoleId) {
+    const oldRole = player.role!.id;
     const roleHistory = player.role!.roleHistory;
     roleHistory.push(newRole);
     player.role = this.gamemode.getNewRole(newRole, this, player);
     player.role!.roleHistory = roleHistory;
     this.channel.sendWithText(
       player.userId,
-      this.localeService.t(`role.transform.${newRole}`)
+      this.localeService.t(`role.${oldRole}.transform.${newRole}`)
     );
   }
 
@@ -538,6 +539,10 @@ export default class Game {
     this.sendStopSignal();
   }
 
+  public getAlivePlayer() {
+    return this.players.filter(data => !data.role!.dead);
+  }
+
   private isGameKilled() {
     return this.status === 'KILLED';
   }
@@ -566,10 +571,6 @@ export default class Game {
     });
     const message = deathMessage.join('\n');
     return message;
-  }
-
-  private getAlivePlayer() {
-    return this.players.filter(data => !data.role!.dead);
   }
 
   private sortedPlayerByDead() {

@@ -37,6 +37,8 @@ export default class Game {
   public maxVoteMiss = 3;
 
   public readonly eventQueue: GameEventQueue;
+
+  public readonly debug: boolean;
   private gamemode: DefaultGameMode;
 
   private readonly gameLoop: GameLoop;
@@ -47,8 +49,6 @@ export default class Game {
   private readonly messageGenerator: MessageGenerator;
 
   private groupManager?: GroupManager;
-
-  private readonly debug: boolean;
 
   constructor(
     groupId: string,

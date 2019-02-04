@@ -46,18 +46,24 @@ export default class Seer extends Role {
 
   public action(event: Types.EventType, target: Player) {
     if (event !== 'see') return;
-    const randomRoles: string = this.game.players.map(
-      player => player.role!.name
-      // Refactor this!
-    )[this.getRendomInRange(0, this.game.players.length - 1)];
+    const randomRoles: string = this.game.players
+      .filter(
+        player =>
+          player.role!.id !== this.game.getTargetPlayer(target.userId).role!.id
+      )
+      .map(
+        player => player.role!.name
+        // Refactor this!
+      )[this.getRendomInRange(0, this.game.players.length - 2)];
+    const targetRole =
+      Math.random() >= 0.5
+        ? this.game.getTargetPlayer(target.userId).role!.name
+        : randomRoles;
     this.game.channel.sendWithText(
       this.userId,
       this.game.localeService.t('role.seer.see', {
-        target:
-          Math.random() >= 0.5
-            ? this.game.getTargetPlayer(target.userId).name
-            : randomRoles,
-        role: this.game.getTargetPlayer(target.userId).role!.name
+        target: this.game.getTargetPlayer(target.userId).name,
+        role: targetRole
       })
     );
   }

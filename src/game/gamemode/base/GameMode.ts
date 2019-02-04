@@ -4,6 +4,7 @@ import { Roles } from './Role';
 import Player from '../../base/Player';
 import Game from '../../Game';
 import Role from '@game/roles/base/Role';
+import { RoleId } from '@game/roles/base/RoleTypes';
 
 interface IrequiredRole {
   [key: string]: any;
@@ -39,5 +40,12 @@ export default class GameMode {
    */
   public getRandomCount(base = 0, max = 1) {
     return Math.floor(Math.random() * (max + 1 - base) + base);
+  }
+
+  /**
+   * getNewRole
+   */
+  public getNewRole(role: RoleId, game: Game, player: Player) {
+    return new RolesFactory[role](game, player);
   }
 }

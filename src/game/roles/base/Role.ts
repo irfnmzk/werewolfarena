@@ -20,6 +20,7 @@ export default class Role {
   public voteMiss: number;
 
   public buff: Types.Buff[];
+  public roleHistory: Types.RoleId[];
 
   public priority: number;
 
@@ -46,6 +47,7 @@ export default class Role {
     this.dead = false;
 
     this.buff = [];
+    this.roleHistory = [];
 
     this.messageGenerator = new MessageGenerator(
       this.game.localeService,

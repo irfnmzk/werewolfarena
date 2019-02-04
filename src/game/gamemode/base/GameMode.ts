@@ -46,6 +46,11 @@ export default class GameMode {
    * getNewRole
    */
   public getNewRole(role: RoleId, game: Game, player: Player) {
-    return new RolesFactory[role](game, player);
+    const roles = this.capitalized(role);
+    return new RolesFactory[roles](game, player);
+  }
+
+  private capitalized(data: string) {
+    return data.charAt(0).toUpperCase() + data.slice(1);
   }
 }

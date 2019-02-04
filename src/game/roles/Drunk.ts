@@ -24,7 +24,7 @@ export default class Drunk extends Role {
     super.endOfLife(event, killer);
 
     if (event !== 'bite') return;
-    if (killer.role!.id !== 'wolf') return; // Got error if dead by vote
+    if (killer.role!.id !== 'werewolf') return; // Got error if dead by vote
     killer.role!.addBuff({ name: 'drunk', duration: 2 });
   }
 }

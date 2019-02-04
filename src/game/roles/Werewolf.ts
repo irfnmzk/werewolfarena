@@ -13,6 +13,8 @@ export default class WereWolf extends Role {
     this.name = 'Wolf';
 
     this.team = 'WEREWOLF';
+
+    this.setRoleHistory(this.id);
   }
 
   public eventAnnouncement() {

@@ -251,6 +251,10 @@ export default class Role {
       );
   }
 
+  protected setRoleHistory(role: Types.RoleId) {
+    this.roleHistory.push(role);
+  }
+
   private votePunishment() {
     this.endOfLife('punishment', {} as Player);
   }

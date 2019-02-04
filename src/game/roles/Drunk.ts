@@ -9,6 +9,8 @@ export default class Drunk extends Role {
 
     this.id = 'drunk';
     this.name = 'Drunk';
+
+    this.setRoleHistory(this.id);
   }
 
   public eventAnnouncement() {

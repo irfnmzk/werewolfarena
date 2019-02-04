@@ -436,6 +436,10 @@ export default class Game {
     roleHistory.push(newRole);
     player.role = this.gamemode.getNewRole(newRole, this, player);
     player.role!.roleHistory = roleHistory;
+    this.channel.sendWithText(
+      player.userId,
+      this.localeService.t(`role.transform.${newRole}`)
+    );
   }
 
   /**

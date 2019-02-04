@@ -49,7 +49,7 @@ export default class Seer extends Role {
     const randomRoles: string = this.game.players.map(
       player => player.role!.name
       // Refactor this!
-    )[Math.floor(Math.random() * (this.game.players.length - 0 + 1) + 0)];
+    )[this.getRendomInRange(0, this.game.players.length - 1)];
     this.game.channel.sendWithText(
       this.userId,
       this.game.localeService.t('role.seer.see', {
@@ -60,5 +60,9 @@ export default class Seer extends Role {
         role: this.game.getTargetPlayer(target.userId).role!.name
       })
     );
+  }
+
+  private getRendomInRange(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 }

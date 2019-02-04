@@ -5,14 +5,16 @@ export type RoleId =
   | 'wolf'
   | 'guardian'
   | 'seer'
-  | 'drunk';
+  | 'drunk'
+  | 'fool';
 export type RoleName =
   | 'default'
   | 'Villager'
   | 'Wolf'
   | 'Guardian'
   | 'Seer'
-  | 'Drunk';
+  | 'Drunk'
+  | 'Fool';
 export type EventType = 'punishment' | 'vote' | 'bite' | 'protect' | 'see';
 export type Team = 'VILLAGER' | 'WEREWOLF';
 export type BuffName = 'protected' | 'drunk';

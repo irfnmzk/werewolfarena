@@ -687,14 +687,20 @@ export default class Game {
       this.sortPlayerByWinning()
         .map(
           (player, index) =>
-            `${index + 1}. ${player.name} - ${
-              player.role!.name
-            } - ${this.localeService.t(
-              `common.life.${player.role!.dead ? `dead` : `alive`}`
-            )}`
+            `${index + 1}. ${player.name} - ${this.getRoleHistoryText(
+              player
+            )} - ${this.getWinningMessage(player)}}`
         )
         .join('\n')
     );
+  }
+
+  private getRoleHistoryText(player: Player) {
+    return player.role!.roleHistory.map(data => data).join(' ➡ ');
+  }
+
+  private getWinningMessage(player: Player) {
+    return player.role!.team === this.winner ? 'Menang' : 'Kalah';
   }
 
   private sortPlayerByWinning() {

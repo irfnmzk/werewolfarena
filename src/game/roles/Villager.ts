@@ -8,6 +8,8 @@ export default class Villager extends Role {
 
     this.id = 'villager';
     this.name = 'Villager';
+
+    this.setRoleHistory(this.id);
   }
 
   public eventAnnouncement() {

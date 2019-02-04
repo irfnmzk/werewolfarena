@@ -429,6 +429,20 @@ export default class Game {
   }
 
   /**
+   * transformPlayerRole
+   */
+  public transformPlayerRole(player: Player, newRole: Types.RoleId) {
+    const roleHistory = player.role!.roleHistory;
+    roleHistory.push(newRole);
+    player.role = this.gamemode.getNewRole(newRole, this, player);
+    player.role!.roleHistory = roleHistory;
+    this.channel.sendWithText(
+      player.userId,
+      this.localeService.t(`role.transform.${newRole}`)
+    );
+  }
+
+  /**
    * getTargetPlayer
    */
   public getTargetPlayer(userId: string): Player {

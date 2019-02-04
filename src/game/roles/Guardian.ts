@@ -11,6 +11,8 @@ export default class Guardian extends Role {
 
     this.id = 'guardian';
     this.name = 'Guardian';
+
+    this.setRoleHistory(this.id);
   }
 
   public eventAnnouncement() {

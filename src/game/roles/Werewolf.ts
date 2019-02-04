@@ -9,10 +9,12 @@ export default class WereWolf extends Role {
 
     this.priority = 2;
 
-    this.id = 'wolf';
-    this.name = 'Wolf';
+    this.id = 'werewolf';
+    this.name = 'Werewolf';
 
     this.team = 'WEREWOLF';
+
+    this.setRoleHistory(this.id);
   }
 
   public eventAnnouncement() {

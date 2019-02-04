@@ -11,6 +11,8 @@ export default class Seer extends Role {
 
     this.id = 'fool';
     this.name = 'Fool';
+
+    this.setRoleHistory(this.id);
   }
 
   public eventAnnouncement() {

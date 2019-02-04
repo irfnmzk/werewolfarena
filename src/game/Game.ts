@@ -581,7 +581,7 @@ export default class Game {
     message.unshift(dyingMessage);
     this.channel.sendMultipleText(this.groupId, message);
 
-    this.groupManager!.updateStats(this.groupId);
+    if (!this.debug) this.groupManager!.updateStats(this.groupId);
 
     return this.deleteGame();
   }

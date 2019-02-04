@@ -1,3 +1,5 @@
+// tslint:disable-next-line:no-var-requires
+require('dotenv');
 // tslint:disable:no-unused
 import MockLineMessage from '../helper/MockLineMessage';
 import Game from '../../game/Game';

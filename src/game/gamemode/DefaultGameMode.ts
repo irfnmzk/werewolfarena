@@ -18,27 +18,28 @@ export default class DefaultGameMode extends GameMode {
    */
   public assignRoles(players: Player[]) {
     let roles: string[] = [];
+    const anotherRoles = _.shuffle(['Fool', 'Drunk', 'Cursed', 'Traitor']);
     let playerCount = players.length;
     if (players.length <= 6) {
       this.requiredRole = {
         Werewolf: 1,
         Guardian: 1,
         Seer: 1,
-        Drunk: this.getRandomCount(0, 1)
+        Villager: 1
       };
     } else if (players.length <= 9) {
       this.requiredRole = {
         Werewolf: this.getRandomCount(1, 2),
         Guardian: 1,
         Seer: 1,
-        Drunk: this.getRandomCount(1, 2)
+        Villager: this.getRandomCount(1, 2)
       };
     } else {
       this.requiredRole = {
         Werewolf: this.getRandomCount(2, 3),
         Guardian: 1,
         Seer: 1,
-        Drunk: this.getRandomCount(2)
+        Villager: 2
       };
     }
 
@@ -53,11 +54,13 @@ export default class DefaultGameMode extends GameMode {
     Array(playerCount)
       .fill(1, 0, playerCount)
       .forEach(() => {
+        if (anotherRoles.length > 0) return roles.push(anotherRoles.pop()!);
         roles.push('Villager');
       });
 
     const suffledPlayer = _.shuffle(players);
     roles = _.shuffle(roles);
+    console.log(roles);
 
     suffledPlayer.forEach(
       (player, index) =>

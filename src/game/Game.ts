@@ -86,12 +86,7 @@ export default class Game {
    * broadcastGameCreated
    */
   public broadcastGameCreated() {
-    const message: Message[] = [
-      this.messageGenerator.getDefaultText(
-        this.localeService.t('game.created')
-      ),
-      this.messageGenerator.joinMessage()
-    ];
+    const message: Message[] = [this.messageGenerator.joinMessage()];
     this.channel.sendMultipleTypeMessage(this.groupId, message);
   }
 
@@ -118,24 +113,6 @@ export default class Game {
     this.players.push(player);
 
     this.broadcastPLayerJoin();
-
-    // Need to be deleted
-    // const message = [
-    //   this.localeService.t('game.join', {
-    //     player: player.name
-    //   })
-    // ];
-    // if (this.players.length % 2 === 1) {
-    //   message.push(
-    //     this.getLobbyPlayersListMessage().concat(
-    //       this.localeService.t('game.min_player', {
-    //         min: this.gamemode.MIN_PLAYER!,
-    //         max: this.gamemode.MAX_PLAYER!
-    //       })
-    //     )
-    //   );
-    // }
-    // this.channel.sendMultipleText(this.groupId, message);
   }
 
   /**

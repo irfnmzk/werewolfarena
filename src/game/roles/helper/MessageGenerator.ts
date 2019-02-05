@@ -429,6 +429,41 @@ export default class MessageGenerator {
     return results;
   }
 
+  /**
+   * getBasicFlexMessage
+   */
+  public getBasicFlexMessage(
+    header: string,
+    message: string
+  ): Line.FlexMessage {
+    return {
+      type: 'flex',
+      altText: message,
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'text',
+              text: header,
+              weight: 'bold',
+              size: 'md',
+              color: '#aaaaaa'
+            },
+            {
+              type: 'text',
+              size: 'xs',
+              wrap: true,
+              text: message
+            }
+          ]
+        }
+      }
+    };
+  }
+
   public getPlayerlistMessage(players: Player[]): Line.FlexMessage {
     const playerList: Line.FlexBox[] = players.map(
       (player, index): Line.FlexBox => ({

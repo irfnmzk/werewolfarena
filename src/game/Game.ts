@@ -255,38 +255,56 @@ export default class Game {
   public broadcastScene(scene: Types.time) {
     if (this.eventDeathCount() >= 1) {
       const message = this.getDyingMessage();
-      if (scene === 'DAY') {
-        return this.channel.sendMultipleText(this.groupId, [
-          message!,
-          this.localeService.t('game.scene.day_count', { day: this.day }),
+
+      return this.channel.sendMultipleTypeMessage(this.groupId, [
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t('game.info'),
+          message
+        ),
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t(
+            `game.scene.header.${scene.toLocaleLowerCase()}`
+          ),
           this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
-            time: this.gameDuration
+            time: this.gameDuration,
+            day: this.day
           })
-        ]);
-      }
-      return this.channel.sendMultipleText(this.groupId, [
-        message!,
-        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
-          time: this.gameDuration
-        })
+        )
       ]);
     }
     // Send no one dying on vote message
     if (scene === 'NIGHT' && this.day !== 0) {
-      return this.channel.sendMultipleText(this.groupId, [
-        this.localeService.t('vote.no_death'),
-        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
-          time: this.gameDuration
-        })
+      return this.channel.sendMultipleTypeMessage(this.groupId, [
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t('game.info'),
+          this.localeService.t('vote.no_death')
+        ),
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t(
+            `game.scene.header.${scene.toLocaleLowerCase()}`
+          ),
+          this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+            time: this.gameDuration,
+            day: this.day
+          })
+        )
       ]);
     }
     if (scene === 'DAY' && this.day !== 0) {
-      return this.channel.sendMultipleText(this.groupId, [
-        this.localeService.t('night.no_death'),
-        this.localeService.t('game.scene.day_count', { day: this.day }),
-        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
-          time: this.gameDuration
-        })
+      return this.channel.sendMultipleTypeMessage(this.groupId, [
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t('game.info'),
+          this.localeService.t('night.no_death')
+        ),
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t(
+            `game.scene.header.${scene.toLocaleLowerCase()}`
+          ),
+          this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+            time: this.gameDuration,
+            day: this.day
+          })
+        )
       ]);
     }
     return this.sendBroadcastSceneMessage(scene);
@@ -654,7 +672,10 @@ export default class Game {
     this.channel.sendFlexBasicMessage(
       this.groupId,
       this.localeService.t(`game.scene.header.${scene.toLocaleLowerCase()}`),
-      this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
+      this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+        time: this.gameDuration,
+        day: this.day
+      })
     );
   }
 

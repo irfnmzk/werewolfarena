@@ -99,6 +99,13 @@ export default class MessageGenerator {
                   flex: 1
                 }
               ]
+            },
+            {
+              type: 'text',
+              text: '⏳ Game Akan di mulai dalam 2 menit',
+              size: 'sm',
+              margin: 'lg',
+              wrap: true
             }
           ]
         },
@@ -218,7 +225,55 @@ export default class MessageGenerator {
             {
               type: 'box',
               layout: 'vertical',
+              margin: 'lg',
               contents: [...playerList]
+            },
+            {
+              type: 'separator',
+              color: '#36435e',
+              margin: 'md'
+            },
+            // Min and max player
+            {
+              type: 'box',
+              layout: 'horizontal',
+              margin: 'lg',
+              contents: [
+                {
+                  type: 'text',
+                  text: `Min: 5`,
+                  align: 'start',
+                  color: '#aaaaaa',
+                  flex: 3
+                },
+                {
+                  type: 'text',
+                  text: 'Max: 12',
+                  align: 'start',
+                  color: '#aaaaaa',
+                  flex: 1
+                }
+              ]
+            }
+          ]
+        },
+        footer: {
+          type: 'box',
+          layout: 'horizontal',
+          contents: [
+            {
+              type: 'button',
+              style: 'primary',
+              color: '#36435e',
+              height: 'sm',
+              action: {
+                type: 'postback',
+                label: 'Bergabung',
+                data: generateEvent({
+                  type: 'WEREWOLF_JOIN_EVENT'
+                })
+              },
+              flex: 1
             }
           ]
         }

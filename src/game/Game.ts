@@ -86,7 +86,12 @@ export default class Game {
    * broadcastGameCreated
    */
   public broadcastGameCreated() {
-    const message: Message[] = [this.messageGenerator.joinMessage()];
+    const message: Message[] = [
+      this.messageGenerator.joinMessage(),
+      this.messageGenerator.getDefaultText(
+        '📣 Bila pesan tidak muncul pastikan kamu sudah pakai Line versi terbaru!'
+      )
+    ];
     this.channel.sendMultipleTypeMessage(this.groupId, message);
   }
 

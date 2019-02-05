@@ -111,7 +111,7 @@ export default class LineMessage extends Line.Client implements ILineMessage {
               type: 'text',
               text: header,
               weight: 'bold',
-              size: 'xs',
+              size: 'sm',
               color: '#aaaaaa'
             },
             {

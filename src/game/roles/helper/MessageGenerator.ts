@@ -428,4 +428,137 @@ export default class MessageGenerator {
     });
     return results;
   }
+
+  public getPlayerlistMessage(players: Player[]): Line.FlexMessage {
+    const playerList: Line.FlexBox[] = players.map(
+      (player, index): Line.FlexBox => ({
+        type: 'box',
+        layout: 'horizontal',
+        contents: [
+          {
+            type: 'text',
+            text: `${index + 1}`,
+            color: '#aaaaaa',
+            flex: 1,
+            size: 'sm',
+            align: 'start'
+          },
+          {
+            type: 'text',
+            text: player.name,
+            color: '#aaaaaa',
+            flex: 5,
+            size: 'sm',
+            align: 'start'
+          },
+          {
+            type: 'text',
+            text: this.game.localeService.t(
+              `common.life.${player.role!.dead ? 'dead' : 'alive'}`
+            ),
+            color: '#aaaaaa',
+            flex: 2,
+            size: 'sm',
+            align: 'start'
+          }
+        ]
+      })
+    );
+    return {
+      type: 'flex',
+      altText: 'Daftar Pemain',
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'text',
+              text: '📣 Daftar Pemain',
+              weight: 'bold',
+              color: '#aaaaaa',
+              size: 'xl'
+            },
+            {
+              type: 'box',
+              layout: 'horizontal',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'No',
+                  color: '#aaaaaa',
+                  flex: 1,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'start'
+                },
+                {
+                  type: 'text',
+                  text: 'Nama',
+                  color: '#aaaaaa',
+                  flex: 5,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'start'
+                },
+                {
+                  type: 'text',
+                  text: 'Status',
+                  color: '#aaaaaa',
+                  flex: 2,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'start'
+                }
+              ]
+            },
+            {
+              type: 'separator',
+              color: '#aaaaaa'
+            },
+            {
+              type: 'box',
+              layout: 'vertical',
+              margin: 'lg',
+              contents: [...playerList]
+            },
+            {
+              type: 'separator',
+              color: '#aaaaaa',
+              margin: 'md'
+            },
+            {
+              type: 'box',
+              layout: 'horizontal',
+              contents: [
+                {
+                  type: 'text',
+                  text: `Hidup : ${
+                    players.filter(player => !player.role!.dead).length
+                  } pemain`,
+                  color: '#aaaaaa',
+                  flex: 1,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'start'
+                },
+                {
+                  type: 'text',
+                  text: `Mati : ${
+                    players.filter(player => player.role!.dead).length
+                  } pemain`,
+                  color: '#aaaaaa',
+                  flex: 1,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'end'
+                }
+              ]
+            }
+          ]
+        }
+      }
+    };
+  }
 }

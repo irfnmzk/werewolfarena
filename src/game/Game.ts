@@ -456,16 +456,18 @@ export default class Game {
    */
   public sendGamePlayerList() {
     if (this.status !== 'PLAYING') return; // always call when game is open but who knows right
-    const playerList = this.sortedPlayerByDead().map(
-      (player, index) =>
-        `${index + 1}. ${player.name} - ${this.localeService.t(
-          `common.life.${player.role!.dead ? `dead` : `alive`}`
-        )}`
-    );
-    const message = this.localeService
-      .t('common.playerlist.header')
-      .concat(playerList.join('\n'));
-    this.broadcastMessage(message);
+    // const playerList = this.sortedPlayerByDead().map(
+    //   (player, index) =>
+    //     `${index + 1}. ${player.name} - ${this.localeService.t(
+    //       `common.life.${player.role!.dead ? `dead` : `alive`}`
+    //     )}`
+    // );
+    // const message = this.localeService
+    //   .t('common.playerlist.header')
+    //   .concat(playerList.join('\n'));
+    this.channel.sendMultipleTypeMessage(this.groupId, [
+      this.messageGenerator.getPlayerlistMessage(this.sortedPlayerByDead())
+    ]);
   }
 
   /**

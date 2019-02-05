@@ -48,7 +48,7 @@ export default class MessageGenerator {
           contents: [
             {
               type: 'text',
-              text: '📣 Permainan Dibuat',
+              text: '📣 Permainan Dibuat!',
               size: 'lg',
               weight: 'bold',
               color: '#ffffff'
@@ -111,9 +111,11 @@ export default class MessageGenerator {
               style: 'primary',
               color: '#36435e',
               action: {
-                type: 'uri',
+                type: 'postback',
                 label: 'Bergabung',
-                uri: 'https://example.com'
+                data: generateEvent({
+                  type: 'WEREWOLF_JOIN_EVENT'
+                })
               },
               flex: 1
             }

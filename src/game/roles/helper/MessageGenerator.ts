@@ -128,6 +128,105 @@ export default class MessageGenerator {
   }
 
   /**
+   * playerJoinMessage
+   */
+  public playerJoinMessage(): Line.FlexMessage {
+    const playerList: Line.FlexBox[] = this.game.players.map(
+      (player, index): Line.FlexBox => ({
+        type: 'box',
+        layout: 'horizontal',
+        contents: [
+          {
+            type: 'text',
+            text: `${index + 1}`,
+            color: '#aaaaaa',
+            flex: 2,
+            size: 'sm',
+            align: 'start'
+          },
+          {
+            type: 'text',
+            text: player.name,
+            color: '#aaaaaa',
+            flex: 4,
+            size: 'sm',
+            align: 'start'
+          }
+        ]
+      })
+    );
+    return {
+      type: 'flex',
+      altText: 'Daftar Pemain',
+      contents: {
+        type: 'bubble',
+        styles: {
+          header: {
+            backgroundColor: '#36435e'
+          },
+          footer: {
+            // backgroundColor: '#36435e'
+          }
+        },
+        header: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'text',
+              text: '📣 Daftar Pemain',
+              size: 'lg',
+              weight: 'bold',
+              color: '#ffffff'
+            }
+          ]
+        },
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            // Header row
+            {
+              type: 'box',
+              layout: 'horizontal',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'No',
+                  color: '#aaaaaa',
+                  flex: 1,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'start'
+                },
+                {
+                  type: 'text',
+                  text: 'Nama',
+                  color: '#aaaaaa',
+                  flex: 4,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'center'
+                }
+              ]
+            },
+            {
+              type: 'separator',
+              color: '#36435e'
+            },
+            // Player list start here
+            {
+              type: 'box',
+              layout: 'vertical',
+              contents: [...playerList]
+            }
+          ]
+        }
+      }
+    };
+  }
+
+  /**
    * werewolfSelction
    */
   public werewolfSelection(target: Player[]) {

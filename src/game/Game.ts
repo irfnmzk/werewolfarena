@@ -116,22 +116,26 @@ export default class Game {
       );
     }
     this.players.push(player);
-    const message = [
-      this.localeService.t('game.join', {
-        player: player.name
-      })
-    ];
-    if (this.players.length % 2 === 1) {
-      message.push(
-        this.getLobbyPlayersListMessage().concat(
-          this.localeService.t('game.min_player', {
-            min: this.gamemode.MIN_PLAYER!,
-            max: this.gamemode.MAX_PLAYER!
-          })
-        )
-      );
-    }
-    this.channel.sendMultipleText(this.groupId, message);
+
+    this.broadcastPLayerJoin();
+
+    // Need to be deleted
+    // const message = [
+    //   this.localeService.t('game.join', {
+    //     player: player.name
+    //   })
+    // ];
+    // if (this.players.length % 2 === 1) {
+    //   message.push(
+    //     this.getLobbyPlayersListMessage().concat(
+    //       this.localeService.t('game.min_player', {
+    //         min: this.gamemode.MIN_PLAYER!,
+    //         max: this.gamemode.MAX_PLAYER!
+    //       })
+    //     )
+    //   );
+    // }
+    // this.channel.sendMultipleText(this.groupId, message);
   }
 
   /**
@@ -541,6 +545,12 @@ export default class Game {
 
   public getAlivePlayer() {
     return this.players.filter(data => !data.role!.dead);
+  }
+
+  private broadcastPLayerJoin() {
+    this.channel.sendMultipleTypeMessage(this.groupId, [
+      this.messageGenerator.playerJoinMessage()
+    ]);
   }
 
   private isGameKilled() {

@@ -12,13 +12,13 @@ export default class GameEventCommand extends Command {
   }
 
   public async run(postback: BackEvent, source: MessageSource) {
-    const { groupId } = postback.data;
+    const { groupId } = postback.data!;
     const gameExist = await this.groupManager!.gameExist(groupId!);
     if (!gameExist) {
       return;
     }
     this.groupManager!.get(groupId)!.game!.processCallback(
-      postback.data,
+      postback.data!,
       source.userId
     );
   }

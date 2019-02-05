@@ -1,111 +1,120 @@
 {
-  "welcome": "Bot Is Now Ready",
-  "game": {
-    "created": "📣 Permainan baru telah di buat! permainan akan di mulai dalam 2 menit!",
-    "full": "Maaf 🙏🏻 slot sudah penuh, Max pemain adalah {max} orang",
-    "not_enough": "🚫 Jumlah pemain tidak cukup. permainan di batalkan!\nmin pemain: {min} orang",
-    "not_enough_force": "🚫 Jumlah pemain tidak cukup, ajak teman-teman yang lain untuk bergabung!\nmin pemain: {min} orang",
-    "already": {
-      "in": "👋 Hai {name}, kamu sudah join ke dalam game!",
-      "start": "🚫 Gagal bergabung! game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjut nya akan di mulai."
-    },
-    "join_message": "📣 Bergabung sekarang!",
-    "start": "📣 Memulai permainan dalam 3 2 1..",
-    "scene": {
-      "first": "💭 Semua warga berkumpul di balai desa. Kemarin seorang warga mati di cabik-cabik serigala. Warga desa ribut mendiskusikan siapa pelaku nya. Waktu mu 30 detik untuk berdiskusi!",
-      "day_count": "⏳ Hari ke {day}",
-      "day": "☀️ Siang hari. Matahari terlihat sangat terik. Warga desa punya waktu {time} detik untuk diskusi, saling tuduh, atau menyebarkan gosip 😇",
-      "night": "🌙 Malam telah tiba. Terlihat sebagian orang sudah tertidur namun ada beberapa yang masih terjaga, Untuk pemain malam kamu punya waktu {time} detik untuk melakukan aksi mu!",
-      "dusk": "☁ Senja telah tiba. Seluruh warga berkumpul di balai desa untuk memilih siapa yang akan di eksekusi. Kamu punya waktu {time} detik untuk memilih, hati-hati jangan terpengaruh orang lain!"
-    },
-    "end": "Game Ended",
-    "role": {
-      "generating": "⏳ Membagikan peran ke setiap pemain.."
-    },
-    "win": "{team} menang!! 🎉🎉",
-    "join": "📣 {player} bergabung!",
-    "timer": {
-      "minutes": "⌛ {time} menit lagi untuk join",
-      "seconds": "⌛ {time} detik lagi, Ayo join!",
-      "extend": "📣 Waktu menunggu di tambah 1 menit!"
-    },
-    "min_player": "\nmin: {min} max: {max}",
-    "cant_cancel": "🚫 Game yang sudah di mulai tidak bisa di batalkan!",
-    "canceled": "📣 Game telah di batalkan."
-  },
-  "role": {
-    "villager": {
-      "announcement": "Kamu adalah Warga desa 👱, mengurus ladang tiap hari sampai kamu di makan oleh werewolf 😓"
-    },
-    "werewolf": {
-      "announcement": "Kamu adalah Werewolf 🐺! Kamu yang menyebabkan teror tiap malam nya 😌 {ally}",
-      "selection": "Pilih orang yang akan kamu makan!",
-      "bite": "Kamu Di makan oleh werewolf 🐺 dan mati tercabik-cabik 😱",
-      "ally_text": "adalah teman mu.",
-      "alone": "dan kamu adalah satu-satu nya werewolf 🐺 di desa ini!",
-      "friend": " adalah teman mu",
-      "eat_drunk": "😵 Kamu telah memakan seorang pemabuk, Kamu jadi teler dan tidak bisa memakan orang di malam berikut nya ",
-      "new_member": "🐺 {player} telah menjadi Werewolf!"
-    },
-    "guardian": {
-      "announcement": "Kamu adalah Guardian 👼 tugas mu adalah melindungi 1 pemain setiap malam nya. kamu bisa memilih untuk melindungi diri sendiri 🙆",
-      "selection": "Pilih orang untuk di lindungi malam ini!",
-      "fail_bite": "Kamu telah di lindungi Guardian 👼 dari serangan werewolf 😇",
-      "succes_protect": "Guardian telah berhasil melindungi seseorang malam ini!"
-    },
-    "seer": {
-      "announcement": "Kamu adalah Seer 👳 si penerawang, setiap malam kamu bisa menerawang pemain untuk mengetahui peran nya 😊",
-      "selection": "Pilih orang yang akan kamu terawang",
-      "see": "Kamu melihat 👁 {target} adalah seorang {role}!!"
-    },
-    "drunk": {
-      "announcement": "Kamu adalah Drunk 🍻 si pemabuk, jika werewolf 🐺 memakan mu dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikut nya 😵",
-      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin sekarang kamu mabuk 😵 dan tidak bisa memakan siapapun!"
-    },
-    "cursed": {
-      "announcement": "Kamu adalah Cursed 😾 si warga desa terkutuk! jika kamu di makan oleh Werewolf 🐺 maka kamu akan menjadi bagian dari mereka!",
-      "transform": {
-        "werewolf": "🐺 Werewolf telah memakan mu! sekarang kamu adalah bagian dari mereka!"
-      }
-    },
-    "traitor": {
-      "announcement": "Kamu adalah Traitor 🖕 si penghianat, saat semua werewolf di desa mati maka kamu akan berubah menjadi mereka!",
-      "transform": {
-        "werewolf": "🐺 Semua werewolf di desa telah mati, sekarang adalah waktu nya menunjukan jati dirimu yang sebenarnya. Kamu telah berubah menjadi Werewolf!"
-      }
-    }
-  },
-  "vote": {
-    "selection": "Pilih pemain untuk di eksekusi ☠",
-    "no_death": "⌛ Warga terlalu banyak berdebat, keputusan mereka tidak bulat. Tidak ada yang di eksekusi malam ini!"
-  },
-  "common": {
-    "selected": {
-      "self": "Kamu memilih {target}",
-      "vote": "📢 {user} memilih {target} untuk di eksekusi ☠",
-      "ally": "{user} memilih {target}"
-    },
-    "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun!",
-    "playerlist": {
-      "header": "📣 Daftar Pemain 📣\n",
-      "end_header": "🎉 Semua Pemain 🎉 \n\n"
-    },
-    "life": {
-      "alive": "🙂 Hidup",
-      "dead": "💀 Tewas"
-    },
-    "win": {
-      "win": "Menang",
-      "lose": "Kalah"
-    },
-    "notify_waiting_list": "📣 Notifikasi📣 \n\nGame baru akan di mulai di grup yang baru saja kamu pesan. \nAyo join sekarang!"
-  },
-  "death": {
-    "vote": "🔥 Warga sudah mengambil keputusan. {player} mati di hukum gantung. 💀",
-    "bite": "{player} tergeletak bersimbah darah di rumah nya 💀, ternyata dia telah di bunuh oleh Werewolf 🐺",
-    "punishment": "💀 {player} mati karena 3 kali tidak melakukan voting "
-  },
-  "night": {
-    "no_death": "⛅ Malam Telah berlalu dengan sangat tenang. Aneh tidak ada yang mati tadi malam 😕"
-  }
+	"welcome": "Bot Is Now Ready",
+	"game": {
+		"info": "📣 Info",
+		"created": "📣 Permainan baru telah di buat! permainan akan di mulai dalam 2 menit!",
+		"full": "Maaf 🙏 slot sudah penuh, Max pemain adalah {max} orang",
+		"not_enough": "🚫 Jumlah pemain tidak cukup. permainan di batalkan!\nmin pemain: {min} orang",
+		"not_enough_force": "🚫 Jumlah pemain tidak cukup, ajak teman-teman yang lain untuk bergabung!\nmin pemain: {min} orang",
+		"already": {
+			"in": "👋 Hai {name}, kamu sudah join ke dalam game!",
+			"start": "🚫 Gagal bergabung! game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjut nya akan di mulai."
+		},
+		"join_message": "📣 Bergabung sekarang!",
+		"start": "Memulai permainan dalam 3 2 1..",
+		"scene": {
+			"first": "Semua warga berkumpul di balai desa. Kemarin seorang warga mati di cabik-cabik serigala. Warga desa ribut mendiskusikan siapa pelaku nya. Waktu mu 30 detik untuk berdiskusi!",
+			"day_count": "⏳ Hari ke {day}",
+			"day": "Matahari terlihat sangat terik. ini adalah hari ke-{day} Warga desa punya waktu {time} detik untuk diskusi, saling tuduh, atau menyebarkan gosip 😇",
+			"night": "Terlihat sebagian orang sudah tertidur namun ada beberapa yang masih terjaga, Untuk pemain malam kamu punya waktu {time} detik untuk melakukan aksi mu!",
+			"dusk": "Senja telah tiba. Seluruh warga berkumpul di balai desa untuk memilih siapa yang akan di eksekusi. Kamu punya waktu {time} detik untuk memilih, hati-hati jangan terpengaruh orang lain!",
+			"header": {
+				"first": "💭 Prolog",
+				"day_count": "⏳",
+				"day": "☀️ Siang Hari",
+				"night": "🌙 Malam Hari",
+				"dusk": "☁ Senja"
+			}
+		},
+		"end": "Game Ended",
+		"role": {
+			"generating": "⏳ Membagikan peran ke setiap pemain.."
+		},
+		"win": "{team} menang!! 🎉🎉",
+		"join": "📣 {player} bergabung!",
+		"timer": {
+			"minutes": "⌛ {time} menit lagi untuk join",
+			"seconds": "⌛ {time} detik lagi, Ayo join!",
+			"extend": "📣 Waktu menunggu di tambah 1 menit!"
+		},
+		"min_player": "\nmin: {min} max: {max}",
+		"cant_cancel": "🚫 Game yang sudah di mulai tidak bisa di batalkan!",
+		"canceled": "📣 Game telah di batalkan."
+	},
+	"role": {
+		"villager": {
+			"announcement": "Kamu adalah Warga desa 👱, mengurus ladang tiap hari sampai kamu di makan oleh werewolf 😓"
+		},
+		"werewolf": {
+			"announcement": "Kamu adalah Werewolf 🐺! Kamu yang menyebabkan teror tiap malam nya 😌 {ally}",
+			"selection": "Pilih orang yang akan kamu makan!",
+			"bite": "Kamu Di makan oleh werewolf 🐺 dan mati tercabik-cabik 😱",
+			"ally_text": "adalah teman mu.",
+			"alone": "dan kamu adalah satu-satu nya werewolf 🐺 di desa ini!",
+			"friend": " adalah teman mu",
+			"eat_drunk": "😵 Kamu telah memakan seorang pemabuk, Kamu jadi teler dan tidak bisa memakan orang di malam berikut nya ",
+			"new_member": "🐺 {player} telah menjadi Werewolf!"
+		},
+		"guardian": {
+			"announcement": "Kamu adalah Guardian 👼 tugas mu adalah melindungi 1 pemain setiap malam nya. kamu bisa memilih untuk melindungi diri sendiri 🙆",
+			"selection": "Pilih orang untuk di lindungi malam ini!",
+			"fail_bite": "Kamu telah di lindungi Guardian 👼 dari serangan werewolf 😇",
+			"succes_protect": "Guardian telah berhasil melindungi seseorang malam ini!"
+		},
+		"seer": {
+			"announcement": "Kamu adalah Seer 👳 si penerawang, setiap malam kamu bisa menerawang pemain untuk mengetahui peran nya 😊",
+			"selection": "Pilih orang yang akan kamu terawang",
+			"see": "Kamu melihat 👁 {target} adalah seorang {role}!!"
+		},
+		"drunk": {
+			"announcement": "Kamu adalah Drunk 🍻 si pemabuk, jika werewolf 🐺 memakan mu dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikut nya 😵",
+			"cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin sekarang kamu mabuk 😵 dan tidak bisa memakan siapapun!"
+		},
+		"cursed": {
+			"announcement": "Kamu adalah Cursed 😾 si warga desa terkutuk! jika kamu di makan oleh Werewolf 🐺 maka kamu akan menjadi bagian dari mereka!",
+			"transform": {
+				"werewolf": "🐺 Werewolf telah memakan mu! sekarang kamu adalah bagian dari mereka!"
+			}
+		},
+		"traitor": {
+			"announcement": "Kamu adalah Traitor 🖕 si penghianat, saat semua werewolf di desa mati maka kamu akan berubah menjadi mereka!",
+			"transform": {
+				"werewolf": "🐺 Semua werewolf di desa telah mati, sekarang adalah waktu nya menunjukan jati dirimu yang sebenarnya. Kamu telah berubah menjadi Werewolf!"
+			}
+		}
+	},
+	"vote": {
+		"selection": "Pilih pemain untuk di eksekusi ☠",
+		"no_death": "⌛ Warga terlalu banyak berdebat, keputusan mereka tidak bulat. Tidak ada yang di eksekusi malam ini!"
+	},
+	"common": {
+		"selected": {
+			"self": "Kamu memilih {target}",
+			"vote": "📢 {user} memilih {target} untuk di eksekusi ☠",
+			"ally": "{user} memilih {target}"
+		},
+		"timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun!",
+		"playerlist": {
+			"header": "📣 Daftar Pemain 📣\n",
+			"end_header": "🎉 Semua Pemain 🎉 \n\n"
+		},
+		"life": {
+			"alive": "🙂 Hidup",
+			"dead": "💀 Tewas"
+		},
+		"win": {
+			"win": "Menang",
+			"lose": "Kalah"
+		},
+		"notify_waiting_list": "📣 Notifikasi📣 \n\nGame baru akan di mulai di grup yang baru saja kamu pesan. \nAyo join sekarang!"
+	},
+	"death": {
+		"vote": "🔥 Warga sudah mengambil keputusan. {player} mati di hukum gantung. 💀",
+		"bite": "{player} tergeletak bersimbah darah di rumah nya 💀, ternyata dia telah di bunuh oleh Werewolf 🐺",
+		"punishment": "💀 {player} mati karena 3 kali tidak melakukan voting "
+	},
+	"night": {
+		"no_death": "⛅ Malam Telah berlalu dengan sangat tenang. Aneh tidak ada yang mati tadi malam 😕"
+	},
+	"info": "info"
 }

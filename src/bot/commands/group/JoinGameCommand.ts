@@ -8,8 +8,8 @@ export default class JoinGameCommand extends Command {
   constructor(channel: LineMessage) {
     super(channel);
 
-    this.TYPE = ['GROUP'];
-    this.TRIGGER = ['/join', '/j'];
+    this.TYPE = ['GROUP', 'POSTBACK'];
+    this.TRIGGER = ['/join', '/j', 'WEREWOLF_JOIN_EVENT'];
   }
 
   /**

@@ -10,4 +10,9 @@ export default interface ILineMessage {
   sendMultiText(player: Player[], text: string): void;
   sendMultipleText(id: string, text: string[]): void;
   sendMultipleTypeMessage(id: string, message: Line.Message[]): void;
+  sendFlexBasicMessage(
+    id: string,
+    header: string,
+    message: string
+  ): Promise<any>;
 }

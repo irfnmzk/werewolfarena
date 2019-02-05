@@ -87,10 +87,10 @@ export default class Game {
    */
   public broadcastGameCreated() {
     const message: Message[] = [
+      this.messageGenerator.joinMessage(),
       this.messageGenerator.getDefaultText(
-        this.localeService.t('game.created')
-      ),
-      this.messageGenerator.joinMessage()
+        '📣 Bila pesan tidak muncul pastikan kamu sudah pakai Line versi terbaru!'
+      )
     ];
     this.channel.sendMultipleTypeMessage(this.groupId, message);
   }
@@ -116,22 +116,8 @@ export default class Game {
       );
     }
     this.players.push(player);
-    const message = [
-      this.localeService.t('game.join', {
-        player: player.name
-      })
-    ];
-    if (this.players.length % 2 === 1) {
-      message.push(
-        this.getLobbyPlayersListMessage().concat(
-          this.localeService.t('game.min_player', {
-            min: this.gamemode.MIN_PLAYER!,
-            max: this.gamemode.MAX_PLAYER!
-          })
-        )
-      );
-    }
-    this.channel.sendMultipleText(this.groupId, message);
+
+    this.broadcastPLayerJoin();
   }
 
   /**
@@ -206,7 +192,7 @@ export default class Game {
    */
   public firstDayScene() {
     if (this.isGameKilled()) return;
-    this.broadcastMessage(this.localeService.t('game.scene.first'));
+    return this.sendBroadcastSceneMessage('FIRST');
   }
 
   /**
@@ -269,45 +255,59 @@ export default class Game {
   public broadcastScene(scene: Types.time) {
     if (this.eventDeathCount() >= 1) {
       const message = this.getDyingMessage();
-      if (scene === 'DAY') {
-        return this.channel.sendMultipleText(this.groupId, [
-          message!,
-          this.localeService.t('game.scene.day_count', { day: this.day }),
+
+      return this.channel.sendMultipleTypeMessage(this.groupId, [
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t('game.info'),
+          message
+        ),
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t(
+            `game.scene.header.${scene.toLocaleLowerCase()}`
+          ),
           this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
-            time: this.gameDuration
+            time: this.gameDuration,
+            day: this.day
           })
-        ]);
-      }
-      return this.channel.sendMultipleText(this.groupId, [
-        message!,
-        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
-          time: this.gameDuration
-        })
+        )
       ]);
     }
     // Send no one dying on vote message
     if (scene === 'NIGHT' && this.day !== 0) {
-      return this.channel.sendMultipleText(this.groupId, [
-        this.localeService.t('vote.no_death'),
-        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
-          time: this.gameDuration
-        })
+      return this.channel.sendMultipleTypeMessage(this.groupId, [
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t('game.info'),
+          this.localeService.t('vote.no_death')
+        ),
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t(
+            `game.scene.header.${scene.toLocaleLowerCase()}`
+          ),
+          this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+            time: this.gameDuration,
+            day: this.day
+          })
+        )
       ]);
     }
     if (scene === 'DAY' && this.day !== 0) {
-      return this.channel.sendMultipleText(this.groupId, [
-        this.localeService.t('night.no_death'),
-        this.localeService.t('game.scene.day_count', { day: this.day }),
-        this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
-          time: this.gameDuration
-        })
+      return this.channel.sendMultipleTypeMessage(this.groupId, [
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t('game.info'),
+          this.localeService.t('night.no_death')
+        ),
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t(
+            `game.scene.header.${scene.toLocaleLowerCase()}`
+          ),
+          this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+            time: this.gameDuration,
+            day: this.day
+          })
+        )
       ]);
     }
-    return this.broadcastMessage(
-      this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
-        time: this.gameDuration
-      })
-    );
+    return this.sendBroadcastSceneMessage(scene);
   }
 
   /**
@@ -451,7 +451,11 @@ export default class Game {
   }
 
   public broadcastMessage(message: string): Promise<any> {
-    return this.channel.sendWithText(this.groupId, message);
+    return this.channel.sendFlexBasicMessage(
+      this.groupId,
+      this.localeService.t('game.info'),
+      message
+    );
   }
 
   /**
@@ -466,16 +470,18 @@ export default class Game {
    */
   public sendGamePlayerList() {
     if (this.status !== 'PLAYING') return; // always call when game is open but who knows right
-    const playerList = this.sortedPlayerByDead().map(
-      (player, index) =>
-        `${index + 1}. ${player.name} - ${this.localeService.t(
-          `common.life.${player.role!.dead ? `dead` : `alive`}`
-        )}`
-    );
-    const message = this.localeService
-      .t('common.playerlist.header')
-      .concat(playerList.join('\n'));
-    this.broadcastMessage(message);
+    // const playerList = this.sortedPlayerByDead().map(
+    //   (player, index) =>
+    //     `${index + 1}. ${player.name} - ${this.localeService.t(
+    //       `common.life.${player.role!.dead ? `dead` : `alive`}`
+    //     )}`
+    // );
+    // const message = this.localeService
+    //   .t('common.playerlist.header')
+    //   .concat(playerList.join('\n'));
+    this.channel.sendMultipleTypeMessage(this.groupId, [
+      this.messageGenerator.getPlayerlistMessage(this.sortedPlayerByDead())
+    ]);
   }
 
   /**
@@ -541,6 +547,12 @@ export default class Game {
 
   public getAlivePlayer() {
     return this.players.filter(data => !data.role!.dead);
+  }
+
+  private broadcastPLayerJoin() {
+    this.channel.sendMultipleTypeMessage(this.groupId, [
+      this.messageGenerator.playerJoinMessage()
+    ]);
   }
 
   private isGameKilled() {
@@ -654,6 +666,17 @@ export default class Game {
       this.timer.stop();
       this.startGame();
     }
+  }
+
+  private sendBroadcastSceneMessage(scene: Types.time) {
+    this.channel.sendFlexBasicMessage(
+      this.groupId,
+      this.localeService.t(`game.scene.header.${scene.toLocaleLowerCase()}`),
+      this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
+        time: this.gameDuration,
+        day: this.day
+      })
+    );
   }
 
   private startGameLoop() {

@@ -1,4 +1,4 @@
-export type time = 'DAY' | 'NIGHT' | 'DUSK';
+export type time = 'FIRST' | 'DAY' | 'NIGHT' | 'DUSK';
 export type RoleId =
   | 'default'
   | 'villager'
@@ -29,8 +29,12 @@ export interface Buff {
 }
 
 export interface BackEvent {
-  type: 'GAME_EVENT' | 'DEFAULT';
-  data: GameEvent;
+  type: 'GAME_EVENT' | 'DEFAULT' | 'WEREWOLF_JOIN_EVENT';
+  data?: GameEvent;
+}
+
+export interface GameJoinEvent {
+  join: true;
 }
 
 export interface GameEvent {

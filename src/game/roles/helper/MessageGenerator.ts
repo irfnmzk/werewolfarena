@@ -28,19 +28,97 @@ export default class MessageGenerator {
    * joinMessage
    */
   public joinMessage() {
-    const results: Line.TemplateMessage = {
-      type: 'template',
-      altText: this.localeService.t('game.join_message'),
-      template: {
-        type: 'buttons',
-        text: this.localeService.t('game.join_message'),
-        actions: [
-          {
-            type: 'message',
-            label: 'Bergabung',
-            text: '/join'
+    // Need to be refactored
+    const results: Line.FlexMessage = {
+      type: 'flex',
+      altText: 'Hello',
+      contents: {
+        type: 'bubble',
+        styles: {
+          header: {
+            backgroundColor: '#36435e'
+          },
+          footer: {
+            // backgroundColor: '#36435e'
           }
-        ]
+        },
+        header: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'text',
+              text: '📣 Permainan Dibuat',
+              size: 'lg',
+              weight: 'bold',
+              color: '#ffffff'
+            }
+          ]
+        },
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'box',
+              layout: 'horizontal',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'Game Mode',
+                  align: 'start',
+                  color: '#aaaaaa',
+                  flex: 3
+                },
+                {
+                  type: 'text',
+                  text: 'Normal',
+                  align: 'start',
+                  color: '#aaaaaa',
+                  weight: 'bold',
+                  flex: 1
+                }
+              ]
+            },
+            {
+              type: 'box',
+              layout: 'horizontal',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'Min: 5',
+                  align: 'start',
+                  color: '#aaaaaa',
+                  flex: 3
+                },
+                {
+                  type: 'text',
+                  text: 'Max: 12',
+                  align: 'start',
+                  color: '#aaaaaa',
+                  flex: 1
+                }
+              ]
+            }
+          ]
+        },
+        footer: {
+          type: 'box',
+          layout: 'horizontal',
+          contents: [
+            {
+              type: 'button',
+              style: 'primary',
+              color: '#36435e',
+              action: {
+                type: 'uri',
+                label: 'Bergabung',
+                uri: 'https://example.com'
+              },
+              flex: 1
+            }
+          ]
+        }
       }
     };
 

@@ -81,4 +81,18 @@ export default class MockLineMessage implements ILineMessage {
       )
     );
   }
+
+  public sendFlexBasicMessage(
+    id: string,
+    header: string,
+    message: string
+  ): Promise<any> {
+    console.log(
+      `${chalk.bold.yellow('[Flex]')} ${chalk.bold.yellow(
+        header
+      )}  ${chalk.yellow.bold(`[${id}]`)} : ${message}`
+    );
+
+    return Promise.resolve();
+  }
 }

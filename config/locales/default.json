@@ -1,6 +1,7 @@
 {
   "welcome": "Bot Is Now Ready",
   "game": {
+    "info": "📣 Info",
     "created": "📣 Permainan baru telah di buat! permainan akan di mulai dalam 2 menit!",
     "full": "Maaf 🙏 slot sudah penuh, Max pemain adalah {max} orang",
     "not_enough": "🚫 Jumlah pemain tidak cukup. permainan di batalkan!\nmin pemain: {min} orang",

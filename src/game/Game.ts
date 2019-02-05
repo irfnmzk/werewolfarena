@@ -437,7 +437,11 @@ export default class Game {
   }
 
   public broadcastMessage(message: string): Promise<any> {
-    return this.channel.sendWithText(this.groupId, message);
+    return this.channel.sendFlexBasicMessage(
+      this.groupId,
+      this.localeService.t('game.info'),
+      message
+    );
   }
 
   /**

@@ -93,6 +93,47 @@ export default class LineMessage extends Line.Client implements ILineMessage {
     );
   }
 
+  public sendFlexBasicMessage(
+    id: string,
+    header: string,
+    message: string
+  ): Promise<any> {
+    return this.pushMessage(id, {
+      type: 'flex',
+      altText: message,
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'text',
+              text: header,
+              weight: 'bold',
+              size: 'xs',
+              color: '#aaaaaa'
+            },
+            {
+              type: 'text',
+              size: 'xs',
+              wrap: true,
+              text: message
+            }
+          ]
+        }
+      }
+    }).catch(err => {
+      if (id.length <= 10) {
+        return;
+      }
+      console.log('err send flex basic message to' + id);
+      if (err instanceof Line.RequestError) {
+        console.log(`errorMessage: ${err.message}`);
+      }
+    });
+  }
+
   /**
    * Send Message as individual if multicast failed
    */

@@ -192,7 +192,7 @@ export default class Game {
    */
   public firstDayScene() {
     if (this.isGameKilled()) return;
-    this.broadcastMessage(this.localeService.t('game.scene.first'));
+    return this.sendBroadcastSceneMessage('FIRST');
   }
 
   /**
@@ -289,11 +289,7 @@ export default class Game {
         })
       ]);
     }
-    return this.broadcastMessage(
-      this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`, {
-        time: this.gameDuration
-      })
-    );
+    return this.sendBroadcastSceneMessage(scene);
   }
 
   /**
@@ -652,6 +648,14 @@ export default class Game {
       this.timer.stop();
       this.startGame();
     }
+  }
+
+  private sendBroadcastSceneMessage(scene: Types.time) {
+    this.channel.sendFlexBasicMessage(
+      this.groupId,
+      this.localeService.t(`game.scene.header.${scene.toLocaleLowerCase()}`),
+      this.localeService.t(`game.scene.${scene.toLocaleLowerCase()}`)
+    );
   }
 
   private startGameLoop() {

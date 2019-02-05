@@ -1,4 +1,4 @@
-export type time = 'DAY' | 'NIGHT' | 'DUSK';
+export type time = 'FIRST' | 'DAY' | 'NIGHT' | 'DUSK';
 export type RoleId =
   | 'default'
   | 'villager'

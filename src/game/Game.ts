@@ -64,7 +64,7 @@ export default class Game {
     this.eventQueue = new GameEventQueue(this);
     this.gameLoop = new GameLoop(this);
     this.localeService = new LocaleService();
-    this.gamemode = new TestGameMode(this);
+    this.gamemode = new DefaultGameMode(this);
 
     this.debug = debug;
     if (this.debug) {
@@ -765,7 +765,7 @@ export default class Game {
   private broadcastPlayerListInterval() {
     this.playerListInterval = setInterval(
       () => this.broadcastPLayerJoin(),
-      20000
+      30000
     );
   }
 }

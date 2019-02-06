@@ -759,7 +759,7 @@ export default class MessageGenerator {
           },
           {
             type: 'text',
-            text: player.role!.roleHistory.map(data => data).join(' -> '),
+            text: player.role!.roleHistory.map(data => data).join('>'),
             color: '#aaaaaa',
             flex: 3,
             size: 'xxs',

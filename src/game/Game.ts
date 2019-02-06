@@ -104,23 +104,29 @@ export default class Game {
 
   public addPlayer(player: Player) {
     if (this.players.length >= this.gamemode.MAX_PLAYER!) {
-      return this.broadcastMessage(
+      return this.channel.sendWithText(
+        this.groupId,
         this.localeService.t('game.full', { max: this.gamemode.MAX_PLAYER! })
       );
     }
     if (this.status !== 'OPEN') {
-      return this.broadcastMessage(this.localeService.t('game.already.start'));
+      return this.channel.sendWithText(
+        this.groupId,
+        this.localeService.t('game.already.start')
+      );
     }
     const found =
       this.players.filter(data => data.userId === player.userId).length > 0;
     if (found) {
-      return this.broadcastMessage(
+      return this.channel.sendWithText(
+        this.groupId,
         this.localeService.t('game.already.in', { name: player.name })
       );
     }
     this.players.push(player);
 
-    this.broadcastMessage(
+    this.channel.sendWithText(
+      this.groupId,
       this.localeService.t('game.join', {
         player: player.name
       })
@@ -649,7 +655,8 @@ export default class Game {
     const { minutes } = this.timer.getTotalTimeValues();
     const diffrence = this.waitDuration - minutes;
     if (diffrence < 1) return;
-    this.broadcastMessage(
+    this.channel.sendWithText(
+      this.groupId,
       this.localeService.t('game.timer.minutes', { time: diffrence })
     );
   }
@@ -664,15 +671,18 @@ export default class Game {
     if (minuteDiffrence !== 1) return;
     const { seconds } = this.timer.getTimeValues();
     if (seconds === 30) {
-      this.broadcastMessage(
+      this.channel.sendWithText(
+        this.groupId,
         this.localeService.t('game.timer.seconds', { time: 30 })
       );
     } else if (seconds === 45) {
-      this.broadcastMessage(
+      this.channel.sendWithText(
+        this.groupId,
         this.localeService.t('game.timer.seconds', { time: 15 })
       );
     } else if (seconds === 55) {
-      this.broadcastMessage(
+      this.channel.sendWithText(
+        this.groupId,
         this.localeService.t('game.timer.seconds', { time: 5 })
       );
     } else if (seconds === 59) {

@@ -31,7 +31,7 @@
       "generating": "⏳ Membagikan peran ke setiap pemain.."
     },
     "win": "{team} menang!! 🎉🎉",
-    "join": "📣 {player} bergabung!",
+    "join": "📣 {player} berhasil bergabung!",
     "timer": {
       "minutes": "⌛ {time} menit lagi untuk join",
       "seconds": "⌛ {time} detik lagi, Ayo join!",
@@ -90,7 +90,7 @@
   "common": {
     "selected": {
       "self": "Kamu memilih {target}",
-      "vote": "📢 {user} memilih {target} untuk di eksekusi",
+      "vote": "{user} memilih {target} untuk di eksekusi",
       "ally": "{user} memilih {target}"
     },
     "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun!",

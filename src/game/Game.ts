@@ -39,6 +39,8 @@ export default class Game {
   public readonly eventQueue: GameEventQueue;
 
   public readonly debug: boolean;
+
+  public playerListInterval: any;
   private gamemode: DefaultGameMode;
 
   private readonly gameLoop: GameLoop;
@@ -80,6 +82,7 @@ export default class Game {
 
     this.setStartTimer();
     this.broadcastGameCreated();
+    this.broadcastPlayerListInterval();
   }
 
   /**
@@ -117,13 +120,18 @@ export default class Game {
     }
     this.players.push(player);
 
-    this.broadcastPLayerJoin();
+    this.broadcastMessage(
+      this.localeService.t('game.join', {
+        player: player.name
+      })
+    );
   }
 
   /**
    * startGame
    */
   public startGame() {
+    clearInterval(this.playerListInterval);
     if (this.players.length < this.gamemode.MIN_PLAYER!) {
       this.broadcastMessage(
         this.localeService.t('game.not_enough', {
@@ -163,6 +171,7 @@ export default class Game {
     if (this.status !== 'OPEN') {
       return this.broadcastMessage(this.localeService.t('game.cant_cancel'));
     }
+    clearInterval(this.playerListInterval);
     this.timer.stop();
     this.broadcastMessage(this.localeService.t('game.canceled'));
     return this.deleteGame();
@@ -751,5 +760,12 @@ export default class Game {
     this.gameDuration = 20;
     this.waitDuration = 0;
     this.gamemode = new TestGameMode(this);
+  }
+
+  private broadcastPlayerListInterval() {
+    this.playerListInterval = setInterval(
+      () => this.broadcastPLayerJoin(),
+      30000
+    );
   }
 }

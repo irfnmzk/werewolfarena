@@ -611,10 +611,19 @@ export default class Game {
     // const dyingMessage = this.getDyingMessage();
     // message.unshift(dyingMessage);
     // this.channel.sendMultipleText(this.groupId, message);
-
-    this.channel.sendMultipleTypeMessage(this.groupId, [
+    const message = [
       this.messageGenerator.getEndGameMessage(this.sortPlayerByWinning())
-    ]);
+    ];
+    if (this.eventDeathCount() > 0) {
+      const dyingMessage = this.getDyingMessage();
+      message.unshift(
+        this.messageGenerator.getBasicFlexMessage(
+          this.localeService.t('game.info'),
+          dyingMessage
+        )
+      );
+    }
+    this.channel.sendMultipleTypeMessage(this.groupId, message);
 
     if (!this.debug) this.groupManager!.updateStats(this.groupId);
 

@@ -90,7 +90,7 @@
   "common": {
     "selected": {
       "self": "Kamu memilih {target}",
-      "vote": "📢 {user} memilih {target} untuk di eksekusi",
+      "vote": "{user} memilih {target} untuk di eksekusi",
       "ally": "{user} memilih {target}"
     },
     "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun!",

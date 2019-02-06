@@ -88,9 +88,13 @@ export default class LineMessage extends Line.Client implements ILineMessage {
    * sendMultipleTypeMessage
    */
   public sendMultipleTypeMessage(id: string, message: Line.Message[]) {
-    this.pushMessage(id, message).catch(err =>
-      console.log(`err send to ${id} :${(err as Line.RequestError).message} `)
-    );
+    this.pushMessage(id, message).catch(err => {
+      if (id.length <= 10) {
+        return;
+      }
+
+      console.log(`err send to ${id} :${(err as Line.RequestError).message} `);
+    });
   }
 
   public sendFlexBasicMessage(

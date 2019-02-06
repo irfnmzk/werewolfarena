@@ -765,7 +765,7 @@ export default class Game {
   private broadcastPlayerListInterval() {
     this.playerListInterval = setInterval(
       () => this.broadcastPLayerJoin(),
-      15000
+      20000
     );
   }
 }

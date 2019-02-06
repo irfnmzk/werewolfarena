@@ -573,7 +573,7 @@ export default class MessageGenerator {
   ): Line.FlexMessage {
     return {
       type: 'flex',
-      altText: message,
+      altText: `Kamu punya pesan!`,
       contents: {
         type: 'bubble',
         body: {

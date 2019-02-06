@@ -610,6 +610,7 @@ export default class Game {
         )
       );
     }
+
     this.channel.sendMultipleTypeMessage(this.groupId, message);
 
     if (!this.debug) this.groupManager!.updateStats(this.groupId);
@@ -619,7 +620,6 @@ export default class Game {
 
   private checkEndGame() {
     if (this.isFinish()) {
-      console.log('game ending');
       this.finishGame();
     }
   }

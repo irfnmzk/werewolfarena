@@ -43,7 +43,6 @@ export default class GroupAdapter {
    * updateStats
    */
   public updateStats(groupId: string, data: GroupStats) {
-    console.log('updating stats', data);
     return this.ref.child('group_stats/' + groupId).set(data);
   }
 }

@@ -27,7 +27,8 @@ export default class JoinGameCommand extends Command {
     }
 
     const game = new Game(groupId!, this.channel, this.groupManager!);
-    game.gameDuration = 20;
+    game.gameDuration = 5;
+    game.maxVoteMiss = 1;
     this.groupManager!.createGame(groupId!, game);
   }
 }

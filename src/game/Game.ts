@@ -549,6 +549,10 @@ export default class Game {
     return this.players.filter(data => !data.role!.dead);
   }
 
+  public getWinningMessage(player: Player) {
+    return player.role!.team === this.winner ? 'Menang' : 'Kalah';
+  }
+
   private broadcastPLayerJoin() {
     this.channel.sendMultipleTypeMessage(this.groupId, [
       this.messageGenerator.playerJoinMessage()
@@ -594,19 +598,23 @@ export default class Game {
    */
   private endGame() {
     if (this.status === 'KILLED') return this.deleteGame();
-    const message = [
-      this.localeService.t('game.win', { team: this.winner as any }),
-      this.getEndPlayerListMessage(),
-      this.localeService.t('game.end')
-    ];
+    // const message = [
+    //   this.localeService.t('game.win', { team: this.winner as any }),
+    //   this.getEndPlayerListMessage(),
+    //   this.localeService.t('game.end')
+    // ];
 
-    if (this.eventDeathCount() <= 0) {
-      return this.channel.sendMultipleText(this.groupId, message);
-    }
+    // if (this.eventDeathCount() <= 0) {
+    //   return this.channel.sendMultipleText(this.groupId, message);
+    // }
 
-    const dyingMessage = this.getDyingMessage();
-    message.unshift(dyingMessage);
-    this.channel.sendMultipleText(this.groupId, message);
+    // const dyingMessage = this.getDyingMessage();
+    // message.unshift(dyingMessage);
+    // this.channel.sendMultipleText(this.groupId, message);
+
+    this.channel.sendMultipleTypeMessage(this.groupId, [
+      this.messageGenerator.getEndGameMessage(this.sortPlayerByWinning())
+    ]);
 
     if (!this.debug) this.groupManager!.updateStats(this.groupId);
 
@@ -721,10 +729,6 @@ export default class Game {
 
   private getRoleHistoryText(player: Player) {
     return player.role!.roleHistory.map(data => data).join(' ➡ ');
-  }
-
-  private getWinningMessage(player: Player) {
-    return player.role!.team === this.winner ? 'Menang' : 'Kalah';
   }
 
   private sortPlayerByWinning() {

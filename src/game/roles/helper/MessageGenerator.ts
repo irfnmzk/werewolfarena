@@ -147,7 +147,7 @@ export default class MessageGenerator {
             type: 'text',
             text: `${index + 1}`,
             color: '#aaaaaa',
-            flex: 2,
+            flex: 1,
             size: 'sm',
             align: 'start'
           },
@@ -155,7 +155,7 @@ export default class MessageGenerator {
             type: 'text',
             text: player.name,
             color: '#aaaaaa',
-            flex: 4,
+            flex: 3,
             size: 'sm',
             align: 'start'
           }
@@ -210,10 +210,10 @@ export default class MessageGenerator {
                   type: 'text',
                   text: 'Nama',
                   color: '#aaaaaa',
-                  flex: 4,
+                  flex: 3,
                   size: 'sm',
                   weight: 'bold',
-                  align: 'center'
+                  align: 'start'
                 }
               ]
             },
@@ -590,6 +590,147 @@ export default class MessageGenerator {
                   align: 'end'
                 }
               ]
+            }
+          ]
+        }
+      }
+    };
+  }
+
+  /**
+   * getEndGameMessage
+   */
+  public getEndGameMessage(players: Player[]): Line.FlexMessage {
+    const playerList: Line.FlexBox[] = players.map(
+      (player, index): Line.FlexBox => ({
+        type: 'box',
+        layout: 'horizontal',
+        contents: [
+          {
+            type: 'text',
+            text: `${index + 1}`,
+            color: '#aaaaaa',
+            flex: 1,
+            size: 'xxs',
+            align: 'start'
+          },
+          {
+            type: 'text',
+            text: player.name,
+            color: '#aaaaaa',
+            flex: 4,
+            size: 'xxs',
+            align: 'start'
+          },
+          {
+            type: 'text',
+            text: player.role!.roleHistory.map(data => data).join(' -> '),
+            color: '#aaaaaa',
+            flex: 3,
+            size: 'xxs',
+            align: 'start',
+            wrap: true
+          },
+          {
+            type: 'text',
+            text: this.game.getWinningMessage(player),
+            color: '#aaaaaa',
+            flex: 2,
+            size: 'xxs',
+            align: 'start',
+            weight: 'bold'
+          }
+        ]
+      })
+    );
+    return {
+      type: 'flex',
+      altText: 'Daftar Pemain',
+      contents: {
+        type: 'bubble',
+        styles: {
+          header: {
+            backgroundColor: '#36435e'
+          },
+          footer: {
+            // backgroundColor: '#36435e'
+          }
+        },
+        header: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'text',
+              text: '🎉 WEREWOLF Menang! 🎉',
+              size: 'lg',
+              weight: 'bold',
+              color: '#ffffff'
+            }
+          ]
+        },
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            // Header row
+            {
+              type: 'box',
+              layout: 'horizontal',
+              contents: [
+                {
+                  type: 'text',
+                  text: 'No',
+                  color: '#aaaaaa',
+                  flex: 1,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'start'
+                },
+                {
+                  type: 'text',
+                  text: 'Nama',
+                  color: '#aaaaaa',
+                  flex: 4,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'start'
+                },
+                {
+                  type: 'text',
+                  text: 'Peran',
+                  color: '#aaaaaa',
+                  flex: 3,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'start'
+                },
+                {
+                  type: 'text',
+                  text: 'Status',
+                  color: '#aaaaaa',
+                  flex: 2,
+                  size: 'sm',
+                  weight: 'bold',
+                  align: 'start'
+                }
+              ]
+            },
+            {
+              type: 'separator',
+              color: '#36435e'
+            },
+            // Player list start here
+            {
+              type: 'box',
+              layout: 'vertical',
+              margin: 'lg',
+              contents: [...playerList]
+            },
+            {
+              type: 'separator',
+              color: '#36435e',
+              margin: 'md'
             }
           ]
         }

@@ -25,7 +25,7 @@ export default class Seer extends Role {
   public eventNight() {
     const target = this.game.getEnemyList(this.player);
     const message = this.messageGenerator.seerSelection(target);
-    this.game.channel.sendTemplateMessage(this.userId, message);
+    this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
   }
 
   public eventNightCallback(event: Types.GameEvent) {

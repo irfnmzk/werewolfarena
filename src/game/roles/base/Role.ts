@@ -87,7 +87,8 @@ export default class Role {
   public eventDusk() {
     const target = this.game.getVoteList(this.player);
     const message = this.messageGenerator.voteSelection(target);
-    this.game.channel.sendTemplateMessage(this.userId, message);
+    // this.game.channel.sendTemplateMessage(this.userId, message);
+    this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
   }
 
   /**

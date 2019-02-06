@@ -80,7 +80,6 @@ export default class GroupManager extends Map<string, Group> {
    */
   public updateStats(groupId: string) {
     const oldStats = this.get(groupId)!.groupStats;
-    console.log(oldStats);
     const newStats = {
       ...oldStats,
       gamePlayed: oldStats.gamePlayed + 1

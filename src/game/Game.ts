@@ -598,19 +598,6 @@ export default class Game {
    */
   private endGame() {
     if (this.status === 'KILLED') return this.deleteGame();
-    // const message = [
-    //   this.localeService.t('game.win', { team: this.winner as any }),
-    //   this.getEndPlayerListMessage(),
-    //   this.localeService.t('game.end')
-    // ];
-
-    // if (this.eventDeathCount() <= 0) {
-    //   return this.channel.sendMultipleText(this.groupId, message);
-    // }
-
-    // const dyingMessage = this.getDyingMessage();
-    // message.unshift(dyingMessage);
-    // this.channel.sendMultipleText(this.groupId, message);
     const message = [
       this.messageGenerator.getEndGameMessage(this.sortPlayerByWinning())
     ];

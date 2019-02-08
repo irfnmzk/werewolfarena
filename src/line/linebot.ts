@@ -1,6 +1,7 @@
 import { middleware } from '@line/bot-sdk';
 import EventEmitter from 'eventemitter3';
 import Express from 'express';
+import path from 'path';
 
 import { WebhookEvent, WebhookRequestBody } from '@line/bot-sdk';
 import Config from '../config/Config';
@@ -19,6 +20,7 @@ export default class LineBot extends EventEmitter {
     this.config = config;
     this.express = Express();
     this.configureRoute();
+    this.configureStaticFile();
   }
 
   /**
@@ -32,6 +34,11 @@ export default class LineBot extends EventEmitter {
         )}`
       );
     });
+  }
+
+  private configureStaticFile() {
+    const filePath = path.join(__dirname, '..', '..', 'static');
+    this.express.use('/static', Express.static(filePath));
   }
 
   private configureRoute() {

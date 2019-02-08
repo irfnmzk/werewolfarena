@@ -139,14 +139,14 @@ export default class Game {
   public startGame() {
     clearInterval(this.playerListInterval);
     if (this.players.length < this.gamemode.MIN_PLAYER!) {
-      this.broadcastMessage(
+      this.broadcastTextMessage(
         this.localeService.t('game.not_enough', {
           min: this.gamemode.MIN_PLAYER!
         })
       );
       return this.deleteGame();
     }
-    this.broadcastMessage(this.localeService.t('game.start'));
+    this.broadcastTextMessage(this.localeService.t('game.start'));
     this.timer.stop();
     this.status = 'PLAYING';
 
@@ -163,7 +163,7 @@ export default class Game {
       return this.startGame();
     }
 
-    return this.broadcastMessage(
+    return this.broadcastTextMessage(
       this.localeService.t('game.not_enough_force', {
         min: this.gamemode.MIN_PLAYER!
       })
@@ -175,11 +175,13 @@ export default class Game {
    */
   public cancelGame() {
     if (this.status !== 'OPEN') {
-      return this.broadcastMessage(this.localeService.t('game.cant_cancel'));
+      return this.broadcastTextMessage(
+        this.localeService.t('game.cant_cancel')
+      );
     }
     clearInterval(this.playerListInterval);
     this.timer.stop();
-    this.broadcastMessage(this.localeService.t('game.canceled'));
+    this.broadcastTextMessage(this.localeService.t('game.canceled'));
     return this.deleteGame();
   }
 
@@ -197,7 +199,7 @@ export default class Game {
    * assignRole
    */
   public assignRole() {
-    this.broadcastMessage(this.localeService.t('game.role.generating'));
+    this.broadcastTextMessage(this.localeService.t('game.role.generating'));
     this.gamemode.assignRoles(this.players);
   }
 
@@ -474,10 +476,17 @@ export default class Game {
   }
 
   /**
+   * broadcastTextMessage
+   */
+  public broadcastTextMessage(message: string) {
+    return this.channel.sendWithText(this.groupId, message);
+  }
+
+  /**
    * sendLobbyPlayerList
    */
   public sendLobbyPlayerList() {
-    this.broadcastMessage(this.getLobbyPlayersListMessage());
+    this.broadcastTextMessage(this.getLobbyPlayersListMessage());
   }
 
   /**

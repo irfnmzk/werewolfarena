@@ -11,7 +11,7 @@
       "start": "🚫 Gagal bergabung! game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjut nya akan di mulai."
     },
     "join_message": "📣 Bergabung sekarang!",
-    "start": "Memulai permainan dalam 3 2 1..",
+    "start": "📣 Memulai permainan dalam 3 2 1..",
     "scene": {
       "first": "Semua warga berkumpul di balai desa. Kemarin seorang warga mati di cabik-cabik serigala. Warga desa ribut mendiskusikan siapa pelaku nya. Waktu mu 30 detik untuk berdiskusi!",
       "day_count": "⏳ Hari ke {day}",
@@ -90,7 +90,7 @@
   "common": {
     "selected": {
       "self": "Kamu memilih {target}",
-      "vote": "{user} memilih {target} untuk di eksekusi",
+      "vote": "📣 {user} memilih {target} untuk di eksekusi",
       "ally": "{user} memilih {target}"
     },
     "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun!",

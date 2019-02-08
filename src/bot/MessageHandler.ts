@@ -47,7 +47,12 @@ export default class MessageHandler {
     source: MessageSource
   ) {
     const { text } = message;
-    this.commands.execute(text, {}, source);
+    const command = text.split(' ');
+    this.commands.execute(
+      command[0],
+      command.length > 1 ? command[1] : {}, // Also refactor this
+      source
+    );
   }
 
   /**

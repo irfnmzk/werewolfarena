@@ -137,6 +137,9 @@ export default class LineMessage extends Line.Client implements ILineMessage {
       }
     });
   }
+  public replyWithAny(id: string, message: Line.Message): void {
+    this.replyMessage(id, message).catch(err => console.log(err));
+  }
 
   /**
    * Send Message as individual if multicast failed

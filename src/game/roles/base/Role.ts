@@ -148,7 +148,7 @@ export default class Role {
         target: target.name
       })
     );
-    this.game.broadcastMessage(
+    this.game.broadcastTextMessage(
       this.game.localeService.t('common.selected.vote', {
         user: this.player.name,
         target: target.name

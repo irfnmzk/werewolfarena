@@ -4,6 +4,7 @@ import Command from '../base/Command';
 
 // ALL
 import VersionCommand from '../all/VersionCommand';
+import RolesCommand from '../all/RolesCommand';
 
 // Group
 import CreateGameCommands from '../group/CreateGameCommands';
@@ -27,6 +28,7 @@ const lineMessage = new LineMessage(config);
 const commands: Command[] = [
   // All
   new VersionCommand(lineMessage),
+  new RolesCommand(lineMessage),
 
   // Group
   new CreateGameCommands(lineMessage),

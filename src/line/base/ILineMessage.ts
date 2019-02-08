@@ -15,4 +15,5 @@ export default interface ILineMessage {
     header: string,
     message: string
   ): Promise<any>;
+  replyWithAny(id: string, message: Line.Message): void;
 }

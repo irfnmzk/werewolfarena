@@ -95,4 +95,8 @@ export default class MockLineMessage implements ILineMessage {
 
     return Promise.resolve();
   }
+
+  public replyWithAny(id: string, message: Line.Message): void {
+    console.log(id, message);
+  }
 }

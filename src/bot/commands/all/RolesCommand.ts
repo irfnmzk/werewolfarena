@@ -2,24 +2,24 @@ import MessageSource from '@bot/base/MessageSource';
 import LineMessage from 'src/line/LineMessage';
 
 import Command from '../base/Command';
+import { rolesMessage } from './helper/RolesMessageGenerator';
 
 export default class ExtendCommand extends Command {
   constructor(channel: LineMessage) {
     super(channel);
 
     this.TYPE = ['GROUP', 'USER'];
-    this.TRIGGER = ['/v', '/version', '/versi'];
+    this.TRIGGER = ['/roles', '/daftarperan'];
   }
 
   /**
    * run
    * Run The Command
    */
-  public async run(_: string, source: MessageSource) {
-    const version = process.env.npm_package_version;
-    this.channel.replyWithText(
-      source.replyToken!,
-      `📣 versi Game saat ini v${version}`
-    );
+  public async run(data: any, source: MessageSource) {
+    const page = parseInt(data);
+    if (!page) {
+      return this.channel.replyWithAny(source.replyToken!, rolesMessage());
+    }
   }
 }

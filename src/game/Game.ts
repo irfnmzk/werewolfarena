@@ -577,7 +577,7 @@ export default class Game {
     return player.role!.team === this.winner ? 'Menang' : 'Kalah';
   }
 
-  private broadcastPLayerJoin() {
+  public broadcastPLayerJoin() {
     this.channel.sendMultipleTypeMessage(this.groupId, [
       this.messageGenerator.playerJoinMessage()
     ]);
@@ -784,7 +784,7 @@ export default class Game {
   private broadcastPlayerListInterval() {
     this.playerListInterval = setInterval(
       () => this.broadcastPLayerJoin(),
-      30000
+      60 * 1000 * 1000
     );
   }
 }

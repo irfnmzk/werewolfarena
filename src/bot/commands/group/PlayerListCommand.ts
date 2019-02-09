@@ -26,7 +26,7 @@ export default class PlayerListCommand extends Command {
       return;
     }
     if (this.groupManager!.get(groupId!)!.game!.status === 'OPEN') {
-      return;
+      return this.groupManager!.get(groupId!)!.game!.broadcastPLayerJoin();
     }
     this.groupManager!.get(groupId!)!.game!.sendGamePlayerList();
   }

@@ -46,7 +46,7 @@ export default class GroupManager extends Map<string, Group> {
    */
   public deletGame(groupId: string) {
     const group = this.get(groupId)!;
-    group.game = undefined; // any better solution?
+    delete group.game; // any better solution?
     group.running = false;
   }
 

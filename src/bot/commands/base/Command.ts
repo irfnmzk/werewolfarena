@@ -1,3 +1,5 @@
+import { RateLimiterMemory } from 'rate-limiter-flexible';
+
 // tslint:disable:no-unused
 import GroupManager from '../../../manager/GroupManager';
 import MessageSource from '../../base/MessageSource';
@@ -9,11 +11,14 @@ export default class Command {
   public TRIGGER: string[];
 
   public channel: ILineMessage;
+  public limiter: RateLimiterMemory;
   public groupManager?: GroupManager;
   public userManager?: UserManager;
 
   constructor(channel: ILineMessage) {
     this.channel = channel;
+
+    this.limiter = new RateLimiterMemory({ points: 1, duration: 5 });
 
     this.TYPE = [];
     this.TRIGGER = [];

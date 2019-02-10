@@ -441,7 +441,7 @@ export default class MessageGenerator {
               data: generateEvent({
                 type: 'GAME_EVENT',
                 data: {
-                  event: 'protect',
+                  event: 'see',
                   groupId: this.game.groupId,
                   targetId: targetPlayer.userId,
                   timeStamp: Date.now()

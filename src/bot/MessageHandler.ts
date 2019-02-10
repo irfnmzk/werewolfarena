@@ -31,6 +31,7 @@ export default class MessageHandler {
     source: MessageSource
   ) {
     const { text } = message;
+    if (!text) return;
     const command = text.split(' ');
     this.commands.execute(
       command[0],
@@ -47,6 +48,7 @@ export default class MessageHandler {
     source: MessageSource
   ) {
     const { text } = message;
+    if (!text) return;
     const command = text.split(' ');
     this.commands.execute(
       command[0],

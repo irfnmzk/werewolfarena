@@ -43,9 +43,12 @@
   },
   "role": {
     "villager": {
+      "name": "Villager 👱",
+      "description": "Peran mu sangat simpel cukup bertahan hidup sampai akhir permainan, kamu bisa vote untuk eksekusi setiap senja tiba",
       "announcement": "Kamu adalah Warga desa 👱, mengurus ladang tiap hari sampai kamu di makan oleh werewolf 😓"
     },
     "werewolf": {
+      "name": "Werewolf 🐺",
       "announcement": "Kamu adalah Werewolf 🐺! Kamu yang menyebabkan teror tiap malam nya 😌 {ally}",
       "selection": "Pilih orang yang akan kamu makan!",
       "bite": "Kamu Di makan oleh werewolf 🐺 dan mati tercabik-cabik 😱",
@@ -53,34 +56,49 @@
       "alone": "dan kamu adalah satu-satu nya werewolf 🐺 di desa ini!",
       "friend": " adalah teman mu",
       "eat_drunk": "😵 Kamu telah memakan seorang pemabuk, Kamu jadi teler dan tidak bisa memakan orang di malam berikut nya ",
-      "new_member": "🐺 {player} telah menjadi Werewolf!"
+      "new_member": "🐺 {player} telah menjadi Werewolf!",
+      "description": "Dia adalah penyebab teror setiap malam nya, tiap malam kamu bisa memilih orang untuk di makan, bunuh semua orang di desa dan kamu akan menang!"
     },
     "guardian": {
+      "name": "Guardian angel 👼",
       "announcement": "Kamu adalah Guardian 👼 tugas mu adalah melindungi 1 pemain setiap malam nya. kamu bisa memilih untuk melindungi diri sendiri 🙆",
       "selection": "Pilih orang untuk di lindungi malam ini!",
       "fail_bite": "Kamu telah di lindungi Guardian 👼 dari serangan werewolf 😇",
-      "succes_protect": "Guardian telah berhasil melindungi seseorang malam ini!"
+      "succes_protect": "Guardian telah berhasil melindungi seseorang malam ini!",
+      "description": "Kamu adalah pelindung desa setiap malam kamu bisa pilih orang untuk di lindungi, jika werewolf menyerang nya dia akan gagal, pastikan kamu lindungi orang yang tepat!"
     },
     "seer": {
+      "name": "Seer 👳",
       "announcement": "Kamu adalah Seer 👳 si penerawang, setiap malam kamu bisa menerawang pemain untuk mengetahui peran nya 😊",
       "selection": "Pilih orang yang akan kamu terawang",
-      "see": "Kamu melihat 👁 {target} adalah seorang {role}!!"
+      "see": "Kamu melihat 👁 {target} adalah seorang {role}!!",
+      "description": "Adalah si penerawang, tiap malam dia bisa menerawang seseorang untuk mengetahui peran nya, awas jangan sampai kamu jadi target werewolf selanjutnya!"
     },
     "drunk": {
+      "name": "Drunk 🍻",
       "announcement": "Kamu adalah Drunk 🍻 si pemabuk, jika werewolf 🐺 memakan mu dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikut nya 😵",
-      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin sekarang kamu mabuk 😵 dan tidak bisa memakan siapapun!"
+      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin sekarang kamu mabuk 😵 dan tidak bisa memakan siapapun!",
+      "description": "Kamu adalah si pemabuk jika werewolf memakan mu dia tidak akan bisa mamakan orang lain di malam berikutnya!"
     },
     "cursed": {
+      "name": "Cursed 😾",
       "announcement": "Kamu adalah Cursed 😾 si warga desa terkutuk! jika kamu di makan oleh Werewolf 🐺 maka kamu akan menjadi bagian dari mereka!",
       "transform": {
         "werewolf": "🐺 Werewolf telah memakan mu! sekarang kamu adalah bagian dari mereka!"
-      }
+      },
+      "description": "Si Terkutuk!!, Kamu akan berubah jadi werewolf bila werewolf memakan mu!! kamu ada di pihak villager"
     },
     "traitor": {
+      "name": "Traitor 🖕",
       "announcement": "Kamu adalah Traitor 🖕 si penghianat, saat semua werewolf di desa mati maka kamu akan berubah menjadi mereka!",
       "transform": {
         "werewolf": "🐺 Semua werewolf di desa telah mati, sekarang adalah waktu nya menunjukan jati dirimu yang sebenarnya. Kamu telah berubah menjadi Werewolf!"
-      }
+      },
+      "description": "Si penghianat! jika semua werewolf di desa mati maka kamu yang akan menggantikan mereka semua!"
+    },
+    "fool": {
+      "name": "Fool 👳",
+      "description": "Kamu menyangka dirimu adalah seer, dalam permainan kamu akan di beritahu bahwa role mu adalah seer, jika kamu menerawang orang lain maka ramalan mu akan punya kemungkinan benar sebesar 50 banding 50"
     }
   },
   "vote": {
@@ -116,5 +134,10 @@
   "night": {
     "no_death": "⛅ Malam Telah berlalu dengan sangat tenang. Aneh tidak ada yang mati tadi malam 😕"
   },
-  "info": "info"
+  "info": "info",
+  "tole": {
+    "werewolf": {
+      "description": "tole.werewolf.description"
+    }
+  }
 }

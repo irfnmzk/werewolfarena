@@ -5,6 +5,7 @@ import GroupManager from '../../../manager/GroupManager';
 import MessageSource from '../../base/MessageSource';
 import ILineMessage from 'src/line/base/ILineMessage';
 import UserManager from '../../../manager/UserManager';
+import LocaleService from '../../../utils/i18n/LocaleService';
 
 export default class Command {
   public TYPE: string[];
@@ -14,11 +15,13 @@ export default class Command {
   public limiter: RateLimiterMemory;
   public groupManager?: GroupManager;
   public userManager?: UserManager;
+  public localeService: LocaleService;
 
   constructor(channel: ILineMessage) {
     this.channel = channel;
 
     this.limiter = new RateLimiterMemory({ points: 1, duration: 5 });
+    this.localeService = new LocaleService();
 
     this.TYPE = [];
     this.TRIGGER = [];

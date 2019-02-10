@@ -45,6 +45,7 @@ export default class GroupManager extends Map<string, Group> {
    * deletGame
    */
   public deletGame(groupId: string) {
+    if (!this.has(groupId)) return;
     const group = this.get(groupId)!;
     if (!group.game) return;
     delete group.game; // any better solution?

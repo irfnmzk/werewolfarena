@@ -20,12 +20,19 @@ export default class JoinGameCommand extends Command {
     const { groupId } = source;
     const gameExist = await this.groupManager!.gameExist(groupId!);
     if (!gameExist) {
-      this.channel.replyWithText(source.replyToken!, 'Game not existed');
-      return;
+      return this.limiter
+        .consume(groupId!)
+        .then(() =>
+          this.channel.replyWithText(source.replyToken!, 'Game not existed')
+        )
+        .catch(() => true);
     }
     // Any Better solution?
     if (!source.userId) {
-      return this.notAddingAsFriend(source.replyToken!);
+      return this.limiter
+        .consume(groupId!)
+        .then(() => this.notAddingAsFriend(source.replyToken!))
+        .catch(() => true);
     }
     const [err, userData] = await to(
       this.channel.getProfileData(source.userId)
@@ -37,7 +44,10 @@ export default class JoinGameCommand extends Command {
       );
     }
     if (!userData) {
-      return this.notAddingAsFriend(source.replyToken!);
+      return this.limiter
+        .consume(groupId!)
+        .then(() => this.notAddingAsFriend(source.replyToken!))
+        .catch(() => true);
     }
     if (!this.hasValidName(userData!.displayName)) {
       return this.channel.replyWithText(

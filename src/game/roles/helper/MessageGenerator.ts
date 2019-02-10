@@ -797,7 +797,7 @@ export default class MessageGenerator {
           contents: [
             {
               type: 'text',
-              text: '🎉 WEREWOLF Menang! 🎉',
+              text: `🎉 ${this.game.winner} Menang! 🎉`,
               size: 'lg',
               weight: 'bold',
               color: '#ffffff'

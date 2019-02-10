@@ -1,6 +1,7 @@
 import Emitter from 'eventemitter3';
 import _ from 'lodash';
 import Timer from 'easytimer.js';
+import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 import GroupManager from '../manager/GroupManager';
 
@@ -51,6 +52,7 @@ export default class Game {
   private readonly messageGenerator: MessageGenerator;
 
   private groupManager?: GroupManager;
+  private limiter: RateLimiterMemory;
 
   constructor(
     groupId: string,
@@ -79,6 +81,7 @@ export default class Game {
     this.messageGenerator = new MessageGenerator(this.localeService, this);
 
     this.timer = new Timer();
+    this.limiter = new RateLimiterMemory({ duration: 10, points: 1 });
 
     this.setStartTimer();
     this.broadcastGameCreated();
@@ -118,10 +121,15 @@ export default class Game {
     const found =
       this.players.filter(data => data.userId === player.userId).length > 0;
     if (found) {
-      return this.channel.sendWithText(
-        this.groupId,
-        this.localeService.t('game.already.in', { name: player.name })
-      );
+      return this.limiter
+        .consume(player.userId)
+        .then(() =>
+          this.channel.sendWithText(
+            this.groupId,
+            this.localeService.t('game.already.in', { name: player.name })
+          )
+        )
+        .catch(() => true);
     }
     this.players.push(player);
 

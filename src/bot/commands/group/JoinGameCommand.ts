@@ -20,8 +20,12 @@ export default class JoinGameCommand extends Command {
     const { groupId } = source;
     const gameExist = await this.groupManager!.gameExist(groupId!);
     if (!gameExist) {
-      this.channel.replyWithText(source.replyToken!, 'Game not existed');
-      return;
+      return this.limiter
+        .consume(groupId!)
+        .then(() =>
+          this.channel.replyWithText(source.replyToken!, 'Game not existed')
+        )
+        .catch(() => true);
     }
     // Any Better solution?
     if (!source.userId) {

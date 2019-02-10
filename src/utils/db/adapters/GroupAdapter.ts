@@ -21,7 +21,7 @@ export default class GroupAdapter {
       return data.val();
     }
     const group = { groupId };
-    this.ref.child('groups/' + groupId).set(group);
+    this.ref.child('groups/' + groupId).set(group).catch(() => console.log('fail to create group in firebase'));
     return group;
   }
 

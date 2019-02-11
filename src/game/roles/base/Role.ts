@@ -248,8 +248,10 @@ export default class Role {
     this.buff = this.buff
       .filter(item => item.duration !== 1)
       .map(
-        item => ({ duration: item.duration--, name: item.name } as Types.Buff)
+        item =>
+          ({ duration: item.duration -= 1, name: item.name } as Types.Buff)
       );
+    console.log(this.buff);
   }
 
   protected setRoleHistory(role: Types.RoleId) {

@@ -29,7 +29,7 @@ function handleScene(scene: time, day: any, player: Player[]) {
     case 0:
       switch (scene) {
         case 'NIGHT':
-          user[4].eventCallback(scene, ge('bite', player[2].userId));
+          user[4].eventCallback(scene, ge('bite', player[3].userId));
           break;
         case 'DUSK':
           // user[0].eventCallback(scene, ge('vote', player[4].userId));
@@ -42,7 +42,7 @@ function handleScene(scene: time, day: any, player: Player[]) {
           // user[4].eventCallback(scene, ge('bite', player[2].userId));
           break;
         case 'DUSK':
-          user[0].eventCallback(scene, ge('vote', player[4].userId));
+          // user[0].eventCallback(scene, ge('vote', player[4].userId));
           break;
       }
       break;
@@ -52,7 +52,7 @@ function handleScene(scene: time, day: any, player: Player[]) {
           // user[4].eventCallback(scene, ge('bite', player[2].userId));
           break;
         case 'DUSK':
-          user[0].eventCallback(scene, ge('vote', player[2].userId));
+          // user[0].eventCallback(scene, ge('vote', player[2].userId));
           break;
       }
       break;

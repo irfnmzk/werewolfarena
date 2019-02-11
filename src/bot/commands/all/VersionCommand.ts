@@ -3,7 +3,7 @@ import LineMessage from 'src/line/LineMessage';
 
 import Command from '../base/Command';
 
-export default class ExtendCommand extends Command {
+export default class VersionCommand extends Command {
   constructor(channel: LineMessage) {
     super(channel);
 

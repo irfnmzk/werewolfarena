@@ -5,7 +5,7 @@ import Command from '../base/Command';
 import { RoleId } from '../../../game/roles/base/RoleTypes';
 import { getInfoMessageByRole } from './helper/InfoMessageGenerator';
 
-export default class ExtendCommand extends Command {
+export default class InfoCommand extends Command {
   public roles: RoleId[];
 
   constructor(channel: LineMessage) {

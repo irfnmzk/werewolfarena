@@ -4,7 +4,7 @@ import LineMessage from 'src/line/LineMessage';
 import Command from '../base/Command';
 import { rolesMessage } from './helper/RolesMessageGenerator';
 
-export default class ExtendCommand extends Command {
+export default class RolesCommand extends Command {
   constructor(channel: LineMessage) {
     super(channel);
 

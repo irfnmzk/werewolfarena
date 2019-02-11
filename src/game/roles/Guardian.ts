@@ -23,7 +23,7 @@ export default class Guardian extends Role {
   }
 
   public eventNight() {
-    const target = this.game.getEnemyList(this.player);
+    const target = this.game.getAlivePlayer();
     const message = this.messageGenerator.guardianSelection(target);
     this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
   }

@@ -196,3 +196,79 @@ export function getTutorialMessage(local: LocaleService): FlexMessage {
     }
   };
 }
+
+export function getTutorialMessage_2(local: LocaleService): FlexMessage {
+  return {
+    type: 'flex',
+    altText: 'Tutorial',
+    contents: {
+      type: 'bubble',
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'box',
+            layout: 'vertical',
+            margin: 'lg',
+            contents: [
+              {
+                type: 'text',
+                text: 'Cara Main 🕹',
+                size: 'lg',
+                color: '#36435e',
+                weight: 'bold'
+              },
+              {
+                type: 'text',
+                text: local.t('tutorial.play'),
+                size: 'sm',
+                wrap: true
+              }
+            ]
+          },
+          {
+            type: 'box',
+            layout: 'vertical',
+            margin: 'lg',
+            contents: [
+              {
+                type: 'text',
+                text: 'Cara Melakukan Aksi 🗡',
+                size: 'lg',
+                color: '#36435e',
+                weight: 'bold'
+              },
+              {
+                type: 'text',
+                text: local.t('tutorial.action'),
+                size: 'sm',
+                wrap: true
+              }
+            ]
+          },
+          {
+            type: 'box',
+            layout: 'vertical',
+            margin: 'lg',
+            contents: [
+              {
+                type: 'text',
+                text: 'Cara Melakukan Vote 📣',
+                size: 'lg',
+                color: '#36435e',
+                weight: 'bold'
+              },
+              {
+                type: 'text',
+                text: local.t('tutorial.vote'),
+                size: 'sm',
+                wrap: true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  };
+}

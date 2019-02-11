@@ -6,6 +6,8 @@ import Command from '../base/Command';
 import VersionCommand from '../all/VersionCommand';
 import RolesCommand from '../all/RolesCommand';
 import InfoCommand from '../all/InfoCommand';
+import HelpCommand from '../all/HelpCommand';
+import ListCommand from '../all/ListCommand';
 import TutorialCommand from '../all/TutorialCommand';
 
 // Group
@@ -32,6 +34,8 @@ const commands: Command[] = [
   new VersionCommand(lineMessage),
   new RolesCommand(lineMessage),
   new InfoCommand(lineMessage),
+  new HelpCommand(lineMessage),
+  new ListCommand(lineMessage),
   new TutorialCommand(lineMessage),
 
   // Group

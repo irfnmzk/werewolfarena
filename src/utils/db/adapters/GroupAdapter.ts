@@ -21,7 +21,10 @@ export default class GroupAdapter {
       return data.val();
     }
     const group = { groupId };
-    this.ref.child('groups/' + groupId).set(group);
+    this.ref
+      .child('groups/' + groupId)
+      .set(group)
+      .catch(() => console.log(`fail to save database`));
     return group;
   }
 
@@ -35,7 +38,10 @@ export default class GroupAdapter {
     const groupStats: GroupStats = {
       gamePlayed: 0
     };
-    this.ref.child('group_stats/' + groupId).set(groupStats);
+    this.ref
+      .child('group_stats/' + groupId)
+      .set(groupStats)
+      .catch(() => console.log(`fail to save database`));
     return groupStats;
   }
 
@@ -43,6 +49,9 @@ export default class GroupAdapter {
    * updateStats
    */
   public updateStats(groupId: string, data: GroupStats) {
-    return this.ref.child('group_stats/' + groupId).set(data);
+    return this.ref
+      .child('group_stats/' + groupId)
+      .set(data)
+      .catch(() => console.log(`fail to save database`));
   }
 }

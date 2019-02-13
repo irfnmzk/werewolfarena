@@ -76,11 +76,11 @@
       "description": "Kamu adalah pelindung Desa 👼. Setiap malam, kamu bisa pilih 1 orang untuk di lindungi. Jika Werewolf menyerang orang yang kamu lindungi, Werewolf akan gagal membunuh orang tersebut. Usahakan kamu melindungi orang yang tepat!"
     },
     "seer": {
-      "name": "Seer 👳",
-      "announcement": "Kamu adalah Seer 👳 si penerawang, setiap malam kamu bisa menerawang pemain untuk mengetahui peran nya 😊",
-      "selection": "Pilih orang yang akan kamu terawang",
-      "see": "Kamu melihat 👁 {target} adalah seorang {role}!!",
-      "description": "Adalah si penerawang, tiap malam dia bisa menerawang seseorang untuk mengetahui peran nya, awas jangan sampai kamu jadi target werewolf selanjutnya!"
+      "name": "Seer 👁️",
+      "announcement": "Kamu adalah Seer 👁️ si Penerawang. Setiap malam, kamu bisa melihat peran pemain lainnya.",
+      "selection": "Pilih orang yang akan kamu terawang.",
+      "see": "Kamu melihat 👁️ {target} adalah seorang {role}.",
+      "description": "Kamu adalah Seer 👁️. Setiap malam, kamu bisa menerawang seseorang untuk mengetahui perannya. Awas jangan sampai kamu jadi target Werewolf selanjutnya!"
     },
     "drunk": {
       "name": "Drunk 🍻",

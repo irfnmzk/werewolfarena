@@ -10,43 +10,43 @@
   },
   "game": {
     "info": "📣 Info",
-    "created": "📣 Permainan baru telah di buat! permainan akan di mulai dalam 2 menit!",
-    "full": "Maaf 🙏 slot sudah penuh, Max pemain adalah {max} orang",
-    "not_enough": "🚫 Jumlah pemain tidak cukup. permainan di batalkan!\nmin pemain: {min} orang",
-    "not_enough_force": "🚫 Jumlah pemain tidak cukup, ajak teman-teman yang lain untuk bergabung!\nmin pemain: {min} orang",
+    "created": "📣 Permainan baru telah dibuat! Game akan dimulai dalam 2 menit!",
+    "full": "Maaf 🙏 Slot pemain sudah penuh. Batas pemain adalah {max} Orang.",
+    "not_enough": "🚫 Jumlah pemain tidak cukup. Game di batalkan!\nmin pemain: {min} Orang",
+    "not_enough_force": "🚫 Jumlah pemain tidak cukup. Ajak teman - teman yang lain untuk bergabung!\nmin pemain: {min} Orang.",
     "already": {
-      "in": "👋 Hai {name}, kamu sudah join ke dalam game!",
-      "start": "🚫 Gagal bergabung! game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjut nya akan di mulai."
+      "in": "👋 Halo {name}, kamu sudah join ke dalam game.",
+      "start": "🚫 Gagal bergabung. Game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjutnya akan di mulai."
     },
     "join_message": "📣 Bergabung sekarang!",
-    "start": "📣 Memulai permainan dalam 3 2 1..",
+    "start": "📣 Memulai permainan dalam 3, 2, 1 !",
     "scene": {
-      "first": "Semua warga berkumpul di balai desa. Kemarin seorang warga mati di cabik-cabik serigala. Warga desa ribut mendiskusikan siapa pelaku nya. Waktu mu 30 detik untuk berdiskusi!",
+      "first": "Semua warga berkumpul di Balai Desa. Kemarin, seorang warga mati di serang Werewolf. Warga Desa ribut mendiskusikan siapa pelakunya. Waktumu 30 detik untuk berdiskusi!",
       "day_count": "⏳ Hari ke {day}",
-      "day": "Matahari terlihat sangat terik. ini adalah hari ke-{day} Warga desa punya waktu {time} detik untuk diskusi, saling tuduh, atau menyebarkan gosip 😇",
-      "night": "Terlihat sebagian orang sudah tertidur namun ada beberapa yang masih terjaga, Untuk pemain malam kamu punya waktu {time} detik untuk melakukan aksi mu!",
-      "dusk": "Senja telah tiba. Seluruh warga berkumpul di balai desa untuk memilih siapa yang akan di eksekusi. Kamu punya waktu {time} detik untuk memilih, hati-hati jangan terpengaruh orang lain!",
+      "day": "Matahari terbit dan terasa sangat terik. Ini adalah hari ke-{day}. Warga Desa punya waktu {time} detik untuk berdiskusi. 🤔",
+      "night": "Matahari terbenam dan hari mulai Malam. Sebagian orang sudah tertidur namun ada beberapa yang masih terjaga. Untuk pemain special, kamu punya waktu {time} detik untuk melakukan aksimu!",
+      "dusk": "Matahari mulai terbenam dan saatnya Senja. Seluruh warga berkumpul di Balai Desa untuk memilih siapa yang akan dieksekusi. Kamu punya waktu {time} detik untuk memilih. hati-hati jangan terpengaruh orang lain!",
       "header": {
         "first": "💭 Prolog",
         "day_count": "⏳",
         "day": "☀️ Siang Hari",
         "night": "🌙 Malam Hari",
-        "dusk": "☁ Senja"
+        "dusk": "🌄 Senja"
       }
     },
-    "end": "Game Ended",
+    "end": "Game Ended.",
     "role": {
-      "generating": "⏳ Membagikan peran ke setiap pemain.."
+      "generating": "⏳ Membagikan peran ke setiap pemain..."
     },
-    "win": "{team} menang!! 🎉🎉",
-    "join": "📣 {player} berhasil bergabung!",
+    "win": "{team} Menang!!! 🎉🎉🎉",
+    "join": "📣 {player} Berhasil bergabung!",
     "timer": {
-      "minutes": "⌛ {time} menit lagi untuk join",
+      "minutes": "⌛ {time} menit lagi untuk join.",
       "seconds": "⌛ {time} detik lagi, Ayo join!",
       "extend": "📣 Waktu menunggu di tambah 1 menit!"
     },
     "min_player": "\nmin: {min} max: {max}",
-    "cant_cancel": "🚫 Game yang sudah di mulai tidak bisa di batalkan!",
+    "cant_cancel": "🚫 Game yang sudah di mulai tidak bisa dibatalkan!",
     "canceled": "📣 Game telah di batalkan."
   },
   "role": {

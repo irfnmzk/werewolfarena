@@ -111,36 +111,36 @@
   },
   "vote": {
     "selection": "Pilih pemain untuk di eksekusi ☠.",
-    "no_death": "⌛ Warga terlalu banyak berdebat. Keputusan mereka tidak bulat. Tidak ada yang di eksekusi malam ini!"
+    "no_death": "⌛ Warga terlalu banyak berdebat. Keputusan mereka tidak bulat. Tidak ada yang di eksekusi malam ini."
   },
   "common": {
     "selected": {
-      "self": "Kamu memilih {target}",
-      "vote": "📣 {user} memilih {target} untuk di eksekusi",
-      "ally": "{user} memilih {target}"
+      "self": "Kamu memilih {target}.",
+      "vote": "📣 {user} memilih {target} untuk di eksekusi.",
+      "ally": "{user} memilih {target}."
     },
-    "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun!",
+    "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun.",
     "playerlist": {
-      "header": "📣 Daftar Pemain 📣\n",
+      "header": "🎮 Daftar Pemain 🕹️\n",
       "end_header": "🎉 Semua Pemain 🎉 \n\n"
     },
     "life": {
       "alive": "🙂 Hidup",
-      "dead": "💀 Tewas"
+      "dead": "💀 Mati"
     },
     "win": {
       "win": "Menang",
       "lose": "Kalah"
     },
-    "notify_waiting_list": "📣 Notifikasi📣 \n\nGame baru akan di mulai di grup yang baru saja kamu pesan. \nAyo join sekarang!"
+    "notify_waiting_list": "📣 Notifikasi📣 \n\nGame baru akan di mulai di grup. \nAyo join sekarang!"
   },
   "death": {
     "vote": "🔥 Warga sudah mengambil keputusan. {player} mati di hukum gantung. 💀",
-    "bite": "{player} tergeletak bersimbah darah di rumah nya 💀, ternyata dia telah di bunuh oleh Werewolf 🐺",
-    "punishment": "💀 {player} mati karena 3 kali tidak melakukan voting "
+    "bite": "{player} tergeletak bersimbah darah di rumah nya 💀. Ternyata dia telah di bunuh oleh Werewolf 🐺.",
+    "punishment": "💀 {player} mati karena 3 kali tidak melakukan voting. "
   },
   "night": {
-    "no_death": "⛅ Malam Telah berlalu dengan sangat tenang. Aneh tidak ada yang mati tadi malam 😕"
+    "no_death": "⛅ Malam Telah berlalu dengan sangat sunyi. Kabar baik, tidak ada yang mati tadi malam."
   },
   "info": "info",
   "tole": {

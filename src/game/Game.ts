@@ -95,7 +95,7 @@ export default class Game {
     const message: Message[] = [
       this.messageGenerator.joinMessage(),
       this.messageGenerator.getDefaultText(
-        '📣 Bila pesan tidak muncul pastikan kamu sudah pakai Line versi terbaru!'
+        '📣 Bila pesan tidak muncul, pastikan kamu sudah update LINE ke versi terbaru!'
       )
     ];
     this.channel.sendMultipleTypeMessage(this.groupId, message);

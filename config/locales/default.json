@@ -51,9 +51,9 @@
   },
   "role": {
     "villager": {
-      "name": "Villager 👱",
+      "name": "Warga Desa 👱",
       "description": "Peran mu sangat simple cukup bertahan hidup sampai akhir permainan, kamu bisa vote untuk eksekusi setiap senja tiba",
-      "announcement": "Kamu adalah Warga bopung 👱, mengurus ladang tiap hari sampai kamu di makan oleh werewolf 😓"
+      "announcement": "Kamu adalah Warga Desa 👱, mengurus ladang tiap hari sampai kamu di makan oleh werewolf 😓"
     },
     "werewolf": {
       "name": "Werewolf 🐺",

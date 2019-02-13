@@ -52,28 +52,28 @@
   "role": {
     "villager": {
       "name": "Villager 👱",
-      "description": "Peran mu sangat simple cukup bertahan hidup sampai akhir permainan, kamu bisa vote untuk eksekusi setiap senja tiba",
-      "announcement": "Kamu adalah Warga Desa 👱, mengurus ladang tiap hari sampai kamu di makan oleh werewolf 😓"
+      "description": "Peranmu sangat simple cukup bertahan hidup sampai akhir permainan. Kamu bisa vote untuk eksekusi setiap Senja tiba.",
+      "announcement": "Kamu adalah Warga Desa 👱. Mengurus ladang setiap hari sampai kamu dimakan oleh Werewolf 😓."
     },
     "werewolf": {
       "name": "Werewolf 🐺",
-      "announcement": "Kamu adalah Werewolf 🐺! Kamu yang menyebabkan teror tiap malam nya 😌 {ally}",
-      "selection": "Pilih orang yang akan kamu makan!",
-      "bite": "Kamu Di makan oleh werewolf 🐺 dan mati tercabik-cabik 😱",
-      "ally_text": "adalah teman mu.",
-      "alone": "dan kamu adalah satu-satu nya werewolf 🐺 di desa ini!",
-      "friend": " adalah teman mu",
-      "eat_drunk": "😵 Kamu telah memakan seorang pemabuk, Kamu jadi teler dan tidak bisa memakan orang di malam berikut nya ",
-      "new_member": "🐺 {player} telah menjadi Werewolf!",
-      "description": "Dia adalah penyebab teror setiap malam nya, tiap malam kamu bisa memilih orang untuk di makan, bunuh semua orang di desa dan kamu akan menang!"
+      "announcement": "Kamu adalah Werewolf 🐺. Kamu yang menyebabkan teror setiap malamnya 😈 {ally}",
+      "selection": "Pilih orang yang akan menjadi korbanmu.",
+      "bite": "Kamu Dimakan oleh Werewolf 🐺 dan mati tercabik-cabik 😈. ",
+      "ally_text": "adalah temanmu.",
+      "alone": "dan kamu adalah satu - satunya Werewolf 🐺 di Desa ini!",
+      "friend": " adalah temanmu",
+      "eat_drunk": "😵 Kamu telah memakan seorang pemabuk. Kamu menjadi teler dan tidak bisa memakan orang di malam berikutnya.",
+      "new_member": "🐺 {player} telah menjadi Werewolf.",
+      "description": "Dia adalah penyebab teror setiap malamnya. Setiap malam, kamu bisa memilih orang untuk di makan. Bunuh semua orang di Desa dan kamu akan menang!"
     },
     "guardian": {
-      "name": "Guardian angel 👼",
-      "announcement": "Kamu adalah Guardian 👼 tugas mu adalah melindungi 1 pemain setiap malam nya. kamu bisa memilih untuk melindungi diri sendiri 🙆",
+      "name": "Guardian Angel 👼",
+      "announcement": "Kamu adalah Guardian 👼. Tugasmu adalah melindungi pemain lain. Tapi, kamu hanya bisa memilih 1 orang saja untuk dilindungi setiap malamnya. Kamu bisa melindungi diri sendiri 🛡️.",
       "selection": "Pilih orang untuk di lindungi malam ini!",
-      "fail_bite": "Kamu telah di lindungi Guardian 👼 dari serangan werewolf 😇",
-      "succes_protect": "Guardian telah berhasil melindungi seseorang malam ini!",
-      "description": "Kamu adalah pelindung desa setiap malam kamu bisa pilih orang untuk di lindungi, jika werewolf menyerang nya dia akan gagal, pastikan kamu lindungi orang yang tepat!"
+      "fail_bite": "Kamu telah dilindungi Guardian Angel 👼 dari serangan Werewolf 🐺.",
+      "succes_protect": "Guardian telah berhasil melindungi seseorang malam ini 👼 !",
+      "description": "Kamu adalah pelindung Desa 👼. Setiap malam, kamu bisa pilih 1 orang untuk di lindungi. Jika Werewolf menyerang orang yang kamu lindungi, Werewolf akan gagal membunuh orang tersebut. Usahakan kamu melindungi orang yang tepat!"
     },
     "seer": {
       "name": "Seer 👳",

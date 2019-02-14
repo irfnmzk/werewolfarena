@@ -251,7 +251,6 @@ export default class Role {
         item =>
           ({ duration: item.duration -= 1, name: item.name } as Types.Buff)
       );
-    console.log(this.buff);
   }
 
   protected setRoleHistory(role: Types.RoleId) {

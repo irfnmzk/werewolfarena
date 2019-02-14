@@ -116,21 +116,11 @@ export default class GameEventQueue {
   }
 
   private combineQueue() {
+    console.log(`combining queue`);
     const eventList: Types.EventType[] = ['bite'];
     eventList.forEach(event => {
       const eventCount = this.queue.filter(data => data.event === event).length;
-      if (eventCount <= 0) return;
-      if (eventCount <= 2) {
-        if (eventCount === 1) {
-          return;
-        }
-        this.queue = this.queue.filter(
-          item =>
-            this.queue.filter(data => data.event === event)[1].target.userId !==
-            item.target.userId
-        );
-        return;
-      }
+      if (eventCount <= 1) return;
 
       const userCounter: VoteCounter = this.queue.reduce(
         (prev, { target: { userId } }) => {
@@ -144,9 +134,20 @@ export default class GameEventQueue {
         userCounter[prev] > userCounter[curr] ? prev : curr
       );
 
-      this.queue = this.queue.filter(item => {
-        return item.target.userId === targetUserId || item.event !== event;
-      });
+      console.log(targetUserId);
+
+      this.queue = this.queue
+        .filter(
+          item => item.target.userId === targetUserId || item.event !== event
+        )
+        .filter((item, index, data) => {
+          return (
+            data.findIndex(i => i.target.userId === item.target.userId) ===
+              index || item.event !== event
+          );
+        });
+
+      console.log(this.queue);
     });
   }
 }

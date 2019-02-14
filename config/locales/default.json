@@ -23,7 +23,7 @@
     "scene": {
       "first": "Semua warga berkumpul di Balai Desa. Kemarin, seorang warga mati di serang Werewolf. Warga Desa ribut mendiskusikan siapa pelakunya. Waktumu 30 detik untuk berdiskusi!",
       "day_count": "⏳ Hari ke {day}",
-      "day": "🤔☀️ Matahari terbit dan terasa sangat terik. Ini adalah hari ke-{day}. Warga Desa punya waktu {time} detik untuk berdiskusi.",
+      "day": "☀️ Matahari terbit dan terasa sangat terik. Ini adalah hari ke-{day}. 💬 Warga Desa punya waktu {time} detik untuk berdiskusi.",
       "night": "🌙 Matahari terbenam dan hari mulai Malam. Sebagian orang sudah tertidur namun ada beberapa yang masih terjaga. Untuk pemain special, kamu punya waktu {time} detik untuk melakukan aksimu!",
       "dusk": "🌄 Matahari mulai terbenam dan saatnya Senja. Seluruh warga berkumpul di Balai Desa untuk memilih siapa yang akan dieksekusi. Kamu punya waktu {time} detik untuk memilih. hati-hati jangan terpengaruh orang lain!",
       "header": {

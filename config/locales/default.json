@@ -69,11 +69,11 @@
     },
     "guardian": {
       "name": "Guardian Angel 👼",
-      "announcement": "Kamu adalah Guardian 👼. Tugasmu adalah melindungi pemain lain. Tapi, kamu hanya bisa memilih 1 orang saja untuk dilindungi setiap malamnya. Kamu bisa melindungi diri sendiri 🛡️.",
-      "selection": "Pilih orang untuk di lindungi malam ini!",
+      "announcement": "Kamu adalah Guardian 👼. Tugasmu adalah melindungi pemain lain dari serangan Werewolf. Tetapi, kamu hanya bisa memilih 1 orang saja untuk dilindungi setiap malamnya. Kamu juga bisa melindungi diri sendiri 🛡️.",
+      "selection": "🛡️ Pilih orang untuk di lindungi malam ini!",
       "fail_bite": "Kamu telah dilindungi Guardian Angel 👼 dari serangan Werewolf 🐺.",
       "succes_protect": "Guardian telah berhasil melindungi seseorang malam ini 👼 !",
-      "description": "Kamu adalah pelindung Desa 👼. Setiap malam, kamu bisa pilih 1 orang untuk di lindungi. Jika Werewolf menyerang orang yang kamu lindungi, Werewolf akan gagal membunuh orang tersebut. Usahakan kamu melindungi orang yang tepat!"
+      "description": "Kamu adalah pelindung Warga Desa 👼. Setiap malam, kamu bisa pilih 1 orang untuk di lindungi. Jika Werewolf menyerang orang yang kamu lindungi, Werewolf akan gagal membunuh orang tersebut. Usahakan kamu melindungi orang yang tepat!"
     },
     "seer": {
       "name": "Seer 🔮",

@@ -77,28 +77,28 @@
     },
     "seer": {
       "name": "Seer 🔮",
-      "announcement": "Kamu adalah Seer 🔮 si Penerawang. Setiap malam, kamu bisa melihat peran pemain lainnya.",
-      "selection": "Pilih orang yang akan kamu terawang.",
+      "announcement": "Kamu adalah Seer 🔮. Setiap malam, kamu bisa melihat peran pemain lainnya.",
+      "selection": "Pilih orang yang akan kamu terawang 🔮.",
       "see": "Kamu melihat 🔮 {target} adalah seorang {role}.",
       "description": "Kamu adalah Seer 🔮. Setiap malam, kamu bisa menerawang seseorang untuk mengetahui perannya. Awas jangan sampai kamu jadi target Werewolf selanjutnya!"
     },
     "drunk": {
       "name": "Drunk 🍻",
-      "announcement": "Kamu adalah Drunk 🍻 si Pemabuk. Jika Werewolf 🐺 memakanmu, dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikutnya 😵.",
-      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin dan sekarang kamu mabuk 😵. Kamu tidak bisa makan dalam 1 hari!",
+      "announcement": "Kamu adalah Drunk 🍻. Jika Werewolf memakanmu, dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikutnya.",
+      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin dan sekarang kamu mabuk. Kamu tidak bisa makan dalam 1 hari 😵!",
       "description": "Kamu adalah si Pemabuk 🍻. Jika Werewolf memakanmu, dia tidak akan bisa memakan orang lain di malam berikutnya."
     },
     "cursed": {
       "name": "Cursed 🦊",
-      "announcement": "Kamu adalah Cursed 🦊, si Warga Desa yang terkutuk. Jika kamu dimakan oleh Werewolf 🐺, maka kamu akan menjadi bagian dari mereka!",
+      "announcement": "Kamu adalah Cursed (Werefox) 🦊. Jika kamu dimakan oleh Werewolf, maka kamu akan menjadi bagian dari mereka!",
       "transform": {
-        "werewolf": "🐺 Werewolf telah memakanmu! Sekarang kamu adalah bagian dari mereka!"
+        "werewolf": "🐺 Werewolf telah memakanmu! Sekarang kamu adalah bagian dari mereka 😈!"
       },
       "description": "Kamu adalah Warga Desa yang terkutuk 🦊. Kamu akna menjadi Werefox apabila Werewolf memakanmu. Kamu ada di pihak Villager. Namun, apabila kamu sudah menjadi Werefox, kamu menjadi kaum Werewolf!"
     },
     "traitor": {
       "name": "Traitor 🤞",
-      "announcement": "Kamu adalah Traitor 🤞 si Penghianat. Saat semua Werewolf di Desa mati, maka kamu akan berubah menjadi Werewolf 🐺!",
+      "announcement": "Kamu adalah Traitor 🤞. Saat semua Werewolf di Desa mati, maka kamu akan berubah menjadi Werewolf 🐺!",
       "transform": {
         "werewolf": "🐺 Semua Werewolf di Desa telah mati. Sekarang adalah waktunya menunjukan dirimu yang sebenarnya. Kamu telah berubah menjadi Werewolf 🐺!"
       },

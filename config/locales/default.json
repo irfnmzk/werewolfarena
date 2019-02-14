@@ -76,71 +76,71 @@
       "description": "Kamu adalah pelindung Desa 👼. Setiap malam, kamu bisa pilih 1 orang untuk di lindungi. Jika Werewolf menyerang orang yang kamu lindungi, Werewolf akan gagal membunuh orang tersebut. Usahakan kamu melindungi orang yang tepat!"
     },
     "seer": {
-      "name": "Seer 👁️",
-      "announcement": "Kamu adalah Seer 👁️ si Penerawang. Setiap malam, kamu bisa melihat peran pemain lainnya.",
+      "name": "Seer 🔮",
+      "announcement": "Kamu adalah Seer 🔮 si Penerawang. Setiap malam, kamu bisa melihat peran pemain lainnya.",
       "selection": "Pilih orang yang akan kamu terawang.",
-      "see": "Kamu melihat 👁️ {target} adalah seorang {role}.",
-      "description": "Kamu adalah Seer 👁️. Setiap malam, kamu bisa menerawang seseorang untuk mengetahui perannya. Awas jangan sampai kamu jadi target Werewolf selanjutnya!"
+      "see": "Kamu melihat 🔮 {target} adalah seorang {role}.",
+      "description": "Kamu adalah Seer 🔮. Setiap malam, kamu bisa menerawang seseorang untuk mengetahui perannya. Awas jangan sampai kamu jadi target Werewolf selanjutnya!"
     },
     "drunk": {
       "name": "Drunk 🍻",
-      "announcement": "Kamu adalah Drunk 🍻 si pemabuk, jika werewolf 🐺 memakan mu dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikut nya 😵",
-      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin sekarang kamu mabuk 😵 dan tidak bisa memakan siapapun!",
-      "description": "Kamu adalah si pemabuk jika werewolf memakan mu dia tidak akan bisa mamakan orang lain di malam berikutnya!"
+      "announcement": "Kamu adalah Drunk 🍻 si Pemabuk. Jika Werewolf 🐺 memakanmu, dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikutnya 😵.",
+      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin dan sekarang kamu mabuk 😵. Kamu tidak bisa makan dalam 1 hari!",
+      "description": "Kamu adalah si Pemabuk 🍻. Jika Werewolf memakanmu, dia tidak akan bisa memakan orang lain di malam berikutnya."
     },
     "cursed": {
-      "name": "Cursed 😾",
-      "announcement": "Kamu adalah Cursed 😾 si warga desa terkutuk! jika kamu di makan oleh Werewolf 🐺 maka kamu akan menjadi bagian dari mereka!",
+      "name": "Cursed 🦊",
+      "announcement": "Kamu adalah Cursed 🦊, si Warga Desa yang terkutuk. Jika kamu dimakan oleh Werewolf 🐺, maka kamu akan menjadi bagian dari mereka!",
       "transform": {
-        "werewolf": "🐺 Werewolf telah memakan mu! sekarang kamu adalah bagian dari mereka!"
+        "werewolf": "🐺 Werewolf telah memakanmu! Sekarang kamu adalah bagian dari mereka!"
       },
-      "description": "Si Terkutuk!!, Kamu akan berubah jadi werewolf bila werewolf memakan mu!! kamu ada di pihak villager"
+      "description": "Kamu adalah Warga Desa yang terkutuk 🦊. Kamu akna menjadi Werefox apabila Werewolf memakanmu. Kamu ada di pihak Villager. Namun, apabila kamu sudah menjadi Werefox, kamu menjadi kaum Werewolf!"
     },
     "traitor": {
-      "name": "Traitor 🖕",
-      "announcement": "Kamu adalah Traitor 🖕 si penghianat, saat semua werewolf di desa mati maka kamu akan berubah menjadi mereka!",
+      "name": "Traitor 🤞",
+      "announcement": "Kamu adalah Traitor 🤞 si Penghianat. Saat semua Werewolf di Desa mati, maka kamu akan berubah menjadi Werewolf 🐺!",
       "transform": {
-        "werewolf": "🐺 Semua werewolf di desa telah mati, sekarang adalah waktu nya menunjukan jati dirimu yang sebenarnya. Kamu telah berubah menjadi Werewolf!"
+        "werewolf": "🐺 Semua Werewolf di Desa telah mati. Sekarang adalah waktunya menunjukan dirimu yang sebenarnya. Kamu telah berubah menjadi Werewolf 🐺!"
       },
-      "description": "Si penghianat! jika semua werewolf di desa mati maka kamu yang akan menggantikan mereka semua!"
+      "description": "Kamu adalah Traitor 🤞 Si Penghianat. Jika semua Werewolf di Desa mati, maka kamu yang akan menggantikan mereka semua."
     },
     "fool": {
       "name": "Fool 👳",
-      "description": "Kamu menyangka dirimu adalah seer, dalam permainan kamu akan di beritahu bahwa role mu adalah seer, jika kamu menerawang orang lain maka ramalan mu akan punya kemungkinan benar sebesar 50 banding 50"
+      "description": "Kamu menyangka dirimu adalah seorang Seer 🔮. Dalam permainan kamu akan di beritahu bahwa rolemu adalah Seer. Namun, jika kamu menerawang orang lain kemungkinan benarnya hanya sebesar 50 banding 50."
     }
   },
   "vote": {
-    "selection": "Pilih pemain untuk di eksekusi ☠",
-    "no_death": "⌛ Warga terlalu banyak berdebat, keputusan mereka tidak bulat. Tidak ada yang di eksekusi malam ini!"
+    "selection": "Pilih pemain untuk di eksekusi ☠.",
+    "no_death": "⌛ Warga terlalu banyak berdebat. Keputusan mereka tidak bulat. Tidak ada yang di eksekusi malam ini."
   },
   "common": {
     "selected": {
-      "self": "Kamu memilih {target}",
-      "vote": "📣 {user} memilih {target} untuk di eksekusi",
-      "ally": "{user} memilih {target}"
+      "self": "Kamu memilih {target}.",
+      "vote": "📣 {user} memilih {target} untuk di eksekusi.",
+      "ally": "{user} memilih {target}."
     },
-    "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun!",
+    "timeup": "⌛ Waktu telah habis dan kamu tidak memilih siapapun.",
     "playerlist": {
-      "header": "📣 Daftar Pemain 📣\n",
+      "header": "🎮 Daftar Pemain 🕹️\n",
       "end_header": "🎉 Semua Pemain 🎉 \n\n"
     },
     "life": {
       "alive": "🙂 Hidup",
-      "dead": "💀 Tewas"
+      "dead": "💀 Mati"
     },
     "win": {
       "win": "Menang",
       "lose": "Kalah"
     },
-    "notify_waiting_list": "📣 Notifikasi📣 \n\nGame baru akan di mulai di grup yang baru saja kamu pesan. \nAyo join sekarang!"
+    "notify_waiting_list": "📣 Notifikasi📣 \n\nGame baru akan di mulai di grup. \nAyo join sekarang!"
   },
   "death": {
     "vote": "🔥 Warga sudah mengambil keputusan. {player} mati di hukum gantung. 💀",
-    "bite": "{player} tergeletak bersimbah darah di rumah nya 💀, ternyata dia telah di bunuh oleh Werewolf 🐺",
-    "punishment": "💀 {player} mati karena 3 kali tidak melakukan voting "
+    "bite": "{player} tergeletak bersimbah darah di rumah nya 💀. Ternyata dia telah di bunuh oleh Werewolf 🐺.",
+    "punishment": "💀 {player} mati karena 3 kali tidak melakukan voting. "
   },
   "night": {
-    "no_death": "⛅ Malam Telah berlalu dengan sangat tenang. Aneh tidak ada yang mati tadi malam 😕"
+    "no_death": "⛅ Malam Telah berlalu dengan sangat sunyi. Kabar baik, tidak ada yang mati tadi malam."
   },
   "info": "info",
   "tole": {

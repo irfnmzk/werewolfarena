@@ -116,7 +116,6 @@ export default class GameEventQueue {
   }
 
   private combineQueue() {
-    console.log(`combining queue`);
     const eventList: Types.EventType[] = ['bite'];
     eventList.forEach(event => {
       const eventCount = this.queue.filter(data => data.event === event).length;
@@ -134,8 +133,6 @@ export default class GameEventQueue {
         userCounter[prev] > userCounter[curr] ? prev : curr
       );
 
-      console.log(targetUserId);
-
       this.queue = this.queue
         .filter(
           item => item.target.userId === targetUserId || item.event !== event
@@ -146,8 +143,6 @@ export default class GameEventQueue {
               index || item.event !== event
           );
         });
-
-      console.log(this.queue);
     });
   }
 }

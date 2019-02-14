@@ -11,7 +11,7 @@
   "game": {
     "info": "📣 Info",
     "created": "📣 Permainan baru telah dibuat! Game akan dimulai dalam 2 menit!",
-    "full": "Maaf 🙏 Slot pemain sudah penuh. Batas pemain adalah {max} Orang.",
+    "full": "🙏 Maaf, slot pemain sudah penuh. Batas pemain yang dapat berpartisipasi adalah {max} Orang.",
     "not_enough": "🚫 Jumlah pemain tidak cukup. Game di batalkan!\nmin pemain: {min} Orang",
     "not_enough_force": "🚫 Jumlah pemain tidak cukup. Ajak teman - teman yang lain untuk bergabung!\nmin pemain: {min} Orang.",
     "already": {
@@ -19,13 +19,13 @@
       "start": "🚫 Gagal bergabung. Game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjutnya akan di mulai."
     },
     "join_message": "📣 Bergabung sekarang!",
-    "start": "📣 Memulai permainan dalam 3, 2, 1 !",
+    "start": "📣 Memulai permainan dalam 3 2 1 ...",
     "scene": {
       "first": "Semua warga berkumpul di Balai Desa. Kemarin, seorang warga mati di serang Werewolf. Warga Desa ribut mendiskusikan siapa pelakunya. Waktumu 30 detik untuk berdiskusi!",
       "day_count": "⏳ Hari ke {day}",
-      "day": "Matahari terbit dan terasa sangat terik. Ini adalah hari ke-{day}. Warga Desa punya waktu {time} detik untuk berdiskusi. 🤔",
-      "night": "Matahari terbenam dan hari mulai Malam. Sebagian orang sudah tertidur namun ada beberapa yang masih terjaga. Untuk pemain special, kamu punya waktu {time} detik untuk melakukan aksimu!",
-      "dusk": "Matahari mulai terbenam dan saatnya Senja. Seluruh warga berkumpul di Balai Desa untuk memilih siapa yang akan dieksekusi. Kamu punya waktu {time} detik untuk memilih. hati-hati jangan terpengaruh orang lain!",
+      "day": "🤔☀️ Matahari terbit dan terasa sangat terik. Ini adalah hari ke-{day}. Warga Desa punya waktu {time} detik untuk berdiskusi.",
+      "night": "🌙 Matahari terbenam dan hari mulai Malam. Sebagian orang sudah tertidur namun ada beberapa yang masih terjaga. Untuk pemain special, kamu punya waktu {time} detik untuk melakukan aksimu!",
+      "dusk": "🌄 Matahari mulai terbenam dan saatnya Senja. Seluruh warga berkumpul di Balai Desa untuk memilih siapa yang akan dieksekusi. Kamu punya waktu {time} detik untuk memilih. hati-hati jangan terpengaruh orang lain!",
       "header": {
         "first": "💭 Prolog",
         "day_count": "⏳",
@@ -52,20 +52,20 @@
   "role": {
     "villager": {
       "name": "Villager 👱",
-      "description": "Peranmu sangat simple cukup bertahan hidup sampai akhir permainan. Kamu bisa vote untuk eksekusi setiap Senja tiba.",
-      "announcement": "Kamu adalah Warga Desa 👱. Mengurus ladang setiap hari sampai kamu dimakan oleh Werewolf 😓."
+      "description": "Peranmu sangat simple. Coba untuk bertahan hidup sampai akhir permainan. Kamu bisa ikut vote untuk mengeksekusi orang yang dicurigai sebagai Werewolf setiap Senja tiba.",
+      "announcement": "Kamu adalah Warga Desa 👱. Tugasmu adalah bertahan hidup sampai akhir."
     },
     "werewolf": {
       "name": "Werewolf 🐺",
-      "announcement": "Kamu adalah Werewolf 🐺. Kamu yang menyebabkan teror setiap malamnya 😈 {ally}",
-      "selection": "Pilih orang yang akan menjadi korbanmu.",
-      "bite": "Kamu Dimakan oleh Werewolf 🐺 dan mati tercabik-cabik 😈. ",
-      "ally_text": "adalah temanmu.",
+      "announcement": "Kamu adalah Werewolf 🐺. Kamulah yang menyebabkan terror setiap malamnya 😈. {ally}.",
+      "selection": "Pilih orang yang akan menjadi korbanmu 😈.",
+      "bite": "Kamu telah dimakan oleh Werewolf 🐺 dan mati tercabik-cabik 😈. ",
+      "ally_text": "adalah temanmu 🐺.",
       "alone": "dan kamu adalah satu - satunya Werewolf 🐺 di Desa ini!",
-      "friend": " adalah temanmu",
+      "friend": " adalah temanmu.",
       "eat_drunk": "😵 Kamu telah memakan seorang pemabuk. Kamu menjadi teler dan tidak bisa memakan orang di malam berikutnya.",
       "new_member": "🐺 {player} telah menjadi Werewolf.",
-      "description": "Dia adalah penyebab teror setiap malamnya. Setiap malam, kamu bisa memilih orang untuk di makan. Bunuh semua orang di Desa dan kamu akan menang!"
+      "description": "Kamu adalah Werewolf 🐺. Tugasmu adalah memakan semua warga desa. Bunuh semua orang di Desa dan kamu akan menang!"
     },
     "guardian": {
       "name": "Guardian Angel 👼",

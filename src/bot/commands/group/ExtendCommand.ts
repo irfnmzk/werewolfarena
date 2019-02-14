@@ -17,6 +17,7 @@ export default class ExtendCommand extends Command {
    */
   public async run(_: string, source: MessageSource) {
     const { groupId } = source;
+    if (!groupId) return;
     const gameExist = await this.groupManager!.gameExist(groupId!);
     if (!gameExist) {
       return this.channel.replyWithText(

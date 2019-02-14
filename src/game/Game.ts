@@ -610,7 +610,9 @@ export default class Game {
     allDeath.forEach(death => {
       deathMessage.push(
         this.localeService.t(`death.${death.event}`, {
-          player: death.player.name
+          player: this.option.showRole
+            ? `${death.player.name}(${death.player.role!.name})`
+            : death.player.name
         })
       );
     });

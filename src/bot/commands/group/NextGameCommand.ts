@@ -18,6 +18,7 @@ export default class JoinGameCommand extends Command {
    */
   public async run(_: string, source: MessageSource) {
     const { groupId } = source;
+    if (!groupId) return;
     if (!source.userId) {
       return this.notAddingAsFriend(source.replyToken!);
     }

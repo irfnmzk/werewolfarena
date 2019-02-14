@@ -1,17 +1,17 @@
 {
   "welcome": "Bot Is Now Ready",
   "tutorial": {
-    "opening": "Simpel nya ini adalah role playing game atau game bermain peran, nanti kalian akan memiliki peran masing - masing dan setip peran tersebut punya keunikan yang tidak di miliki peran lain, tujuan dari game ini adalah mencari tahu peran orang lain, dan membunuh semua musuh yang ada.",
-    "team": "Di game ini punya 2 tim utama yaitu Villager dan Werewolf, untuk team lainnya mungkin saat ini belum rilis. Tugas utama Werewolf adalah untuk membunuh semua Warga desa atau Villager jika semua Werewolf mati maka villager akan memenangkan permainan. Sebalik nya jika jumlah Werewolf lebih banyak atau setara dengan jumlah Villager maka Werewolf akan memenangkan permainan. Peran yang akan kalian dapatkan adalah random sesuai dengan jumlah pemain untuk meliat daftar peran tap daftar peran di menu utama",
-    "flow": "Alur game disini terbagi menjadi jadi 3 fase yaitu Malam, Siang dan Senja, Tiap fase tersebut punya tugas nya masing - masing, Dimulai dari fase pertama yaitu malam pada fase ini Werewolf bisa melancarkan teror kepada warga desa, dan beberapa peran yang memiliki aksi malam juga bisa ikut melancarkan aksi nya seperti seer dan guardian, Selanjutnya fase kedua yaitu siang hari pada fase ini pemain akan berdebat atau menyebarkan gosip tentang siapa yang di curigai menjadi werewolf, kamu bisa menuduh atau pun menyangkal tuduhan tersebut, yang terakhir ada fase Senja pada fase ini warga desa akan melakukan eksekusi terhadap seseorang yang di curigai sebagai Werewolf, Kalian bisa melakukan voting untuk menentukan siapa yang akan di eksekusi malam ini!",
-    "play": "Untuk mulai bermain silahkan undang bot ini ke groupchat kamu lalu ketik /buat untuk membuat game setelah itu ajak teman-teman kamu untuk bergabung minimal pemain untuk bisa memulai game adalah 5 orang, kamu punya waktu 2 menit untuk mengumpulkan pemain dan game akan di mulai otomatis dalam 2 menit, untuk memulai game sebelum waktu nya kamu bisa gunakan perintah /mulai",
-    "action": "Setelah permainan di mulai kamu akan mendapat peran secara acak, lalu bot ini akan memberitahu apa peran mu lewat pm (private message) jangan beri tahu peran mu ke siapapun! setelah itu kamu akan melewati berbagai fase seperti malam dan senja tiap role punya aksi masing - masing saat fase tertentu, bot ini akan memberikan pilihan untuk melakukan aksimu. Kita ambil contoh werewolf pada malam hari dia punya aksi untuk memakan warga desa maka setiap malam nya selama kamu masih hidup bot ini akan memberikan playerlist siapa saja yang bisa di bunuh dan kamu bisa memilih nya. begitu pun dengan peran lain yang punya aksi pada fase tertentu",
-    "vote": "Sistem nya hampir sama dengan aksi hanya saja vote berlaku bagi semua pemain selagi dia masih hidup, tiap senja pemain bisa memilih orang lain untuk di eksekusi dengan sistem vote, jika jumlah masing - masing kandidat sama maka tidak ada yang di eksekusi, sebalik nya jika kandidat memiliki suara paling banyak maka dia yang akan di eksekusi"
+    "opening": "Werewolf adalah Role Playing Game (RPG) atau game bermain peran. Nanti kalian akan memiliki peran masing - masing dan setiap peran tersebut mempunyai tugas dan aksi yang berbeda. Tujuan dari game ini adalah bertahan hidup dari serangan Werewolf dan mengalahkan Werewolf.",
+    "team": "Game ini terdiri dari 2 team utama yaitu Villager dan Werewolf. Tujuan Villager adalah bertahan hidup dan mencari juga membunuh para Werewolf. Sedangkan tujuan Werewolf adalah membunuh semua Villager secara diam diam. Peran yang akan kalian dapatkan adalah random, disesuaikan dengan jumlah pemain. Untuk meliat daftar peran, tap Daftar Peran di Menu Utama",
+    "flow": "Alur game disini terbagi menjadi 3 fase, yaitu Malam - Siang dan Senja. Tiap fase tersebut punya event yang berbeda. Pada fase Malam, Werewolf dan peran special lain bisa menggunakan aksi mereka. Lalu pada fase Siang, hasil dari aksi semalam akan diumumkan dan pada fase ini Warga Desa diberi kesempatan untuk berdiskusi. Lalu ada fase Senja, Warga Desa akan melakukan eksekusi terhadap orang yang telah disetujui dan dicurigai sebagai Werewolf. Kalian bisa melakukan voting untuk menentukan siapa yang akan dieksekusi.",
+    "play": "Untuk mulai bermain, silahkan undang bot ini ke groupchat kamu lalu ketik /buat untuk membuat game. Setelah itu ajak teman-teman kamu untuk bergabung. Minimal pemain untuk bisa memulai game adalah 5 orang. Kamu punya waktu 2 menit untuk mengumpulkan pemain dan game akan di mulai otomatis dalam 2 menit. Untuk menambah waktu menunggu, gunakan perintah /extend. Untuk memulai game secara manual kamu bisa menggunakan perintah /mulai.",
+    "action": "Setelah permainan di mulai, kamu akan mendapat peran secara acak. Lalu bot ini akan memberitahu apa peranmu lewat Private Chat. Kamu akan bisa melakukan aksimu di fase fase tertentu setelah bot Werewolf mengirim pesan.",
+    "vote": "Sistem vote berguna untuk memilih orang yang dicurigai sebagai Werewolf/Role Jahat. Setiap Siang, semua pemain bisa memilih pemain lain untuk di eksekusi pada Senja nanti. Jika ada jumlah vote yang sama, maka eksekusi tidak akan dilaksanakan."
   },
   "game": {
     "info": "📣 Info",
     "created": "📣 Permainan baru telah dibuat! Game akan dimulai dalam 2 menit!",
-    "full": "Maaf 🙏 Slot pemain sudah penuh. Batas pemain adalah {max} Orang.",
+    "full": "🙏 Maaf, slot pemain sudah penuh. Batas pemain yang dapat berpartisipasi adalah {max} Orang.",
     "not_enough": "🚫 Jumlah pemain tidak cukup. Game di batalkan!\nmin pemain: {min} Orang",
     "not_enough_force": "🚫 Jumlah pemain tidak cukup. Ajak teman - teman yang lain untuk bergabung!\nmin pemain: {min} Orang.",
     "already": {
@@ -19,13 +19,13 @@
       "start": "🚫 Gagal bergabung. Game sudah di mulai! ketik /notify atau /n agar mendapat notifikasi bila game selanjutnya akan di mulai."
     },
     "join_message": "📣 Bergabung sekarang!",
-    "start": "📣 Memulai permainan dalam 3, 2, 1 !",
+    "start": "📣 Memulai permainan dalam 3 2 1 ...",
     "scene": {
       "first": "Semua warga berkumpul di Balai Desa. Kemarin, seorang warga mati di serang Werewolf. Warga Desa ribut mendiskusikan siapa pelakunya. Waktumu 30 detik untuk berdiskusi!",
       "day_count": "⏳ Hari ke {day}",
-      "day": "Matahari terbit dan terasa sangat terik. Ini adalah hari ke-{day}. Warga Desa punya waktu {time} detik untuk berdiskusi. 🤔",
-      "night": "Matahari terbenam dan hari mulai Malam. Sebagian orang sudah tertidur namun ada beberapa yang masih terjaga. Untuk pemain special, kamu punya waktu {time} detik untuk melakukan aksimu!",
-      "dusk": "Matahari mulai terbenam dan saatnya Senja. Seluruh warga berkumpul di Balai Desa untuk memilih siapa yang akan dieksekusi. Kamu punya waktu {time} detik untuk memilih. hati-hati jangan terpengaruh orang lain!",
+      "day": "☀️ Matahari terbit dan terasa sangat terik. Ini adalah hari ke-{day}. 💬 Warga Desa punya waktu {time} detik untuk berdiskusi.",
+      "night": "🌙 Matahari terbenam dan hari mulai Malam. Sebagian orang sudah tertidur namun ada beberapa yang masih terjaga. Untuk pemain special, kamu punya waktu {time} detik untuk melakukan aksimu!",
+      "dusk": "🌄 Matahari mulai terbenam dan saatnya Senja. Seluruh warga berkumpul di Balai Desa untuk memilih siapa yang akan dieksekusi. Kamu punya waktu {time} detik untuk memilih. hati-hati jangan terpengaruh orang lain!",
       "header": {
         "first": "💭 Prolog",
         "day_count": "⏳",
@@ -52,61 +52,61 @@
   "role": {
     "villager": {
       "name": "Villager 👱",
-      "description": "Peranmu sangat simple cukup bertahan hidup sampai akhir permainan. Kamu bisa vote untuk eksekusi setiap Senja tiba.",
-      "announcement": "Kamu adalah Warga Desa 👱. Mengurus ladang setiap hari sampai kamu dimakan oleh Werewolf 😓."
+      "description": "👱 Villager adalah Warga Desa biasa yang bertugas untuk bertahan hidup dari serangan Werewolf dengan meyakinkan orang lain bahwa dia adalah Warga Desa biasa. Villager bisa ikut vote dalam fase pemilihan orang yang akan dieksekusi.",
+      "announcement": "Kamu adalah Warga Desa 👱 Tugasmu adalah bertahan hidup sampai akhir."
     },
     "werewolf": {
       "name": "Werewolf 🐺",
-      "announcement": "Kamu adalah Werewolf 🐺. Kamu yang menyebabkan teror setiap malamnya 😈 {ally}",
-      "selection": "Pilih orang yang akan menjadi korbanmu.",
-      "bite": "Kamu Dimakan oleh Werewolf 🐺 dan mati tercabik-cabik 😈. ",
-      "ally_text": "adalah temanmu.",
+      "announcement": "Kamu adalah Werewolf 🐺 Tugasmu adalah memakan semua warga desa 😈 {ally}",
+      "selection": "Pilih orang yang akan menjadi korbanmu 😈",
+      "bite": "Kamu telah dimakan oleh Werewolf 🐺 dan mati tercabik-cabik 😈",
+      "ally_text": "adalah temanmu 🐺",
       "alone": "dan kamu adalah satu - satunya Werewolf 🐺 di Desa ini!",
-      "friend": " adalah temanmu",
+      "friend": " adalah temanmu.",
       "eat_drunk": "😵 Kamu telah memakan seorang pemabuk. Kamu menjadi teler dan tidak bisa memakan orang di malam berikutnya.",
       "new_member": "🐺 {player} telah menjadi Werewolf.",
-      "description": "Dia adalah penyebab teror setiap malamnya. Setiap malam, kamu bisa memilih orang untuk di makan. Bunuh semua orang di Desa dan kamu akan menang!"
+      "description": "🐺 Werewolf adalah peran Antagonist utama dalam game ini. Werewolf bertujuan memakan habis semua warga desa secara diam diam untuk menang. Werewolf hanya bisa memakan 1 Warga Desa setiap malamnya. Coba untuk membuat Warga Desa lainnya yakin bahwa kamu bukanlah seorang Werewolf 😈"
     },
     "guardian": {
       "name": "Guardian Angel 👼",
-      "announcement": "Kamu adalah Guardian 👼. Tugasmu adalah melindungi pemain lain. Tapi, kamu hanya bisa memilih 1 orang saja untuk dilindungi setiap malamnya. Kamu bisa melindungi diri sendiri 🛡️.",
-      "selection": "Pilih orang untuk di lindungi malam ini!",
-      "fail_bite": "Kamu telah dilindungi Guardian Angel 👼 dari serangan Werewolf 🐺.",
+      "announcement": "Kamu adalah Guardian 👼 Tugasmu adalah melindungi pemain lain dari serangan Werewolf. Tetapi, kamu hanya bisa memilih 1 orang saja untuk dilindungi setiap malamnya. Pilih orang yang tepat !",
+      "selection": "🛡️ Pilih orang untuk di lindungi malam ini!",
+      "fail_bite": "Kamu telah dilindungi Guardian Angel 👼 dari serangan Werewolf 🐺",
       "succes_protect": "Guardian telah berhasil melindungi seseorang malam ini 👼 !",
-      "description": "Kamu adalah pelindung Desa 👼. Setiap malam, kamu bisa pilih 1 orang untuk di lindungi. Jika Werewolf menyerang orang yang kamu lindungi, Werewolf akan gagal membunuh orang tersebut. Usahakan kamu melindungi orang yang tepat!"
+      "description": "👼 Guardian Angel adalah pelindung Warga Desa. Guardian Angel dapat melindungi 1 pemain setiap malamnya dari serangan Werewolf. Jika Werewolf menyerang orang yang dilindungi, Werewolf akan gagal membunuh orang tersebut. 👼 Guardian Angel tidak akan tahu siapa yang akan di serang, jadi usahakan untuk melindungi orang yang tepat!"
     },
     "seer": {
       "name": "Seer 🔮",
-      "announcement": "Kamu adalah Seer 🔮 si Penerawang. Setiap malam, kamu bisa melihat peran pemain lainnya.",
-      "selection": "Pilih orang yang akan kamu terawang.",
+      "announcement": "Kamu adalah Seer 🔮 Setiap malam, kamu bisa melihat peran pemain lainnya. Kamu hanya bisa melihat peran 1 pemain setiap malamnya.",
+      "selection": "Pilih orang yang akan kamu terawang 🔮",
       "see": "Kamu melihat 🔮 {target} adalah seorang {role}.",
-      "description": "Kamu adalah Seer 🔮. Setiap malam, kamu bisa menerawang seseorang untuk mengetahui perannya. Awas jangan sampai kamu jadi target Werewolf selanjutnya!"
+      "description": "🔮 Seer adalah penerawang di dunia Werewolf. Seer dapat melihat peran asli pemain lain. Seer dapat melihat 1 peran setiap malamnya. Informasi yang didapatkan oleh Seer sangatlah penting untuk warga lain. Tapi hati - hati, jangan sampai kamu yang dituduh sebagai Werewolf !"
     },
     "drunk": {
       "name": "Drunk 🍻",
-      "announcement": "Kamu adalah Drunk 🍻 si Pemabuk. Jika Werewolf 🐺 memakanmu, dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikutnya 😵.",
-      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin dan sekarang kamu mabuk 😵. Kamu tidak bisa makan dalam 1 hari!",
-      "description": "Kamu adalah si Pemabuk 🍻. Jika Werewolf memakanmu, dia tidak akan bisa memakan orang lain di malam berikutnya."
+      "announcement": "Kamu adalah Drunk 🍻. Jika Werewolf memakanmu, dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikutnya.",
+      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin dan sekarang kamu mabuk. Kamu tidak bisa makan dalam 1 hari 😵!",
+      "description": "🍻 Drunk adalah Warga Desa biasa yang mabuk. Jika Werewolf memakan Drunk, Werewolf tidak akan bisa memakan orang lain di malam berikutnya."
     },
     "cursed": {
       "name": "Cursed 🦊",
-      "announcement": "Kamu adalah Cursed 🦊, si Warga Desa yang terkutuk. Jika kamu dimakan oleh Werewolf 🐺, maka kamu akan menjadi bagian dari mereka!",
+      "announcement": "Kamu adalah Cursed (Werefox) 🦊. Jika kamu dimakan oleh Werewolf, maka kamu akan menjadi bagian dari mereka!",
       "transform": {
-        "werewolf": "🐺 Werewolf telah memakanmu! Sekarang kamu adalah bagian dari mereka!"
+        "werewolf": "🐺 Werewolf telah memakanmu! Sekarang kamu adalah bagian dari mereka 😈!"
       },
-      "description": "Kamu adalah Warga Desa yang terkutuk 🦊. Kamu akna menjadi Werefox apabila Werewolf memakanmu. Kamu ada di pihak Villager. Namun, apabila kamu sudah menjadi Werefox, kamu menjadi kaum Werewolf!"
+      "description": "🦊 Cursed (Werefox) adalah Warga Desa biasa yang terkutuk. Pada awal permainan, Cursed ada di pihak Warga Desa. Tapi, jika Cursed diserang oleh Werewolf, Cursed akan berpihak kepada Werewolf."
     },
     "traitor": {
       "name": "Traitor 🤞",
-      "announcement": "Kamu adalah Traitor 🤞 si Penghianat. Saat semua Werewolf di Desa mati, maka kamu akan berubah menjadi Werewolf 🐺!",
+      "announcement": "Kamu adalah Traitor 🤞 Saat semua Werewolf di Desa mati, maka kamu akan berubah menjadi Werewolf 🐺!",
       "transform": {
         "werewolf": "🐺 Semua Werewolf di Desa telah mati. Sekarang adalah waktunya menunjukan dirimu yang sebenarnya. Kamu telah berubah menjadi Werewolf 🐺!"
       },
-      "description": "Kamu adalah Traitor 🤞 Si Penghianat. Jika semua Werewolf di Desa mati, maka kamu yang akan menggantikan mereka semua."
+      "description": "🤞 Traitor adalah warga desa yang sebenarnya adalah seorang Werewolf. Traitor tidak berada di pihak Warga Desa, namun Werewolf. Tapi, Werewolf murni tidak akan bisa membedakan Warga Desa biasa dengan Traitor. Traitor akan berubah menjadi Werewolf ketika semua Werewolf murni telat mati."
     },
     "fool": {
       "name": "Fool 👳",
-      "description": "Kamu menyangka dirimu adalah seorang Seer 🔮. Dalam permainan kamu akan di beritahu bahwa rolemu adalah Seer. Namun, jika kamu menerawang orang lain kemungkinan benarnya hanya sebesar 50 banding 50."
+      "description": "👳 Fool adalah Warga Desa yang mengira dirinya adalah seorang Seer. Dalam permainan kamu akan di beritahu bahwa rolemu adalah Seer. Tetapi, jika Fool melihat peran orang lain belum tentu bahwa peran yang Fool liat adalah peran asli orang tersebut."
     }
   },
   "vote": {
@@ -136,7 +136,7 @@
   },
   "death": {
     "vote": "🔥 Warga sudah mengambil keputusan. {player} mati di hukum gantung. 💀",
-    "bite": "{player} tergeletak bersimbah darah di rumah nya 💀. Ternyata dia telah di bunuh oleh Werewolf 🐺.",
+    "bite": "{player} tergeletak bersimbah darah di rumah nya 💀 Ternyata dia telah di bunuh oleh Werewolf 🐺",
     "punishment": "💀 {player} mati karena 3 kali tidak melakukan voting. "
   },
   "night": {

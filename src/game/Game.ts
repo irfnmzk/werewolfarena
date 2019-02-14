@@ -511,10 +511,12 @@ export default class Game {
    */
   public isFinish() {
     const alive = this.calculateAliveTeam(this.players);
-    if (alive.VILLAGER + alive.WEREWOLF === 3 && this.time === 'DAY') return;
+    if (alive.VILLAGER + alive.WEREWOLF === 3 && this.time === 'DAY') {
+      return false;
+    }
     if (
       alive.WEREWOLF > 0 &&
-      alive.WEREWOLF >= (alive.VILLAGER + alive.WEREWOLF) / 2
+      alive.WEREWOLF >= Math.floor((alive.VILLAGER + alive.WEREWOLF) / 2)
     ) {
       // Werewolf win
       this.winner = 'WEREWOLF';

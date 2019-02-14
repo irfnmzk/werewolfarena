@@ -13,7 +13,7 @@ export const groupId = 'group_1';
 const mockLineMessage = new MockLineMessage();
 const game = new Game(groupId, mockLineMessage, undefined, true);
 game.gameDuration = 5;
-const palyers = generateFakePlayers(5);
+const palyers = generateFakePlayers(4);
 
 // Game Flow
 palyers.forEach(player => game.addPlayer(player));
@@ -29,8 +29,7 @@ function handleScene(scene: time, day: any, player: Player[]) {
     case 0:
       switch (scene) {
         case 'NIGHT':
-          user[4].eventCallback(scene, ge('bite', player[1].userId));
-          user[3].eventCallback(scene, ge('bite', player[1].userId));
+          user[3].eventCallback(scene, ge('bite', player[0].userId));
           break;
         case 'DUSK':
           // user[0].eventCallback(scene, ge('vote', player[4].userId));
@@ -43,7 +42,7 @@ function handleScene(scene: time, day: any, player: Player[]) {
           // user[4].eventCallback(scene, ge('bite', player[2].userId));
           break;
         case 'DUSK':
-          // user[0].eventCallback(scene, ge('vote', player[4].userId));
+          user[3].eventCallback(scene, ge('vote', player[1].userId));
           break;
       }
       break;

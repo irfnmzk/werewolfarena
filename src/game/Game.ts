@@ -15,6 +15,7 @@ import ILineMessage from 'src/line/base/ILineMessage';
 import TestGameMode from './gamemode/TestGameMode';
 import MessageGenerator from './roles/helper/MessageGenerator';
 import { Message } from '@line/bot-sdk';
+import GameOptions from './base/GameOptions';
 
 export type Winner = 'VILLAGER' | 'WEREWOLF';
 
@@ -40,6 +41,7 @@ export default class Game {
   public readonly eventQueue: GameEventQueue;
 
   public readonly debug: boolean;
+  public option: GameOptions;
 
   public playerListInterval: any;
   private gamemode: DefaultGameMode;
@@ -57,9 +59,11 @@ export default class Game {
   constructor(
     groupId: string,
     channel: ILineMessage,
+    options: GameOptions,
     groupManager?: GroupManager,
     debug: boolean = false
   ) {
+    this.option = options;
     this.groupManager = groupManager;
 
     this.emitter = new Emitter();
@@ -86,6 +90,7 @@ export default class Game {
     this.setStartTimer();
     this.broadcastGameCreated();
     this.broadcastPlayerListInterval();
+    console.log(this.option);
   }
 
   /**

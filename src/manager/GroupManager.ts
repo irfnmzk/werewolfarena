@@ -91,6 +91,14 @@ export default class GroupManager extends Map<string, Group> {
     this.database.group.updateStats(groupId, newStats);
   }
 
+  /**
+   * getGroupSetting
+   */
+  public async getGroupSetting(groupId: string) {
+    if (!this.has(groupId)) await this.createGroup(groupId);
+    return this.database.group.getGroupSetting(groupId);
+  }
+
   private notifyUsers(groupId: string) {
     this.get(groupId)!.notifyUserList.forEach(userId => {
       this.get(groupId)!.game!.sendNotifyToWaitingList(userId);

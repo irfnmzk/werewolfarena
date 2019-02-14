@@ -1,4 +1,4 @@
 export default interface GameOptions {
-  showRole: false;
-  duration: 30; // Seconds
+  showRole: boolean;
+  duration: number; // Seconds
 }

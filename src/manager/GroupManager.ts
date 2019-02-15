@@ -1,6 +1,7 @@
 import Game from 'src/game/Game';
 import Group from './base/Group';
 import DatabaseAdapter from '../utils/db/DatabaseAdapter';
+import GroupSetting from 'src/utils/db/models/GroupSetting';
 
 export default class GroupManager extends Map<string, Group> {
   private readonly database: DatabaseAdapter;
@@ -89,6 +90,22 @@ export default class GroupManager extends Map<string, Group> {
     };
     this.get(groupId)!.groupStats = newStats;
     this.database.group.updateStats(groupId, newStats);
+  }
+
+  /**
+   * getGroupSetting
+   */
+  public async getGroupSetting(groupId: string) {
+    if (!this.has(groupId)) await this.createGroup(groupId);
+    return this.database.group.getGroupSetting(groupId);
+  }
+
+  /**
+   * setGroupSetting
+   */
+  public async setGroupSetting(groupId: string, setting: GroupSetting) {
+    if (!this.has(groupId)) await this.createGroup(groupId);
+    this.database.group.setGroupSetting(groupId, setting);
   }
 
   private notifyUsers(groupId: string) {

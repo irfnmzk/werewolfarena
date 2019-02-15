@@ -18,12 +18,19 @@ export default class CreateGameCommand extends Command {
    */
   public async run(_: string, source: MessageSource) {
     const { groupId } = source;
+    if (!groupId) return;
     const gameExist = await this.groupManager!.gameExist(groupId!);
     if (gameExist) {
       this.channel.replyWithText(source.replyToken!, 'Game already Created');
       return;
     }
-    const game = new Game(groupId!, this.channel, this.groupManager!);
+    const gameSetting = await this.groupManager!.getGroupSetting(groupId!);
+    const game = new Game(
+      groupId!,
+      this.channel,
+      gameSetting,
+      this.groupManager!
+    );
 
     this.groupManager!.createGame(groupId!, game);
   }

@@ -11,7 +11,13 @@ import Player from '../../game/base/Player';
 
 export const groupId = 'group_1';
 const mockLineMessage = new MockLineMessage();
-const game = new Game(groupId, mockLineMessage, undefined, true);
+const game = new Game(
+  groupId,
+  mockLineMessage,
+  { showRole: 'YA', duration: 30 },
+  undefined,
+  true
+);
 game.gameDuration = 5;
 const palyers = generateFakePlayers(4);
 

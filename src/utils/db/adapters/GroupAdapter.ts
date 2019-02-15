@@ -1,5 +1,6 @@
 import { database } from 'firebase-admin';
 import GroupStats from '../models/GroupStats';
+import GroupSetting from '../models/GroupSetting';
 
 export default class GroupAdapter {
   private readonly db: database.Database;
@@ -52,6 +53,33 @@ export default class GroupAdapter {
     return this.ref
       .child('group_stats/' + groupId)
       .set(data)
+      .catch(() => console.log(`fail to save database`));
+  }
+
+  /**
+   * getGroupSetting
+   */
+  public async getGroupSetting(groupId: string) {
+    const data = await this.ref.child('group_setting/' + groupId).once('value');
+    if (data.val()) return data.val();
+    const groupSetting: GroupSetting = {
+      showRole: 'YA',
+      duration: 60
+    };
+    this.ref
+      .child('group_setting/' + groupId)
+      .set(groupSetting)
+      .catch(() => console.log(`fail to save database`));
+    return groupSetting;
+  }
+
+  /**
+   * setGroupSetting
+   */
+  public setGroupSetting(groupId: string, setting: GroupSetting) {
+    this.ref
+      .child('group_setting/' + groupId)
+      .set(setting)
       .catch(() => console.log(`fail to save database`));
   }
 }

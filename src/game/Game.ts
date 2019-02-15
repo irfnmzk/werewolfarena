@@ -112,16 +112,27 @@ export default class Game {
 
   public addPlayer(player: Player) {
     if (this.players.length >= this.gamemode.MAX_PLAYER!) {
-      return this.channel.sendWithText(
-        this.groupId,
-        this.localeService.t('game.full', { max: this.gamemode.MAX_PLAYER! })
-      );
+      return this.limiter
+        .consume(this.groupId)
+        .then(() =>
+          this.channel.sendWithText(
+            this.groupId,
+            this.localeService.t('game.full', {
+              max: this.gamemode.MAX_PLAYER!
+            })
+          )
+        )
+        .catch(() => true);
     }
     if (this.status !== 'OPEN') {
-      return this.channel.sendWithText(
-        this.groupId,
-        this.localeService.t('game.already.start')
-      );
+      return this.limiter
+        .consume(this.groupId)
+        .then(() =>
+          this.channel.sendWithText(
+            this.groupId,
+            this.localeService.t('game.already.start')
+          )
+        );
     }
     const found =
       this.players.filter(data => data.userId === player.userId).length > 0;

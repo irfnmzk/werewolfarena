@@ -31,7 +31,7 @@ export default class Gunner extends Role {
       );
     }
     const target = this.game.getEnemyList(this.player);
-    const message = this.messageGenerator.guardianSelection(target);
+    const message = this.messageGenerator.gunnerSelection(target);
     this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
   }
 

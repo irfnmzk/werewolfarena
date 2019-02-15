@@ -34,12 +34,20 @@ export default class DefaultGameMode extends GameMode {
         Seer: 1,
         Villager: this.getRandomCount(1, 2)
       };
+    } else if (players.length <= 12) {
+      this.requiredRole = {
+        Werewolf: 2,
+        Guardian: 1,
+        Seer: 1,
+        Villager: 2
+      };
     } else {
       this.requiredRole = {
         Werewolf: this.getRandomCount(2, 3),
         Guardian: 1,
         Seer: 1,
-        Villager: 2
+        Villager: 2,
+        Lumberjack: 2
       };
     }
 

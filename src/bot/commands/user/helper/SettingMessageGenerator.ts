@@ -34,7 +34,7 @@ export function settingShowRole(groupId: string): FlexMessage {
                   label: 'Ya',
                   data: generateEvent({
                     type: 'SET_GROUP_SETTING',
-                    data: { groupId, setting: 'SHOWROLE', value: true }
+                    data: { groupId, setting: 'SHOWROLE', value: 'YA' }
                   })
                 }
               },
@@ -48,7 +48,7 @@ export function settingShowRole(groupId: string): FlexMessage {
                   label: 'Tidak',
                   data: generateEvent({
                     type: 'SET_GROUP_SETTING',
-                    data: { groupId, setting: 'SHOWROLE', value: false }
+                    data: { groupId, setting: 'SHOWROLE', value: 'TIDAK' }
                   })
                 }
               }

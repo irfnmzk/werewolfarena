@@ -14,7 +14,7 @@ const mockLineMessage = new MockLineMessage();
 const game = new Game(
   groupId,
   mockLineMessage,
-  { showRole: true, duration: 30 },
+  { showRole: 'YA', duration: 30 },
   undefined,
   true
 );

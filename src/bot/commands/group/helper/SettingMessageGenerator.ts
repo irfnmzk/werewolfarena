@@ -40,7 +40,7 @@ export function getSettingMessage(
                   },
                   {
                     type: 'text',
-                    text: option.showRole ? 'Ya' : 'Tidak',
+                    text: option.showRole === 'YA' ? 'Ya' : 'Tidak',
                     align: 'end',
                     color: '#000000',
                     weight: 'bold',

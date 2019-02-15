@@ -29,7 +29,7 @@ export default class JoinGameCommand extends Command {
     const game = new Game(
       groupId!,
       this.channel,
-      { duration: 30, showRole: true },
+      { duration: 30, showRole: 'YA' },
       this.groupManager!
     );
     game.gameDuration = 10;

@@ -63,7 +63,7 @@ export default class GroupAdapter {
     const data = await this.ref.child('group_setting/' + groupId).once('value');
     if (data.val()) return data.val();
     const groupSetting: GroupSetting = {
-      showRole: true,
+      showRole: 'YA',
       duration: 60
     };
     this.ref
@@ -71,5 +71,15 @@ export default class GroupAdapter {
       .set(groupSetting)
       .catch(() => console.log(`fail to save database`));
     return groupSetting;
+  }
+
+  /**
+   * setGroupSetting
+   */
+  public setGroupSetting(groupId: string, setting: GroupSetting) {
+    this.ref
+      .child('group_setting/' + groupId)
+      .set(setting)
+      .catch(() => console.log(`fail to save database`));
   }
 }

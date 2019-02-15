@@ -1,4 +1,4 @@
 export default interface GroupSetting {
-  showRole: boolean;
+  showRole: string;
   duration: number;
 }

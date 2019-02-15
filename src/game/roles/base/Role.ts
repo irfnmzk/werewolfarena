@@ -22,6 +22,8 @@ export default class Role {
   public buff: Types.Buff[];
   public roleHistory: Types.RoleId[];
 
+  public actionLeft: number;
+
   public priority: number;
 
   protected messageGenerator: MessageGenerator;
@@ -40,6 +42,7 @@ export default class Role {
 
     this.priority = 0;
     this.voteMiss = 0;
+    this.actionLeft = 0;
 
     this.team = 'VILLAGER';
 

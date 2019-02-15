@@ -19,7 +19,6 @@ export default class SetGroupSettingCommand extends Command {
     const currentSetting = (await this.groupManager!.getGroupSetting(
       setting.groupId
     )) as Settings;
-    console.log(setting);
     switch (setting.setting) {
       case 'SHOWROLE':
         this.groupManager!.setGroupSetting(setting.groupId, {

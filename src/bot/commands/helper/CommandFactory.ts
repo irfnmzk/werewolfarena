@@ -20,6 +20,8 @@ import ExtendCommand from '../group/ExtendCommand';
 import NextGameCommand from '../group/NextGameCommand';
 import CancelCommnand from '../group/CancelCommand';
 import GroupStatsCommand from '../group/GroupStatsCommand';
+import SettingCommand from '../group/SettingCommand';
+import SendSettingCommand from '../group/SendSettingCommand';
 
 // DEV
 import AddBotCommand from '../dev/AddBotCommand';
@@ -47,6 +49,8 @@ const commands: Command[] = [
   new NextGameCommand(lineMessage),
   new CancelCommnand(lineMessage),
   new GroupStatsCommand(lineMessage),
+  new SettingCommand(lineMessage),
+  new SendSettingCommand(lineMessage),
 
   // User
   new GameEventCommand(lineMessage),

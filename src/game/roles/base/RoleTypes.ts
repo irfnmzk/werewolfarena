@@ -23,7 +23,13 @@ export type RoleName =
   | 'Traitor'
   | 'Lumberjack'
   | 'Gunner';
-export type EventType = 'punishment' | 'vote' | 'bite' | 'protect' | 'see';
+export type EventType =
+  | 'punishment'
+  | 'vote'
+  | 'bite'
+  | 'protect'
+  | 'see'
+  | 'shoot';
 export type Team = 'VILLAGER' | 'WEREWOLF';
 export type BuffName = 'protected' | 'drunk';
 

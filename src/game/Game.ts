@@ -90,7 +90,6 @@ export default class Game {
     this.setStartTimer();
     this.broadcastGameCreated();
     this.broadcastPlayerListInterval();
-    console.log(this.option);
   }
 
   /**

@@ -5,6 +5,7 @@ import Player from '../../base/Player';
 import Game from '../../Game';
 import Role from '@game/roles/base/Role';
 import { RoleId } from '@game/roles/base/RoleTypes';
+import RolesGenerator from './RolesGenerator';
 
 interface IrequiredRole {
   [key: string]: any;
@@ -15,7 +16,9 @@ export default class GameMode {
 
   public MIN_PLAYER?: number;
   public MAX_PLAYER?: number;
+  public deck: { [key: string]: number };
 
+  protected readonly roleGenerator: RolesGenerator;
   protected readonly roleFactory: { [key: string]: Role };
   protected readonly game: Game;
 
@@ -26,6 +29,8 @@ export default class GameMode {
     this.game = game;
     this.roleFactory = RolesFactory;
     this.allRoles = Object.keys(this.roleFactory).map(data => data) as Roles[];
+    this.roleGenerator = new RolesGenerator();
+    this.deck = {};
   }
 
   /**
@@ -48,6 +53,13 @@ export default class GameMode {
   public getNewRole(role: RoleId, game: Game, player: Player) {
     const roles = this.capitalized(role);
     return new RolesFactory[roles](game, player);
+  }
+
+  /**
+   * generateDeck
+   */
+  public generateDeck(deck: { [key: string]: number }) {
+    return this.roleGenerator.createDeck(deck);
   }
 
   private capitalized(data: string) {

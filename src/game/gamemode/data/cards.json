@@ -1,9 +1,9 @@
 {
   "villager": 1,
   "werewolf": -6,
-  "guardian": 6,
-  "seer": 5,
-  "drunk": 3,
+  "guardian": 5,
+  "seer": 4,
+  "drunk": 2,
   "fool": 2,
   "cursed": -3,
   "traitor": -4,

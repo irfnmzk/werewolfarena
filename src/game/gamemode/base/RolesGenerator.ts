@@ -42,7 +42,7 @@ export default class RolesGenerator {
     playerCount: number,
     deck: Deck[],
     gameMode: 'NORMAL' | 'CHAOS'
-  ) {
+  ): { deck: any; weight: number; players: number } {
     const classifedCards = this.clasifyCard(deck);
     let flex = gameMode === 'NORMAL' ? 1 : 2;
     this.pivot = gameMode === 'NORMAL' ? 0 : -4;
@@ -61,7 +61,7 @@ export default class RolesGenerator {
       if (tries % (totalCards * 10) === 0) flex++;
       if (tries > totalCards * 100) break;
     }
-    console.log(this.gameCandidate);
+    return this.gameCandidate;
   }
 
   /**

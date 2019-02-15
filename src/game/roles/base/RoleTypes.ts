@@ -8,7 +8,9 @@ export type RoleId =
   | 'drunk'
   | 'fool'
   | 'cursed'
-  | 'traitor';
+  | 'traitor'
+  | 'lumberjack'
+  | 'gunner';
 export type RoleName =
   | 'default'
   | 'Villager'
@@ -18,8 +20,16 @@ export type RoleName =
   | 'Drunk'
   | 'Fool'
   | 'Cursed'
-  | 'Traitor';
-export type EventType = 'punishment' | 'vote' | 'bite' | 'protect' | 'see';
+  | 'Traitor'
+  | 'Lumberjack'
+  | 'Gunner';
+export type EventType =
+  | 'punishment'
+  | 'vote'
+  | 'bite'
+  | 'protect'
+  | 'see'
+  | 'shoot';
 export type Team = 'VILLAGER' | 'WEREWOLF';
 export type BuffName = 'protected' | 'drunk';
 
@@ -29,8 +39,20 @@ export interface Buff {
 }
 
 export interface BackEvent {
-  type: 'GAME_EVENT' | 'DEFAULT' | 'WEREWOLF_JOIN_EVENT';
-  data?: GameEvent;
+  type:
+    | 'GAME_EVENT'
+    | 'DEFAULT'
+    | 'WEREWOLF_JOIN_EVENT'
+    | 'GET_GROUP_SETTING'
+    | 'GET_USER_GROUP_SETTING'
+    | 'SET_GROUP_SETTING';
+  data?: GameEvent | GroupSetting | string;
+}
+
+export interface GroupSetting {
+  groupId: string;
+  setting: 'DURATION' | 'SHOWROLE';
+  value?: any;
 }
 
 export interface GameJoinEvent {

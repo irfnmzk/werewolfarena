@@ -15,6 +15,7 @@ import ILineMessage from 'src/line/base/ILineMessage';
 import TestGameMode from './gamemode/TestGameMode';
 import MessageGenerator from './roles/helper/MessageGenerator';
 import { Message } from '@line/bot-sdk';
+import GameOptions from './base/GameOptions';
 
 export type Winner = 'VILLAGER' | 'WEREWOLF';
 
@@ -40,6 +41,7 @@ export default class Game {
   public readonly eventQueue: GameEventQueue;
 
   public readonly debug: boolean;
+  public option: GameOptions;
 
   public playerListInterval: any;
   private gamemode: DefaultGameMode;
@@ -57,9 +59,11 @@ export default class Game {
   constructor(
     groupId: string,
     channel: ILineMessage,
+    options: GameOptions,
     groupManager?: GroupManager,
     debug: boolean = false
   ) {
+    this.option = options;
     this.groupManager = groupManager;
 
     this.emitter = new Emitter();
@@ -107,16 +111,27 @@ export default class Game {
 
   public addPlayer(player: Player) {
     if (this.players.length >= this.gamemode.MAX_PLAYER!) {
-      return this.channel.sendWithText(
-        this.groupId,
-        this.localeService.t('game.full', { max: this.gamemode.MAX_PLAYER! })
-      );
+      return this.limiter
+        .consume(this.groupId)
+        .then(() =>
+          this.channel.sendWithText(
+            this.groupId,
+            this.localeService.t('game.full', {
+              max: this.gamemode.MAX_PLAYER!
+            })
+          )
+        )
+        .catch(() => true);
     }
     if (this.status !== 'OPEN') {
-      return this.channel.sendWithText(
-        this.groupId,
-        this.localeService.t('game.already.start')
-      );
+      return this.limiter
+        .consume(this.groupId)
+        .then(() =>
+          this.channel.sendWithText(
+            this.groupId,
+            this.localeService.t('game.already.start')
+          )
+        );
     }
     const found =
       this.players.filter(data => data.userId === player.userId).length > 0;
@@ -501,16 +516,6 @@ export default class Game {
    * sendGamePlayerList
    */
   public sendGamePlayerList() {
-    if (this.status !== 'PLAYING') return; // always call when game is open but who knows right
-    // const playerList = this.sortedPlayerByDead().map(
-    //   (player, index) =>
-    //     `${index + 1}. ${player.name} - ${this.localeService.t(
-    //       `common.life.${player.role!.dead ? `dead` : `alive`}`
-    //     )}`
-    // );
-    // const message = this.localeService
-    //   .t('common.playerlist.header')
-    //   .concat(playerList.join('\n'));
     this.channel.sendMultipleTypeMessage(this.groupId, [
       this.messageGenerator.getPlayerlistMessage(this.sortedPlayerByDead())
     ]);
@@ -521,10 +526,12 @@ export default class Game {
    */
   public isFinish() {
     const alive = this.calculateAliveTeam(this.players);
-    if (alive.VILLAGER + alive.WEREWOLF === 3 && this.time === 'DAY') return;
+    if (alive.VILLAGER + alive.WEREWOLF === 3 && this.time === 'DAY') {
+      return false;
+    }
     if (
       alive.WEREWOLF > 0 &&
-      alive.WEREWOLF >= (alive.VILLAGER + alive.WEREWOLF) / 2
+      alive.WEREWOLF >= Math.floor((alive.VILLAGER + alive.WEREWOLF) / 2)
     ) {
       // Werewolf win
       this.winner = 'WEREWOLF';
@@ -613,7 +620,9 @@ export default class Game {
     allDeath.forEach(death => {
       deathMessage.push(
         this.localeService.t(`death.${death.event}`, {
-          player: death.player.name
+          player: this.option.showRole
+            ? `${death.player.name}(${death.player.role!.name})`
+            : death.player.name
         })
       );
     });

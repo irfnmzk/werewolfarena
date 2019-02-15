@@ -95,7 +95,7 @@ export function getSettingMessage(
   };
 }
 
-export function getGroupSettingMessage(): FlexMessage {
+export function getGroupSettingMessage(groupId: string): FlexMessage {
   return {
     type: 'flex',
     altText: 'Pengaturan',
@@ -124,9 +124,12 @@ export function getGroupSettingMessage(): FlexMessage {
                 height: 'sm',
                 margin: 'lg',
                 action: {
-                  type: 'message',
+                  type: 'postback',
                   label: 'Tampilkan peran saat mati',
-                  text: '/tutorial'
+                  data: generateEvent({
+                    type: 'GET_USER_GROUP_SETTING',
+                    data: { groupId, setting: 'SHOWROLE' }
+                  })
                 }
               },
               {
@@ -136,9 +139,12 @@ export function getGroupSettingMessage(): FlexMessage {
                 height: 'sm',
                 margin: 'lg',
                 action: {
-                  type: 'message',
+                  type: 'postback',
                   label: 'Ubah Durasi permainan',
-                  text: '/commands'
+                  data: generateEvent({
+                    type: 'GET_USER_GROUP_SETTING',
+                    data: { groupId, setting: 'DURATION' }
+                  })
                 }
               }
             ]

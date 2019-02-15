@@ -2,10 +2,7 @@ import Command from '../base/Command';
 import MessageSource from '@bot/base/MessageSource';
 import { BackEvent } from '@game/roles/base/RoleTypes';
 import ILineMessage from 'src/line/base/ILineMessage';
-import {
-  getSettingMessage,
-  getGroupSettingMessage
-} from './helper/SettingMessageGenerator';
+import { getGroupSettingMessage } from './helper/SettingMessageGenerator';
 
 export default class SendSettingCommand extends Command {
   constructor(channel: ILineMessage) {
@@ -15,7 +12,7 @@ export default class SendSettingCommand extends Command {
     this.TRIGGER = ['GET_GROUP_SETTING'];
   }
 
-  public async run(postback: BackEvent, source: MessageSource) {
+  public async run(_: BackEvent, source: MessageSource) {
     if (!source.userId) return;
     const profile = await this.channel.getProfileData(source.userId!);
     this.limiter
@@ -28,7 +25,7 @@ export default class SendSettingCommand extends Command {
       )
       .catch(() => true);
     this.channel.sendMultipleTypeMessage(source.userId!, [
-      getGroupSettingMessage()
+      getGroupSettingMessage(source.groupId!)
     ]);
   }
 }

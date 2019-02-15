@@ -29,8 +29,19 @@ export interface Buff {
 }
 
 export interface BackEvent {
-  type: 'GAME_EVENT' | 'DEFAULT' | 'WEREWOLF_JOIN_EVENT' | 'GET_GROUP_SETTING';
-  data?: GameEvent | string;
+  type:
+    | 'GAME_EVENT'
+    | 'DEFAULT'
+    | 'WEREWOLF_JOIN_EVENT'
+    | 'GET_GROUP_SETTING'
+    | 'GET_USER_GROUP_SETTING'
+    | 'SET_GROUP_SETTING';
+  data?: GameEvent | GroupSetting | string;
+}
+
+export interface GroupSetting {
+  groupId: string;
+  setting: 'DURATION' | 'SHOWROLE';
 }
 
 export interface GameJoinEvent {

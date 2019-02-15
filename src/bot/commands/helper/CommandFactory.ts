@@ -23,6 +23,9 @@ import GroupStatsCommand from '../group/GroupStatsCommand';
 import SettingCommand from '../group/SettingCommand';
 import SendSettingCommand from '../group/SendSettingCommand';
 
+// USER
+import GetGroupSettingCommand from '../user/GetGroupSettingCommand';
+
 // DEV
 import AddBotCommand from '../dev/AddBotCommand';
 import CreateTestGameCommand from '../dev/CreateTestGameCommand';
@@ -54,6 +57,7 @@ const commands: Command[] = [
 
   // User
   new GameEventCommand(lineMessage),
+  new GetGroupSettingCommand(lineMessage),
 
   // Dev
   new AddBotCommand(lineMessage),

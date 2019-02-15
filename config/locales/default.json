@@ -150,8 +150,8 @@
   "death": {
     "vote": "🔥 Warga sudah mengambil keputusan. {player} mati di hukum gantung. 💀",
     "bite": "{player} tergeletak bersimbah darah di rumah nya 💀 Ternyata dia telah di bunuh oleh Werewolf 🐺",
-    "punishment": "💀 {player} mati karena 3 kali tidak melakukan voting. ",
-    "shoot": "death.shoot"
+    "punishment": "💀 {player} mati karena tidak melakukan voting sebanyak 3 kali.",
+    "shoot": "{player} tergeletak di tanah karena ditembak oleh Gunner 💀🔫"
   },
   "night": {
     "no_death": "⛅ Malam Telah berlalu dengan sangat sunyi. Kabar baik, tidak ada yang mati tadi malam."

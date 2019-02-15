@@ -42,6 +42,7 @@ export interface BackEvent {
 export interface GroupSetting {
   groupId: string;
   setting: 'DURATION' | 'SHOWROLE';
+  value?: any;
 }
 
 export interface GameJoinEvent {

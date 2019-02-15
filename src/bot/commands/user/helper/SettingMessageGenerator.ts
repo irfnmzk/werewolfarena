@@ -1,4 +1,5 @@
 import { FlexMessage } from '@line/bot-sdk';
+import generateEvent from '../../../../game/roles/helper/EventGenerator';
 
 export function settingShowRole(groupId: string): FlexMessage {
   return {
@@ -31,7 +32,10 @@ export function settingShowRole(groupId: string): FlexMessage {
                 action: {
                   type: 'postback',
                   label: 'Ya',
-                  data: 'hasdas'
+                  data: generateEvent({
+                    type: 'SET_GROUP_SETTING',
+                    data: { groupId, setting: 'SHOWROLE', value: true }
+                  })
                 }
               },
               {
@@ -42,7 +46,10 @@ export function settingShowRole(groupId: string): FlexMessage {
                 action: {
                   type: 'postback',
                   label: 'Tidak',
-                  data: 'hasdas'
+                  data: generateEvent({
+                    type: 'SET_GROUP_SETTING',
+                    data: { groupId, setting: 'SHOWROLE', value: false }
+                  })
                 }
               }
             ]
@@ -85,7 +92,10 @@ export function settingDuration(groupId: string): FlexMessage {
                 action: {
                   type: 'postback',
                   label: '30',
-                  data: 'hasdas'
+                  data: generateEvent({
+                    type: 'SET_GROUP_SETTING',
+                    data: { groupId, setting: 'DURATION', value: 30 }
+                  })
                 }
               },
               {
@@ -96,7 +106,10 @@ export function settingDuration(groupId: string): FlexMessage {
                 action: {
                   type: 'postback',
                   label: '60',
-                  data: 'hasdas'
+                  data: generateEvent({
+                    type: 'SET_GROUP_SETTING',
+                    data: { groupId, setting: 'DURATION', value: 60 }
+                  })
                 }
               }
             ]
@@ -115,7 +128,10 @@ export function settingDuration(groupId: string): FlexMessage {
                 action: {
                   type: 'postback',
                   label: '90',
-                  data: 'hasdas'
+                  data: generateEvent({
+                    type: 'SET_GROUP_SETTING',
+                    data: { groupId, setting: 'DURATION', value: 90 }
+                  })
                 }
               },
               {
@@ -126,7 +142,10 @@ export function settingDuration(groupId: string): FlexMessage {
                 action: {
                   type: 'postback',
                   label: '120',
-                  data: 'hasdas'
+                  data: generateEvent({
+                    type: 'SET_GROUP_SETTING',
+                    data: { groupId, setting: 'DURATION', value: 120 }
+                  })
                 }
               }
             ]
@@ -145,7 +164,10 @@ export function settingDuration(groupId: string): FlexMessage {
                 action: {
                   type: 'postback',
                   label: '150',
-                  data: 'hasdas'
+                  data: generateEvent({
+                    type: 'SET_GROUP_SETTING',
+                    data: { groupId, setting: 'DURATION', value: 150 }
+                  })
                 }
               },
               {
@@ -156,7 +178,10 @@ export function settingDuration(groupId: string): FlexMessage {
                 action: {
                   type: 'postback',
                   label: '180',
-                  data: 'hasdas'
+                  data: generateEvent({
+                    type: 'SET_GROUP_SETTING',
+                    data: { groupId, setting: 'DURATION', value: 180 }
+                  })
                 }
               }
             ]

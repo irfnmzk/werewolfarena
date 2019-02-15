@@ -7,6 +7,7 @@ import Fool from '../../roles/Fool';
 import Cursed from '../../roles/Cursed';
 import Traitor from '../../roles/Traitor';
 import Lumberjack from '../../roles/Lumberjack';
+import Gunner from '../../roles/Gunner';
 
 const Roles: { [key: string]: any } = {
   Villager,
@@ -17,7 +18,8 @@ const Roles: { [key: string]: any } = {
   Fool,
   Cursed,
   Traitor,
-  Lumberjack
+  Lumberjack,
+  Gunner
 };
 
 export default Roles;

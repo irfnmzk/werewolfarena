@@ -19,7 +19,7 @@ const game = new Game(
   true
 );
 game.gameDuration = 5;
-const palyers = generateFakePlayers(4);
+const palyers = generateFakePlayers(5);
 
 // Game Flow
 palyers.forEach(player => game.addPlayer(player));
@@ -35,7 +35,7 @@ function handleScene(scene: time, day: any, player: Player[]) {
     case 0:
       switch (scene) {
         case 'NIGHT':
-          user[3].eventCallback(scene, ge('bite', player[0].userId));
+          user[4].eventCallback(scene, ge('shoot', player[0].userId));
           break;
         case 'DUSK':
           // user[0].eventCallback(scene, ge('vote', player[4].userId));

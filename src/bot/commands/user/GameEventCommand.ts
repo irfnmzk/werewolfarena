@@ -1,6 +1,6 @@
 import Command from '../base/Command';
 import MessageSource from '@bot/base/MessageSource';
-import { BackEvent } from '@game/roles/base/RoleTypes';
+import { BackEvent, GameEvent } from '@game/roles/base/RoleTypes';
 import ILineMessage from 'src/line/base/ILineMessage';
 
 export default class GameEventCommand extends Command {
@@ -12,13 +12,13 @@ export default class GameEventCommand extends Command {
   }
 
   public async run(postback: BackEvent, source: MessageSource) {
-    const { groupId } = postback.data!;
+    const { groupId } = postback.data! as GameEvent;
     const gameExist = await this.groupManager!.gameExist(groupId!);
     if (!gameExist) {
       return;
     }
     this.groupManager!.get(groupId)!.game!.processCallback(
-      postback.data!,
+      postback.data! as GameEvent,
       source.userId
     );
   }

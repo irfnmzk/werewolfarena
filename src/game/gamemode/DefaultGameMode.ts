@@ -10,60 +10,65 @@ export default class DefaultGameMode extends GameMode {
 
     this.name = 'Default';
     this.MIN_PLAYER = 5;
-    this.MAX_PLAYER = 12;
+    this.MAX_PLAYER = 14;
+
+    this.deck = {
+      villager: 4,
+      werewolf: 3,
+      guardian: 1,
+      seer: 1,
+      drunk: 1,
+      fool: 1,
+      cursed: 1,
+      traitor: 1,
+      lumberjack: 3,
+      gunner: 1
+    };
+
+    this.requiredRole = {
+      Seer: 1,
+      Guardian: 1
+    };
   }
 
   /**
    * assignRoles
    */
   public assignRoles(players: Player[]) {
+    const data = this.roleGenerator.create(
+      players.length,
+      this.generateDeck(this.deck),
+      'NORMAL'
+    );
     let roles: string[] = [];
-    const anotherRoles = _.shuffle(['Fool', 'Drunk', 'Cursed', 'Traitor']);
-    let playerCount = players.length;
-    if (players.length <= 6) {
-      this.requiredRole = {
-        Werewolf: 1,
-        Guardian: 1,
-        Seer: 1,
-        Villager: 1
-      };
-    } else if (players.length <= 9) {
-      this.requiredRole = {
-        Werewolf: this.getRandomCount(1, 2),
-        Guardian: 1,
-        Seer: 1,
-        Villager: this.getRandomCount(1, 2)
-      };
-    } else {
-      this.requiredRole = {
-        Werewolf: this.getRandomCount(2, 3),
-        Guardian: 1,
-        Seer: 1,
-        Villager: 2
-      };
+    Object.keys(data.deck).forEach(item => {
+      _.range(data.deck[item]).forEach(() => {
+        roles.push(_.capitalize(item));
+      });
+    });
+
+    // If there are no wolf just replace the first roles with werewolf
+    // TODO: Refactor this
+    if (roles.indexOf('Werewolf') === -1) {
+      roles[0] = 'Werewolf';
     }
 
-    Object.keys(this.requiredRole).forEach(key =>
-      Array(this.requiredRole![key])
-        .fill(1, 0, this.requiredRole![key])
-        .forEach(() => {
-          roles.push(key);
-          playerCount--;
-        })
-    );
-    Array(playerCount)
-      .fill(1, 0, playerCount)
-      .forEach(() => {
-        if (anotherRoles.length > 0) return roles.push(anotherRoles.pop()!);
-        roles.push('Villager');
-      });
+    // Replace lumberjack or villager with required role
+    Object.keys(this.requiredRole!).forEach(item => {
+      if (roles.indexOf(item) !== -1) return;
+      if (roles.indexOf('Lumberjack') !== -1) {
+        roles[roles.indexOf('Lumberjack')] = item;
+      } else if (roles.indexOf('Villager') !== -1) {
+        roles[roles.indexOf('Villager')] = item;
+      }
+    });
 
     const suffledPlayer = _.shuffle(players);
     roles = _.shuffle(roles);
-
     suffledPlayer.forEach(
       (player, index) =>
         (player.role = new RolesFactory[roles[index]](this.game, player))
     );
+    console.log(roles);
   }
 }

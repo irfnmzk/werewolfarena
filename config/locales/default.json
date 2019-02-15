@@ -107,6 +107,13 @@
     "fool": {
       "name": "Fool 👳",
       "description": "👳 Fool adalah Warga Desa yang mengira dirinya adalah seorang Seer. Dalam permainan kamu akan di beritahu bahwa rolemu adalah Seer. Tetapi, jika Fool melihat peran orang lain belum tentu bahwa peran yang Fool liat adalah peran asli orang tersebut."
+    },
+    "lumberjack": {
+      "name": "lumberjek",
+      "description": "like a villager",
+      "announcement": "kamu adalah {ally}",
+      "friend": "Adalah teman mu",
+      "alone": "dan adalah satu satu nya"
     }
   },
   "vote": {

@@ -8,7 +8,8 @@ export type RoleId =
   | 'drunk'
   | 'fool'
   | 'cursed'
-  | 'traitor';
+  | 'traitor'
+  | 'lumberjack';
 export type RoleName =
   | 'default'
   | 'Villager'
@@ -18,7 +19,8 @@ export type RoleName =
   | 'Drunk'
   | 'Fool'
   | 'Cursed'
-  | 'Traitor';
+  | 'Traitor'
+  | 'Lumberjack';
 export type EventType = 'punishment' | 'vote' | 'bite' | 'protect' | 'see';
 export type Team = 'VILLAGER' | 'WEREWOLF';
 export type BuffName = 'protected' | 'drunk';

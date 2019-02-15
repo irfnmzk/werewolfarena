@@ -2,6 +2,10 @@ import Command from '../base/Command';
 import MessageSource from '@bot/base/MessageSource';
 import { BackEvent } from '@game/roles/base/RoleTypes';
 import ILineMessage from 'src/line/base/ILineMessage';
+import {
+  getSettingMessage,
+  getGroupSettingMessage
+} from './helper/SettingMessageGenerator';
 
 export default class SendSettingCommand extends Command {
   constructor(channel: ILineMessage) {
@@ -12,7 +16,19 @@ export default class SendSettingCommand extends Command {
   }
 
   public async run(postback: BackEvent, source: MessageSource) {
-    // const { groupId } = postback.data
-    console.log('hurray');
+    if (!source.userId) return;
+    const profile = await this.channel.getProfileData(source.userId!);
+    this.limiter
+      .consume(source.groupId!)
+      .then(() =>
+        this.channel.replyWithText(
+          source.replyToken!,
+          `Pengaturan di kirim ke ${profile.displayName}!`
+        )
+      )
+      .catch(() => true);
+    this.channel.sendMultipleTypeMessage(source.userId!, [
+      getGroupSettingMessage()
+    ]);
   }
 }

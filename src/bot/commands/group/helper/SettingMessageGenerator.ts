@@ -94,3 +94,57 @@ export function getSettingMessage(
     }
   };
 }
+
+export function getGroupSettingMessage(): FlexMessage {
+  return {
+    type: 'flex',
+    altText: 'Pengaturan',
+    contents: {
+      type: 'bubble',
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'text',
+            text: 'Ubah Pengaturan',
+            color: '#1DB446',
+            size: 'lg',
+            weight: 'bold'
+          },
+          {
+            type: 'box',
+            layout: 'vertical',
+            margin: 'lg',
+            contents: [
+              {
+                type: 'button',
+                style: 'primary',
+                color: '#36435e',
+                height: 'sm',
+                margin: 'lg',
+                action: {
+                  type: 'message',
+                  label: 'Tampilkan peran saat mati',
+                  text: '/tutorial'
+                }
+              },
+              {
+                type: 'button',
+                style: 'primary',
+                color: '#36435e',
+                height: 'sm',
+                margin: 'lg',
+                action: {
+                  type: 'message',
+                  label: 'Ubah Durasi permainan',
+                  text: '/commands'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  };
+}

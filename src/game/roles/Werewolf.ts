@@ -77,6 +77,7 @@ export default class WereWolf extends Role {
     if (this.hasBuff('drunk')) return;
     switch (event) {
       case 'bite':
+        // Bite fail if guardian protect the target
         if (target.role!.hasBuff('protected')) {
           this.game.channel.sendWithText(
             this.userId,
@@ -87,6 +88,37 @@ export default class WereWolf extends Role {
             this.game.localeService.t('role.guardian.succes_protect')
           );
           return;
+        }
+
+        // Bite fail if harlot is visiting someone
+        if (target.role!.hasBuff('visiting')) {
+          return this.game.channel.sendWithText(
+            this.userId,
+            this.game.localeService.t('role.harlot.fail_bite')
+          );
+        }
+
+        // 2 player die if harlot visiting someone and got bite
+        if (target.role!.hasBuff('visited')) {
+          const targetList: Player[] = [];
+          targetList.push(target);
+          this.game!.getAlivePlayerByRole('harlot').forEach(item => {
+            if (!item.role!.targetPlayer) return;
+            if (item.role!.targetPlayer!.userId === target.userId) {
+              targetList.push(item);
+            }
+          });
+          return targetList.forEach(item => {
+            this.game.channel.sendWithText(
+              item.userId,
+              this.game.localeService.t(
+                item.role!.id === 'harlot'
+                  ? 'role.harlot.die_while_visit'
+                  : 'role.werewolf.bite'
+              )
+            );
+            item.role!.endOfLife('bite', this.player);
+          });
         }
         if (target.role!.id === 'drunk') {
           this.game.channel.sendWithText(

@@ -589,6 +589,15 @@ export default class Game {
     return this.players.filter(data => !data.role!.dead);
   }
 
+  /**
+   * getAlivePlayerByRole
+   */
+  public getAlivePlayerByRole(role: Types.RoleId) {
+    return this.players.filter(
+      data => !data.role!.dead && data.role!.id === role
+    );
+  }
+
   public getWinningMessage(player: Player) {
     return player.role!.team === this.winner ? 'Menang' : 'Kalah';
   }

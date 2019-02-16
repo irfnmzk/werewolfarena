@@ -26,6 +26,8 @@ export default class Role {
 
   public priority: number;
 
+  public targetPlayer?: Player;
+
   protected messageGenerator: MessageGenerator;
 
   protected readonly game: Game;
@@ -136,6 +138,15 @@ export default class Role {
    * eventNightCallback
    */
   public eventNightCallback(event: Types.GameEvent) {
+    // Skip queue on extended time
+    if (this.game.extendedTime !== 0) {
+      return this.game.extendedTimeAction(
+        this.player,
+        event.targetId,
+        event.event
+      );
+    }
+
     this.addEventToQueue(event);
   }
 

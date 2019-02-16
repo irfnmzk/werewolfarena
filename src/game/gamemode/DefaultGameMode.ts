@@ -10,11 +10,11 @@ export default class DefaultGameMode extends GameMode {
 
     this.name = 'Default';
     this.MIN_PLAYER = 5;
-    this.MAX_PLAYER = 14;
+    this.MAX_PLAYER = 15;
 
     this.deck = {
       villager: 4,
-      werewolf: 3,
+      werewolf: 2,
       guardian: 1,
       seer: 1,
       drunk: 1,
@@ -22,7 +22,9 @@ export default class DefaultGameMode extends GameMode {
       cursed: 1,
       traitor: 1,
       lumberjack: 3,
-      gunner: 1
+      gunner: 1,
+      harlot: 1,
+      hunter: 1
     };
 
     this.requiredRole = {
@@ -56,10 +58,10 @@ export default class DefaultGameMode extends GameMode {
     // Replace lumberjack or villager with required role
     Object.keys(this.requiredRole!).forEach(item => {
       if (roles.indexOf(item) !== -1) return;
-      if (roles.indexOf('Lumberjack') !== -1) {
-        roles[roles.indexOf('Lumberjack')] = item;
-      } else if (roles.indexOf('Villager') !== -1) {
+      if (roles.indexOf('Villager') !== -1) {
         roles[roles.indexOf('Villager')] = item;
+      } else if (roles.indexOf('Lumberjack') !== -1) {
+        roles[roles.indexOf('Lumberjack')] = item;
       }
     });
 

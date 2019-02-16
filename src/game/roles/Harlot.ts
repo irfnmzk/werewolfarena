@@ -48,6 +48,14 @@ export default class Harlot extends Role {
 
   public action(event: Types.EventType, target: Player) {
     if (event !== 'visit') return;
+    // player die if visiting werewolf
+    if (target.role!.id === 'werewolf') {
+      this.game.channel.sendWithText(
+        this.userId,
+        this.game.localeService.t('role.harlot.met_werewolf')
+      );
+      return this.endOfLife('bite', target);
+    }
     target.role!.addBuff({ name: 'visited', duration: 1 });
     this.player.role!.addBuff({ name: 'visiting', duration: 1 });
     this.targetPlayer = target;

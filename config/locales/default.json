@@ -124,7 +124,8 @@
 		"harlot": {
 			"announcement": "role.harlot.announcement",
 			"fail_bite": "role.harlot.fail_bite",
-			"die_while_visit": "role.harlot.die_while_visit"
+			"die_while_visit": "role.harlot.die_while_visit",
+			"met_werewolf": "role.harlot.met_werewolf"
 		}
 	},
 	"vote": {

@@ -77,6 +77,9 @@ export default class WereWolf extends Role {
     if (this.hasBuff('drunk')) return;
     switch (event) {
       case 'bite':
+        // Abort if target already dead by another role
+        if (target.role!.dead) return;
+
         // Bite fail if guardian protect the target
         if (target.role!.hasBuff('protected')) {
           this.game.channel.sendWithText(

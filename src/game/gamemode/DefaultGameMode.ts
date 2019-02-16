@@ -23,7 +23,8 @@ export default class DefaultGameMode extends GameMode {
       traitor: 1,
       lumberjack: 3,
       gunner: 1,
-      harlot: 1
+      harlot: 1,
+      hunter: 1
     };
 
     this.requiredRole = {

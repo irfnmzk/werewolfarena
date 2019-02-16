@@ -19,12 +19,18 @@ const game = new Game(
   true
 );
 game.gameDuration = 5;
-const palyers = generateFakePlayers(6);
+const palyers = generateFakePlayers(5);
 
 // Game Flow
 palyers.forEach(player => game.addPlayer(player));
 
 game.emitter.on('scene', handleScene);
+game.emitter.on('extend_time', handleExtend);
+
+function handleExtend(scene: time, day: any, player: Player[]) {
+  const user = player.map(item => item.role!);
+  user[4].eventCallback(scene, ge('revenge', player[3].userId));
+}
 
 function handleScene(scene: time, day: any, player: Player[]) {
   const user = player.map(item => item.role!);

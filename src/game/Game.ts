@@ -613,13 +613,32 @@ export default class Game {
    * waitExtendedTime
    */
   public waitExtendedTime(): Promise<any> {
-    console.log('sleeping for ' + this.extendedTime);
+    if (this.debug) {
+      console.log('sleeping for ' + this.extendedTime);
+      this.emitter.emit('extend_time', this.time, this.day, this.players);
+    }
     return new Promise(resolve =>
       setTimeout(() => {
         this.extendedTime = 0;
         resolve();
       }, this.extendedTime * 1000)
     );
+  }
+
+  /**
+   * extendedTimeAction
+   */
+  public extendedTimeAction(
+    player: Player,
+    targetId: string,
+    event: Types.EventType
+  ) {
+    const target = this.findPlayerById(targetId);
+    player.role!.action(event, target);
+  }
+
+  private findPlayerById(id: string) {
+    return this.players.filter(player => player.userId === id)[0];
   }
 
   private isGameKilled() {

@@ -126,6 +126,11 @@
 			"fail_bite": "role.harlot.fail_bite",
 			"die_while_visit": "role.harlot.die_while_visit",
 			"met_werewolf": "role.harlot.met_werewolf"
+		},
+		"hunter": {
+			"announcement": "role.hunter.announcement",
+			"die": "role.hunter.die",
+			"revenge": "role.hunter.revenge"
 		}
 	},
 	"vote": {
@@ -157,7 +162,8 @@
 		"vote": "🔥 Warga sudah mengambil keputusan. {player} mati di hukum gantung. 💀",
 		"bite": "{player} tergeletak bersimbah darah di rumah nya 💀 Ternyata dia telah di bunuh oleh Werewolf 🐺",
 		"punishment": "💀 {player} mati karena tidak melakukan voting sebanyak 3 kali.",
-		"shoot": "{player} tergeletak di tanah karena ditembak oleh Gunner 💀🔫"
+		"shoot": "{player} tergeletak di tanah karena ditembak oleh Gunner 💀🔫",
+		"revenge": "death.revenge"
 	},
 	"night": {
 		"no_death": "⛅ Malam Telah berlalu dengan sangat sunyi. Kabar baik, tidak ada yang mati tadi malam."

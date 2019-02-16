@@ -117,20 +117,23 @@
     },
     "gunner": {
       "announcement": "Kamu adalah Gunner 🔫 Kamu mempunyai 2 peluru silver untuk membunuh warga yang kamu curigai sebagai Werewolf. Semua Warga Desa termasuk Werewolf akan tau kamu adalah Gunner setelah kamu menggunakan peluru pertama.",
-      "shooted": "🔫 Kamu telah di tembak oleh gunner",
+      "shooted": "🔫 Kamu telah di tembak oleh gunner.",
       "shoot": "{target} telah ditembak oleh {player} (Gunner) 🔫",
-      "no_action": "Pelurumu sudah habis, kamu tidak bisa melakukan apa apa. 😓"
+      "no_action": "❌ Pelurumu sudah habis, kamu tidak bisa melakukan apa apa."
     },
     "harlot": {
-      "announcement": "role.harlot.announcement",
-      "fail_bite": "role.harlot.fail_bite",
-      "die_while_visit": "role.harlot.die_while_visit",
-      "met_werewolf": "role.harlot.met_werewolf"
+      "name": "Harlot 👄",
+      "announcement": "Kamu adalah Harlot 👄 Kamu bisa mengunjungi di rumah warga lain / diam dirumah sendiri. Apabila Werewolf memilih untuk menyerangmu saat kamu mengunjungi tempat lain, kamu aman karena kamu sedang tidak dirumah. Tapi, apabila Werewolf menyerang warga yang sedang kamu kunjungi, kamu dan warga tersebut akan mati.",
+      "fail_bite": "👄 Harlot sedang tidak ada dirumah. Kamu pulang dengan tangan kosong.",
+      "die_while_visit": "🐺 Werewolf mengunjungi rumah yang kamu kunjungi. Kamu dan tuan rumah mati diserang Werewolf 💀",
+      "met_werewolf": "🐺 Kamu berkunjung kerumah Werewolf. Kamu tidak bisa lari dan mati ditempat 💀"
     },
     "hunter": {
-      "announcement": "role.hunter.announcement",
-      "die": "role.hunter.die",
-      "revenge": "role.hunter.revenge"
+      "name": "Hunter 🏹",
+      "announcement": "Kamu adalah Hunter 🏹. Kamu bisa membunuh 1 pemain lain jika kamu diserang oleh Werewolf.",
+      "description": "🏹 Hunter adalah seorang pemburu handal. Hunter mempunyai sifat pendendam sehingga ketika Hunter diserang oleh Werewolf, dia akan membalaskan dendamnya dengan membunuh salah satu warga.",
+      "die": "🐺 Kamu telah mati dibunuh Werewolf. Ini saatnya unutk balas dendam!",
+      "revenge": "🏹 Kamu menerima dendam Hunter. Kamu mati dibunuh oleh Hunter."
     }
   },
   "vote": {
@@ -159,19 +162,14 @@
     "notify_waiting_list": "📣 Notifikasi📣 \n\nGame baru akan di mulai di grup. \nAyo join sekarang!"
   },
   "death": {
-    "vote": "🔥 Warga sudah mengambil keputusan. {player} mati di hukum gantung. 💀",
-    "bite": "{player} tergeletak bersimbah darah di rumah nya 💀 Ternyata dia telah di bunuh oleh Werewolf 🐺",
+    "vote": "🔥 Warga telah mengambil keputusan. {player} mati di hukum gantung.",
+    "bite": "🐺 {player} tergeletak bersimbah darah di rumahnya. Ternyata dia telah dibunuh oleh Werewolf.",
     "punishment": "💀 {player} mati karena tidak melakukan voting sebanyak 3 kali.",
-    "shoot": "{player} tergeletak di tanah karena ditembak oleh Gunner 💀🔫",
-    "revenge": "death.revenge"
+    "shoot": "🔫 {player} tergeletak di tanah karena ditembak oleh Gunner",
+    "revenge": "🏹 {player} telah mati karena menerima dendam Hunter."
   },
   "night": {
     "no_death": "⛅ Malam Telah berlalu dengan sangat sunyi. Kabar baik, tidak ada yang mati tadi malam."
   },
-  "info": "info",
-  "tole": {
-    "werewolf": {
-      "description": "tole.werewolf.description"
-    }
-  }
+  "info": "info"
 }

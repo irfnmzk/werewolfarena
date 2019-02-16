@@ -112,13 +112,13 @@
       "name": "Lumberjack 🧔",
       "description": "🧔 Lumberjack adalah seorang penebang pohon di dalam hutan. Lumberjack tidak sendirian, Lumberjack mempunyai ikatan persaudaraan yang kuat dengan Lumberjack lainnya. Sehingga dalam permainan, Lumberjack bisa mengetahui sesama Lumberjack lainnya.",
       "announcement": "Kamu adalah Lumberjack 🧔 Kamu bisa mengetahui siapa Lumberjack lainnya, dan Lumberjack lain juga tau bahwa kamu adalah Lumberjack. {ally}",
-      "friend": "Adalah temanmu 🧔",
+      "friend": " Adalah temanmu 🧔",
       "alone": "Kamu adalah satu satunya Lumberjack 🧔"
     },
     "gunner": {
       "announcement": "Kamu adalah Gunner 🔫 Kamu mempunyai 2 peluru silver untuk membunuh warga yang kamu curigai sebagai Werewolf. Semua Warga Desa termasuk Werewolf akan tau kamu adalah Gunner setelah kamu menggunakan peluru pertama.",
-      "shooted": "Telah ditembak oleh Gunner 🔫",
-      "shoot": "🔫 Pilih warga yang akan kamu eksekusi.",
+      "shooted": "🔫 Kamu telah di tembak oleh gunner",
+      "shoot": "{target} telah ditembak oleh {player} (Gunner) 🔫",
       "no_action": "Pelurumu sudah habis, kamu tidak bisa melakukan apa apa. 😓"
     }
   },

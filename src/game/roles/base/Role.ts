@@ -129,6 +129,7 @@ export default class Role {
    */
   public eventDayCallback(event: Types.GameEvent) {
     // To be override
+    this.addEventToQueue(event);
   }
 
   /**

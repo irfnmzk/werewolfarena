@@ -18,6 +18,7 @@ export default class ListCommand extends Command {
       { name: '/batal', desc: 'Membatalkan game yang belum di mulai' },
       { name: '/mulai', desc: 'Memulai game yang sudah di buat' },
       { name: '/pemain', desc: 'Melihat daftar pemain' },
+      { name: '/pengaturan', desc: 'Merubah pengaturan grup' },
       {
         name: '/notify',
         desc: 'Memberi notifikasi bila game selanjutnya di mulai'

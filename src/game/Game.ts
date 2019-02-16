@@ -29,7 +29,7 @@ export default class Game {
 
   public winner?: Winner;
 
-  public gameDuration = 60; // seconds
+  public gameDuration: number; // seconds
 
   public readonly channel: ILineMessage;
   public readonly localeService: LocaleService;
@@ -37,6 +37,7 @@ export default class Game {
   public emitter: Emitter;
 
   public maxVoteMiss = 3;
+  public extendedTime = 0;
 
   public readonly eventQueue: GameEventQueue;
 
@@ -80,6 +81,7 @@ export default class Game {
     this.groupId = groupId;
     this.channel = channel;
 
+    this.gameDuration = this.option.duration;
     this.time = 'DAY';
 
     this.messageGenerator = new MessageGenerator(this.localeService, this);
@@ -588,6 +590,15 @@ export default class Game {
     return this.players.filter(data => !data.role!.dead);
   }
 
+  /**
+   * getAlivePlayerByRole
+   */
+  public getAlivePlayerByRole(role: Types.RoleId) {
+    return this.players.filter(
+      data => !data.role!.dead && data.role!.id === role
+    );
+  }
+
   public getWinningMessage(player: Player) {
     return player.role!.team === this.winner ? 'Menang' : 'Kalah';
   }
@@ -596,6 +607,38 @@ export default class Game {
     this.channel.sendMultipleTypeMessage(this.groupId, [
       this.messageGenerator.playerJoinMessage()
     ]);
+  }
+
+  /**
+   * waitExtendedTime
+   */
+  public waitExtendedTime(): Promise<any> {
+    if (this.debug) {
+      console.log('sleeping for ' + this.extendedTime);
+      this.emitter.emit('extend_time', this.time, this.day, this.players);
+    }
+    return new Promise(resolve =>
+      setTimeout(() => {
+        this.extendedTime = 0;
+        resolve();
+      }, this.extendedTime * 1000)
+    );
+  }
+
+  /**
+   * extendedTimeAction
+   */
+  public extendedTimeAction(
+    player: Player,
+    targetId: string,
+    event: Types.EventType
+  ) {
+    const target = this.findPlayerById(targetId);
+    player.role!.action(event, target);
+  }
+
+  private findPlayerById(id: string) {
+    return this.players.filter(player => player.userId === id)[0];
   }
 
   private isGameKilled() {
@@ -620,9 +663,10 @@ export default class Game {
     allDeath.forEach(death => {
       deathMessage.push(
         this.localeService.t(`death.${death.event}`, {
-          player: this.option.showRole
-            ? `${death.player.name}(${death.player.role!.name})`
-            : death.player.name
+          player:
+            this.option.showRole === 'YA'
+              ? `${death.player.name}(${death.player.role!.name})`
+              : death.player.name
         })
       );
     });

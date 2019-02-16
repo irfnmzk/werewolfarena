@@ -117,8 +117,8 @@
     },
     "gunner": {
       "announcement": "Kamu adalah Gunner 🔫 Kamu mempunyai 2 peluru silver untuk membunuh warga yang kamu curigai sebagai Werewolf. Semua Warga Desa termasuk Werewolf akan tau kamu adalah Gunner setelah kamu menggunakan peluru pertama.",
-      "shooted": "Telah ditembak oleh Gunner 🔫",
-      "shoot": "🔫 Pilih warga yang akan kamu eksekusi.",
+      "shooted": "{player} telah ditembak oleh Gunner 🔫",
+      "shoot": "🔫 Kamu telah di tembak oleh gunner",
       "no_action": "Pelurumu sudah habis, kamu tidak bisa melakukan apa apa. 😓"
     }
   },

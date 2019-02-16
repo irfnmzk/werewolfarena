@@ -135,7 +135,7 @@
       "name": "Hunter 🏹",
       "announcement": "Kamu adalah Hunter 🏹. Kamu bisa membunuh 1 pemain lain jika kamu diserang oleh Werewolf.",
       "description": "🏹 Hunter adalah seorang pemburu handal. Hunter mempunyai sifat pendendam sehingga ketika Hunter diserang oleh Werewolf, dia akan membalaskan dendamnya dengan membunuh salah satu warga.",
-      "die": "🐺 Kamu telah mati dibunuh Werewolf. Kamu punya waktu 10 detik untuk membalas dendam!",
+      "die": "🐺 Kamu telah mati dibunuh Werewolf. Kamu punya waktu 10 detik untuk membalaskan dendammu!",
       "revenge": "🏹 Kamu menerima dendam Hunter. Kamu mati dibunuh oleh Hunter."
     }
   },

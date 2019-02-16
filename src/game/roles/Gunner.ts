@@ -23,7 +23,7 @@ export default class Gunner extends Role {
     );
   }
 
-  public eventNight() {
+  public eventDay() {
     if (this.actionLeft <= 0) {
       return this.game.channel.sendWithText(
         this.userId,
@@ -35,8 +35,8 @@ export default class Gunner extends Role {
     this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
   }
 
-  public eventNightCallback(event: Types.GameEvent) {
-    super.eventNightCallback(event);
+  public eventDayCallback(event: Types.GameEvent) {
+    super.eventDayCallback(event);
 
     this.game.channel.sendWithText(
       this.userId,
@@ -46,7 +46,7 @@ export default class Gunner extends Role {
     );
   }
 
-  public nightTimeUp() {
+  public dayTimeUp() {
     if (this.actionLeft === 0) return;
     this.game.channel.sendWithText(
       this.userId,

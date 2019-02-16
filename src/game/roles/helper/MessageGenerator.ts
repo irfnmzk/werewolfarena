@@ -635,6 +635,77 @@ export default class MessageGenerator {
   }
 
   /**
+   * hunterSelection
+   */
+  public hunterSelection(target: Player[]): Line.FlexMessage {
+    const players = _.chunk(target, 2);
+    const playerList: Line.FlexBox[] = players.map(
+      (data): Line.FlexBox => {
+        const targetButton: Line.FlexButton[] = data.map(
+          (targetPlayer): Line.FlexButton => ({
+            type: 'button',
+            style: 'primary',
+            height: 'sm',
+            color: '#f44242',
+            action: {
+              type: 'postback',
+              label: targetPlayer.name,
+              data: generateEvent({
+                type: 'GAME_EVENT',
+                data: {
+                  event: 'revenge',
+                  groupId: this.game.groupId,
+                  targetId: targetPlayer.userId,
+                  timeStamp: Date.now()
+                }
+              })
+            }
+          })
+        );
+        return {
+          type: 'box',
+          layout: 'horizontal',
+          spacing: 'sm',
+          contents: [...targetButton]
+        };
+      }
+    );
+    return {
+      type: 'flex',
+      altText: 'Pilih pemain untuk di Bunuh!',
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          spacing: 'md',
+          contents: [
+            {
+              type: 'text',
+              text: 'Revenge Time',
+              color: '#1DB446',
+              size: 'lg',
+              weight: 'bold'
+            },
+            {
+              type: 'text',
+              text: 'Pilih Pemain untuk di Bunuh!',
+              color: '#aaaaaa',
+              size: 'sm'
+            },
+            {
+              type: 'box',
+              spacing: 'md',
+              layout: 'vertical',
+              contents: [...playerList]
+            }
+          ]
+        }
+      }
+    };
+  }
+
+  /**
    * voteSelection
    */
   public voteSelection(target: Player[]): Line.FlexMessage {

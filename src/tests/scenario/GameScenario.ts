@@ -35,7 +35,7 @@ function handleScene(scene: time, day: any, player: Player[]) {
     case 0:
       switch (scene) {
         case 'NIGHT':
-          user[4].eventCallback(scene, ge('visit', player[3].userId));
+          user[3].eventCallback(scene, ge('bite', player[4].userId));
           // user[3].eventCallback(scene, ge('bite', player[0].userId));
           break;
         case 'DUSK':

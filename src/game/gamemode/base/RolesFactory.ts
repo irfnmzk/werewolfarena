@@ -9,6 +9,7 @@ import Traitor from '../../roles/Traitor';
 import Lumberjack from '../../roles/Lumberjack';
 import Gunner from '../../roles/Gunner';
 import Harlot from '../../roles/Harlot';
+import Hunter from '../../roles/Hunter';
 
 const Roles: { [key: string]: any } = {
   Villager,
@@ -21,7 +22,8 @@ const Roles: { [key: string]: any } = {
   Traitor,
   Lumberjack,
   Gunner,
-  Harlot
+  Harlot,
+  Hunter
 };
 
 export default Roles;

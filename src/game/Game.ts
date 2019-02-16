@@ -613,6 +613,7 @@ export default class Game {
    * waitExtendedTime
    */
   public waitExtendedTime(): Promise<any> {
+    console.log('sleeping for ' + this.extendedTime);
     return new Promise(resolve =>
       setTimeout(() => {
         this.extendedTime = 0;

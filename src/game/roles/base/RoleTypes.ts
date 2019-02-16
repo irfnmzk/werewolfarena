@@ -11,7 +11,8 @@ export type RoleId =
   | 'traitor'
   | 'lumberjack'
   | 'gunner'
-  | 'harlot';
+  | 'harlot'
+  | 'hunter';
 export type RoleName =
   | 'default'
   | 'Villager'
@@ -24,7 +25,8 @@ export type RoleName =
   | 'Traitor'
   | 'Lumberjack'
   | 'Gunner'
-  | 'Harlot';
+  | 'Harlot'
+  | 'Hunter';
 export type EventType =
   | 'punishment'
   | 'vote'
@@ -32,7 +34,8 @@ export type EventType =
   | 'protect'
   | 'see'
   | 'shoot'
-  | 'visit';
+  | 'visit'
+  | 'revenge';
 export type Team = 'VILLAGER' | 'WEREWOLF';
 export type BuffName = 'protected' | 'drunk' | 'visiting' | 'visited';
 

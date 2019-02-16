@@ -10,7 +10,8 @@ export type RoleId =
   | 'cursed'
   | 'traitor'
   | 'lumberjack'
-  | 'gunner';
+  | 'gunner'
+  | 'harlot';
 export type RoleName =
   | 'default'
   | 'Villager'
@@ -22,16 +23,18 @@ export type RoleName =
   | 'Cursed'
   | 'Traitor'
   | 'Lumberjack'
-  | 'Gunner';
+  | 'Gunner'
+  | 'Harlot';
 export type EventType =
   | 'punishment'
   | 'vote'
   | 'bite'
   | 'protect'
   | 'see'
-  | 'shoot';
+  | 'shoot'
+  | 'visit';
 export type Team = 'VILLAGER' | 'WEREWOLF';
-export type BuffName = 'protected' | 'drunk';
+export type BuffName = 'protected' | 'drunk' | 'visiting' | 'visited';
 
 export interface Buff {
   name: BuffName;

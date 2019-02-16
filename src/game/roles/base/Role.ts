@@ -26,6 +26,8 @@ export default class Role {
 
   public priority: number;
 
+  public targetPlayer?: Player;
+
   protected messageGenerator: MessageGenerator;
 
   protected readonly game: Game;

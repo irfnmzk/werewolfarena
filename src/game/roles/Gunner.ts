@@ -62,7 +62,10 @@ export default class Gunner extends Role {
       this.game.localeService.t('role.gunner.shooted')
     );
     this.game.broadcastTextMessage(
-      this.game.localeService.t('role.gunner.shoot')
+      this.game.localeService.t('role.gunner.shoot', {
+        target: target.name,
+        player: this.player.name
+      })
     );
     target.role!.endOfLife('shoot', this.player);
   }

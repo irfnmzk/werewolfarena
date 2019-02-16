@@ -29,7 +29,7 @@ export default class Game {
 
   public winner?: Winner;
 
-  public gameDuration = 60; // seconds
+  public gameDuration: number; // seconds
 
   public readonly channel: ILineMessage;
   public readonly localeService: LocaleService;
@@ -80,6 +80,7 @@ export default class Game {
     this.groupId = groupId;
     this.channel = channel;
 
+    this.gameDuration = this.option.duration;
     this.time = 'DAY';
 
     this.messageGenerator = new MessageGenerator(this.localeService, this);
@@ -620,9 +621,10 @@ export default class Game {
     allDeath.forEach(death => {
       deathMessage.push(
         this.localeService.t(`death.${death.event}`, {
-          player: this.option.showRole
-            ? `${death.player.name}(${death.player.role!.name})`
-            : death.player.name
+          player:
+            this.option.showRole === 'YA'
+              ? `${death.player.name}(${death.player.role!.name})`
+              : death.player.name
         })
       );
     });

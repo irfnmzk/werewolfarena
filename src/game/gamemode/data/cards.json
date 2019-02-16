@@ -2,11 +2,12 @@
   "villager": 1,
   "werewolf": -6,
   "guardian": 5,
-  "seer": 4,
+  "seer": 6,
   "drunk": 2,
   "fool": 2,
-  "cursed": -3,
+  "cursed": -5,
   "traitor": -4,
-  "lumberjack": 3,
-  "gunner": 4
+  "lumberjack": 2,
+  "gunner": 5,
+  "harlot": 3
 }

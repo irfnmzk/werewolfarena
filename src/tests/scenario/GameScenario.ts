@@ -19,7 +19,7 @@ const game = new Game(
   true
 );
 game.gameDuration = 5;
-const palyers = generateFakePlayers(5);
+const palyers = generateFakePlayers(6);
 
 // Game Flow
 palyers.forEach(player => game.addPlayer(player));

@@ -28,6 +28,7 @@ export default class GameLoop {
     while (this.playing) {
       // Night scene
       await this.game.nightScene();
+      await this.game.waitExtendedTime();
 
       // Increment number of days
       this.game.addDay();

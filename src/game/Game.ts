@@ -37,6 +37,7 @@ export default class Game {
   public emitter: Emitter;
 
   public maxVoteMiss = 3;
+  public extendedTime = 0;
 
   public readonly eventQueue: GameEventQueue;
 
@@ -608,6 +609,18 @@ export default class Game {
     ]);
   }
 
+  /**
+   * waitExtendedTime
+   */
+  public waitExtendedTime(): Promise<any> {
+    return new Promise(resolve =>
+      setTimeout(() => {
+        this.extendedTime = 0;
+        resolve();
+      }, this.extendedTime * 1000)
+    );
+  }
+
   private isGameKilled() {
     return this.status === 'KILLED';
   }
@@ -806,7 +819,7 @@ export default class Game {
     console.clear();
     this.gameDuration = 20;
     this.waitDuration = 0;
-    this.gamemode = new DefaultGameMode(this);
+    this.gamemode = new TestGameMode(this);
   }
 
   private broadcastPlayerListInterval() {

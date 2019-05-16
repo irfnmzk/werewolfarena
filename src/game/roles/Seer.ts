@@ -51,8 +51,9 @@ export default class Seer extends Role {
     const targetName = this.game.getTargetPlayer(target.userId).name;
     let targetRole = this.game.getTargetPlayer(target.userId).role!.name;
 
-    // If target is wolf man change target role name to werewolf
+    // Change targetrole name for specfic role
     if (target.role!.id === 'wolfman') targetRole = 'Werewolf';
+    if (target.role!.id === 'lycan') targetRole = 'Villager';
 
     this.game.channel.sendWithText(
       this.userId,

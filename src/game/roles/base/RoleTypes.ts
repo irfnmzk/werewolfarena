@@ -12,7 +12,8 @@ export type RoleId =
   | 'lumberjack'
   | 'gunner'
   | 'harlot'
-  | 'hunter';
+  | 'hunter'
+  | 'wolfman';
 export type RoleName =
   | 'default'
   | 'Villager'
@@ -26,7 +27,8 @@ export type RoleName =
   | 'Lumberjack'
   | 'Gunner'
   | 'Harlot'
-  | 'Hunter';
+  | 'Hunter'
+  | 'Wolfman';
 export type EventType =
   | 'punishment'
   | 'vote'

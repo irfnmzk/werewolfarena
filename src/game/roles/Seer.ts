@@ -48,11 +48,17 @@ export default class Seer extends Role {
 
   public action(event: Types.EventType, target: Player) {
     if (event !== 'see') return;
+    const targetName = this.game.getTargetPlayer(target.userId).name;
+    let targetRole = this.game.getTargetPlayer(target.userId).role!.name;
+
+    // If target is wolf man change target role name to werewolf
+    if (target.role!.id === 'wolfman') targetRole = 'Werewolf';
+
     this.game.channel.sendWithText(
       this.userId,
       this.game.localeService.t('role.seer.see', {
-        target: this.game.getTargetPlayer(target.userId).name,
-        role: this.game.getTargetPlayer(target.userId).role!.name
+        target: targetName,
+        role: targetRole
       })
     );
   }

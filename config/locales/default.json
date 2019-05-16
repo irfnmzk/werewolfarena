@@ -128,7 +128,7 @@
       "announcement": "Kamu adalah Harlot 👄 Kamu bisa mengunjungi di rumah warga lain / diam dirumah sendiri. Apabila Werewolf memilih untuk menyerangmu saat kamu mengunjungi tempat lain, kamu aman karena kamu sedang tidak dirumah. Tapi, apabila Werewolf menyerang warga yang sedang kamu kunjungi, kamu dan warga tersebut akan mati.",
       "fail_bite": "👄 Harlot sedang tidak ada dirumah. Kamu pulang dengan tangan kosong.",
       "die_while_visit": "🐺 Werewolf mengunjungi rumah yang kamu kunjungi. Kamu dan tuan rumah mati diserang Werewolf 💀",
-      "description":"Harlot 👄 adalah perempuan yang berpindah pindah tempat. Harlot bisa mengunjungi rumah warga lain / diam dirumah. Apabila Werewolf menyerang Harlot saat Harlot pergi, Harlot akan aman karena ia tidak dirumah. Tapi, jika Werewolf menyerang rumah warga yang Harlot sedang kunjungi, warga tersebut dan Harlot akan mati.",
+      "description": "Harlot 👄 adalah perempuan yang berpindah pindah tempat. Harlot bisa mengunjungi rumah warga lain / diam dirumah. Apabila Werewolf menyerang Harlot saat Harlot pergi, Harlot akan aman karena ia tidak dirumah. Tapi, jika Werewolf menyerang rumah warga yang Harlot sedang kunjungi, warga tersebut dan Harlot akan mati.",
       "met_werewolf": "🐺 Kamu berkunjung kerumah Werewolf. Kamu tidak bisa lari dan mati ditempat 💀"
     },
     "hunter": {
@@ -137,6 +137,9 @@
       "description": "🏹 Hunter adalah seorang pemburu handal. Hunter mempunyai sifat pendendam sehingga ketika Hunter diserang oleh Werewolf, dia akan membalaskan dendamnya dengan membunuh salah satu warga.",
       "die": "🐺 Kamu telah mati dibunuh Werewolf. Kamu punya waktu 10 detik untuk membalaskan dendammu!",
       "revenge": "🏹 Kamu menerima dendam Hunter. Kamu mati dibunuh oleh Hunter."
+    },
+    "wolfman": {
+      "announcement": "Kamu adalah Wolfman jika seer menerawangmu maka dia akan melihat dirimu sebagai seorang Werewolf"
     }
   },
   "vote": {

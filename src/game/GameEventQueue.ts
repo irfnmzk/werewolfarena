@@ -1,8 +1,8 @@
-import _ from 'lodash';
-import Game from './Game';
-import EventQueue from './base/EventQueue';
-import Player from './base/Player';
-import * as Types from './roles/base/RoleTypes';
+import _ from "lodash";
+import Game from "./Game";
+import EventQueue from "./base/EventQueue";
+import Player from "./base/Player";
+import * as Types from "./roles/base/RoleTypes";
 
 interface VoteCounter {
   [key: string]: number;
@@ -46,7 +46,7 @@ export default class GameEventQueue {
    * refreshQueue
    */
   public refreshQueue(time: Types.time) {
-    this.isVote = time === 'DUSK';
+    this.isVote = time === "DUSK";
     this.queue = [];
     this.death = [];
   }
@@ -112,11 +112,11 @@ export default class GameEventQueue {
 
     this.game
       .getTargetPlayer(targetUserId)
-      .role!.endOfLife('vote', {} as Player);
+      .role!.endOfLife("vote", {} as Player);
   }
 
   private combineQueue() {
-    const eventList: Types.EventType[] = ['bite'];
+    const eventList: Types.EventType[] = ["bite"];
     eventList.forEach(event => {
       const eventCount = this.queue.filter(data => data.event === event).length;
       if (eventCount <= 1) return;

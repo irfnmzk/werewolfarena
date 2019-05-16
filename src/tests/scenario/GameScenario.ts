@@ -25,12 +25,12 @@ const palyers = generateFakePlayers(5);
 palyers.forEach(player => game.addPlayer(player));
 
 game.emitter.on('scene', handleScene);
-game.emitter.on('extend_time', handleExtend);
+// game.emitter.on('extend_time', handleExtend);
 
-function handleExtend(scene: time, day: any, player: Player[]) {
-  const user = player.map(item => item.role!);
-  user[4].eventCallback(scene, ge('revenge', player[3].userId));
-}
+// function handleExtend(scene: time, day: any, player: Player[]) {
+//   const user = player.map(item => item.role!);
+//   user[4].eventCallback(scene, ge('revenge', player[3].userId));
+// }
 
 function handleScene(scene: time, day: any, player: Player[]) {
   const user = player.map(item => item.role!);
@@ -41,7 +41,7 @@ function handleScene(scene: time, day: any, player: Player[]) {
     case 0:
       switch (scene) {
         case 'NIGHT':
-          user[3].eventCallback(scene, ge('bite', player[4].userId));
+          user[4].eventCallback(scene, ge('see', player[0].userId));
           // user[3].eventCallback(scene, ge('bite', player[0].userId));
           break;
         case 'DUSK':

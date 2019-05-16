@@ -10,6 +10,7 @@ import Lumberjack from '../../roles/Lumberjack';
 import Gunner from '../../roles/Gunner';
 import Harlot from '../../roles/Harlot';
 import Hunter from '../../roles/Hunter';
+import Wolfman from '../../roles/Wolfman';
 
 const Roles: { [key: string]: any } = {
   Villager,
@@ -23,7 +24,8 @@ const Roles: { [key: string]: any } = {
   Lumberjack,
   Gunner,
   Harlot,
-  Hunter
+  Hunter,
+  Wolfman
 };
 
 export default Roles;

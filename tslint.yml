@@ -10,8 +10,6 @@ rulesDirectory:
   - tslint-consistent-codestyle
 
 rules:
-  no-unnecessary-type-annotation:
-    - false
   ordered-imports:
     - false
   array-type:

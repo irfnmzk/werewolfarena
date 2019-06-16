@@ -143,6 +143,9 @@
     },
     "beholder": {
       "announcement": "Kamu adalah Beholder, Kamu bisa tahu siapa seer yang asli \nSeer yang asli adalah - {target}"
+    },
+    "lycan": {
+      "announcement": "Kamu adalah Lycan, Sebenarnya kamu adalah Werewolf tapi bila Seer menerawangmu dia akan melihatmu sebagai seorang Viillager"
     }
   },
   "vote": {

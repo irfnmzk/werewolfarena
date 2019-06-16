@@ -16,10 +16,10 @@ export default class TestGameMode extends GameMode {
    * assignRoles
    */
   public assignRoles(players: Player[]) {
-    players[0].role = new RolesFactory.Beholder(this.game, players[0]);
-    players[1].role = new RolesFactory.Werewolf(this.game, players[1]);
-    players[2].role = new RolesFactory.Seer(this.game, players[2]);
-    players[3].role = new RolesFactory.Seer(this.game, players[3]);
-    players[4].role = new RolesFactory.Seer(this.game, players[4]);
+    players[0].role = new RolesFactory.Lycan(this.game, players[0]);
+    players[1].role = new RolesFactory.Seer(this.game, players[1]);
+    players[2].role = new RolesFactory.Werewolf(this.game, players[2]);
+    players[3].role = new RolesFactory.Villager(this.game, players[3]);
+    players[4].role = new RolesFactory.Villager(this.game, players[4]);
   }
 }

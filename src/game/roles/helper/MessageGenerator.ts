@@ -93,7 +93,7 @@ export default class MessageGenerator {
                 },
                 {
                   type: 'text',
-                  text: 'Max: 12',
+                  text: 'Max: 16',
                   align: 'start',
                   color: '#aaaaaa',
                   flex: 1

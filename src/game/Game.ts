@@ -842,7 +842,7 @@ export default class Game {
     console.clear();
     this.gameDuration = 20;
     this.waitDuration = 0;
-    this.gamemode = new TestGameMode(this);
+    this.gamemode = new DefaultGameMode(this);
   }
 
   private broadcastPlayerListInterval() {

@@ -10,7 +10,7 @@ export default class DefaultGameMode extends GameMode {
 
     this.name = 'Default';
     this.MIN_PLAYER = 5;
-    this.MAX_PLAYER = 15;
+    this.MAX_PLAYER = 16;
 
     this.deck = {
       villager: 4,
@@ -24,7 +24,10 @@ export default class DefaultGameMode extends GameMode {
       lumberjack: 3,
       gunner: 1,
       harlot: 1,
-      hunter: 1
+      hunter: 1,
+      lycan: 1,
+      beholder: 1,
+      wolfman: 1
     };
 
     this.requiredRole = {
@@ -64,6 +67,10 @@ export default class DefaultGameMode extends GameMode {
         roles[roles.indexOf('Lumberjack')] = item;
       }
     });
+
+    if (roles.filter(role => role === 'Lumberjack').length === 1) {
+      roles[roles.indexOf('Lumberjack')] = 'Villager';
+    }
 
     const suffledPlayer = _.shuffle(players);
     roles = _.shuffle(roles);

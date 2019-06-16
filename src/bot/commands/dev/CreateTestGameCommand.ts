@@ -33,7 +33,7 @@ export default class JoinGameCommand extends Command {
       { duration: 15, showRole: 'YA' },
       this.groupManager!
     );
-    game.gameDuration = 30;
+    game.gameDuration = 15;
     game.maxVoteMiss = 1;
     game.gamemode = new TestGameMode(game);
     this.groupManager!.createGame(groupId!, game);

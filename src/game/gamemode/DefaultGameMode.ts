@@ -27,7 +27,8 @@ export default class DefaultGameMode extends GameMode {
       hunter: 1,
       lycan: 1,
       beholder: 1,
-      wolfman: 1
+      wolfman: 1,
+      princess: 1
     };
 
     this.requiredRole = {

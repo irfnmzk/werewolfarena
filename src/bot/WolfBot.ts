@@ -32,7 +32,7 @@ export default class WolfBot {
 
     this.addEventListener();
 
-    if (this.config.envType === 'development') this.setupDevelopmentServer();
+    // if (this.config.envType === 'development') this.setupDevelopmentServer();
   }
 
   /**

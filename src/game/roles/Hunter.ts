@@ -4,7 +4,7 @@ import Player from '@game/base/Player';
 import * as Types from './base/RoleTypes';
 
 export default class Hunter extends Role {
-  public HUNTER_EXTEND_DURATION = 10;
+  public HUNTER_EXTEND_DURATION = 20;
 
   constructor(game: Game, player: Player) {
     super(game, player);
@@ -49,14 +49,19 @@ export default class Hunter extends Role {
     super.endOfLife(event, killer);
 
     if (event !== 'bite') return;
+    this.game.extendedTime = this.HUNTER_EXTEND_DURATION;
+
     this.game.channel.sendWithText(
       this.userId,
-      this.game.localeService.t(`role.hunter.die`)
+      this.game.localeService.t(`role.hunter.die`, {
+        time: this.HUNTER_EXTEND_DURATION
+      })
     );
 
-    const target = this.game.getEnemyList(this.player);
-    const message = this.messageGenerator.werewolfSelection(target);
-    this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
-    this.game.extendedTime = this.HUNTER_EXTEND_DURATION;
+    setTimeout(() => {
+      const target = this.game.getEnemyList(this.player);
+      const message = this.messageGenerator.hunterSelection(target);
+      this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
+    }, 1000);
   }
 }

@@ -1,29 +1,30 @@
-import Emitter from "eventemitter3";
-import _ from "lodash";
-import Timer from "easytimer.js";
-import { RateLimiterMemory } from "rate-limiter-flexible";
+import Emitter from 'eventemitter3';
+import _ from 'lodash';
+import Timer from 'easytimer.js';
+import { RateLimiterMemory } from 'rate-limiter-flexible';
 
-import GroupManager from "../manager/GroupManager";
+import GroupManager from '../manager/GroupManager';
 
-import Player from "./base/Player";
-import GameLoop from "./GameLoop";
-import DefaultGameMode from "./gamemode/DefaultGameMode";
-import GameEventQueue from "./GameEventQueue";
-import * as Types from "./roles/base/RoleTypes";
-import LocaleService from "../utils/i18n/LocaleService";
-import ILineMessage from "src/line/base/ILineMessage";
-import TestGameMode from "./gamemode/TestGameMode";
-import MessageGenerator from "./roles/helper/MessageGenerator";
-import { Message } from "@line/bot-sdk";
-import GameOptions from "./base/GameOptions";
+import Player from './base/Player';
+import GameLoop from './GameLoop';
+import DefaultGameMode from './gamemode/DefaultGameMode';
+import GameEventQueue from './GameEventQueue';
+import * as Types from './roles/base/RoleTypes';
+import LocaleService from '../utils/i18n/LocaleService';
+import ILineMessage from 'src/line/base/ILineMessage';
+import TestGameMode from './gamemode/TestGameMode';
+import MessageGenerator from './roles/helper/MessageGenerator';
+import { Message } from '@line/bot-sdk';
+import GameOptions from './base/GameOptions';
+import GameMode from './gamemode/base/GameMode';
 
-export type Winner = "VILLAGER" | "WEREWOLF";
+export type Winner = 'VILLAGER' | 'WEREWOLF';
 
 export default class Game {
   public readonly groupId: string;
 
   public players: Player[] = [];
-  public status: "OPEN" | "PLAYING" | "FINISH" | "KILLED" = "OPEN";
+  public status: 'OPEN' | 'PLAYING' | 'FINISH' | 'KILLED' = 'OPEN';
   public day: number = 0;
   public time: Types.time;
 
@@ -45,7 +46,7 @@ export default class Game {
   public option: GameOptions;
 
   public playerListInterval: any;
-  private gamemode: DefaultGameMode;
+  public gamemode: GameMode;
 
   private readonly gameLoop: GameLoop;
 
@@ -82,7 +83,7 @@ export default class Game {
     this.channel = channel;
 
     this.gameDuration = this.option.duration;
-    this.time = "DAY";
+    this.time = 'DAY';
 
     this.messageGenerator = new MessageGenerator(this.localeService, this);
 
@@ -101,7 +102,7 @@ export default class Game {
     const message: Message[] = [
       this.messageGenerator.joinMessage(),
       this.messageGenerator.getDefaultText(
-        "📣 Bila pesan tidak muncul, pastikan kamu sudah update LINE ke versi terbaru!"
+        '📣 Bila pesan tidak muncul, pastikan kamu sudah update LINE ke versi terbaru!'
       )
     ];
     this.channel.sendMultipleTypeMessage(this.groupId, message);
@@ -118,20 +119,20 @@ export default class Game {
         .then(() =>
           this.channel.sendWithText(
             this.groupId,
-            this.localeService.t("game.full", {
+            this.localeService.t('game.full', {
               max: this.gamemode.MAX_PLAYER!
             })
           )
         )
         .catch(() => true);
     }
-    if (this.status !== "OPEN") {
+    if (this.status !== 'OPEN') {
       return this.limiter
         .consume(this.groupId)
         .then(() =>
           this.channel.sendWithText(
             this.groupId,
-            this.localeService.t("game.already.start")
+            this.localeService.t('game.already.start')
           )
         );
     }
@@ -143,7 +144,7 @@ export default class Game {
         .then(() =>
           this.channel.sendWithText(
             this.groupId,
-            this.localeService.t("game.already.in", { name: player.name })
+            this.localeService.t('game.already.in', { name: player.name })
           )
         )
         .catch(() => true);
@@ -152,7 +153,7 @@ export default class Game {
 
     this.channel.sendWithText(
       this.groupId,
-      this.localeService.t("game.join", {
+      this.localeService.t('game.join', {
         player: player.name
       })
     );
@@ -165,15 +166,15 @@ export default class Game {
     clearInterval(this.playerListInterval);
     if (this.players.length < this.gamemode.MIN_PLAYER!) {
       this.broadcastTextMessage(
-        this.localeService.t("game.not_enough", {
+        this.localeService.t('game.not_enough', {
           min: this.gamemode.MIN_PLAYER!
         })
       );
       return this.deleteGame();
     }
-    this.broadcastTextMessage(this.localeService.t("game.start"));
+    this.broadcastTextMessage(this.localeService.t('game.start'));
     this.timer.stop();
-    this.status = "PLAYING";
+    this.status = 'PLAYING';
 
     this.startGameLoop();
   }
@@ -182,14 +183,14 @@ export default class Game {
    * forceStartGame
    */
   public forceStartGame() {
-    if (this.status !== "OPEN") return;
+    if (this.status !== 'OPEN') return;
     if (this.players.length >= this.gamemode.MIN_PLAYER!) {
       this.timer.stop();
       return this.startGame();
     }
 
     return this.broadcastTextMessage(
-      this.localeService.t("game.not_enough_force", {
+      this.localeService.t('game.not_enough_force', {
         min: this.gamemode.MIN_PLAYER!
       })
     );
@@ -199,14 +200,14 @@ export default class Game {
    * cancleGame
    */
   public cancelGame() {
-    if (this.status !== "OPEN") {
+    if (this.status !== 'OPEN') {
       return this.broadcastTextMessage(
-        this.localeService.t("game.cant_cancel")
+        this.localeService.t('game.cant_cancel')
       );
     }
     clearInterval(this.playerListInterval);
     this.timer.stop();
-    this.broadcastTextMessage(this.localeService.t("game.canceled"));
+    this.broadcastTextMessage(this.localeService.t('game.canceled'));
     return this.deleteGame();
   }
 
@@ -224,7 +225,7 @@ export default class Game {
    * assignRole
    */
   public assignRole() {
-    this.broadcastTextMessage(this.localeService.t("game.role.generating"));
+    this.broadcastTextMessage(this.localeService.t('game.role.generating'));
     this.gamemode.assignRoles(this.players);
   }
 
@@ -234,17 +235,17 @@ export default class Game {
    */
   public firstDayScene() {
     if (this.isGameKilled()) return;
-    return this.sendBroadcastSceneMessage("FIRST");
+    return this.sendBroadcastSceneMessage('FIRST');
   }
 
   /**
    * dayScene
    */
   public dayScene() {
-    if (this.isGameKilled()) return;
+    if (this.isGameKilled() || this.status === 'FINISH') return;
 
-    this.broadcastScene("DAY");
-    this.prepareForQueue("DAY");
+    this.broadcastScene('DAY');
+    this.prepareForQueue('DAY');
 
     this.players
       .filter(({ role }) => !role!.dead)
@@ -259,10 +260,10 @@ export default class Game {
    * nightScene
    */
   public nightScene() {
-    if (this.isGameKilled()) return;
+    if (this.isGameKilled() || this.status === 'FINISH') return;
 
-    this.broadcastScene("NIGHT");
-    this.prepareForQueue("NIGHT");
+    this.broadcastScene('NIGHT');
+    this.prepareForQueue('NIGHT');
 
     this.players
       .filter(({ role }) => !role!.dead)
@@ -277,10 +278,10 @@ export default class Game {
    * duskScene
    */
   public duskScene() {
-    if (this.isGameKilled()) return;
+    if (this.isGameKilled() || this.status === 'FINISH') return;
 
-    this.broadcastScene("DUSK");
-    this.prepareForQueue("DUSK");
+    this.broadcastScene('DUSK');
+    this.prepareForQueue('DUSK');
 
     this.players
       .filter(({ role }) => !role!.dead)
@@ -300,7 +301,7 @@ export default class Game {
 
       return this.channel.sendMultipleTypeMessage(this.groupId, [
         this.messageGenerator.getBasicFlexMessage(
-          this.localeService.t("game.info"),
+          this.localeService.t('game.info'),
           message
         ),
         this.messageGenerator.getBasicFlexMessage(
@@ -315,11 +316,11 @@ export default class Game {
       ]);
     }
     // Send no one dying on vote message
-    if (scene === "NIGHT" && this.day !== 0) {
+    if (scene === 'NIGHT' && this.day !== 0) {
       return this.channel.sendMultipleTypeMessage(this.groupId, [
         this.messageGenerator.getBasicFlexMessage(
-          this.localeService.t("game.info"),
-          this.localeService.t("vote.no_death")
+          this.localeService.t('game.info'),
+          this.localeService.t('vote.no_death')
         ),
         this.messageGenerator.getBasicFlexMessage(
           this.localeService.t(
@@ -332,11 +333,11 @@ export default class Game {
         )
       ]);
     }
-    if (scene === "DAY" && this.day !== 0) {
+    if (scene === 'DAY' && this.day !== 0) {
       return this.channel.sendMultipleTypeMessage(this.groupId, [
         this.messageGenerator.getBasicFlexMessage(
-          this.localeService.t("game.info"),
-          this.localeService.t("night.no_death")
+          this.localeService.t('game.info'),
+          this.localeService.t('night.no_death')
         ),
         this.messageGenerator.getBasicFlexMessage(
           this.localeService.t(
@@ -394,7 +395,7 @@ export default class Game {
 
     // For development only
     if (this.debug) {
-      this.emitter.emit("scene", time, this.day, this.players);
+      this.emitter.emit('scene', time, this.day, this.players);
     }
   }
 
@@ -444,10 +445,10 @@ export default class Game {
    * getLobbyPlayersListMessage
    */
   public getLobbyPlayersListMessage() {
-    return this.localeService.t("common.playerlist.header").concat(
+    return this.localeService.t('common.playerlist.header').concat(
       this.getLobbyPlayers()
         .map((player, index) => `${index + 1}. ${player.name}`)
-        .join("\n")
+        .join('\n')
     );
   }
 
@@ -495,7 +496,7 @@ export default class Game {
   public broadcastMessage(message: string): Promise<any> {
     return this.channel.sendFlexBasicMessage(
       this.groupId,
-      this.localeService.t("game.info"),
+      this.localeService.t('game.info'),
       message
     );
   }
@@ -528,7 +529,7 @@ export default class Game {
    */
   public isFinish() {
     const alive = this.calculateAliveTeam(this.players);
-    if (alive.VILLAGER + alive.WEREWOLF === 3 && this.time === "DAY") {
+    if (alive.VILLAGER + alive.WEREWOLF === 3 && this.time === 'DAY') {
       return false;
     }
     if (
@@ -536,16 +537,16 @@ export default class Game {
       alive.WEREWOLF >= Math.floor((alive.VILLAGER + alive.WEREWOLF) / 2)
     ) {
       // Werewolf win
-      this.winner = "WEREWOLF";
+      this.winner = 'WEREWOLF';
       return true;
     }
     if (alive.VILLAGER > 0 && alive.WEREWOLF <= 0) {
       // villager win
-      this.winner = "VILLAGER";
+      this.winner = 'VILLAGER';
       return true;
     }
     if (this.players.filter(({ role }) => !role!.dead).length <= 0) {
-      this.winner = "VILLAGER";
+      this.winner = 'VILLAGER';
       return true;
     }
     return false;
@@ -561,8 +562,8 @@ export default class Game {
     }
     this.waitDuration++;
     this.channel.sendMultipleText(this.groupId, [
-      this.localeService.t("game.timer.extend"),
-      this.localeService.t("game.timer.minutes", {
+      this.localeService.t('game.timer.extend'),
+      this.localeService.t('game.timer.minutes', {
         time: this.waitDuration - this.timer.getTotalTimeValues().minutes
       })
     ]);
@@ -574,7 +575,7 @@ export default class Game {
   public sendNotifyToWaitingList(userId: string) {
     this.channel.sendWithText(
       userId,
-      this.localeService.t("common.notify_waiting_list")
+      this.localeService.t('common.notify_waiting_list')
     );
   }
 
@@ -582,7 +583,7 @@ export default class Game {
    * killGame
    */
   public killGame() {
-    this.status = "KILLED";
+    this.status = 'KILLED';
     this.sendStopSignal();
   }
 
@@ -600,7 +601,7 @@ export default class Game {
   }
 
   public getWinningMessage(player: Player) {
-    return player.role!.team === this.winner ? "Menang" : "Kalah";
+    return player.role!.team === this.winner ? 'Menang' : 'Kalah';
   }
 
   public broadcastPLayerJoin() {
@@ -614,12 +615,14 @@ export default class Game {
    */
   public waitExtendedTime(): Promise<any> {
     if (this.debug) {
-      console.log("sleeping for " + this.extendedTime);
-      this.emitter.emit("extend_time", this.time, this.day, this.players);
+      console.log('sleeping for ' + this.extendedTime);
+      this.emitter.emit('extend_time', this.time, this.day, this.players);
     }
     return new Promise(resolve =>
       setTimeout(() => {
         this.extendedTime = 0;
+        console.log('checkend game', this.isFinish());
+        this.checkEndGame();
         resolve();
       }, this.extendedTime * 1000)
     );
@@ -642,17 +645,17 @@ export default class Game {
   }
 
   private isGameKilled() {
-    return this.status === "KILLED";
+    return this.status === 'KILLED';
   }
 
   private calculateAliveTeam(players: Player[]) {
     // Need to be refactored
     return {
       VILLAGER: players.filter(
-        player => !player.role!.dead && player.role!.team === "VILLAGER"
+        player => !player.role!.dead && player.role!.team === 'VILLAGER'
       ).length,
       WEREWOLF: players.filter(
-        player => !player.role!.dead && player.role!.team === "WEREWOLF"
+        player => !player.role!.dead && player.role!.team === 'WEREWOLF'
       ).length
     };
   }
@@ -664,13 +667,13 @@ export default class Game {
       deathMessage.push(
         this.localeService.t(`death.${death.event}`, {
           player:
-            this.option.showRole === "YA"
+            this.option.showRole === 'YA'
               ? `${death.player.name}(${death.player.role!.name})`
               : death.player.name
         })
       );
     });
-    const message = deathMessage.join("\n");
+    const message = deathMessage.join('\n');
     return message;
   }
 
@@ -682,7 +685,7 @@ export default class Game {
    * Called when Game is Finished
    */
   private endGame() {
-    if (this.status === "KILLED") return this.deleteGame();
+    if (this.status === 'KILLED') return this.deleteGame();
     const message = [
       this.messageGenerator.getEndGameMessage(this.sortPlayerByWinning())
     ];
@@ -690,7 +693,7 @@ export default class Game {
       const dyingMessage = this.getDyingMessage();
       message.unshift(
         this.messageGenerator.getBasicFlexMessage(
-          this.localeService.t("game.info"),
+          this.localeService.t('game.info'),
           dyingMessage
         )
       );
@@ -712,11 +715,11 @@ export default class Game {
   private setStartTimer() {
     this.timer.start();
     this.timer.addEventListener(
-      "minutesUpdated",
+      'minutesUpdated',
       this.onTimerMinuteChanged.bind(this)
     );
     this.timer.addEventListener(
-      "secondsUpdated",
+      'secondsUpdated',
       this.onTimerSecondChanged.bind(this)
     );
   }
@@ -727,7 +730,7 @@ export default class Game {
     if (diffrence < 1) return;
     this.channel.sendWithText(
       this.groupId,
-      this.localeService.t("game.timer.minutes", { time: diffrence })
+      this.localeService.t('game.timer.minutes', { time: diffrence })
     );
   }
 
@@ -743,17 +746,17 @@ export default class Game {
     if (seconds === 30) {
       this.channel.sendWithText(
         this.groupId,
-        this.localeService.t("game.timer.seconds", { time: 30 })
+        this.localeService.t('game.timer.seconds', { time: 30 })
       );
     } else if (seconds === 45) {
       this.channel.sendWithText(
         this.groupId,
-        this.localeService.t("game.timer.seconds", { time: 15 })
+        this.localeService.t('game.timer.seconds', { time: 15 })
       );
     } else if (seconds === 55) {
       this.channel.sendWithText(
         this.groupId,
-        this.localeService.t("game.timer.seconds", { time: 5 })
+        this.localeService.t('game.timer.seconds', { time: 5 })
       );
     } else if (seconds === 59) {
       this.timer.stop();
@@ -781,16 +784,16 @@ export default class Game {
    */
   private finishGame() {
     // Send Finish Game here
-    this.status = "FINISH";
+    this.status = 'FINISH';
     this.sendStopSignal();
   }
 
   private sendStopSignal() {
-    this.emitter.emit("stop");
+    this.emitter.emit('stop');
   }
 
   private isValidCallback(event: Types.GameEvent) {
-    if (this.status === "OPEN") return false;
+    if (this.status === 'OPEN') return false;
     if (Date.now() - event.timeStamp >= 300 * 1000) return false;
     return true;
   }
@@ -800,7 +803,7 @@ export default class Game {
   }
 
   private getEndPlayerListMessage() {
-    return this.localeService.t("common.playerlist.end_header").concat(
+    return this.localeService.t('common.playerlist.end_header').concat(
       this.sortPlayerByWinning()
         .map(
           (player, index) =>
@@ -808,12 +811,12 @@ export default class Game {
               player
             )} - ${this.getWinningMessage(player)}`
         )
-        .join("\n")
+        .join('\n')
     );
   }
 
   private getRoleHistoryText(player: Player) {
-    return player.role!.roleHistory.map(data => data).join(" ➡ ");
+    return player.role!.roleHistory.map(data => data).join(' ➡ ');
   }
 
   private sortPlayerByWinning() {

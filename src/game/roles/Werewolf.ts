@@ -129,10 +129,16 @@ export default class WereWolf extends Role {
             this.game.localeService.t('role.werewolf.eat_drunk')
           );
         }
-        this.game.channel.sendWithText(
-          target.userId,
-          this.game.localeService.t('role.werewolf.bite')
-        );
+
+        // Skip notify target for certain role
+        const excludeRole: [Types.RoleName] = ['Hunter'];
+        if (!excludeRole.includes(target.role!.name)) {
+          this.game.channel.sendWithText(
+            target.userId,
+            this.game.localeService.t('role.werewolf.bite')
+          );
+        }
+
         target.role!.endOfLife(event, this.player);
     }
   }

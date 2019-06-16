@@ -11,6 +11,8 @@ import Gunner from '../../roles/Gunner';
 import Harlot from '../../roles/Harlot';
 import Hunter from '../../roles/Hunter';
 import Wolfman from '../../roles/Wolfman';
+import Lycan from '../../roles/Lycan';
+import Beholder from '../../roles/Beholder';
 
 const Roles: { [key: string]: any } = {
   Villager,
@@ -25,7 +27,9 @@ const Roles: { [key: string]: any } = {
   Gunner,
   Harlot,
   Hunter,
-  Wolfman
+  Wolfman,
+  Lycan,
+  Beholder
 };
 
 export default Roles;

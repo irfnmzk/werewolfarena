@@ -146,6 +146,10 @@
     },
     "lycan": {
       "announcement": "Kamu adalah Lycan, Sebenarnya kamu adalah Werewolf tapi bila Seer menerawangmu dia akan melihatmu sebagai seorang Viillager"
+    },
+    "princess": {
+      "announcement": "Kamu adalah seorang Princess, Kamu sangat di sayangi oleh keluarga kerajaan, Jika Kamu tereksekusi kamu akan tetap hidup",
+      "vote": "Warga terkejut mengetahui bahwa {name} adalah seorang Princess, Maka Eksekusi di batalakan."
     }
   },
   "vote": {

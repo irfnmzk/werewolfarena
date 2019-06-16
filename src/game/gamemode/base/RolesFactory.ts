@@ -13,6 +13,7 @@ import Hunter from '../../roles/Hunter';
 import Wolfman from '../../roles/Wolfman';
 import Lycan from '../../roles/Lycan';
 import Beholder from '../../roles/Beholder';
+import Princess from '../../roles/Princess';
 
 const Roles: { [key: string]: any } = {
   Villager,
@@ -29,7 +30,8 @@ const Roles: { [key: string]: any } = {
   Hunter,
   Wolfman,
   Lycan,
-  Beholder
+  Beholder,
+  Princess
 };
 
 export default Roles;

@@ -3,7 +3,7 @@ import Game from '@game/Game';
 import Player from '@game/base/Player';
 import * as Types from '../roles/base/RoleTypes';
 
-export default class Drunk extends Role {
+export default class Cursed extends Role {
   constructor(game: Game, player: Player) {
     super(game, player);
 

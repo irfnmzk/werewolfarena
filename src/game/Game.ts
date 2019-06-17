@@ -12,13 +12,13 @@ import GameEventQueue from './GameEventQueue';
 import * as Types from './roles/base/RoleTypes';
 import LocaleService from '../utils/i18n/LocaleService';
 import ILineMessage from 'src/line/base/ILineMessage';
-import TestGameMode from './gamemode/TestGameMode';
+// import TestGameMode from './gamemode/TestGameMode';
 import MessageGenerator from './roles/helper/MessageGenerator';
 import { Message } from '@line/bot-sdk';
 import GameOptions from './base/GameOptions';
 import GameMode from './gamemode/base/GameMode';
 
-export type Winner = 'VILLAGER' | 'WEREWOLF';
+export type Winner = 'VILLAGER' | 'WEREWOLF' | 'TANNER';
 
 export default class Game {
   public readonly groupId: string;
@@ -638,6 +638,14 @@ export default class Game {
   ) {
     const target = this.findPlayerById(targetId);
     player.role!.action(event, target);
+  }
+
+  /**
+   * finishGameWithWinner
+   */
+  public finishGameWithWinner(winner: Winner) {
+    this.winner = winner;
+    this.finishGame();
   }
 
   private findPlayerById(id: string) {

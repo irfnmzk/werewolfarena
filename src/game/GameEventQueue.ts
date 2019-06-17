@@ -119,6 +119,11 @@ export default class GameEventQueue {
       );
     }
 
+    // if tanner get voted then game should be ended
+    if (this.game.getTargetPlayer(targetUserId).role!.id === 'tanner') {
+      this.game.finishGameWithWinner('TANNER');
+    }
+
     this.game
       .getTargetPlayer(targetUserId)
       .role!.endOfLife('vote', {} as Player);

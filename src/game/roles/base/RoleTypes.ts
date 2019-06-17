@@ -16,7 +16,8 @@ export type RoleId =
   | 'wolfman'
   | 'lycan'
   | 'beholder'
-  | 'princess';
+  | 'princess'
+  | 'tanner';
 export type RoleName =
   | 'default'
   | 'Villager'
@@ -34,7 +35,8 @@ export type RoleName =
   | 'Wolfman'
   | 'Lycan'
   | 'Beholder'
-  | 'Princess';
+  | 'Princess'
+  | 'Tanner';
 export type EventType =
   | 'punishment'
   | 'vote'
@@ -44,7 +46,7 @@ export type EventType =
   | 'shoot'
   | 'visit'
   | 'revenge';
-export type Team = 'VILLAGER' | 'WEREWOLF';
+export type Team = 'VILLAGER' | 'WEREWOLF' | 'TANNER';
 export type BuffName = 'protected' | 'drunk' | 'visiting' | 'visited';
 
 export interface Buff {

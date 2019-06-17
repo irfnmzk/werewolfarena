@@ -7,7 +7,7 @@
   "fool": 2,
   "cursed": -5,
   "traitor": -4,
-  "lumberjack": 2,
+  "lumberjack": 3,
   "gunner": 5,
   "harlot": 3,
   "hunter": 4,
@@ -15,5 +15,6 @@
   "wolfman": 2,
   "beholder": 6,
   "princess": 4,
-  "tanner": 0
+  "tanner": 0,
+  "doctor": 7
 }

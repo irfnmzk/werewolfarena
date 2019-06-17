@@ -10,18 +10,18 @@ export default class DefaultGameMode extends GameMode {
 
     this.name = 'Default';
     this.MIN_PLAYER = 5;
-    this.MAX_PLAYER = 16;
+    this.MAX_PLAYER = 20;
 
     this.deck = {
-      villager: 4,
-      werewolf: 2,
+      villager: 6,
+      werewolf: 3,
       guardian: 1,
       seer: 1,
       drunk: 1,
       fool: 1,
       cursed: 1,
       traitor: 1,
-      lumberjack: 3,
+      lumberjack: 4,
       gunner: 1,
       harlot: 1,
       hunter: 1,
@@ -29,7 +29,8 @@ export default class DefaultGameMode extends GameMode {
       beholder: 1,
       wolfman: 1,
       princess: 1,
-      tanner: 1
+      tanner: 1,
+      doctor: 1
     };
 
     this.requiredRole = {

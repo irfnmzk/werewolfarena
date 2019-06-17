@@ -623,6 +623,7 @@ export default class Game {
    * waitExtendedTime
    */
   public waitExtendedTime(): Promise<any> {
+    if (this.isGameKilled() || this.status === 'FINISH') return new Promise(resolve => resolve());
     if (this.debug) {
       console.log('sleeping for ' + this.extendedTime);
       this.emitter.emit('extend_time', this.time, this.day, this.players);
@@ -630,7 +631,6 @@ export default class Game {
     return new Promise(resolve =>
       setTimeout(() => {
         this.extendedTime = 0;
-        console.log('checkend game', this.isFinish());
         this.checkEndGame();
         resolve();
       }, this.extendedTime * 1000)

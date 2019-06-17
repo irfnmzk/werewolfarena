@@ -12,7 +12,8 @@
   "harlot": 3,
   "hunter": 4,
   "lycan": -8,
-  "wolfman": 0,
+  "wolfman": 2,
   "beholder": 6,
-  "princess": 4
+  "princess": 4,
+  "tanner": 0
 }

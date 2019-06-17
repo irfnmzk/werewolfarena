@@ -15,6 +15,7 @@ import Lycan from '../../roles/Lycan';
 import Beholder from '../../roles/Beholder';
 import Princess from '../../roles/Princess';
 import Tanner from '../../roles/Tanner';
+import Doctor from '../../roles/Doctor';
 
 const Roles: { [key: string]: any } = {
   Villager,
@@ -33,7 +34,8 @@ const Roles: { [key: string]: any } = {
   Lycan,
   Beholder,
   Princess,
-  Tanner
+  Tanner,
+  Doctor
 };
 
 export default Roles;

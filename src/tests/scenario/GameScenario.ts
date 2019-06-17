@@ -20,7 +20,7 @@ const game = new Game(
   true
 );
 game.gameDuration = 5;
-const palyers = generateFakePlayers(6);
+const palyers = generateFakePlayers(12);
 
 const gamemode = new DefaultGameMode(game);
 

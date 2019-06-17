@@ -17,7 +17,8 @@ export type RoleId =
   | 'lycan'
   | 'beholder'
   | 'princess'
-  | 'tanner';
+  | 'tanner'
+  | 'doctor';
 export type RoleName =
   | 'default'
   | 'Villager'
@@ -36,7 +37,8 @@ export type RoleName =
   | 'Lycan'
   | 'Beholder'
   | 'Princess'
-  | 'Tanner';
+  | 'Tanner'
+  | 'Doctor';
 export type EventType =
   | 'punishment'
   | 'vote'
@@ -45,7 +47,8 @@ export type EventType =
   | 'see'
   | 'shoot'
   | 'visit'
-  | 'revenge';
+  | 'revenge'
+  | 'revive';
 export type Team = 'VILLAGER' | 'WEREWOLF' | 'TANNER';
 export type BuffName = 'protected' | 'drunk' | 'visiting' | 'visited';
 

@@ -453,6 +453,15 @@ export default class Game {
   }
 
   /**
+   * getAllDeadPlayers
+   */
+  public getAllDeadPlayers(player: Player) {
+    return this.players.filter(
+      target => target.role!.dead && player.userId !== target.userId
+    );
+  }
+
+  /**
    * getAllPlayer
    */
   public getAllPlayer() {

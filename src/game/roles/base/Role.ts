@@ -268,6 +268,18 @@ export default class Role {
       );
   }
 
+  /**
+   * revivePlayer
+   */
+  public revivePlayer() {
+    this.dead = false;
+
+    this.game.channel.sendWithText(
+      this.userId,
+      'Kamu telah di hidupkan kembali'
+    );
+  }
+
   protected setRoleHistory(role: Types.RoleId) {
     this.roleHistory.push(role);
   }

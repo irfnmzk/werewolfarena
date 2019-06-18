@@ -777,6 +777,148 @@ export default class MessageGenerator {
   }
 
   /**
+   * cupidSelectionOne
+   */
+  public cupidSelectionOne(target: Player[]): Line.FlexMessage {
+    const players = _.chunk(target, 2);
+    const playerList = players.map(
+      (data): Line.FlexBox => {
+        const targetButton = data.map(
+          (targetPlayer): Line.FlexButton => ({
+            type: 'button',
+            style: 'primary',
+            height: 'sm',
+            color: '#f44242',
+            action: {
+              type: 'postback',
+              label: targetPlayer.name,
+              data: generateEvent({
+                type: 'GAME_EVENT',
+                data: {
+                  event: 'cupid',
+                  groupId: this.game.groupId,
+                  targetId: targetPlayer.userId,
+                  timeStamp: Date.now()
+                }
+              })
+            }
+          })
+        );
+        return {
+          type: 'box',
+          layout: 'horizontal',
+          spacing: 'sm',
+          contents: [...targetButton]
+        };
+      }
+    );
+    return {
+      type: 'flex',
+      altText: 'Pilih pemain pertama untuk di jodohkan!',
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          spacing: 'md',
+          contents: [
+            {
+              type: 'text',
+              text: 'Cupid Time',
+              color: '#1DB446',
+              size: 'lg',
+              weight: 'bold'
+            },
+            {
+              type: 'text',
+              text: 'Pilih pemain pertama untuk di jodohkan!',
+              color: '#aaaaaa',
+              size: 'sm'
+            },
+            {
+              type: 'box',
+              spacing: 'md',
+              layout: 'vertical',
+              contents: [...playerList]
+            }
+          ]
+        }
+      }
+    };
+  }
+
+  /**
+   * cupidSelectionTwo
+   */
+  public cupidSelectionTwo(target: Player[]): Line.FlexMessage {
+    const players = _.chunk(target, 2);
+    const playerList = players.map(
+      (data): Line.FlexBox => {
+        const targetButton = data.map(
+          (targetPlayer): Line.FlexButton => ({
+            type: 'button',
+            style: 'primary',
+            height: 'sm',
+            color: '#f44242',
+            action: {
+              type: 'postback',
+              label: targetPlayer.name,
+              data: generateEvent({
+                type: 'GAME_EVENT',
+                data: {
+                  event: 'cupid',
+                  groupId: this.game.groupId,
+                  targetId: targetPlayer.userId,
+                  timeStamp: Date.now()
+                }
+              })
+            }
+          })
+        );
+        return {
+          type: 'box',
+          layout: 'horizontal',
+          spacing: 'sm',
+          contents: [...targetButton]
+        };
+      }
+    );
+    return {
+      type: 'flex',
+      altText: 'Pilih pemain kedua untuk di jodohkan!',
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          spacing: 'md',
+          contents: [
+            {
+              type: 'text',
+              text: 'Cupid Time',
+              color: '#1DB446',
+              size: 'lg',
+              weight: 'bold'
+            },
+            {
+              type: 'text',
+              text: 'Pilih pemain kedua untuk di jodohkan!',
+              color: '#aaaaaa',
+              size: 'sm'
+            },
+            {
+              type: 'box',
+              spacing: 'md',
+              layout: 'vertical',
+              contents: [...playerList]
+            }
+          ]
+        }
+      }
+    };
+  }
+
+  /**
    * voteSelection
    */
   public voteSelection(target: Player[]): Line.FlexMessage {

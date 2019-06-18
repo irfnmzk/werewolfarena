@@ -28,6 +28,9 @@ export default class Role {
 
   public targetPlayer?: Player;
 
+  public inLove: boolean = false;
+  public lover?: Player;
+
   protected messageGenerator: MessageGenerator;
 
   protected readonly game: Game;

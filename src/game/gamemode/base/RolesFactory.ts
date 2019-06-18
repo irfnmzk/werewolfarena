@@ -16,6 +16,7 @@ import Beholder from '../../roles/Beholder';
 import Princess from '../../roles/Princess';
 import Tanner from '../../roles/Tanner';
 import Doctor from '../../roles/Doctor';
+import Cupid from '../../roles/Cupid';
 
 const Roles: { [key: string]: any } = {
   Villager,
@@ -35,7 +36,8 @@ const Roles: { [key: string]: any } = {
   Beholder,
   Princess,
   Tanner,
-  Doctor
+  Doctor,
+  Cupid
 };
 
 export default Roles;

@@ -110,7 +110,8 @@ export default class Role {
    * eventCallback
    */
   public eventCallback(time: Types.time, event: Types.GameEvent) {
-    if (this.doneAction) return;
+    // cupid byapass action restriction
+    if (this.doneAction && this.id !== 'cupid') return;
 
     this.doneAction = true;
 
@@ -238,9 +239,17 @@ export default class Role {
 
     // Kill another player if this player shipped by cupid
     if (this.inLove) {
-      this.lover!.role!.endOfLife('suicide', this.player);
+      this.lover!.role!.suicideForLove(this.player);
     }
     this.game.eventQueue.addDeath(event, this.player, killer);
+  }
+
+  /**
+   * suicideForLove
+   */
+  public suicideForLove(killer: Player) {
+    this.dead = true;
+    this.game.eventQueue.addDeath('suicide', this.player, killer);
   }
 
   /**

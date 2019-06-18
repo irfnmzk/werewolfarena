@@ -22,7 +22,7 @@ export default class GameLoop {
     this.game.broadcastRole();
     await this.timeout(5);
     this.game.firstDayScene();
-    if (!this.game.debug) await this.timeout(30); // if debug mode is false don't wait first scene
+    if (!this.game.debug) await this.timeout(this.game.gameDuration); // if debug mode is false don't wait first scene
 
     // Loop till the end of game
     while (this.playing) {

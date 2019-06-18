@@ -8,9 +8,15 @@ interface VoteCounter {
   [key: string]: number;
 }
 
+interface Death {
+  event: Types.EventType;
+  player: Player;
+  killer: Player;
+}
+
 export default class GameEventQueue {
   public queue: EventQueue[];
-  public death: any[];
+  public death: Death[];
   public deadPlayers: Player[];
 
   private readonly game: Game;

@@ -33,7 +33,9 @@ export default class Cupid extends Role {
 
   public eventNight() {
     let message: FlexMessage;
-    const target = this.game.getAlivePlayer();
+    const target = this.game
+      .getAlivePlayer()
+      .filter(player => !player.role!.inLove);
 
     switch (this.actionLeft) {
       case 2:
@@ -60,7 +62,7 @@ export default class Cupid extends Role {
     if (!this.loverTarget.targetOne) {
       target.role!.inLove = true;
       this.loverTarget.targetOne = target;
-      this.eventNight();
+      this.timeout(() => this.eventNight(), 1000);
     } else {
       target.role!.inLove = true;
       target.role!.lover = this.loverTarget.targetOne;
@@ -68,20 +70,32 @@ export default class Cupid extends Role {
       this.loverTarget.targetOne.role!.lover = target;
     }
 
-    this.game.channel.sendWithText(
-      this.userId,
-      this.game.localeService.t('common.selected.self', {
-        target: target.name
-      })
+    this.timeout(
+      () =>
+        this.game.channel.sendWithText(
+          this.userId,
+          this.game.localeService.t('common.selected.self', {
+            target: target.name
+          })
+        ),
+      500
     );
 
-    if (this.loverTarget.targetOne && this.loverTarget.targetTwo) return;
+    if (!this.loverTarget.targetOne || !this.loverTarget.targetTwo) return;
     this.game.channel.sendWithText(
       this.userId,
       this.game.localeService.t('role.cupid.ship', {
         target1: this.loverTarget.targetOne!.name,
         target2: this.loverTarget.targetTwo!.name
       })
+    );
+  }
+
+  private timeout(cb: any, ms: number) {
+    return new Promise(resolve =>
+      setTimeout(() => {
+        resolve(cb());
+      }, ms)
     );
   }
 }

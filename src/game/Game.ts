@@ -18,7 +18,7 @@ import { Message } from '@line/bot-sdk';
 import GameOptions from './base/GameOptions';
 import GameMode from './gamemode/base/GameMode';
 
-export type Winner = 'VILLAGER' | 'WEREWOLF' | 'TANNER';
+export type Winner = 'VILLAGER' | 'WEREWOLF' | 'TANNER' | 'LOVER';
 
 export default class Game {
   public readonly groupId: string;
@@ -538,6 +538,18 @@ export default class Game {
    */
   public isFinish() {
     const alive = this.calculateAliveTeam(this.players);
+    // const role = this.calculateAliveRole();
+    // Check Lover for winning
+    if (
+      alive.total === 2 &&
+      this.getAlivePlayer().filter(player => player.role!.inLove).length === 2
+    ) {
+      // if the condition above is true then change all alive player team to lover
+      this.winner = 'LOVER';
+      this.getAlivePlayer().forEach(player => player.role!.changeTeam('LOVER'));
+      return true;
+    }
+
     if (alive.VILLAGER + alive.WEREWOLF === 3 && this.time === 'DAY') {
       return false;
     }
@@ -623,7 +635,9 @@ export default class Game {
    * waitExtendedTime
    */
   public waitExtendedTime(): Promise<any> {
-    if (this.isGameKilled() || this.status === 'FINISH') return new Promise(resolve => resolve());
+    if (this.isGameKilled() || this.status === 'FINISH') {
+      return new Promise(resolve => resolve());
+    }
     if (this.debug) {
       console.log('sleeping for ' + this.extendedTime);
       this.emitter.emit('extend_time', this.time, this.day, this.players);
@@ -673,8 +687,21 @@ export default class Game {
       ).length,
       WEREWOLF: players.filter(
         player => !player.role!.dead && player.role!.team === 'WEREWOLF'
-      ).length
+      ).length,
+      total: players.filter(player => !player.role!.dead).length
     };
+  }
+
+  private calculateAliveRole() {
+    return this.players
+      .filter(player => !player.role!.dead)
+      .reduce(
+        (prev, curr) => {
+          prev[curr.role!.id] = (prev[curr.role!.id] || 0) + 1;
+          return prev;
+        },
+        {} as { [key: string]: number }
+      );
   }
 
   private getDyingMessage() {
@@ -686,7 +713,8 @@ export default class Game {
           player:
             this.option.showRole === 'YA'
               ? `${death.player.name}(${death.player.role!.name})`
-              : death.player.name
+              : death.player.name,
+          killer: death.killer.name
         })
       );
     });

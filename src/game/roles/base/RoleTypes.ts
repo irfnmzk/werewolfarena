@@ -51,8 +51,9 @@ export type EventType =
   | 'visit'
   | 'revenge'
   | 'revive'
-  | 'cupid';
-export type Team = 'VILLAGER' | 'WEREWOLF' | 'TANNER';
+  | 'cupid'
+  | 'suicide';
+export type Team = 'VILLAGER' | 'WEREWOLF' | 'TANNER' | 'LOVER';
 export type BuffName = 'protected' | 'drunk' | 'visiting' | 'visited';
 
 export interface Buff {

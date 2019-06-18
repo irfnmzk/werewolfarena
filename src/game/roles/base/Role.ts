@@ -82,6 +82,13 @@ export default class Role {
   }
 
   /**
+   * firstDayEvent
+   */
+  public firstDayEvent() {
+    // to be override
+  }
+
+  /**
    * eventDay
    */
   public eventDay() {
@@ -116,6 +123,9 @@ export default class Role {
     this.doneAction = true;
 
     switch (time) {
+      case 'FIRST':
+        this.firstDayCallback(event);
+        break;
       case 'DAY':
         this.eventDayCallback(event);
         break;
@@ -128,6 +138,13 @@ export default class Role {
       default:
         break;
     }
+  }
+
+  /**
+   * firstDayCallback
+   */
+  public firstDayCallback(event: Types.GameEvent) {
+    // To be override
   }
 
   /**

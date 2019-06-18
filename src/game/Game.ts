@@ -83,7 +83,7 @@ export default class Game {
     this.channel = channel;
 
     this.gameDuration = this.option.duration;
-    this.time = 'DAY';
+    this.time = 'FIRST'; // todo
 
     this.messageGenerator = new MessageGenerator(this.localeService, this);
 
@@ -235,6 +235,7 @@ export default class Game {
    */
   public firstDayScene() {
     if (this.isGameKilled()) return;
+    this.getAlivePlayer().forEach(player => player.role!.firstDayEvent());
     return this.sendBroadcastSceneMessage('FIRST');
   }
 
@@ -714,7 +715,11 @@ export default class Game {
             this.option.showRole === 'YA'
               ? `${death.player.name}(${death.player.role!.name})`
               : death.player.name,
-          killer: death.killer.name
+          killer:
+            this.option.showRole === 'YA'
+              ? // TODO: show role for killer
+                `${death.killer.name}`
+              : death.killer.name
         })
       );
     });

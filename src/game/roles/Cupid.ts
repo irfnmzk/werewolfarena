@@ -31,7 +31,7 @@ export default class Cupid extends Role {
     );
   }
 
-  public eventNight() {
+  public firstDayEvent() {
     let message: FlexMessage;
     const target = this.game
       .getAlivePlayer()
@@ -51,9 +51,7 @@ export default class Cupid extends Role {
     this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
   }
 
-  public eventNightCallback(event: Types.GameEvent) {
-    super.eventNightCallback(event);
-
+  public firstDayCallback(event: Types.GameEvent) {
     if (event.event !== 'cupid') return;
     this.actionLeft--;
 
@@ -62,12 +60,20 @@ export default class Cupid extends Role {
     if (!this.loverTarget.targetOne) {
       target.role!.inLove = true;
       this.loverTarget.targetOne = target;
-      this.timeout(() => this.eventNight(), 1000);
+      this.timeout(() => this.firstDayEvent(), 1000);
     } else {
       target.role!.inLove = true;
       target.role!.lover = this.loverTarget.targetOne;
       this.loverTarget.targetTwo = target;
       this.loverTarget.targetOne.role!.lover = target;
+      this.game.channel.sendWithText(
+        this.loverTarget.targetOne!.userId,
+        this.game.localeService.t('role.cupid.shipped')
+      );
+      this.game.channel.sendWithText(
+        this.loverTarget.targetTwo!.userId,
+        this.game.localeService.t('role.cupid.shipped')
+      );
     }
 
     this.timeout(

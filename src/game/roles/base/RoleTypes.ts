@@ -18,7 +18,8 @@ export type RoleId =
   | 'beholder'
   | 'princess'
   | 'tanner'
-  | 'doctor';
+  | 'doctor'
+  | 'cupid';
 export type RoleName =
   | 'default'
   | 'Villager'
@@ -38,7 +39,8 @@ export type RoleName =
   | 'Beholder'
   | 'Princess'
   | 'Tanner'
-  | 'Doctor';
+  | 'Doctor'
+  | 'Cupid';
 export type EventType =
   | 'punishment'
   | 'vote'
@@ -48,8 +50,10 @@ export type EventType =
   | 'shoot'
   | 'visit'
   | 'revenge'
-  | 'revive';
-export type Team = 'VILLAGER' | 'WEREWOLF' | 'TANNER';
+  | 'revive'
+  | 'cupid'
+  | 'suicide';
+export type Team = 'VILLAGER' | 'WEREWOLF' | 'TANNER' | 'LOVER';
 export type BuffName = 'protected' | 'drunk' | 'visiting' | 'visited';
 
 export interface Buff {

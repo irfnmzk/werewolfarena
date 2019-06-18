@@ -28,6 +28,9 @@ export default class Role {
 
   public targetPlayer?: Player;
 
+  public inLove: boolean = false;
+  public lover?: Player;
+
   protected messageGenerator: MessageGenerator;
 
   protected readonly game: Game;
@@ -232,6 +235,11 @@ export default class Role {
    */
   public endOfLife(event: Types.EventType, killer: Player) {
     this.dead = true;
+
+    // Kill another player if this player shipped by cupid
+    if (this.inLove) {
+      this.lover!.role!.endOfLife('suicide', this.player);
+    }
     this.game.eventQueue.addDeath(event, this.player, killer);
   }
 
@@ -278,6 +286,13 @@ export default class Role {
       this.userId,
       'Kamu telah di hidupkan kembali'
     );
+  }
+
+  /**
+   * changeTeam
+   */
+  public changeTeam(team: Types.Team) {
+    this.team = team;
   }
 
   protected setRoleHistory(role: Types.RoleId) {

@@ -25,7 +25,13 @@ export default class InfoCommand extends Command {
       'lumberjack',
       'gunner',
       'harlot',
-      'hunter'
+      'hunter',
+      'beholder',
+      'wolfman',
+      'doctor',
+      'princess',
+      'tanner',
+      'lycan'
     ];
   }
 

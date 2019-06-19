@@ -139,29 +139,42 @@
       "revenge": "🏹 Kamu menerima dendam Hunter. Kamu mati dibunuh oleh Hunter."
     },
     "wolfman": {
-      "announcement": "Kamu adalah Wolfman jika seer menerawangmu maka dia akan melihat dirimu sebagai seorang Werewolf"
+      "announcement": "Kamu adalah Wolfman🌚 jika seer menerawangmu maka dia akan melihat dirimu sebagai seorang Werewolf",
+      "description": "🌚Wolfman adalah sebenarnya adalah seorang villager yang jika diterawang menjadi seorang Werewolf",
+      "name": "Wolfman🌚"
     },
     "beholder": {
-      "announcement": "Kamu adalah Beholder, Kamu bisa tahu siapa seer yang asli \nSeer yang asli adalah - {target}"
+      "announcement": "Kamu adalah Beholder👀, Kamu bisa tahu siapa seer yang asli \nSeer yang asli adalah - {target}",
+      "description": "👀Beholder adalah seseorang yang dapat mengetahui sosok Seer yang asli",
+      "name": "Beholder👀"
     },
     "lycan": {
-      "announcement": "Kamu adalah Lycan, Sebenarnya kamu adalah Werewolf tapi bila Seer menerawangmu dia akan melihatmu sebagai seorang Viillager"
+      "announcement": "Kamu adalah Lycan🐺, Sebenarnya kamu adalah Werewolf tapi bila Seer menerawangmu dia akan melihatmu sebagai seorang Viillager",
+      "description": "🐺Lycan adalah seorang Werewolf yang jika diterawang akang terlihat sebagai Villager",
+      "name": "Lycan🐺"
     },
     "princess": {
-      "announcement": "Kamu adalah seorang Princess, Kamu sangat di sayangi oleh keluarga kerajaan, Jika Kamu tereksekusi kamu akan tetap hidup",
-      "vote": "Warga terkejut mengetahui bahwa {name} adalah seorang Princess, Maka Eksekusi di batalakan."
+      "announcement": "Kamu adalah seorang Princess👸, Kamu sangat di sayangi oleh keluarga kerajaan, Jika Kamu tereksekusi kamu akan tetap hidup",
+      "vote": "Warga terkejut mengetahui bahwa {name} adalah seorang Princess, Maka Eksekusi di batalakan.",
+      "description": "👸Princess adalah seorang anak raja, jika Princess tereksekusi. Maka eksekusi akan dibatalkan",
+      "name": "Princess👸"
     },
     "tanner": {
-      "announcement": "Kamu adalah tanner si pengacau kamu akan menang bila kamu di eksekusi"
+      "announcement": "Kamu adalah Tanner👺 si pengacau kamu akan menang bila kamu di eksekusi",
+      "description": "👺Tanner adalah seorang pengacau, jika Tanner tereksekusi maka Tanner akan menang",
+      "name": "Tanner👺"
     },
     "doctor": {
-      "announcement": "Kamu adalah doctor Kamu punya 1 kali kesempatan untuk menghidupkan kembali orang yang sudah mati",
-      "revived": "{target} telah di hidupkan kembali oleh seorang Doctor"
+      "announcement": "Kamu adalah doctor👨‍⚕️ Kamu punya 1 kali kesempatan untuk menghidupkan kembali orang yang sudah mati",
+      "revived": "{target} telah di hidupkan kembali oleh seorang Doctor",
+      "description": "Doctor mempunyai kemampuan untuk menghidupkan seseorang ketika sudah mati👻",
+      "name": "Doctor👨‍⚕️"
     },
     "cupid": {
       "announcement": "Kamu adalah seorang Cupid, kamu bisa menjodohkan 2 orang. Jika salah satu dari mereka mati, maka jodohnya pun ikut mati",
       "ship": "Kamu teleh menjodohkan {target1} dan {target2}",
-      "shipped": "Kamu telah dijodohkan ole Cupid"
+      "shipped": "Kamu telah dijodohkan ole Cupid",
+      "description": "Cupid dapat menjodohkan satu pasangan dalam game, jika salah satu pasangan mati maka pasangannya akan mati"
     }
   },
   "vote": {

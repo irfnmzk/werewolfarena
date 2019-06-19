@@ -19,7 +19,8 @@ export type RoleId =
   | 'princess'
   | 'tanner'
   | 'doctor'
-  | 'cupid';
+  | 'cupid'
+  | 'cultist';
 export type RoleName =
   | 'default'
   | 'Villager'
@@ -40,7 +41,8 @@ export type RoleName =
   | 'Princess'
   | 'Tanner'
   | 'Doctor'
-  | 'Cupid';
+  | 'Cupid'
+  | 'Cultist';
 export type EventType =
   | 'punishment'
   | 'vote'
@@ -52,7 +54,8 @@ export type EventType =
   | 'revenge'
   | 'revive'
   | 'cupid'
-  | 'suicide';
+  | 'suicide'
+  | 'culting';
 export type Team = 'VILLAGER' | 'WEREWOLF' | 'TANNER' | 'LOVER';
 export type BuffName = 'protected' | 'drunk' | 'visiting' | 'visited';
 

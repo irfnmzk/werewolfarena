@@ -1,7 +1,7 @@
 {
   "welcome": "Bot Is Now Ready",
   "tutorial": {
-    "opening": "Werewolf adalah Role Playing Game (RPG) atau game bermain peran. Nanti kalian akan memiliki peran masing - masing dan setiap peran tersebut mempunyai tugas dan aksi yang berbeda. Tujuan dari game ini adalah bertahan hidup dari serangan Werewolf dan mengalahkan Werewolf.",
+    "opening": "Werewolf adalah Role Playing Game (RPG) atau game bermain peran. Nanti kalian akan memiliki peran masing - masing dan setiap peran tersebut mempunyai tugas dan tujuan yang berbeda. Tujuan dari game ini adalah bertahan hidup dari serangan Werewolf dan mengalahkan Werewolf.",
     "team": "Game ini terdiri dari 2 team utama yaitu Villager dan Werewolf. Tujuan Villager adalah bertahan hidup dan mencari juga membunuh para Werewolf. Sedangkan tujuan Werewolf adalah membunuh semua Villager secara diam diam. Peran yang akan kalian dapatkan adalah random, disesuaikan dengan jumlah pemain. Untuk meliat daftar peran, tap Daftar Peran di Menu Utama",
     "flow": "Alur game disini terbagi menjadi 3 fase, yaitu Malam - Siang dan Senja. Tiap fase tersebut punya event yang berbeda. Pada fase Malam, Werewolf dan peran special lain bisa menggunakan aksi mereka. Lalu pada fase Siang, hasil dari aksi semalam akan diumumkan dan pada fase ini Warga Desa diberi kesempatan untuk berdiskusi. Lalu ada fase Senja, Warga Desa akan melakukan eksekusi terhadap orang yang telah disetujui dan dicurigai sebagai Werewolf. Kalian bisa melakukan voting untuk menentukan siapa yang akan dieksekusi.",
     "play": "Untuk mulai bermain, silahkan undang bot ini ke groupchat kamu lalu ketik /buat untuk membuat game. Setelah itu ajak teman-teman kamu untuk bergabung. Minimal pemain untuk bisa memulai game adalah 5 orang. Kamu punya waktu 2 menit untuk mengumpulkan pemain dan game akan di mulai otomatis dalam 2 menit. Untuk menambah waktu menunggu, gunakan perintah /extend. Untuk memulai game secara manual kamu bisa menggunakan perintah /mulai.",
@@ -52,12 +52,12 @@
   "role": {
     "villager": {
       "name": "Villager 👱",
-      "description": "Villager 👱 adalah Warga Desa biasa yang bertugas untuk bertahan hidup dari serangan Werewolf dengan meyakinkan orang lain bahwa dia adalah Warga Desa biasa. Villager bisa ikut vote dalam fase pemilihan orang yang akan dieksekusi.",
-      "announcement": "Kamu adalah Warga Desa 👱 Tugasmu adalah bertahan hidup sampai akhir."
+      "description": "Warga yang tugasnya bertahan hidup dari serangan Werewolf dengan berdiskusi dan berargumen.",
+      "announcement": "Kamu adalah Warga Desa 👱 \nBertahan hidup sampai akhir."
     },
     "werewolf": {
       "name": "Werewolf 🐺",
-      "announcement": "Kamu adalah Werewolf 🐺 Tugasmu adalah memakan semua warga desa 😈 {ally}",
+      "announcement": "Kamu adalah Werewolf 🐺 \nTugasmu adalah memakan semua warga desa 😈 {ally}",
       "selection": "Pilih orang yang akan menjadi korbanmu 😈",
       "bite": "Kamu telah dimakan oleh Werewolf 🐺 dan mati tercabik-cabik 😈",
       "ally_text": "adalah temanmu 🐺",
@@ -65,120 +65,120 @@
       "friend": " adalah temanmu.",
       "eat_drunk": "😵 Kamu telah memakan seorang pemabuk. Kamu menjadi teler dan tidak bisa memakan orang di malam berikutnya.",
       "new_member": "🐺 {player} telah menjadi Werewolf.",
-      "description": "Werewolf 🐺 adalah peran Antagonist utama dalam game ini. Werewolf bertujuan memakan habis semua warga desa secara diam diam untuk menang. Werewolf hanya bisa memakan 1 Warga Desa setiap malamnya. Coba untuk membuat Warga Desa lainnya yakin bahwa kamu bukanlah seorang Werewolf."
+      "description": "Bertujuan memakan semua warga desa untuk menang. Werewolf hanya bisa memakan 1 Warga Desa setiap malamnya."
     },
     "guardian": {
       "name": "Guardian Angel 👼",
-      "announcement": "Kamu adalah Guardian 👼 Tugasmu adalah melindungi pemain lain dari serangan Werewolf. Tetapi, kamu hanya bisa memilih 1 orang saja untuk dilindungi setiap malamnya. Pilih orang yang tepat !",
+      "announcement": "Kamu adalah Guardian 👼 \nTugasmu adalah melindungi satu pemain setiap malamnya dari serangan Werewolf.",
       "selection": "🛡️ Pilih orang untuk di lindungi malam ini!",
       "fail_bite": "Kamu telah dilindungi Guardian Angel 👼 dari serangan Werewolf 🐺",
       "succes_protect": "Guardian telah berhasil melindungi seseorang malam ini 👼 !",
-      "description": "Guardian Angel 👼 adalah pelindung Warga Desa. Guardian Angel dapat melindungi 1 pemain setiap malamnya dari serangan Werewolf. Jika Werewolf menyerang orang yang dilindungi, Werewolf akan gagal membunuh orang tersebut. Guardian Angel tidak akan tahu siapa yang akan di serang, jadi usahakan untuk melindungi orang yang tepat!"
+      "description": "Bertujuan melindungi warga setiap malam datang. Guardian Angel dapat melindungi 1 pemain setiap malamnya dari serangan Werewolf. Jika Werewolf menyerang orang yang dilindungi, Werewolf akan gagal membunuh orang tersebut."
     },
     "seer": {
       "name": "Seer 🔮",
-      "announcement": "Kamu adalah Seer 🔮 Setiap malam, kamu bisa melihat peran pemain lainnya. Kamu hanya bisa melihat peran 1 pemain setiap malamnya.",
+      "announcement": "Kamu adalah Seer 🔮 \nSetiap malam, kamu bisa melihat 1 peran pemain lain.",
       "selection": "Pilih orang yang akan kamu terawang 🔮",
       "see": "Kamu melihat 🔮 {target} adalah seorang {role}.",
-      "description": "Seer 🔮 adalah penerawang di dunia Werewolf. Seer dapat melihat peran asli pemain lain. Seer dapat melihat 1 peran setiap malamnya. Informasi yang didapatkan oleh Seer sangatlah penting untuk warga lain. Tapi hati - hati, jangan sampai kamu yang dituduh sebagai Werewolf !"
+      "description": "Mempunyai kemampuan untuk melihat role / peran dari pemain lainnya. Seer bisa menerawang 1 pemain setiap malamnya."
     },
     "drunk": {
       "name": "Drunk 🍻",
-      "announcement": "Kamu adalah Drunk 🍻. Jika Werewolf memakanmu, dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikutnya.",
-      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 kemarin dan sekarang kamu mabuk. Kamu tidak bisa makan dalam 1 hari 😵!",
-      "description": "Drunk 🍻 adalah Warga Desa biasa yang mabuk. Jika Werewolf memakan Drunk, Werewolf tidak akan bisa memakan orang lain di malam berikutnya."
+      "announcement": "Kamu adalah Drunk 🍻 \nJika Werewolf memakanmu, dia akan mabuk dan tidak bisa memakan pemain lain pada malam berikutnya.",
+      "cant_bite": "Kamu telah memakan seorang Drunk 🍻 dan sekarang kamu mabuk. Kamu tidak bisa makan malam ini 😵!",
+      "description": "Werewolf akan mabuk jika memakan Drunk dan tidak bisa memakan siapapun pada malam selanjutnya."
     },
     "cursed": {
       "name": "Cursed 🦊",
-      "announcement": "Kamu adalah Cursed (Werefox) 🦊. Jika kamu dimakan oleh Werewolf, maka kamu akan menjadi bagian dari mereka!",
+      "announcement": "Kamu adalah Cursed 🦊 \nKamu warga biasa. Tapi jika kamu dimakan Werewolf kamu akan menjadi Werewolf.",
       "transform": {
-        "werewolf": "🐺 Werewolf telah memakanmu! Sekarang kamu adalah bagian dari mereka 😈!"
+        "werewolf": "🐺 Werewolf telah memakanmu! Sekarang kamu telah menjadi Werewolf."
       },
-      "description": "Cursed (Werefox) 🦊 adalah Warga Desa biasa yang terkutuk. Pada awal permainan, Cursed ada di pihak Warga Desa. Tapi, jika Cursed diserang oleh Werewolf, Cursed akan berpihak kepada Werewolf."
+      "description": "Cursed dasarnya adalah warga biasa, apabila Villager menang, Cursed juga ikut menang. Apabila Cursed diserang Werewolf, Cursed akan berubah menjadi Werewolf dan akan menang bila Werewolf menang."
     },
     "traitor": {
       "name": "Traitor 🤞",
-      "announcement": "Kamu adalah Traitor 🤞 Saat semua Werewolf di Desa mati, maka kamu akan berubah menjadi Werewolf 🐺!",
+      "announcement": "Kamu adalah Traitor 🤞 \nKetika semua Werewolf mati, kamu akan berubah menjadi Werewolf 🐺",
       "transform": {
-        "werewolf": "🐺 Semua Werewolf di Desa telah mati. Sekarang adalah waktunya menunjukan dirimu yang sebenarnya. Kamu telah berubah menjadi Werewolf 🐺!"
+        "werewolf": "Semua Werewolf di Desa telah mati. Kamu telah berubah menjadi Werewolf 🐺!"
       },
-      "description": "Traitor 🤞 adalah warga desa yang sebenarnya adalah seorang Werewolf. Traitor tidak berada di pihak Warga Desa, namun Werewolf. Tapi, Werewolf murni tidak akan bisa membedakan Warga Desa biasa dengan Traitor. Traitor akan berubah menjadi Werewolf ketika semua Werewolf murni telat mati."
+      "description": "Warga desa yang sebenarnya adalah Werewolf. Traitor berada dipihak Werewolf. Traitor akan berubah menjadi Werewolf ketika semua Werewolf telat mati."
     },
     "fool": {
       "name": "Fool 👳",
-      "description": "Fool 👳 adalah Warga Desa yang mengira dirinya adalah seorang Seer. Dalam permainan kamu akan di beritahu bahwa rolemu adalah Seer. Tetapi, jika Fool melihat peran orang lain belum tentu bahwa peran yang Fool liat adalah peran asli orang tersebut."
+      "description": "Dalam permainan fool akan di beritahu bahwa rolenya adalah Seer. Tetapi, jika Fool melihat peran orang lain belum tentu bahwa peran yang Fool lihat adalah peran asli orang tersebut."
     },
     "lumberjack": {
       "name": "Lumberjack 🗿",
-      "description": "Lumberjack 🗿 adalah seorang penebang pohon di dalam hutan. Lumberjack tidak sendirian, Lumberjack mempunyai ikatan persaudaraan yang kuat dengan Lumberjack lainnya. Sehingga dalam permainan, Lumberjack bisa mengetahui sesama Lumberjack lainnya.",
-      "announcement": "Kamu adalah Lumberjack 🗿 Kamu bisa mengetahui siapa Lumberjack lainnya, dan Lumberjack lain juga tau bahwa kamu adalah Lumberjack. {ally}",
+      "description": "Sekumpulan warga yang mengetahui satu sama lain.",
+      "announcement": "Kamu adalah Lumberjack 🗿 \nKamu bisa mengetahui siapa Lumberjack lainnya, dan Lumberjack lain juga tau bahwa kamu adalah Lumberjack. {ally}",
       "friend": " Adalah temanmu 🗿",
       "alone": "Kamu adalah satu satunya Lumberjack 🗿"
     },
     "gunner": {
       "name": "Gunner 🔫",
-      "announcement": "Kamu adalah Gunner 🔫 Kamu mempunyai 2 peluru silver untuk membunuh warga yang kamu curigai sebagai Werewolf. Semua Warga Desa termasuk Werewolf akan tau kamu adalah Gunner setelah kamu menggunakan peluru pertama.",
+      "announcement": "Kamu adalah Gunner 🔫 \nKamu mempunyai 2 peluru untuk membunuh warga yang kamu curigai sebagai Werewolf. Semua orang akan tau kamu adalah Gunner setelah kamu menggunakan peluru pertama.",
       "shooted": "🔫 Kamu telah di tembak oleh gunner.",
       "shoot": "{target} telah ditembak oleh {player} (Gunner) 🔫",
-      "description": "Gunner 🔫 adalah penembak handal. Gunner mempunyai 2 peluru silver untuk membunuh Werewolf. Peran Gunner akan diketahui oleh semua warga desa termasuk Werewolf setelah Gunner menggunakan peluru pertamanya.",
+      "description": "Gunner mempunyai 2 peluru untuk membunuh orang yang dicurigai Werewolf. Peran Gunner akan diketahui oleh semua orang setelah Gunner menggunakan peluru pertamanya.",
       "no_action": "❌ Pelurumu sudah habis, kamu tidak bisa melakukan apa apa."
     },
     "harlot": {
       "name": "Harlot 👄",
-      "announcement": "Kamu adalah Harlot 👄 Kamu bisa mengunjungi di rumah warga lain / diam dirumah sendiri. Apabila Werewolf memilih untuk menyerangmu saat kamu mengunjungi tempat lain, kamu aman karena kamu sedang tidak dirumah. Tapi, apabila Werewolf menyerang warga yang sedang kamu kunjungi, kamu dan warga tersebut akan mati.",
-      "fail_bite": "👄 Harlot sedang tidak ada dirumah. Kamu pulang dengan tangan kosong.",
-      "die_while_visit": "🐺 Werewolf mengunjungi rumah yang kamu kunjungi. Kamu dan tuan rumah mati diserang Werewolf 💀",
-      "description": "Harlot 👄 adalah perempuan yang berpindah pindah tempat. Harlot bisa mengunjungi rumah warga lain / diam dirumah. Apabila Werewolf menyerang Harlot saat Harlot pergi, Harlot akan aman karena ia tidak dirumah. Tapi, jika Werewolf menyerang rumah warga yang Harlot sedang kunjungi, warga tersebut dan Harlot akan mati.",
-      "met_werewolf": "🐺 Kamu berkunjung kerumah Werewolf. Kamu tidak bisa lari dan mati ditempat 💀"
+      "announcement": "Kamu adalah Harlot 👄 \nKamu bisa mengunjungi rumah warga lain / diam dirumah sendiri. Apabila Werewolf memilih untuk menyerangmu saat kamu mengunjungi tempat lain, kamu aman karena kamu sedang tidak dirumah. Tapi, jika Werewolf menyerang warga yang sedang kamu kunjungi, kamu dan warga tersebut akan mati.",
+      "fail_bite": "👄 Harlot sedang tidak ada dirumah, kamu pulang dengan tangan kosong.",
+      "die_while_visit": "🐺 Werewolf mengunjungi rumah yang kamu kunjungi. Kamu dan tuan rumah mati diserang Werewolf.",
+      "description": "Harlot bisa mengunjungi rumah warga lain / diam dirumah. Apabila Werewolf menyerang Harlot saat Harlot pergi, Harlot akan aman karena ia tidak dirumah. Tapi, jika Werewolf menyerang rumah warga yang Harlot sedang kunjungi, warga tersebut dan Harlot akan mati.",
+      "met_werewolf": "🐺 Kamu berkunjung kerumah Werewolf. Kamu tidak bisa lari dan mati ditempat."
     },
     "hunter": {
       "name": "Hunter 🏹",
-      "announcement": "Kamu adalah Hunter 🏹. Kamu bisa membunuh 1 pemain lain jika kamu diserang oleh Werewolf.",
-      "description": "🏹 Hunter adalah seorang pemburu handal. Hunter mempunyai sifat pendendam sehingga ketika Hunter diserang oleh Werewolf, dia akan membalaskan dendamnya dengan membunuh salah satu warga.",
-      "die": "🐺 Kamu telah mati dibunuh Werewolf. Kamu punya waktu {time} detik untuk membalaskan dendammu!",
-      "revenge": "🏹 Kamu menerima dendam Hunter. Kamu mati dibunuh oleh Hunter."
+      "announcement": "Kamu adalah Hunter 🏹 \nKamu bisa membunuh 1 pemain lain jika kamu dibunuh oleh Werewolf.",
+      "description": "Ketika Hunter diserang oleh Werewolf, Hunter bisa memilih salah satu warga untuk dibunuh.",
+      "die": "🐺 Kamu telah mati dibunuh Werewolf. Kamu punya waktu {time} detik untuk membunuh 1 orang yang kamu curigai!",
+      "revenge": "🏹 Hunter yakin bahwa kamu adalah Werewolf. Kamu mati dibunuh oleh Hunter."
     },
     "wolfman": {
-      "announcement": "Kamu adalah Wolfman🌚 jika seer menerawangmu maka dia akan melihat dirimu sebagai seorang Werewolf",
-      "description": "🌚Wolfman adalah sebenarnya adalah seorang villager yang jika diterawang menjadi seorang Werewolf",
-      "name": "Wolfman🌚"
+      "announcement": "Kamu adalah Wolfman 🌚 \nKamu adalah warga biasa, tapi Seer akan melihatmu sebagai Werewolf.",
+      "description": "Villager yang akan muncul sebagai Werewolf jika ia diterawang Seer.",
+      "name": "Wolfman 🌚"
     },
     "beholder": {
-      "announcement": "Kamu adalah Beholder👀, Kamu bisa tahu siapa seer yang asli \nSeer yang asli adalah - {target}",
-      "description": "👀Beholder adalah seseorang yang dapat mengetahui sosok Seer yang asli",
-      "name": "Beholder👀"
+      "announcement": "Kamu adalah Beholder 👀 \nKamu bisa tahu siapa Seer yang asli. \nSeer yang asli adalah - {target}",
+      "description": "Seseorang yang dapat mengetahui sosok Seer yang asli.",
+      "name": "Beholder 👀"
     },
     "lycan": {
-      "announcement": "Kamu adalah Lycan🐺, Sebenarnya kamu adalah Werewolf tapi bila Seer menerawangmu dia akan melihatmu sebagai seorang Viillager",
-      "description": "🐺Lycan adalah seorang Werewolf yang jika diterawang akang terlihat sebagai Villager",
-      "name": "Lycan🐺"
+      "announcement": "Kamu adalah Lycan 🐺 \nKamu adalah Werewolf, tapi Seer akan melihatmu sebagai Villager. {ally}",
+      "description": "Werewolf yang akan muncul sebagai Villager jika ia diterawang Seer.",
+      "name": "Lycan 🐺"
     },
     "princess": {
-      "announcement": "Kamu adalah seorang Princess👸, Kamu sangat di sayangi oleh keluarga kerajaan, Jika Kamu tereksekusi kamu akan tetap hidup",
-      "vote": "Warga terkejut mengetahui bahwa {name} adalah seorang Princess, Maka Eksekusi di batalakan.",
-      "description": "👸Princess adalah seorang anak raja, jika Princess tereksekusi. Maka eksekusi akan dibatalkan",
-      "name": "Princess👸"
+      "announcement": "Kamu adalah seorang Princess 👸 \nKamu tidak akan dieksekusi saat fase voting.",
+      "vote": "Warga terkejut mengetahui bahwa {name} adalah seorang Princess 👸 Karena itu, eksekusi dibatalkan.",
+      "description": "Putri kerajaan dan memiliki peran penting di desa. Karena itu, Princess tidak bisa dieksekusi.",
+      "name": "Princess 👸"
     },
     "tanner": {
-      "announcement": "Kamu adalah Tanner👺 si pengacau kamu akan menang bila kamu di eksekusi",
-      "description": "👺Tanner adalah seorang pengacau, jika Tanner tereksekusi maka Tanner akan menang",
-      "name": "Tanner👺"
+      "announcement": "Kamu adalah Tanner 👺 \nKamu akan menang jika dieksekusi warga.",
+      "description": "Jika Tanner dieksekusi, maka Tanner akan menang.",
+      "name": "Tanner 👺"
     },
     "doctor": {
-      "announcement": "Kamu adalah doctor👨‍⚕️ Kamu punya 1 kali kesempatan untuk menghidupkan kembali orang yang sudah mati",
-      "revived": "{target} telah di hidupkan kembali oleh seorang Doctor",
-      "description": "Doctor mempunyai kemampuan untuk menghidupkan seseorang ketika sudah mati👻",
-      "name": "Doctor👨‍⚕️"
+      "announcement": "Kamu adalah Doctor 👨‍⚕️ \nKamu punya 1 kesempatan untuk menghidupkan orang yang sudah mati.",
+      "revived": "{target} telah di hidupkan kembali oleh Doctor 👨‍⚕️",
+      "description": "Mempunyai kemampuan untuk menghidupkan kembali 1 orang yang sudah mati.",
+      "name": "Doctor 👨‍⚕️"
     },
     "cupid": {
-      "announcement": "Kamu adalah seorang Cupid, kamu bisa menjodohkan 2 orang. Jika salah satu dari mereka mati, maka jodohnya pun ikut mati",
-      "ship": "Kamu teleh menjodohkan {target1} dan {target2}",
-      "shipped": "Kamu telah dijodohkan ole Cupid",
-      "description": "Cupid dapat menjodohkan satu pasangan dalam game, jika salah satu pasangan mati maka pasangannya akan mati"
+      "announcement": "Kamu adalah Cupid 💘 \nKamu bisa menjodohkan seseorang dengan orang lain.",
+      "ship": "Kamu teleh menjodohkan {target1} dan {target2} 💘",
+      "shipped": "💘 Kamu telah dijodohkan oleh Cupid.",
+      "description": "Dapat menjodohkan seseorang dengan orang lain. Jika salah satu dari pasangan itu mati, pasangan orang itu juga ikut mati."
     }
   },
   "vote": {
-    "selection": "Pilih pemain untuk di eksekusi ☠.",
+    "selection": "Pilih pemain untuk di eksekusi ☠",
     "no_death": "⌛ Warga terlalu banyak berdebat. Keputusan mereka tidak bulat. Tidak ada yang di eksekusi malam ini."
   },
   "common": {

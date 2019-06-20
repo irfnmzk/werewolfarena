@@ -22,7 +22,11 @@ export default class Cursed extends Role {
 
   public endOfLife(event: Types.EventType, killer: Player) {
     if (event !== 'bite') return super.endOfLife(event, killer);
-    if (killer.role!.id !== 'werewolf') return super.endOfLife(event, killer); // Got error if dead by vote
+    // variable for hold special role for cursed
+    const specialRole = ['werewolf', 'lycan'];
+    if (!specialRole.includes(killer.role!.id)) {
+      return super.endOfLife(event, killer);
+    }
     const wolfList = this.game
       .getAllyList(this.player)
       .filter(({ role }) => role!.id === 'werewolf');

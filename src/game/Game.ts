@@ -436,6 +436,18 @@ export default class Game {
   }
 
   /**
+   * getTeamList
+   */
+  public getTeamList(player: Player) {
+    return this.players.filter(
+      target =>
+        target.role!.team === player.role!.team &&
+        !target.role!.dead &&
+        target.userId !== player.userId
+    );
+  }
+
+  /**
    * getLobbyPlayers
    */
   public getLobbyPlayers() {
@@ -735,7 +747,10 @@ export default class Game {
    * Called when Game is Finished
    */
   private endGame() {
-    if (this.status === 'KILLED') return this.deleteGame();
+    if (this.status === 'KILLED') {
+      this.broadcastTextMessage('Game successfully reseted');
+      return this.deleteGame();
+    }
     const message = [
       this.messageGenerator.getEndGameMessage(this.sortPlayerByWinning())
     ];

@@ -67,6 +67,7 @@ export default class Gunner extends Role {
         player: this.player.name
       })
     );
+    this.killCount++;
     target.role!.endOfLife('shoot', this.player);
   }
 }

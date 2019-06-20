@@ -133,6 +133,7 @@ export default class Lycan extends Role {
           target.userId,
           this.game.localeService.t('role.werewolf.bite')
         );
+        this.killCount++;
         target.role!.endOfLife(event, this.player);
     }
   }

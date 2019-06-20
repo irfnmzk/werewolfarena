@@ -138,7 +138,7 @@ export default class WereWolf extends Role {
             this.game.localeService.t('role.werewolf.bite')
           );
         }
-
+        this.killCount++;
         target.role!.endOfLife(event, this.player);
     }
   }

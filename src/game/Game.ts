@@ -916,4 +916,8 @@ export default class Game {
       60 * 1000 * 1000
     );
   }
+
+  private updatePlayerStats() {
+    // TODO
+  }
 }

@@ -37,6 +37,7 @@ export default class Hunter extends Role {
 
   public action(event: Types.EventType, target: Player) {
     if (event !== 'revenge') return;
+    this.killCount++;
     this.game.channel.sendWithText(
       target.userId,
       this.game.localeService.t('role.hunter.revenge')

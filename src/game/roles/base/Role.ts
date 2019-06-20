@@ -31,6 +31,8 @@ export default class Role {
   public inLove: boolean = false;
   public lover?: Player;
 
+  public killCount: number = 0;
+
   protected messageGenerator: MessageGenerator;
 
   protected readonly game: Game;

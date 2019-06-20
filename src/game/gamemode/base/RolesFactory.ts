@@ -10,6 +10,13 @@ import Lumberjack from '../../roles/Lumberjack';
 import Gunner from '../../roles/Gunner';
 import Harlot from '../../roles/Harlot';
 import Hunter from '../../roles/Hunter';
+import Wolfman from '../../roles/Wolfman';
+import Lycan from '../../roles/Lycan';
+import Beholder from '../../roles/Beholder';
+import Princess from '../../roles/Princess';
+import Tanner from '../../roles/Tanner';
+import Doctor from '../../roles/Doctor';
+import Cupid from '../../roles/Cupid';
 
 const Roles: { [key: string]: any } = {
   Villager,
@@ -23,7 +30,14 @@ const Roles: { [key: string]: any } = {
   Lumberjack,
   Gunner,
   Harlot,
-  Hunter
+  Hunter,
+  Wolfman,
+  Lycan,
+  Beholder,
+  Princess,
+  Tanner,
+  Doctor,
+  Cupid
 };
 
 export default Roles;

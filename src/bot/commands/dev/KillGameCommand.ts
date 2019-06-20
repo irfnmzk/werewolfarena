@@ -8,7 +8,7 @@ export default class JoinGameCommand extends Command {
     super(channel);
 
     this.TYPE = ['GROUP'];
-    this.TRIGGER = ['/killgame', '/kg'];
+    this.TRIGGER = ['/killgame', '/kg', '/reset'];
   }
 
   /**
@@ -25,7 +25,12 @@ export default class JoinGameCommand extends Command {
       return;
     }
 
-    this.channel.replyWithText(source.replyToken!, 'Game killed');
+    this.channel.replyWithText(
+      source.replyToken!,
+      `Resetting game.. please wait for around ${
+        this.groupManager!.get(groupId!)!.game!.gameDuration
+      } seconds`
+    );
     return this.groupManager!.get(groupId!)!.game!.killGame();
   }
 }

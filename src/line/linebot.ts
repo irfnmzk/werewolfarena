@@ -47,6 +47,10 @@ export default class LineBot extends EventEmitter {
       this.handleWebhook(data);
       res.sendStatus(200);
     });
+
+    this.express.get('/', (_, res) => {
+      res.send('Halo dunia');
+    });
   }
 
   private handleWebhook(data: WebhookRequestBody) {

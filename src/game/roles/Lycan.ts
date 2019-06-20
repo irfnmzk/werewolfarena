@@ -3,14 +3,14 @@ import Game from '@game/Game';
 import Player from '@game/base/Player';
 import * as Types from './base/RoleTypes';
 
-export default class WereWolf extends Role {
+export default class Lycan extends Role {
   constructor(game: Game, player: Player) {
     super(game, player);
 
     this.priority = 2;
 
-    this.id = 'werewolf';
-    this.name = 'Werewolf';
+    this.id = 'lycan';
+    this.name = 'Lycan';
 
     this.team = 'WEREWOLF';
 
@@ -24,7 +24,7 @@ export default class WereWolf extends Role {
       .join(', ');
     this.game.channel.sendWithText(
       this.userId,
-      this.game.localeService.t('role.werewolf.announcement', {
+      this.game.localeService.t('role.lycan.announcement', {
         ally:
           allyListName.length > 0
             ? allyListName + this.game.localeService.t('role.werewolf.friend')
@@ -129,16 +129,10 @@ export default class WereWolf extends Role {
             this.game.localeService.t('role.werewolf.eat_drunk')
           );
         }
-
-        // Skip notify target for certain role
-        const excludeRole: [Types.RoleName] = ['Hunter'];
-        if (!excludeRole.includes(target.role!.name)) {
-          this.game.channel.sendWithText(
-            target.userId,
-            this.game.localeService.t('role.werewolf.bite')
-          );
-        }
-
+        this.game.channel.sendWithText(
+          target.userId,
+          this.game.localeService.t('role.werewolf.bite')
+        );
         target.role!.endOfLife(event, this.player);
     }
   }

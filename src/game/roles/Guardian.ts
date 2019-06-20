@@ -1,7 +1,7 @@
-import Role from './base/Role';
-import Game from '@game/Game';
-import Player from '@game/base/Player';
-import * as Types from './base/RoleTypes';
+import Role from "./base/Role";
+import Game from "@game/Game";
+import Player from "@game/base/Player";
+import * as Types from "./base/RoleTypes";
 
 export default class Guardian extends Role {
   constructor(game: Game, player: Player) {
@@ -9,8 +9,8 @@ export default class Guardian extends Role {
 
     this.priority = 3;
 
-    this.id = 'guardian';
-    this.name = 'Guardian';
+    this.id = "guardian";
+    this.name = "Guardian";
 
     this.setRoleHistory(this.id);
   }
@@ -18,12 +18,14 @@ export default class Guardian extends Role {
   public eventAnnouncement() {
     this.game.channel.sendWithText(
       this.userId,
-      this.game.localeService.t('role.guardian.announcement')
+      this.game.localeService.t("role.guardian.announcement")
     );
   }
 
   public eventNight() {
-    const target = this.game.getAlivePlayer();
+    const target = this.game
+      .getAlivePlayer()
+      .filter(player => this.userId !== player.userId);
     const message = this.messageGenerator.guardianSelection(target);
     this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
   }
@@ -33,7 +35,7 @@ export default class Guardian extends Role {
 
     this.game.channel.sendWithText(
       this.userId,
-      this.game.localeService.t('common.selected.self', {
+      this.game.localeService.t("common.selected.self", {
         target: this.game.getTargetPlayer(event.targetId).name
       })
     );
@@ -42,12 +44,12 @@ export default class Guardian extends Role {
   public nightTimeUp() {
     this.game.channel.sendWithText(
       this.userId,
-      this.game.localeService.t('common.timeup')
+      this.game.localeService.t("common.timeup")
     );
   }
 
   public action(event: Types.EventType, target: Player) {
-    if (event !== 'protect') return;
-    target.role!.addBuff({ name: 'protected', duration: 1 });
+    if (event !== "protect") return;
+    target.role!.addBuff({ name: "protected", duration: 1 });
   }
 }

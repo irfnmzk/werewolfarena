@@ -28,6 +28,9 @@ export default class Role {
 
   public targetPlayer?: Player;
 
+  public inLove: boolean = false;
+  public lover?: Player;
+
   protected messageGenerator: MessageGenerator;
 
   protected readonly game: Game;
@@ -79,6 +82,13 @@ export default class Role {
   }
 
   /**
+   * firstDayEvent
+   */
+  public firstDayEvent() {
+    // to be override
+  }
+
+  /**
    * eventDay
    */
   public eventDay() {
@@ -107,11 +117,15 @@ export default class Role {
    * eventCallback
    */
   public eventCallback(time: Types.time, event: Types.GameEvent) {
-    if (this.doneAction) return;
+    // cupid byapass action restriction
+    if (this.doneAction && this.id !== 'cupid') return;
 
     this.doneAction = true;
 
     switch (time) {
+      case 'FIRST':
+        this.firstDayCallback(event);
+        break;
       case 'DAY':
         this.eventDayCallback(event);
         break;
@@ -124,6 +138,13 @@ export default class Role {
       default:
         break;
     }
+  }
+
+  /**
+   * firstDayCallback
+   */
+  public firstDayCallback(event: Types.GameEvent) {
+    // To be override
   }
 
   /**
@@ -232,7 +253,20 @@ export default class Role {
    */
   public endOfLife(event: Types.EventType, killer: Player) {
     this.dead = true;
+
+    // Kill another player if this player shipped by cupid
+    if (this.inLove) {
+      this.lover!.role!.suicideForLove(this.player);
+    }
     this.game.eventQueue.addDeath(event, this.player, killer);
+  }
+
+  /**
+   * suicideForLove
+   */
+  public suicideForLove(killer: Player) {
+    this.dead = true;
+    this.game.eventQueue.addDeath('suicide', this.player, killer);
   }
 
   /**
@@ -266,6 +300,25 @@ export default class Role {
         item =>
           ({ duration: item.duration -= 1, name: item.name } as Types.Buff)
       );
+  }
+
+  /**
+   * revivePlayer
+   */
+  public revivePlayer() {
+    this.dead = false;
+
+    this.game.channel.sendWithText(
+      this.userId,
+      'Kamu telah di hidupkan kembali'
+    );
+  }
+
+  /**
+   * changeTeam
+   */
+  public changeTeam(team: Types.Team) {
+    this.team = team;
   }
 
   protected setRoleHistory(role: Types.RoleId) {

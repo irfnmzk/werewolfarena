@@ -12,12 +12,13 @@ import GameEventQueue from './GameEventQueue';
 import * as Types from './roles/base/RoleTypes';
 import LocaleService from '../utils/i18n/LocaleService';
 import ILineMessage from 'src/line/base/ILineMessage';
-import TestGameMode from './gamemode/TestGameMode';
+// import TestGameMode from './gamemode/TestGameMode';
 import MessageGenerator from './roles/helper/MessageGenerator';
 import { Message } from '@line/bot-sdk';
 import GameOptions from './base/GameOptions';
+import GameMode from './gamemode/base/GameMode';
 
-export type Winner = 'VILLAGER' | 'WEREWOLF';
+export type Winner = 'VILLAGER' | 'WEREWOLF' | 'TANNER' | 'LOVER';
 
 export default class Game {
   public readonly groupId: string;
@@ -45,7 +46,7 @@ export default class Game {
   public option: GameOptions;
 
   public playerListInterval: any;
-  private gamemode: DefaultGameMode;
+  public gamemode: GameMode;
 
   private readonly gameLoop: GameLoop;
 
@@ -82,7 +83,7 @@ export default class Game {
     this.channel = channel;
 
     this.gameDuration = this.option.duration;
-    this.time = 'DAY';
+    this.time = 'FIRST'; // todo
 
     this.messageGenerator = new MessageGenerator(this.localeService, this);
 
@@ -234,6 +235,7 @@ export default class Game {
    */
   public firstDayScene() {
     if (this.isGameKilled()) return;
+    this.getAlivePlayer().forEach(player => player.role!.firstDayEvent());
     return this.sendBroadcastSceneMessage('FIRST');
   }
 
@@ -241,7 +243,7 @@ export default class Game {
    * dayScene
    */
   public dayScene() {
-    if (this.isGameKilled()) return;
+    if (this.isGameKilled() || this.status === 'FINISH') return;
 
     this.broadcastScene('DAY');
     this.prepareForQueue('DAY');
@@ -259,7 +261,7 @@ export default class Game {
    * nightScene
    */
   public nightScene() {
-    if (this.isGameKilled()) return;
+    if (this.isGameKilled() || this.status === 'FINISH') return;
 
     this.broadcastScene('NIGHT');
     this.prepareForQueue('NIGHT');
@@ -277,7 +279,7 @@ export default class Game {
    * duskScene
    */
   public duskScene() {
-    if (this.isGameKilled()) return;
+    if (this.isGameKilled() || this.status === 'FINISH') return;
 
     this.broadcastScene('DUSK');
     this.prepareForQueue('DUSK');
@@ -434,6 +436,18 @@ export default class Game {
   }
 
   /**
+   * getTeamList
+   */
+  public getTeamList(player: Player) {
+    return this.players.filter(
+      target =>
+        target.role!.team === player.role!.team &&
+        !target.role!.dead &&
+        target.userId !== player.userId
+    );
+  }
+
+  /**
    * getLobbyPlayers
    */
   public getLobbyPlayers() {
@@ -448,6 +462,15 @@ export default class Game {
       this.getLobbyPlayers()
         .map((player, index) => `${index + 1}. ${player.name}`)
         .join('\n')
+    );
+  }
+
+  /**
+   * getAllDeadPlayers
+   */
+  public getAllDeadPlayers(player: Player) {
+    return this.players.filter(
+      target => target.role!.dead && player.userId !== target.userId
     );
   }
 
@@ -528,6 +551,18 @@ export default class Game {
    */
   public isFinish() {
     const alive = this.calculateAliveTeam(this.players);
+    // const role = this.calculateAliveRole();
+    // Check Lover for winning
+    if (
+      alive.total === 2 &&
+      this.getAlivePlayer().filter(player => player.role!.inLove).length === 2
+    ) {
+      // if the condition above is true then change all alive player team to lover
+      this.winner = 'LOVER';
+      this.getAlivePlayer().forEach(player => player.role!.changeTeam('LOVER'));
+      return true;
+    }
+
     if (alive.VILLAGER + alive.WEREWOLF === 3 && this.time === 'DAY') {
       return false;
     }
@@ -613,6 +648,9 @@ export default class Game {
    * waitExtendedTime
    */
   public waitExtendedTime(): Promise<any> {
+    if (this.isGameKilled() || this.status === 'FINISH') {
+      return new Promise(resolve => resolve());
+    }
     if (this.debug) {
       console.log('sleeping for ' + this.extendedTime);
       this.emitter.emit('extend_time', this.time, this.day, this.players);
@@ -620,6 +658,7 @@ export default class Game {
     return new Promise(resolve =>
       setTimeout(() => {
         this.extendedTime = 0;
+        this.checkEndGame();
         resolve();
       }, this.extendedTime * 1000)
     );
@@ -635,6 +674,14 @@ export default class Game {
   ) {
     const target = this.findPlayerById(targetId);
     player.role!.action(event, target);
+  }
+
+  /**
+   * finishGameWithWinner
+   */
+  public finishGameWithWinner(winner: Winner) {
+    this.winner = winner;
+    this.finishGame();
   }
 
   private findPlayerById(id: string) {
@@ -653,8 +700,21 @@ export default class Game {
       ).length,
       WEREWOLF: players.filter(
         player => !player.role!.dead && player.role!.team === 'WEREWOLF'
-      ).length
+      ).length,
+      total: players.filter(player => !player.role!.dead).length
     };
+  }
+
+  private calculateAliveRole() {
+    return this.players
+      .filter(player => !player.role!.dead)
+      .reduce(
+        (prev, curr) => {
+          prev[curr.role!.id] = (prev[curr.role!.id] || 0) + 1;
+          return prev;
+        },
+        {} as { [key: string]: number }
+      );
   }
 
   private getDyingMessage() {
@@ -666,7 +726,12 @@ export default class Game {
           player:
             this.option.showRole === 'YA'
               ? `${death.player.name}(${death.player.role!.name})`
-              : death.player.name
+              : death.player.name,
+          killer:
+            this.option.showRole === 'YA'
+              ? // TODO: show role for killer
+                `${death.killer.name}`
+              : death.killer.name
         })
       );
     });
@@ -682,7 +747,10 @@ export default class Game {
    * Called when Game is Finished
    */
   private endGame() {
-    if (this.status === 'KILLED') return this.deleteGame();
+    if (this.status === 'KILLED') {
+      this.broadcastTextMessage('Game successfully reseted');
+      return this.deleteGame();
+    }
     const message = [
       this.messageGenerator.getEndGameMessage(this.sortPlayerByWinning())
     ];
@@ -839,7 +907,7 @@ export default class Game {
     console.clear();
     this.gameDuration = 20;
     this.waitDuration = 0;
-    this.gamemode = new TestGameMode(this);
+    this.gamemode = new DefaultGameMode(this);
   }
 
   private broadcastPlayerListInterval() {

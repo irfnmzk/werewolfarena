@@ -12,7 +12,15 @@ export type RoleId =
   | 'lumberjack'
   | 'gunner'
   | 'harlot'
-  | 'hunter';
+  | 'hunter'
+  | 'wolfman'
+  | 'lycan'
+  | 'beholder'
+  | 'princess'
+  | 'tanner'
+  | 'doctor'
+  | 'cupid'
+  | 'cultist';
 export type RoleName =
   | 'default'
   | 'Villager'
@@ -26,7 +34,15 @@ export type RoleName =
   | 'Lumberjack'
   | 'Gunner'
   | 'Harlot'
-  | 'Hunter';
+  | 'Hunter'
+  | 'Wolfman'
+  | 'Lycan'
+  | 'Beholder'
+  | 'Princess'
+  | 'Tanner'
+  | 'Doctor'
+  | 'Cupid'
+  | 'Cultist';
 export type EventType =
   | 'punishment'
   | 'vote'
@@ -35,8 +51,12 @@ export type EventType =
   | 'see'
   | 'shoot'
   | 'visit'
-  | 'revenge';
-export type Team = 'VILLAGER' | 'WEREWOLF';
+  | 'revenge'
+  | 'revive'
+  | 'cupid'
+  | 'suicide'
+  | 'culting';
+export type Team = 'VILLAGER' | 'WEREWOLF' | 'TANNER' | 'LOVER';
 export type BuffName = 'protected' | 'drunk' | 'visiting' | 'visited';
 
 export interface Buff {

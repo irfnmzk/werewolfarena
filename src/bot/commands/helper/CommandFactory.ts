@@ -9,6 +9,7 @@ import InfoCommand from '../all/InfoCommand';
 import HelpCommand from '../all/HelpCommand';
 import ListCommand from '../all/ListCommand';
 import TutorialCommand from '../all/TutorialCommand';
+import StatusCommand from '../all/StatusCommand';
 
 // Group
 import CreateGameCommands from '../group/CreateGameCommands';
@@ -43,6 +44,7 @@ const commands: Command[] = [
   new HelpCommand(lineMessage),
   new ListCommand(lineMessage),
   new TutorialCommand(lineMessage),
+  new StatusCommand(lineMessage),
 
   // Group
   new CreateGameCommands(lineMessage),

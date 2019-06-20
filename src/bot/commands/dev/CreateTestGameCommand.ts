@@ -3,6 +3,7 @@ import LineMessage from 'src/line/LineMessage';
 
 import Command from '../base/Command';
 import Game from '../../../game/Game';
+import TestGameMode from '../../../game/gamemode/TestGameMode';
 
 export default class JoinGameCommand extends Command {
   constructor(channel: LineMessage) {
@@ -29,11 +30,12 @@ export default class JoinGameCommand extends Command {
     const game = new Game(
       groupId!,
       this.channel,
-      { duration: 30, showRole: 'YA' },
+      { duration: 15, showRole: 'YA' },
       this.groupManager!
     );
-    game.gameDuration = 10;
+    game.gameDuration = 15;
     game.maxVoteMiss = 1;
+    game.gamemode = new TestGameMode(game);
     this.groupManager!.createGame(groupId!, game);
   }
 }

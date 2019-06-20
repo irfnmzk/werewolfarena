@@ -108,6 +108,19 @@ export default class GroupManager extends Map<string, Group> {
     this.database.group.setGroupSetting(groupId, setting);
   }
 
+  public getStatus() {
+    let onlineGroup = 0;
+    let onlinePlayer = 0;
+    this.forEach(group => {
+      if (group.running) {
+        onlineGroup++;
+        onlinePlayer += group.game!.players.length;
+      }
+    });
+
+    return { onlineGroup, onlinePlayer };
+  }
+
   private notifyUsers(groupId: string) {
     this.get(groupId)!.notifyUserList.forEach(userId => {
       this.get(groupId)!.game!.sendNotifyToWaitingList(userId);

@@ -8,9 +8,15 @@ interface VoteCounter {
   [key: string]: number;
 }
 
+interface Death {
+  event: Types.EventType;
+  player: Player;
+  killer: Player;
+}
+
 export default class GameEventQueue {
   public queue: EventQueue[];
-  public death: any[];
+  public death: Death[];
   public deadPlayers: Player[];
 
   private readonly game: Game;
@@ -91,7 +97,7 @@ export default class GameEventQueue {
   }
 
   private processVote() {
-    const voteCounter: VoteCounter = this.queue.reduce(
+    const voteCounter = this.queue.reduce(
       (prev, { target: { userId } }) => {
         prev[userId] ? (prev[userId] += 1) : (prev[userId] = 1);
         return prev;
@@ -110,6 +116,20 @@ export default class GameEventQueue {
       return;
     }
 
+    // Princess cannot die by lynch
+    if (this.game.getTargetPlayer(targetUserId).role!.id === 'princess') {
+      return this.game.broadcastMessage(
+        this.game.localeService.t('role.princess.vote', {
+          name: this.game.getTargetPlayer(targetUserId).name
+        })
+      );
+    }
+
+    // if tanner get voted then game should be ended
+    if (this.game.getTargetPlayer(targetUserId).role!.id === 'tanner') {
+      this.game.finishGameWithWinner('TANNER');
+    }
+
     this.game
       .getTargetPlayer(targetUserId)
       .role!.endOfLife('vote', {} as Player);
@@ -121,7 +141,7 @@ export default class GameEventQueue {
       const eventCount = this.queue.filter(data => data.event === event).length;
       if (eventCount <= 1) return;
 
-      const userCounter: VoteCounter = this.queue.reduce(
+      const userCounter = this.queue.reduce(
         (prev, { target: { userId } }) => {
           prev[userId] ? (prev[userId] += 1) : (prev[userId] = 1);
           return prev;

@@ -13,7 +13,26 @@ export default class InfoCommand extends Command {
 
     this.TYPE = ['GROUP', 'USER'];
     this.TRIGGER = ['/info'];
-    this.roles = ['werewolf', 'villager', 'guardian', 'seer', 'drunk', 'fool'];
+    this.roles = [
+      'werewolf',
+      'villager',
+      'guardian',
+      'seer',
+      'drunk',
+      'fool',
+      'cursed',
+      'traitor',
+      'lumberjack',
+      'gunner',
+      'harlot',
+      'hunter',
+      'beholder',
+      'wolfman',
+      'doctor',
+      'princess',
+      'tanner',
+      'lycan'
+    ];
   }
 
   /**

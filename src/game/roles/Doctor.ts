@@ -3,14 +3,15 @@ import Game from '@game/Game';
 import Player from '@game/base/Player';
 import * as Types from './base/RoleTypes';
 
-export default class Seer extends Role {
+export default class Doctor extends Role {
   constructor(game: Game, player: Player) {
     super(game, player);
 
     this.priority = 1;
+    this.actionLeft = 1;
 
-    this.id = 'seer';
-    this.name = 'Seer';
+    this.id = 'doctor';
+    this.name = 'Doctor';
 
     this.setRoleHistory(this.id);
   }
@@ -18,14 +19,18 @@ export default class Seer extends Role {
   public eventAnnouncement() {
     this.game.channel.sendWithText(
       this.userId,
-      this.game.localeService.t('role.seer.announcement')
+      this.game.localeService.t('role.doctor.announcement')
     );
   }
 
   public eventNight() {
-    const target = this.game.getEnemyList(this.player);
-    const message = this.messageGenerator.seerSelection(target);
-    this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
+    if (this.actionLeft <= 0) return;
+
+    const target = this.game.getAllDeadPlayers(this.player);
+    const message = this.messageGenerator.doctorSelection(target);
+    if (target.length > 0) {
+      this.game.channel.sendMultipleTypeMessage(this.userId, [message]);
+    }
   }
 
   public eventNightCallback(event: Types.GameEvent) {
@@ -40,6 +45,8 @@ export default class Seer extends Role {
   }
 
   public nightTimeUp() {
+    if (this.actionLeft === 0) return;
+    if (this.game.getAllDeadPlayers(this.player).length <= 0) return;
     this.game.channel.sendWithText(
       this.userId,
       this.game.localeService.t('common.timeup')
@@ -47,20 +54,15 @@ export default class Seer extends Role {
   }
 
   public action(event: Types.EventType, target: Player) {
-    if (event !== 'see') return;
-    const targetName = this.game.getTargetPlayer(target.userId).name;
-    let targetRole = this.game.getTargetPlayer(target.userId).role!.name;
+    if (event !== 'revive' || this.actionLeft <= 0) return;
+    this.actionLeft--;
 
-    // Change targetrole name for specfic role
-    if (target.role!.id === 'wolfman') targetRole = 'Werewolf';
-    if (target.role!.id === 'lycan') targetRole = 'Villager';
-
-    this.game.channel.sendWithText(
-      this.userId,
-      this.game.localeService.t('role.seer.see', {
-        target: targetName,
-        role: targetRole
+    this.game.broadcastTextMessage(
+      this.game.localeService.t('role.doctor.revived', {
+        target: target.name
       })
     );
+
+    target.role!.revivePlayer();
   }
 }

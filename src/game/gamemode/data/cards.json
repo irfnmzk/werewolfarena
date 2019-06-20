@@ -1,14 +1,20 @@
 {
   "villager": 1,
-  "werewolf": -6,
+  "werewolf": -7,
   "guardian": 5,
-  "seer": 6,
+  "seer": 8,
   "drunk": 2,
   "fool": 2,
   "cursed": -5,
   "traitor": -4,
-  "lumberjack": 2,
+  "lumberjack": 3,
   "gunner": 5,
   "harlot": 3,
-  "hunter": 4
+  "hunter": 4,
+  "lycan": -8,
+  "wolfman": 2,
+  "beholder": 6,
+  "princess": 4,
+  "tanner": 0,
+  "doctor": 7
 }

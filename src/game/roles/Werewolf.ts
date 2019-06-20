@@ -19,7 +19,7 @@ export default class WereWolf extends Role {
 
   public eventAnnouncement() {
     const allyListName = this.game
-      .getAllyList(this.player)
+      .getTeamList(this.player)
       .map(ally => ally.name)
       .join(', ');
     this.game.channel.sendWithText(

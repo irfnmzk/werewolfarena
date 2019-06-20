@@ -436,6 +436,18 @@ export default class Game {
   }
 
   /**
+   * getTeamList
+   */
+  public getTeamList(player: Player) {
+    return this.players.filter(
+      target =>
+        target.role!.team === player.role!.team &&
+        !target.role!.dead &&
+        target.userId !== player.userId
+    );
+  }
+
+  /**
    * getLobbyPlayers
    */
   public getLobbyPlayers() {

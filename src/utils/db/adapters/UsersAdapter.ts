@@ -1,6 +1,7 @@
 import { database } from 'firebase-admin';
 import User from '../models/User';
 import { Profile } from '@line/bot-sdk';
+import PlayerStats from '../models/PlayerStats';
 
 export default class UsersAdapter {
   private readonly db: database.Database;
@@ -31,9 +32,9 @@ export default class UsersAdapter {
    * get group stats
    */
   public async getStats(userId: string) {
-    const data = await this.ref.child('group_stats/' + userId).once('value');
+    const data = await this.ref.child('player_stats/' + userId).once('value');
     if (data.val()) return data.val();
-    const groupStats: any = {
+    const groupStats: PlayerStats = {
       total_game: 0,
       death: 0,
       kill: 0,
@@ -45,5 +46,12 @@ export default class UsersAdapter {
       .set(groupStats)
       .catch(() => console.log(`fail to save database`));
     return groupStats;
+  }
+
+  /**
+   * updatePlayerStats
+   */
+  public updatePlayerStats(userId: string, data: PlayerStats) {
+    return this.ref.child('player_stats/' + userId).set(data);
   }
 }

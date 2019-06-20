@@ -17,6 +17,7 @@ const game = new Game(
   mockLineMessage,
   { showRole: 'YA', duration: 30 },
   undefined,
+  undefined,
   true
 );
 game.gameDuration = 5;

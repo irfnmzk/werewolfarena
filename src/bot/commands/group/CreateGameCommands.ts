@@ -29,7 +29,8 @@ export default class CreateGameCommand extends Command {
       groupId!,
       this.channel,
       gameSetting,
-      this.groupManager!
+      this.groupManager!,
+      this.userManager
     );
 
     this.groupManager!.createGame(groupId!, game);

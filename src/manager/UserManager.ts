@@ -2,6 +2,7 @@ import DatabaseAdapter from '../utils/db/DatabaseAdapter';
 import Player from '../game/base/Player';
 import User from './base/User';
 import { Profile } from '@line/bot-sdk';
+import PlayerStats from 'src/utils/db/models/PlayerStats';
 
 export default class UserManager extends Map<string, User> {
   private readonly database: DatabaseAdapter;
@@ -37,9 +38,16 @@ export default class UserManager extends Map<string, User> {
   /**
    * getPlayerStats
    */
-  public async getPlayerStats(profile: Profile) {
-    const playerStats = await this.database.user.getStats(profile.userId);
+  public async getPlayerStats(userId: string) {
+    const playerStats = await this.database.user.getStats(userId);
     return playerStats;
+  }
+
+  /**
+   * updatePlayerStats
+   */
+  public updatePlayerStats(userId: string, stats: PlayerStats) {
+    return this.database.user.updatePlayerStats(userId, stats);
   }
 
   /**

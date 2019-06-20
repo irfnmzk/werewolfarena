@@ -2,7 +2,6 @@ import MessageSource from '@bot/base/MessageSource';
 import LineMessage from 'src/line/LineMessage';
 
 import Command from '../base/Command';
-import { to } from 'await-to-js';
 
 export default class PlayerStatsCommand extends Command {
   constructor(channel: LineMessage) {
@@ -17,11 +16,7 @@ export default class PlayerStatsCommand extends Command {
    * Run The Command
    */
   public async run(_: number, source: MessageSource) {
-    const [err, userData] = await to(
-      this.channel.getProfileData(source.userId)
-    );
-    if (err) return;
-    const data = await this.userManager!.getPlayerStats(userData!);
+    const data = await this.userManager!.getPlayerStats(source.userId);
     console.log(data);
   }
 }

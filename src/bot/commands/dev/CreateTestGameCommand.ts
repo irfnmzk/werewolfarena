@@ -31,7 +31,8 @@ export default class JoinGameCommand extends Command {
       groupId!,
       this.channel,
       { duration: 15, showRole: 'YA' },
-      this.groupManager!
+      this.groupManager!,
+      this.userManager
     );
     game.gameDuration = 15;
     game.maxVoteMiss = 1;

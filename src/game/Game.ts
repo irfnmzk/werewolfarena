@@ -17,6 +17,8 @@ import MessageGenerator from './roles/helper/MessageGenerator';
 import { Message } from '@line/bot-sdk';
 import GameOptions from './base/GameOptions';
 import GameMode from './gamemode/base/GameMode';
+import UserManager from '@manager/UserManager';
+import PlayerStats from 'src/utils/db/models/PlayerStats';
 
 export type Winner = 'VILLAGER' | 'WEREWOLF' | 'TANNER' | 'LOVER';
 
@@ -56,6 +58,7 @@ export default class Game {
   private readonly messageGenerator: MessageGenerator;
 
   private groupManager?: GroupManager;
+  private userManager?: UserManager;
   private limiter: RateLimiterMemory;
 
   constructor(
@@ -63,9 +66,11 @@ export default class Game {
     channel: ILineMessage,
     options: GameOptions,
     groupManager?: GroupManager,
+    userManager?: UserManager,
     debug: boolean = false
   ) {
     this.option = options;
+    this.userManager = userManager;
     this.groupManager = groupManager;
 
     this.emitter = new Emitter();
@@ -765,7 +770,7 @@ export default class Game {
     }
 
     this.channel.sendMultipleTypeMessage(this.groupId, message);
-
+    this.updatePlayerStats();
     if (!this.debug) this.groupManager!.updateStats(this.groupId);
 
     return this.deleteGame();
@@ -918,6 +923,18 @@ export default class Game {
   }
 
   private updatePlayerStats() {
-    // TODO
+    this.players.forEach(async player => {
+      const data = (await this.userManager!.getPlayerStats(
+        player.userId
+      )) as PlayerStats;
+      const stats: PlayerStats = {
+        total_game: data.total_game += 1,
+        death: player.role!.dead ? (data.death += 1) : data.death,
+        kill: data.kill += player.role!.killCount,
+        win: this.winner === player.role!.team ? (data.win += 1) : data.win,
+        lose: this.winner !== player.role!.team ? (data.lose += 1) : data.lose
+      };
+      this.userManager!.updatePlayerStats(player.userId, stats);
+    });
   }
 }

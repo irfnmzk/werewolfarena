@@ -735,7 +735,10 @@ export default class Game {
    * Called when Game is Finished
    */
   private endGame() {
-    if (this.status === 'KILLED') return this.deleteGame();
+    if (this.status === 'KILLED') {
+      this.broadcastTextMessage('Game successfully reseted');
+      return this.deleteGame();
+    }
     const message = [
       this.messageGenerator.getEndGameMessage(this.sortPlayerByWinning())
     ];

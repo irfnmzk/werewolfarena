@@ -3,7 +3,7 @@ import LineMessage from 'src/line/LineMessage';
 
 import Command from '../base/Command';
 
-export default class JoinGameCommand extends Command {
+export default class KillGameCommand extends Command {
   constructor(channel: LineMessage) {
     super(channel);
 

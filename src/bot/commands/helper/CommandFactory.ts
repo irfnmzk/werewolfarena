@@ -10,6 +10,7 @@ import HelpCommand from '../all/HelpCommand';
 import ListCommand from '../all/ListCommand';
 import TutorialCommand from '../all/TutorialCommand';
 import StatusCommand from '../all/StatusCommand';
+import PlayerStatsCommand from '../all/PlayerStatsCommand';
 
 // Group
 import CreateGameCommands from '../group/CreateGameCommands';
@@ -45,6 +46,7 @@ const commands: Command[] = [
   new ListCommand(lineMessage),
   new TutorialCommand(lineMessage),
   new StatusCommand(lineMessage),
+  new PlayerStatsCommand(lineMessage),
 
   // Group
   new CreateGameCommands(lineMessage),

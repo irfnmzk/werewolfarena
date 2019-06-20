@@ -35,6 +35,14 @@ export default class UserManager extends Map<string, User> {
   }
 
   /**
+   * getPlayerStats
+   */
+  public async getPlayerStats(profile: Profile) {
+    const playerStats = await this.database.user.getStats(profile.userId);
+    return playerStats;
+  }
+
+  /**
    * getUserData
    */
   public async getUserData(profile: Profile) {

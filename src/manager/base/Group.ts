@@ -6,6 +6,8 @@ export default class Group {
   public running: boolean = false;
   public game?: Game;
 
+  public lastRun: number = Date.now();
+
   public groupStats: GroupStats;
 
   public notifyUserList: string[];

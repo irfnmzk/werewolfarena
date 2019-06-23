@@ -2,14 +2,19 @@ import Game from 'src/game/Game';
 import Group from './base/Group';
 import DatabaseAdapter from '../utils/db/DatabaseAdapter';
 import GroupSetting from 'src/utils/db/models/GroupSetting';
+import LineMessage from 'src/line/LineMessage';
 
 export default class GroupManager extends Map<string, Group> {
   private readonly database: DatabaseAdapter;
+  private readonly channel: LineMessage;
 
-  constructor(database: DatabaseAdapter) {
+  constructor(database: DatabaseAdapter, channel: LineMessage) {
     super();
 
     this.database = database;
+    this.channel = channel;
+
+    this.setupLeaveGroupScheduler();
   }
 
   /**
@@ -51,6 +56,7 @@ export default class GroupManager extends Map<string, Group> {
     if (!group.game) return;
     delete group.game; // any better solution?
     group.running = false;
+    group.lastRun = Date.now();
   }
 
   /**
@@ -126,5 +132,29 @@ export default class GroupManager extends Map<string, Group> {
       this.get(groupId)!.game!.sendNotifyToWaitingList(userId);
     });
     this.get(groupId)!.notifyUserList = [];
+  }
+
+  private setupLeaveGroupScheduler() {
+    setInterval(() => {
+      this.forEach(group => {
+        const diff = Date.now() - group.lastRun;
+        const minuteDiff = Math.floor(diff / 1000 / 60);
+
+        if (group.running) return;
+        if (minuteDiff <= 4) return;
+        this.channel
+          .sendWithText(
+            group.groupId,
+            // tslint:disable-next-line: max-line-length
+            'Kami tidak mendeteksi adanya permainan dalam 5 menit terakhir, untuk bermain kembali silahkan undang bot ini ke groupchat kalian'
+          )
+          .then(() =>
+            this.channel
+              .leaveGroup(group.groupId)
+              .catch(() => this.channel.leaveRoom(group.groupId))
+          );
+        this.delete(group.groupId);
+      });
+    }, 5 * 60 * 1000);
   }
 }

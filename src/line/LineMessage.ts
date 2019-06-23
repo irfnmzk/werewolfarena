@@ -73,7 +73,7 @@ export default class LineMessage extends Line.Client implements ILineMessage {
   }
 
   public sendMultipleText(id: string, data: string[]): void {
-    const message: Line.TextMessage[] = data.map(text => ({
+    const message = data.map(text => ({
       type: 'text',
       text
     })) as Line.TextMessage[];

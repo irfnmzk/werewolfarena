@@ -22,13 +22,13 @@ export default class WolfBot {
     this.config = new Config();
     this.lineBot = new LineBot(this.config);
     this.database = new DatabaseAdapter();
-    this.groupManager = new GroupManager(this.database);
+    this.channel = new LineMessage(this.config);
+    this.groupManager = new GroupManager(this.database, this.channel);
     this.userManager = new UserManager(this.database);
     this.messageHandler = new MessageHandler(
       this.groupManager,
       this.userManager
     );
-    this.channel = new LineMessage(this.config);
 
     this.addEventListener();
 

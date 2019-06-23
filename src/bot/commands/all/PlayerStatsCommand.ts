@@ -3,7 +3,7 @@ import LineMessage from 'src/line/LineMessage';
 
 import Command from '../base/Command';
 import { to } from 'await-to-js';
-import { getPlayerStatsMessage } from './helper/InfoMessageGenerator';
+// import { getPlayerStatsMessage } from './helper/InfoMessageGenerator';
 
 export default class PlayerStatsCommand extends Command {
   constructor(channel: LineMessage) {
@@ -35,6 +35,5 @@ Win : ${data.win} (${winRate}%)
 lose : ${data.lose} (${loseRate}%)
     `;
     this.channel.replyWithText(source.replyToken!, text);
-    this.channel.replyWithAny(source.replyToken!, getPlayerStatsMessage(data));
   }
 }

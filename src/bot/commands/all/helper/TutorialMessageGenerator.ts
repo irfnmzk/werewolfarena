@@ -51,7 +51,7 @@ export function getHelpMessage(): FlexMessage {
 export function getCommandListMessage(
   data: { name: string; desc: string }[]
 ): FlexMessage {
-  const datalist: FlexBox[] = data.map(
+  const datalist = data.map(
     (item): FlexBox => {
       return {
         type: 'box',

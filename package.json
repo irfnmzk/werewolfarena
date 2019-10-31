@@ -46,7 +46,7 @@
     "express": "^4.16.4",
     "firebase-admin": "^7.0.0",
     "i18n": "^0.8.3",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "qs": "^6.6.0",
     "rate-limiter-flexible": "^0.22.2"
   }

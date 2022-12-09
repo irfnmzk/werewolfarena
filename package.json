@@ -43,7 +43,7 @@
     "console-stamp": "^0.2.7",
     "easytimer.js": "^3.0.1",
     "eventemitter3": "^3.1.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "firebase-admin": "^7.0.0",
     "i18n": "^0.8.3",
     "lodash": "^4.17.11",
